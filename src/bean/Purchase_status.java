@@ -5,7 +5,6 @@ public class Purchase_status implements java.io.Serializable {
     private String condition;
 
 
-
     // Getter methods
     public int getFlag_id() {
         return flag_id;
