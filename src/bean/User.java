@@ -7,7 +7,7 @@ public class User implements java.io.Serializable{
 	private String user_name;
 	private	 String user_hurigana;
 	private String user_address;
-	private String telephone
+	private String telephone;
 
 	public String getUser_id(){
 		return user_id;
