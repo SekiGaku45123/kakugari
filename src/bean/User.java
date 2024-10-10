@@ -9,6 +9,7 @@ public class User implements java.io.Serializable{
 	private String user_address;
 	private String telephone;
 
+
 	public String getUser_id(){
 		return user_id;
 	}
