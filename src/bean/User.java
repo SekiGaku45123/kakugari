@@ -42,28 +42,28 @@ public class User implements java.io.Serializable{
 		this.user_id=user_id;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id=user_id;
+	public void setMaleaddress(String maleaddress) {
+		this.maleaddress=maleaddress;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id=user_id;
+	public void setpassword(String password) {
+		this.password=password;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id=user_id;
+	public void setUser_name(String user_name) {
+		this.user_name=user_name;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id=user_id;
+	public void setUser_hurigana(String user_hurigana) {
+		this.user_hurigana=user_hurigana;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id=user_id;
+	public void setUser_address(String user_address) {
+		this.user_address=user_address;
 	}
 
-	public void setUser_id(String user_id) {
-		this.user_id=user_id;
+	public void setTelephone(String telephone) {
+		this.telephone=telephone;
 	}
 
 
