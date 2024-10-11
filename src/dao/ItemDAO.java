@@ -40,8 +40,36 @@ public class ItemDAO extends DAO{
 
 				return list;
 	}
-=======
-public class ItemDAO {
+
+	public List<Item> all() throws Exception {
+
+		List<Item> list = new ArrayList<>();
+
+		Connection con=getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"select * from item");
+		ResultSet rs=st.executeQuery();
+
+		while (rs.next()){
+			Item p=new Item();
+			p.setItem_id(rs.getString("item_id"));
+			p.setUser_id(rs.getString("user_id"));
+			p.setItem_id(rs.getString("item_price"));
+			p.setCategory(rs.getString("category"));
+			p.setItem_detail(rs.getString("item_datail"));
+			p.setCondition(rs.getString("Condition"));
+			p.setArea(rs.getString("Area"));
+			p.setShipping_days(rs.getInt("shipping_days"));
+			p.setFlag(rs.getBoolean("flag"));
+			list.add(p);
+		}
+		st.close();
+		con.close();
+
+		return list;
+	}
+
 
 }
->>>>>>> branch 'master' of https://github.com/SekiGaku45123/kakugari.git
+
