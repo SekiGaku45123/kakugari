@@ -1,5 +1,7 @@
 package kakugari;
 
-public class KakugariDAO {
+public class KakugariDAO extends DAO{
+
+	public List
 
 }
