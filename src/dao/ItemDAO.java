@@ -1,5 +1,6 @@
 package dao;
 
+<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,3 +40,8 @@ public class ItemDAO extends DAO{
 
 				return list;
 	}
+=======
+public class ItemDAO {
+
+}
+>>>>>>> branch 'master' of https://github.com/SekiGaku45123/kakugari.git
