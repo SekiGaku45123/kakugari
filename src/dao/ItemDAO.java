@@ -9,7 +9,7 @@ import java.util.List;
 import bean.Item;
 
 public class ItemDAO extends DAO{
-	public List<Item> Buy() throws Exception {
+	public List<Item> buy(String code) throws Exception {
 
 		List<Item> list = new ArrayList<>();
 
