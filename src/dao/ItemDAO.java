@@ -16,19 +16,20 @@ public class ItemDAO extends DAO{
 		Connection con=getConnection();
 
 		PreparedStatement st=con.prepareStatement(
-				"select * from item WHERE item_id=?");
+				"select * from item WHERE item_id like ?");
+		st.setString(1, "%"+code+"%");
 		ResultSet rs=st.executeQuery();
 
 		while (rs.next()){
 			Item p=new Item();
-			p.setItem_id(rs,getString("item_id"));
-			p.setUser_id(rs,getString("user_id"));
+			p.setItem_id(rs.getString("item_id"));
+			p.setUser_id(rs.getString("user_id"));
 			p.setItem_price(rs.getInt("item_price"));
-			p.setCategory(rs,getString("category"));
-			p.setItem_detail(("item_detail"));
-			p.setCondition(rs, getString("condition"));
-			p.setArea(rs,getString("area"));
-			p.setShipping_days(rs,getInt("shipping_days"));
+			p.setCategory(rs.getString("category"));
+			p.setItem_detail(rs.getString("item_detail"));
+			p.setCondition(rs. getString("condition"));
+			p.setArea(rs.getString("area"));
+			p.setShipping_days(rs.getInt("shipping_days"));
 		    p.setBoolean(rs.getString("flag"));
 			}
 
