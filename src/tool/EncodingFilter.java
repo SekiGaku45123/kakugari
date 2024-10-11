@@ -25,6 +25,10 @@ public class EncodingFilter implements Filter {
 		System.out.println("フィルタの後処理");
 	}
 
+
 	public void init(FilterConfig filterConfig) {}
 	public void destroy() {}
+
 }
+
+
