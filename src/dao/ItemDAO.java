@@ -1,6 +1,5 @@
 package dao;
 
-<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Item;
-import bean.Product;
 
 public class ItemDAO extends DAO{
 	public List<Item> Buy() throws Exception {
