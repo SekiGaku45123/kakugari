@@ -1,5 +1,7 @@
 package bean;
 
+import java.sql.ResultSet;
+
 public class Item implements java.io.Serializable {
     private String item_id;
     private String user_id;
@@ -84,4 +86,39 @@ public class Item implements java.io.Serializable {
     public void setFlag(boolean flag) {
         this.flag = flag;
     }
+
+	public void setItem_id(ResultSet rs, Object string) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	public void setUser_id(ResultSet rs, Object string) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	public void setCategory(ResultSet rs, Object string) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	public void setCondition(ResultSet rs, Object string) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	public void setArea(ResultSet rs, Object string) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	public void setShipping_days(ResultSet rs, Object int1) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
+
+	public void setBoolean(String string) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+	}
 }

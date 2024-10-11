@@ -1,4 +1,4 @@
-package kakugari;
+-^package kakugari;
 
 public class KakugariDAO {
 
