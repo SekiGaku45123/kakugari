@@ -20,6 +20,7 @@ public class ItemDAO extends DAO{
 		st.setString(1, "%"+code+"%");
 		ResultSet rs=st.executeQuery();
 
+
 		while (rs.next()){
 			Item p=new Item();
 			p.setItem_id(rs.getString("item_id"));
@@ -31,14 +32,15 @@ public class ItemDAO extends DAO{
 			p.setArea(rs.getString("area"));
 			p.setShipping_days(rs.getInt("shipping_days"));
 		    p.setFlag(rs.getBoolean("flag"));
+		    list.add(p);
 			}
 
 			st.close();
 			con.close();
 
+			return list;
+		}
 
-				return list;
-	}
 
 	public List<Item> all() throws Exception {
 
