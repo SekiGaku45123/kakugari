@@ -1,0 +1,42 @@
+header {
+  width: 95%;
+  margin: 0 auto;
+}
+
+header h2 {
+	font-size: 20px;
+	float: left;
+	margin: 5px 0 10px ;
+}
+
+header .kakuspa {
+	font-family: "";
+}
+
+header #search {
+	float: left;
+	margin: 35px 50px 0;
+	display: inline-block;
+    width: 50%;
+    padding: 0.5em;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    background: #f2f2f2;
+}
+header #bar {
+	float: right;
+	margin: 25px 30px 0 0;
+}
+
+header #menu {
+	width: 95%;
+	clear: both;
+	overflow: hidden;
+	margin: 16px auto;
+}
+
+header #menu ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}

@@ -15,12 +15,6 @@ public class ItemDAO extends DAO{
 
 		Connection con=getConnection();
 
-		System.out.print(code);
-
-		if (code == null){
-			code = "-";
-		}
-
 		PreparedStatement st=con.prepareStatement(
 				"select * from item WHERE item_id like ?");
 		st.setString(1, "%"+code+"%");
@@ -37,16 +31,16 @@ public class ItemDAO extends DAO{
 			p.setCondition(rs. getString("condition"));
 			p.setArea(rs.getString("area"));
 			p.setShipping_days(rs.getInt("shipping_days"));
-		    p.setBoolean(rs.getString("flag"));
+		    p.setFlag(rs.getBoolean("flag"));
 		    list.add(p);
 			}
 
 			st.close();
 			con.close();
 
+			return list;
+		}
 
-				return list;
-	}
 
 	public List<Item> all() throws Exception {
 
@@ -62,9 +56,9 @@ public class ItemDAO extends DAO{
 			Item p=new Item();
 			p.setItem_id(rs.getString("item_id"));
 			p.setUser_id(rs.getString("user_id"));
-			p.setItem_id(rs.getString("item_price"));
+			p.setItem_price(rs.getInt("item_price"));
 			p.setCategory(rs.getString("category"));
-			p.setItem_detail(rs.getString("item_datail"));
+			p.setItem_detail(rs.getString("item_detail"));
 			p.setCondition(rs.getString("Condition"));
 			p.setArea(rs.getString("Area"));
 			p.setShipping_days(rs.getInt("shipping_days"));
