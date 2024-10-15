@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../css/style.css" />
-
 <style>
 
 #bar {

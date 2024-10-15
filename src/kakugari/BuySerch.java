@@ -16,18 +16,18 @@ import dao.ItemDAO;
 @WebServlet(urlPatterns={"/kakugari/buyserch"})
 public class BuySerch extends HttpServlet {
 
-	public void doPost (
+	public void doGet (
 		HttpServletRequest request, HttpServletResponse response
 	) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
-		Page.header(out);
-		try {
-			String code=request.getParameter("111");
 
+		try {
+			String code="";
+			System.out.print(code);
+			System.out.print("name");
 			// ここから
 			ItemDAO dao=new ItemDAO();
 			List<Item> list=dao.buy(code);
-
 			for (Item p : list) {
 				out.println(p.getItem_id());
 				out.println("：");
@@ -52,6 +52,6 @@ public class BuySerch extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace(out);
 		}
-		Page.footer(out);
+
 	}
 }

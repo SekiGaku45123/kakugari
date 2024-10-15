@@ -9,5 +9,4 @@
 <br>
 
 </c:forEach>
-
 <%@include file="../footer.html" %>
