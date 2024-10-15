@@ -10,7 +10,7 @@ header h2 {
 }
 
 header .kakuspa {
-	font-family: "";
+	font-family: "メイリオ";
 }
 
 header #search {
@@ -40,4 +40,11 @@ header #menu ul{
 	list-style: none;
 	margin: 0;
 	padding: 0;
+}
+
+header #menu ul li {
+	width: 19%;
+	float: left;
+	margin-right: 1px;
+	text-align: center;
 }

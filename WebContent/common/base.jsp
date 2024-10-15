@@ -63,10 +63,11 @@
 </div>
  <nav id="menu">
  	<ul>
-	 	<li><a href="#">ホーム１</a></li>
+	 	<li class="curren"><a href="#">ホーム１</a></li>
 	 	<li><a href="#">ホーム２</a></li>
 	 	<li><a href="#">ホーム３</a></li>
 	 	<li><a href="#">ホーム４</a></li>
+	 	<li><a href="#">ホーム５</a></li>
  	</ul>
  </nav>
  </header>
