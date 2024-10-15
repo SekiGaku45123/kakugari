@@ -15,10 +15,17 @@ public class ItemDAO extends DAO{
 
 		Connection con=getConnection();
 
+		System.out.print(code);
+
+		if (code == null){
+			code = "-";
+		}
+
 		PreparedStatement st=con.prepareStatement(
 				"select * from item WHERE item_id like ?");
 		st.setString(1, "%"+code+"%");
 		ResultSet rs=st.executeQuery();
+
 
 		while (rs.next()){
 			Item p=new Item();
@@ -31,6 +38,7 @@ public class ItemDAO extends DAO{
 			p.setArea(rs.getString("area"));
 			p.setShipping_days(rs.getInt("shipping_days"));
 		    p.setBoolean(rs.getString("flag"));
+		    list.add(p);
 			}
 
 			st.close();
