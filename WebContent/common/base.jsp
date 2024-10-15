@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../css/style.css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Serif+JP:wght@200..900&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 <style>
 
 #bar {
@@ -53,7 +57,7 @@
 </head>
 <body>
 <header>
- <h2><img src="../images/kakugari.png" width="66" height="77"><span class="kakuspa">カクガリ</span></h2>
+ <h2><img src="../images/kakugari.png" width="66" height="46"><span class="kakuspa">　カクガリ</span></h2>
  <input type="text" id="search" name="name" size="30" placeholder="なにをお探しですか？" />
  <div id="bar">
   <div></div>
@@ -62,10 +66,11 @@
 </div>
  <nav id="menu">
  	<ul>
-	 	<li><a href="#">ホーム１</a></li>
+	 	<li class="curren"><a href="#">ホーム１</a></li>
 	 	<li><a href="#">ホーム２</a></li>
 	 	<li><a href="#">ホーム３</a></li>
 	 	<li><a href="#">ホーム４</a></li>
+	 	<li><a href="#">ホーム５</a></li>
  	</ul>
  </nav>
  </header>

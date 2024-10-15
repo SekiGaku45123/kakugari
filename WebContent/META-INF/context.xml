@@ -10,6 +10,6 @@
 		driverClassName="org.h2.Driver"
 		url="jdbc:h2:tcp://localhost/~/merukari"
 		username="sa"
-		password="sa"
+		password=""
 	/>
 </Context>
