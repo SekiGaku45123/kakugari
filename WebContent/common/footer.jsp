@@ -14,6 +14,6 @@
 </head>
 <body>
 	<!-- footer -->
-	<footer>© 2023 TIC<br>大原学園</footer>
+	<footer>© 2024 TIC<br>大原学園</footer>
 </body>
 </html>
