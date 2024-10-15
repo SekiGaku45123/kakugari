@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Item;
 import dao.ItemDAO;
+import tool.Page;
 
 @WebServlet(urlPatterns={"/kakugari/buyserch"})
 public class BuySerch extends HttpServlet {
