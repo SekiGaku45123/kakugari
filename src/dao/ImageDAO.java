@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +16,7 @@ public class ImageDAO extends DAO {
 		PreparedStatement st=con.prepareStatement(
 			"insert into images values(?, ?)");
 		st.setString(1, deta.getItem_id());
-		st.setBlob(2, new ByteArrayInputStream(deta.getImage_data()));
+		//st.setBlob(2, new ByteArrayInputStream(deta.getImage_data()));
 		int line=st.executeUpdate();
 
 		st.close();
@@ -30,19 +29,21 @@ public class ImageDAO extends DAO {
 
 		List<Images> list = new ArrayList<>();
 
-		try (Connection con = getConnection();
-	             PreparedStatement st = con.prepareStatement("select * from images");
-	             ResultSet rs = st.executeQuery()) {
+		Connection con=getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"select * from images");
+		ResultSet rs=st.executeQuery();
+
 		while (rs.next()){
 			Images p=new Images();
 			p.setItem_id(rs.getString("item_id"));
-			p.setImage_data(rs.getBytes("image_data"));
+			p.setImage_data(rs.getString("image_data"));
 
 			list.add(p);
 		}
 		st.close();
 		con.close();
-		}
 
 		return list;
 	}
