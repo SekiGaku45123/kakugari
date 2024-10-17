@@ -84,6 +84,4 @@ public class Item implements java.io.Serializable {
     public void setFlag(boolean flag) {
         this.flag = flag;
     }
-
-
 }
