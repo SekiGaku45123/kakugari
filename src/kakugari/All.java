@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Item;
-import dao.ItemDAO;
+import bean.Images;
+import dao.ImageDAO;
 import tool.Page;
 
 @WebServlet(urlPatterns={"/main_kakugari/all"})
@@ -24,8 +24,8 @@ public class All extends HttpServlet {
 			Page.header(out);
 			try{
 
-				ItemDAO dao=new ItemDAO();
-				List<Item> list=dao.all();
+				ImageDAO dao=new ImageDAO();
+				List<Images> list=dao.all();
 
 				System.out.print(list);
 
