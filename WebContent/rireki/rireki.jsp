@@ -13,6 +13,7 @@
             width: 100%;
             margin: auto;
         }
+
         .history {
             display: flex;
             justify-content: space-between;

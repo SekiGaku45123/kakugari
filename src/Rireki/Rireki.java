@@ -62,12 +62,12 @@ class Notification {
 public class Rireki extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // JDBC接続設定
+
     private final String JDBC_URL = "jdbc:h2:~/merukari";
     private final String JDBC_USER = "sa"; // MySQLのユーザー名
     private final String JDBC_PASSWORD = ""; // MySQLのパスワード
 
-    // データベース接続メソッド
+
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
     }
@@ -80,28 +80,28 @@ public class Rireki extends HttpServlet {
 
         try (Connection connection = getConnection()) {
             if ("purchase".equals(action) && productName != null && !productName.isEmpty()) {
-                // 商品をデータベースに追加
+
                 String insertProductSQL = "INSERT INTO products (name) VALUES (?)";
                 try (PreparedStatement pstmt = connection.prepareStatement(insertProductSQL)) {
                     pstmt.setString(1, productName);
                     pstmt.executeUpdate();
                 }
 
-                // 通知をデータベースに追加
+
                 String insertNotificationSQL = "INSERT INTO notifications (message) VALUES (?)";
                 try (PreparedStatement pstmt = connection.prepareStatement(insertNotificationSQL)) {
                     pstmt.setString(1, productName + " を購入しました。");
                     pstmt.executeUpdate();
                 }
             } else if ("complete".equals(action) && productName != null) {
-                // 商品の取引を完了に更新
+
                 String updateProductSQL = "UPDATE products SET is_completed = TRUE WHERE name = ?";
                 try (PreparedStatement pstmt = connection.prepareStatement(updateProductSQL)) {
                     pstmt.setString(1, productName);
                     pstmt.executeUpdate();
                 }
 
-                // 通知をデータベースに追加
+
                 String insertNotificationSQL = "INSERT INTO notifications (message) VALUES (?)";
                 try (PreparedStatement pstmt = connection.prepareStatement(insertNotificationSQL)) {
                     pstmt.setString(1, productName + " の取引が完了しました。");
@@ -109,11 +109,11 @@ public class Rireki extends HttpServlet {
                 }
             }
 
-            // 購入履歴と通知を取得してJSPに渡す
+
             List<Product> purchaseHistory = new ArrayList<>();
             List<Notification> notifications = new ArrayList<>();
 
-            // 商品履歴を取得
+
             String selectProductsSQL = "SELECT name, is_completed FROM products";
             try (Statement stmt = connection.createStatement();
                  ResultSet rs = stmt.executeQuery(selectProductsSQL)) {
@@ -122,7 +122,7 @@ public class Rireki extends HttpServlet {
                 }
             }
 
-            // 通知を取得
+
             String selectNotificationsSQL = "SELECT message FROM notifications";
             try (Statement stmt = connection.createStatement();
                  ResultSet rs = stmt.executeQuery(selectNotificationsSQL)) {
@@ -131,11 +131,11 @@ public class Rireki extends HttpServlet {
                 }
             }
 
-            // JSPにデータを渡す
+
             request.setAttribute("purchaseHistory", purchaseHistory);
             request.setAttribute("notifications", notifications);
 
-            // JSPにフォワード
+
             request.getRequestDispatcher("rireki.jsp").forward(request, response);
         } catch (SQLException e) {
             throw new ServletException(e);
@@ -144,7 +144,7 @@ public class Rireki extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // POST処理と同じ動作
+
         doPost(request, response);
     }
 }
