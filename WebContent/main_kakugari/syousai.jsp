@@ -1,5 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
+<%@page contentType="text/html; charset=UTF-8" %>
+<% request.setCharacterEncoding("UTF-8"); %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.ArrayList, java.net.URLEncoder"%>
+
+<c:import url="/common/base.jsp">
+</c:import>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +27,15 @@
     .buy-button:hover {
       background-color: #ff6666;
     }
+    .favorite-button {
+      background-color: #f0ad4e;
+      color: white;
+      border: none;
+    }
+    .favorite-button.favorited {
+      background-color: #ffc107;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -42,19 +56,16 @@
         <!-- ボタン群 -->
         <div class="d-grid gap-2">
           <button class="btn btn-primary buy-button">購入手続きへ</button>
-          <button class="btn btn-outline-secondary">あと払いする</button>
         </div>
 
-        <!-- 追加情報 -->
+        <!-- お気に入り機能 -->
         <div class="mt-3">
-          <button class="btn btn-light">いいね！</button>
-          <button class="btn btn-light">コメント</button>
-          <button class="btn btn-light">保存</button>
-          <button class="btn btn-light">通報</button>
+          <button id="favoriteButton" class="btn favorite-button">お気に入りに追加</button>
         </div>
-      </div>
-    </div>
+
   </div>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
