@@ -43,6 +43,7 @@ public class ImageDAO extends DAO {
 
 			list.add(p);
 		}
+
 		st.close();
 		con.close();
 

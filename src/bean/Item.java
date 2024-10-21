@@ -93,4 +93,5 @@ public class Item implements java.io.Serializable {
     public void setItem_name(String item_name) {
         this.item_name = item_name;
     }
+
 }

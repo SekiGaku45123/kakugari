@@ -24,6 +24,7 @@
   top: 0;
 }
 
+
 </style>
 	<div class="container text-center">
 		<div class="row grid gap-1">
