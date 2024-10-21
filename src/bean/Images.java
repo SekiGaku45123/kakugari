@@ -5,6 +5,7 @@ public class Images implements java.io.Serializable {
 	private String image_data;
 	private String item_name;
 	private int item_price;
+	private String item_detail;
 
 
 	public String getItem_id() {
@@ -38,6 +39,14 @@ public class Images implements java.io.Serializable {
 
 	public void setItem_price(int item_price) {
         this.item_price = item_price;
+    }
+
+	public String getItem_detail() {
+        return item_detail;
+    }
+
+	public void setItem_detail(String item_detail) {
+        this.item_detail = item_detail;
     }
 
 
