@@ -1,14 +1,13 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.util.ArrayList, java.net.URLEncoder"%>
 
-<c:import url="/common/base.jsp">
-</c:import>
+<c:import url="/common/base.jsp"></c:import>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ホロライブ EXPO 2024 常闇トワ 色紙</title>
+  <title>商品詳細</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     .product-image {
@@ -44,28 +43,33 @@
     <div class="row">
       <!-- 左側：商品画像 -->
       <div class="col-md-6">
-        <img src="https://via.placeholder.com/300" alt="商品画像" class="product-image">
+        <!-- 商品の画像を表示 (item.item_detail に画像URLまたはデータが格納される) -->
+        <img src="${item.item_detail}" alt="商品画像" class="product-image">
       </div>
 
       <!-- 右側：商品詳細 -->
       <div class="col-md-6">
-        <h1>ホロライブ EXPO 2024 常闇トワ 色紙</h1>
-        <p class="price">￥1,350（税込・送料込み）</p>
-        <p>ホロライブ EXPO 2024 の常闇トワの色紙です。</p>
+        <!-- 商品IDや名前などの情報 -->
+        <h1>商品ID: ${item_id}</h1>
+        <p class="price">（税込・送料込み）</p>
+        <p>詳細: ${item.item_detail}</p>
 
-        <!-- ボタン群 -->
+        <!-- 購入ボタン -->
         <div class="d-grid gap-2">
           <button class="btn btn-primary buy-button">購入手続きへ</button>
         </div>
 
         <!-- お気に入り機能 -->
         <div class="mt-3">
-          <button id="favoriteButton" class="btn favorite-button">お気に入りに追加</button>
+          <!-- 商品IDを送信するフォーム -->
+          <form action="${pageContext.request.contextPath}/kakugari/FavoriteAddAction" method="post">
+            <input type="hidden" name="id" value="${item.item_id}">
+            <button type="submit" class="btn favorite-button">お気に入りに追加</button>
+          </form>
         </div>
-
+      </div>
+    </div>
   </div>
-
-
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
