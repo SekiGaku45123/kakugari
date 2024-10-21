@@ -10,14 +10,17 @@
   position: relative;
 }
 .imgagess img {
+  background-color: #f0f0f0;
   width: 100%; /* divの幅に対する割合 */
+  border-radius: 10px 20px 20px 20px;
+  object-fit: contain;
 }
 .imgagess p {
   color: #ffffff; /* 文字色 */
   font-size: 24px; /* 文字の大きさ */
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 0 20px 20px 0;
+  border-radius: 10px 20px 20px 0;
   padding: 0 5% 0 0;
   font-weight: 900;
   left: 0;
