@@ -25,7 +25,6 @@ class Product {
         this.name = name;
         this.isCompleted = isCompleted;
     }
-
     public String getName() {
         return name;
     }

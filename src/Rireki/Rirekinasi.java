@@ -22,5 +22,6 @@ public class Rirekinasi extends HttpServlet {
         request.setAttribute("purchasedItems", purchasedItems);
         request.getRequestDispatcher("/rirekinasi.jsp").forward(request, response);
     }
+
 }
 
