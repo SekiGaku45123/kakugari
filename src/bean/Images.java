@@ -3,6 +3,9 @@ package bean;
 public class Images implements java.io.Serializable {
 	private String item_id;
 	private String image_data;
+	private String item_name;
+	private int item_price;
+
 
 	public String getItem_id() {
         return item_id;
@@ -19,5 +22,23 @@ public class Images implements java.io.Serializable {
 	public void setImage_data(String image_data) {
         this.image_data = image_data;
     }
+
+	public String getItem_name() {
+        return item_name;
+    }
+
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+
+	}
+
+	public int getItem_price() {
+        return item_price;
+    }
+
+	public void setItem_price(int item_price) {
+        this.item_price = item_price;
+    }
+
 
 }

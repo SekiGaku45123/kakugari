@@ -1,5 +1,5 @@
 header {
-  width: 95%;
+  width: auto;
   margin: 5px auto;
   text-decoration:underline;
   text-decoration-color:#000000;
@@ -17,11 +17,12 @@ header::after {
   left: 0; /* 左に配置 */
 }
 
+
 header h2 {
 	font-family: "あめちゃんポップ　まる Light";
 	font-size: 20px;
 	float: left;
-	margin: 5px 0 10px ;
+	margin: 5px 0 10px 20px ;
 }
 
 header #search {

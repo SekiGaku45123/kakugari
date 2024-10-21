@@ -35,6 +35,7 @@ public class All extends HttpServlet {
 			}catch (Exception e){
 				e.printStackTrace(out);
 			}
+
 			Page.footer(out);
 		}
 }
