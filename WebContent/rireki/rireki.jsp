@@ -14,7 +14,6 @@
             margin: auto;
         }
 
-
         .history {
             display: flex;
             justify-content: space-between;
@@ -122,6 +121,7 @@
         </table>
     </div>
 </div>
+
 
 <script>
     document.getElementById('tabCurrent').addEventListener('click', function() {

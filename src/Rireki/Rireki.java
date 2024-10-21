@@ -41,6 +41,7 @@ class Product {
     }
 }
 
+
 // 通知クラス
 class Notification {
     private String message;
