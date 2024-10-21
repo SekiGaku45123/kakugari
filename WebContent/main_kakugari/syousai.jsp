@@ -10,8 +10,9 @@
   <title>商品詳細</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    .product-image {
-      max-width: 100%;
+    .col-md-6 {
+
+      max-width: 850px;
       height: auto;
     }
     .price {
@@ -44,15 +45,17 @@
       <!-- 左側：商品画像 -->
       <div class="col-md-6">
         <!-- 商品の画像を表示 (item.item_detail に画像URLまたはデータが格納される) -->
-        <img src="${item.item_detail}" alt="商品画像" class="product-image">
+
+        <img src="<%String Image=request.getParameter("Image"); %><%=Image %>" alt="商品画像" class="product-image">
       </div>
 
       <!-- 右側：商品詳細 -->
       <div class="col-md-6">
         <!-- 商品IDや名前などの情報 -->
-        <h1>商品ID: ${item_id}</h1>
-        <p class="price">（税込・送料込み）</p>
-        <p>詳細: ${item.item_detail}</p>
+
+        <h1>商品:<%String Name=request.getParameter("Name"); %><%=Name %></h1>
+        <p class="price">￥<%String price=request.getParameter("price"); %><%=price %>（税込・送料込み）</p>
+        <p>詳細:<br><%String Detail=request.getParameter("Detail"); %><%=Detail %></p>
 
         <!-- 購入ボタン -->
         <div class="d-grid gap-2">
