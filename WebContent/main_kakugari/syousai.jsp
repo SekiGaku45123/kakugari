@@ -10,9 +10,15 @@
   <title>商品詳細</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    .product-image{
+	  background-color: #f0ad4e;
+	  width: 56%;
+      height: auto;
+      object-fit: contain;
+    }
     .col-md-6 {
-
-      max-width: 850px;
+      background-color: #ff6666;
+      width: 44%;
       height: auto;
     }
     .price {
@@ -25,7 +31,7 @@
       font-size: 1.2rem;
     }
     .buy-button:hover {
-      background-color: #ff6666;
+      background-color: #733c3c;
     }
     .favorite-button {
       background-color: #f0ad4e;
@@ -43,14 +49,14 @@
   <div class="container mt-5">
     <div class="row">
       <!-- 左側：商品画像 -->
-      <div class="col-md-6">
+      <div class="product-image">
         <!-- 商品の画像を表示 (item.item_detail に画像URLまたはデータが格納される) -->
 
-        <img src="<%String Image=request.getParameter("Image"); %><%=Image %>" alt="商品画像" class="product-image">
+        <img src="<%String Image=request.getParameter("Image"); %><%=Image %>" alt="商品画像">
       </div>
 
       <!-- 右側：商品詳細 -->
-      <div class="col-md-6">
+       <div class="col-md-6">
         <!-- 商品IDや名前などの情報 -->
 
         <h1>商品:<%String Name=request.getParameter("Name"); %><%=Name %></h1>
@@ -64,8 +70,6 @@
     	<button type="submit" class="btn btn-primary buy-button">購入手続きへ</button>
 	</form>
         </div>
-
-
         <!-- お気に入り機能 -->
         <div class="mt-3">
           <!-- 商品IDを送信するフォーム -->
