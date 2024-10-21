@@ -64,11 +64,20 @@
                 <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="代金引換">
                 <label class="form-check-label" for="cashOnDelivery">
                     代金引換
+
                 </label>
             </div>
+                        <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="代金引換">
+                <label class="form-check-label" for="convenienceStore">
+                    コンビニ支払い
+                    </label>
+             </div>
+
         </div>
 
-        <button type="submit" class="btn btn-danger">購入を確定</button>
+        <button type="submit" class="btn btn-danger">購入する</button>
+
     </form>
 </div>
 
