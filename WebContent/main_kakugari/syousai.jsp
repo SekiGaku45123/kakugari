@@ -59,8 +59,12 @@
 
         <!-- 購入ボタン -->
         <div class="d-grid gap-2">
-          <button class="btn btn-primary buy-button">購入手続きへ</button>
+  		<form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post">
+    	<input type="hidden" name="item_id" value="${item.item_id}">
+    	<button type="submit" class="btn btn-primary buy-button">購入手続きへ</button>
+	</form>
         </div>
+
 
         <!-- お気に入り機能 -->
         <div class="mt-3">
