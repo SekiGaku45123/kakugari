@@ -14,6 +14,7 @@
             margin: auto;
         }
 
+
         .history {
             display: flex;
             justify-content: space-between;
