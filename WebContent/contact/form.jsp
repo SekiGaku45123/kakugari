@@ -9,5 +9,9 @@
 <p>名前: ${name}</p>
 <p>返信先メールアドレス: ${email}</p>
 <p>お問い合わせ内容: ${message}</p>
+<!-- メインメニューに戻るボタン -->
+<form action="All" method="get">
+<button type="submit">メインメニューに戻る</button>
+</form>
 </body>
 </html>
