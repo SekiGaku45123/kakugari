@@ -52,6 +52,19 @@
             background-color: #d90000;
             color: white;
         }
+        a.return-link {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #f0f0f0;
+        color: #000;
+        border: 1px solid #ccc;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    a.return-link:hover {
+        background-color: #ccc;
+    }
     </style>
 </head>
 <body>
@@ -125,5 +138,6 @@
     });
 </script>
 </header>
+<p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a></p>
 </body>
 </html>

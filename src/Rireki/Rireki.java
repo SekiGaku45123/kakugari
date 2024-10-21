@@ -21,6 +21,7 @@ class Product {
     private String name;
     private boolean isCompleted;
 
+
     public Product(String name, boolean isCompleted) {
         this.name = name;
         this.isCompleted = isCompleted;
