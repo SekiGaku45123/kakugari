@@ -79,7 +79,7 @@ header #menu ul li.header-nav__item.current a:hover {
 </div>
  <nav id="menu">
  	<ul>
-	 	<li class="header-nav__item"><a href="../main_kakugari/kakugarilist.jsp">ホーム１</a></li>
+	 	<li class="header-nav__item"><a href="../main_kakugari/all">ホーム１</a></li>
 	 	<li class="header-nav__item"><a href="../main_kakugari/1.jsp">ホーム２</a></li>
 	 	<li class="header-nav__item"><a href="../main_kakugari/2.jsp">ホーム３</a></li>
 	 	<li class="header-nav__item"><a href="../main_kakugari/3.jsp">ホーム４</a></li>

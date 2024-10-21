@@ -32,13 +32,14 @@ public class ImageDAO extends DAO {
 		Connection con=getConnection();
 
 		PreparedStatement st = con.prepareStatement(
-				"select * from images");
+				"select * from images join item on images.item_id = item.item_id");
 		ResultSet rs=st.executeQuery();
 
 		while (rs.next()){
 			Images p=new Images();
-			p.setItem_id(rs.getString("item_id"));
 			p.setImage_data(rs.getString("image_data"));
+			p.setItem_name(rs.getString("item_name"));
+			p.setItem_price(rs.getInt("item_price"));
 
 			list.add(p);
 		}

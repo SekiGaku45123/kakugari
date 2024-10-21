@@ -10,6 +10,7 @@ public class Item implements java.io.Serializable {
     private String area;
     private int shipping_days;
     private boolean flag;
+    private String item_name;
 
     // ゲッター
     public String getItem_id() {
@@ -48,6 +49,10 @@ public class Item implements java.io.Serializable {
         return flag;
     }
 
+    public String getItem_name() {
+        return item_name;
+    }
+
     // セッター
     public void setItem_id(String item_id) {
         this.item_id = item_id;
@@ -83,5 +88,9 @@ public class Item implements java.io.Serializable {
 
     public void setFlag(boolean flag) {
         this.flag = flag;
+    }
+
+    public void setItem_name(String item_name) {
+        this.item_name = item_name;
     }
 }
