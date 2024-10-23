@@ -4,116 +4,167 @@
 <head>
     <meta charset="UTF-8">
     <title>購入履歴 - 過去の取引</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* 全画面表示に対応 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
         }
+
         .container {
+            width: 90%;
             max-width: 900px;
-            width: 100%;
-            margin: auto;
             padding: 20px;
-            text-align: center;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            text-align: center;
         }
+
         header {
-            text-align: left; /* ヘッダーを左寄せ */
             display: flex;
-            align-items: center; /* アイコンと文字の位置を揃える */
+            align-items: center;
+            justify-content: space-between; /* アイコンとタイトルを両端に配置 */
+            margin-bottom: 20px;
         }
+
+        header a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+
         header img {
             vertical-align: middle;
         }
+
         .kakuspa {
-        	font-family: "あめちゃんポップ　まる Light";
-            font-weight: 300; /* 文字を細く */
-            font-size: 24px; /* フォントサイズ調整 */
-            margin-left: 10px; /* アイコンと文字の間隔を調整 */
+            font-family: "あめちゃんポップ　まる Light";
+            font-size: 24px;
+            margin-left: 10px;
             vertical-align: middle;
         }
-        .history {
-            display: flex;
-            justify-content: center; /* テーブルを中央寄せ */
-            margin-top: 20px;
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 28px;
         }
-        .history table {
-            width: 80%;
-            border-collapse: collapse;
-            margin: auto;
-        }
-        .history table th, .history table td {
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-        .history table th {
-            background-color: #f2f2f2;
-        }
-        .completed {
-            color: green;
-        }
-        .in-progress {
-            color: red;
-        }
+
         .tabs {
             display: flex;
-            justify-content: center; /* タブを中央寄せ */
+            justify-content: center;
             margin-bottom: 20px;
         }
+
         .tabs button {
             padding: 10px 20px;
-            margin-right: 10px;
-            background-color: #f0f0f0;
+            margin: 0 10px;
             border: none;
             cursor: pointer;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
+
         .tabs button.active {
             background-color: #d90000;
             color: white;
         }
 
-        /* メインメニューに戻るのボタンを左寄せに */
-         a.return-link {
-        display: inline-block;
-        padding: 5px 10px;
-        background-color: #f0f0f0;
-        color: #000;
-        border: 1px solid #ccc;
-        text-decoration: none;
-        border-radius: 5px;
-    }
-
-    a.return-link:hover {
-        background-color: #ccc;
-    }
-    .button-container {
-            text-align: left; /* ボタンも左寄せ */
+        .history {
+            display: flex;
+            justify-content: center;
         }
 
+        .history table {
+            width: 80%;
+            border-collapse: collapse;
+        }
+
+        .history table th, .history table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .history table th {
+            background-color: #f2f2f2;
+        }
+
+        .completed {
+            color: green;
+        }
+
+        .in-progress {
+            color: red;
+        }
+
+        /* メインメニューに戻るボタンのスタイル */
+        .button-container {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .return-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            color: #000;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .return-link:hover {
+            background-color: #ccc;
+        }
+
+        /* モバイル対応 */
+        @media (max-width: 768px) {
+            .history table {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .tabs button {
+                padding: 8px 16px;
+                margin: 0 5px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="../images/kakugari.png" width="66" height="46">
-            <span class="kakuspa">カクガリ</span>
+            <a href="${pageContext.request.contextPath}/main_kakugari/all">
+                <img src="../images/kakugari.png" width="66" height="46" alt="カクガリ">
+                <span class="kakuspa">カクガリ</span>
+            </a>
         </header>
+
         <h1>購入した商品</h1>
 
-        <!-- タブ切り替えのUI -->
+        <!-- タブの部分 -->
         <div class="tabs">
             <button id="tabCurrent" class="active">取引中</button>
             <button id="tabCompleted">過去の取引</button>
         </div>
 
+        <!-- 商品の履歴部分 -->
         <div class="history">
             <!-- 取引中の商品 -->
             <table id="currentDeals">
@@ -124,14 +175,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="product" items="${purchaseHistory}">
-                    <c:if test="${!product.completed}">
-                        <tr>
-                            <td>${product.name}</td>
-                            <td class="in-progress">取引中です。</td>
-                        </tr>
-                    </c:if>
-                </c:forEach>
+                    <c:forEach var="product" items="${purchaseHistory}">
+                        <c:if test="${!product.completed}">
+                            <tr>
+                                <td>${product.name}</td>
+                                <td class="in-progress">取引中です。</td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
                 </tbody>
             </table>
 
@@ -144,24 +195,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="product" items="${purchaseHistory}">
-                    <c:if test="${product.completed}">
-                        <tr>
-                            <td>${product.name}</td>
-                            <td class="completed">取引が完了しました。</td>
-                        </tr>
-                    </c:if>
-                </c:forEach>
+                    <c:forEach var="product" items="${purchaseHistory}">
+                        <c:if test="${product.completed}">
+                            <tr>
+                                <td>${product.name}</td>
+                                <td class="completed">取引が完了しました。</td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>
-        <p>
-            <div class="button-container">
+
+        <!-- メインメニューに戻るボタン -->
+        <div class="button-container">
             <a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a>
         </div>
-        </p>
     </div>
 
+    <!-- タブの切り替えスクリプト -->
     <script>
         document.getElementById('tabCurrent').addEventListener('click', function() {
             document.getElementById('currentDeals').style.display = 'table';

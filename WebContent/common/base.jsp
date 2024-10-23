@@ -44,7 +44,6 @@
   bottom: 30px;
 }
 
-
 #bar {
   color: blue; /* 文字の色 */
   cursor: pointer; /* マウスポインタを手の形にする */
@@ -65,8 +64,6 @@ header #menu ul li.header-nav__item.current a:hover {
 	color: #ffa759;
 }
 
-
-
 </style>
 </head>
 <body>
@@ -83,7 +80,10 @@ header #menu ul li.header-nav__item.current a:hover {
 	 	<li class="header-nav__item"><a href="../main_kakugari/all">ホーム１</a></li>
 	 	<li class="header-nav__item"><a href="../main_kakugari/1.jsp">ホーム２</a></li>
 	 	<li class="header-nav__item"><a href="../main_kakugari/2.jsp">ホーム３</a></li>
-	 	<li class="header-nav__item"><a href="../main_kakugari/3.jsp">ホーム４</a></li>
+	     <li class="header-nav__item">
+    <a href="${pageContext.request.contextPath}/main_kakugari/rireki.jsp">購入履歴</a>
+</li>
+
 	 	<li class="header-nav__item"><a href="../main_kakugari/4.jsp">ホーム５</a></li>
  	</ul>
  </nav>
