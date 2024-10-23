@@ -11,7 +11,7 @@
 <p>お問い合わせ内容: ${message}</p>
 <!-- メインメニューに戻るボタン -->
 <form action="All" method="get">
-<button type="submit">メインメニューに戻る</button>
+<p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">メインメニューに戻る</a></p>
 </form>
 </body>
 </html>
