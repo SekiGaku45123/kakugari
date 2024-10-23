@@ -1,8 +1,12 @@
 <%@page contentType="text/html; charset=UTF-8" %>
-<%@include file="../header.html" %>
-<%@ include file="../common/base.jsp" %>
+<%@include file="../header.html" %>  <!-- パスを確認 -->
+<%@include file="../common/base.jsp" %>  <!-- base.jspのパスも確認 -->
 
-<p>ログアウトしますか？</p>
-<p><a href="Logout.action">ログアウト</a></p>
+<!-- ログインフォーム -->
+<form action="<%= request.getContextPath() %>/login_logout/Login.action" method="post"> <!-- パスを修正 -->
+    <p>ログイン名<input type="text" name="login" required></p>
+    <p>パスワード<input type="password" name="password" required></p>
+    <p><input type="submit" value="ログイン"></p>
+</form>
 
-<%@include file="../footer.html" %>
+<%@include file="../footer.html" %>  <!-- パスを確認 -->
