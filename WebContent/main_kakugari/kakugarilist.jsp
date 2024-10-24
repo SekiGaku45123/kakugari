@@ -34,7 +34,7 @@
 				<c:forEach var="p" items="${all}">
 			<div class="col-6 col-lg-3 p-1 g-col-6 ">
 			<div class="imgagess">
-					<a href="../main_kakugari/syousai.jsp?Image=${p.getImage_data()}&Name=${p.getItem_name()}&Detail=${p.getItem_detail()}&price=${p.getItem_price()}"><img src="${p.getImage_data()}" width="200" height="200"></a>
+					<a href="../main_kakugari/syousai.jsp?Image=${p.getImage_data()}&Name=${p.getItem_name()}&Detail=${p.getItem_detail()}&price=${p.getItem_price()}&Cate=${p.getCategory()}&Cond=${p.getCondition()}&Area=${p.getArea()}&Ship=${p.getShipping_days()}&flag=${p.getFlag()}"><img src="${p.getImage_data()}" width="200" height="200"></a>
     					<p>￥ ${p.getItem_price() }</p>
   					</div>
 

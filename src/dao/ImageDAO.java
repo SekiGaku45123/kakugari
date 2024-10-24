@@ -41,6 +41,11 @@ public class ImageDAO extends DAO {
 			p.setItem_name(rs.getString("item_name"));
 			p.setItem_price(rs.getInt("item_price"));
 			p.setItem_detail(rs.getString("item_detail"));
+			p.setCategory(rs.getString("category"));
+			p.setCondition(rs.getString("condition"));
+			p.setArea(rs.getString("area"));
+			p.setShipping_days(rs.getInt("shipping_days"));
+			p.setFlag(rs.getBoolean("flag"));
 
 			list.add(p);
 		}

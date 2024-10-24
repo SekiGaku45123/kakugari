@@ -25,28 +25,35 @@
   font-size: 20px;
   font-weight: 900;
   color:#7d7d7d;
-  margin: 10px 0;
+  margin: 10px 0 0;
 }
+
+.ProductDetails_main1{
+  font-size: 15px;
+  font-weight: 900;
+  margin: 20px 0 0 0;
+}
+
 
 
 	@media screen and (min-width: 960px) {
   .oya {
-    border: 2px dotted red;
-    position: relative; /* 親要素を相対位置に設定 */
-    display: flex; /* フレックスボックスを使用 */
-    justify-content: center; /* 中央揃え */
-    align-items: flex-start; /* 上揃え */
-    max-width: 80%; /* 幅を80%に設定 */
+    /*border: 2px dotted red;*/
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: max(90%, 960px);
     height: 80%;
-    margin: 0 auto; /* 中央揃え */
+    margin: 0 auto;
 }
 
 .product-image {
-    position: fixed; /* ビューポートに対して固定 */
-    top:149px; /* ビューポートの底に配置 */
-    left: 15%; /* ビューポートの左から15%の位置に配置 */
-    border: 2px dotted blue;
-    border-radius: 10px; /* 角を丸める */
+    position: sticky;
+    top:145px;
+    left: 15%;
+    /*border: 2px dotted blue;*/
+    border-radius: 10px;
 }
 
   .product-image img {
@@ -57,11 +64,12 @@
   }
 
   .tkst {
-    border:2px dotted green;
-    width: 30vw;
+    /*border:2px dotted green;*/
+    width: max(30vw, 334px);
     /*height: ;*/
-    margin-left: 62%;
-    padding: 0 0 0px 0;
+    max-width: 100%;
+    margin-left: 100px;
+    padding: 0;
 
     /*スクロールバー非表示*/
     -ms-overflow-style: none;
@@ -100,7 +108,7 @@
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-}
+ }
 }
 
 @media screen and (max-width: 959px) {
@@ -204,76 +212,89 @@
         <p><span class="taitoru">商品詳細</span><br><font color="#7d7d7d"><%String Detail=request.getParameter("Detail"); %><%=Detail %></font></p>
 
         <p class="pq"><span class="taitoru">商品情報</span></p>
-        <p><font color="#7d7d7d"><%String oi=request.getParameter("Detail"); %><%=Detail %></font></p>
-
+		<div class="ProductDetails">
+		  <div class="ProductDetails_main">
+			 <div class="ProductDetails_main1">
+			   <span><font color="#7d7d7d">CATEGORY</font></span>
+			 </div>
+			 <div class="ProductDetails_exp">
+			   <span><%String Cate=request.getParameter("Cate"); %><%=Cate %></span>
+			 </div>
+		  </div>
+		  <div class="ProductDetails_main">
+			 <div class="ProductDetails_main1">
+			   <span><font color="#7d7d7d">CONDITION</font></span>
+			 </div>
+			 <div class="ProductDetails_exp">
+			   <span><%String Cond=request.getParameter("Cond"); %><%=Cond %></span>
+			 </div>
+		  </div>
+		  <div class="ProductDetails_main">
+			 <div class="ProductDetails_main1">
+			   <span><font color="#7d7d7d">AREA</font></span>
+			 </div>
+			 <div class="ProductDetails_exp">
+			   <span><%String Area=request.getParameter("Area"); %><%=Area %></span>
+			 </div>
+		  </div>
+		  <div class="ProductDetails_main">
+			 <div class="ProductDetails_main1">
+			   <span><font color="#7d7d7d">SHOPPING DAYS</font></span>
+			 </div>
+			 <div class="ProductDetails_exp">
+			   <span><%String Ship=request.getParameter("Ship"); %><%=Ship %></span>
+			 </div>
+		  </div>
+		</div>
       </div>
   </div>
-  <div>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
 
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
+  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
 
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-
-    <p>noadsofhaouvnouilcrenu.crelibeu</p>
-
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
@@ -294,4 +315,4 @@
 
 
 
-</html>
+
