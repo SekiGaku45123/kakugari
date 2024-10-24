@@ -7,18 +7,18 @@ import javax.servlet.http.HttpSession;
 import tool.Action;
 
 public class LogoutAction extends Action {
-	public void execute(
-			HttpServletRequest request, HttpServletResponse response
-		) throws Exception {
+    public void execute(
+            HttpServletRequest request, HttpServletResponse response
+        ) throws Exception {
 
-		HttpSession session= request.getSession();
+        HttpSession session = request.getSession();
 
-		if (session.getAttribute("customer") != null){
-			session.removeAttribute("customer");
-			return;
-		}
+        // セッションからcustomer情報を削除
+        if (session.getAttribute("customer") != null) {
+            session.removeAttribute("customer");
+        }
 
-		return;
-	}
-
+        // ログアウト後に遷移するページ（ログアウト完了画面）
+        request.getRequestDispatcher("logout-out.jsp").forward(request, response);
+    }
 }

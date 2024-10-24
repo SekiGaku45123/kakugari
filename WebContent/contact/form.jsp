@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>お問い合わせ送信完了</title>
+<link rel="stylesheet" type="text/css" href="style.css"> <!-- CSSファイルをリンク -->
 </head>
 <body>
 <h2>お問い合わせありがとうございます！</h2>
@@ -11,7 +12,7 @@
 <p>お問い合わせ内容: ${message}</p>
 <!-- メインメニューに戻るボタン -->
 <form action="All" method="get">
-<p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">メインメニューに戻る</a></p>
+<button type="submit">メインメニューに戻る</button>
 </form>
 </body>
 </html>
