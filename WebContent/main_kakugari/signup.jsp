@@ -53,6 +53,10 @@
             <label for="maleaddress">メールアドレス:</label>
             <input type="email" class="form-control" id="maleaddress" name="maleaddress" placeholder="メールアドレスを入力してください" required>
         </div>
+                <div class="form-group">
+            <label for="telephone">電話番号:</label>
+            <input type="text" class="form-control" id="telephone" name="telephone" placeholder="電話番号を入力してください" required>
+        </div>
 
         <button type="submit" class="btn btn-danger">登録</button> <!-- 赤いボタンに変更 -->
     </form>

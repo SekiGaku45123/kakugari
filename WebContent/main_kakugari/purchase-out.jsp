@@ -2,24 +2,23 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../header.html" %>
 
-<!-- Bootstrap CSS読み込み -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
     body {
         font-family: 'Noto Sans JP', sans-serif;
-        background-color: #f9f9f9; /* 背景色を薄いグレーに */
+        background-color: #f9f9f9;
     }
     .container {
-        background-color: #ffffff; /* フォームの背景を白に */
-        border-radius: 8px; /* 角を丸く */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 影をつけて浮き上がる印象 */
-        padding: 20px; /* パディングを追加 */
-        margin-top: 20px; /* 上部にマージンを追加 */
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
     }
     h2 {
-        color: #333; /* 見出しの色 */
+        color: #333;
     }
 </style>
 
@@ -36,7 +35,6 @@
 
 <%@include file="../footer.html" %>
 
-<!-- Bootstrap JavaScript読み込み -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
