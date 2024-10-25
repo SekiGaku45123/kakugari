@@ -12,7 +12,7 @@
 .imgagess img {
   background-color: #f0f0f0;
   width: 100%; /* divの幅に対する割合 */
-  border-radius: 10px 20px 20px 20px;
+  border-radius: 10px 5px 5px 5px;
   object-fit: contain;
 }
 .imgagess p {
