@@ -28,12 +28,26 @@
   margin: 10px 0 0;
 }
 
-.ProductDetails_main1{
-  font-size: 15px;
-  font-weight: 900;
-  margin: 20px 0 0 0;
+.ProductDetails{
+  margin: 0 0 10px 0;
+
 }
 
+.ProductDetails_main {
+  justify-content: space-between;
+  display: flex;
+  margin: 20px 0;
+}
+
+.ProductDetails_main1 {
+  font-size: 15px;
+  font-weight: 900;
+  margin: 0;
+}
+
+.ProductDetails_exp {
+  width: 50%;
+}
 
 
 	@media screen and (min-width: 960px) {
@@ -115,6 +129,7 @@
   .oya {
     flex-direction: column;
     align-items: center;
+
   }
 
   .product-image {
@@ -132,7 +147,6 @@
   .tkst {
     /*border:2px dotted blue;*/
     width: 90%;
-    max-width: 600px;
     padding: 5px;
     box-sizing: border-box;
     margin: 20px auto 0;
@@ -242,10 +256,13 @@
 			   <span><font color="#7d7d7d">SHOPPING DAYS</font></span>
 			 </div>
 			 <div class="ProductDetails_exp">
-			   <span><%String Ship=request.getParameter("Ship"); %><%=Ship %></span>
+			   <span><%String Ship=request.getParameter("Ship"); %><%=Ship %>日で発送</span>
 			 </div>
 		  </div>
 		</div>
+
+		<p class="pq"><span class="taitoru">出品者</span></p>
+
       </div>
   </div>
 
