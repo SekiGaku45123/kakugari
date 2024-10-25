@@ -73,6 +73,7 @@
 }
 
 
+
 	@media screen and (min-width: 960px) {
   .oya {
     /*border: 2px dotted red;*/
