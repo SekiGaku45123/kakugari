@@ -41,12 +41,35 @@
 
 .ProductDetails_main1 {
   font-size: 15px;
-  font-weight: 900;
+  font-weight: 1000;
   margin: 0;
 }
 
 .ProductDetails_exp {
   width: 50%;
+}
+
+.user_icon_main {
+ display: flex;
+}
+
+.user_icon{
+  border-radius: 50% 50% 50% 50%;
+  border: 2px dotted blue;
+  width: 70px;
+  height: 70px;
+}
+
+.listing{
+  font-weight: 900;
+  border: 2px dotted red;
+  width: auto;
+  height: 70px;
+  text-align:center;
+  padding:0 0 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -137,8 +160,8 @@
   }
 
   .product-image img{
-  width: 100vw;
-  height: 100vw;
+  width: 98.2vw;
+  height: 98.2vw;
   background: #f5f5f5;
   object-fit: contain;
   }
@@ -229,7 +252,7 @@
 		<div class="ProductDetails">
 		  <div class="ProductDetails_main">
 			 <div class="ProductDetails_main1">
-			   <span><font color="#7d7d7d">CATEGORY</font></span>
+			   <span>CATEGORY</span>
 			 </div>
 			 <div class="ProductDetails_exp">
 			   <span><%String Cate=request.getParameter("Cate"); %><%=Cate %></span>
@@ -237,7 +260,7 @@
 		  </div>
 		  <div class="ProductDetails_main">
 			 <div class="ProductDetails_main1">
-			   <span><font color="#7d7d7d">CONDITION</font></span>
+			   <span>CONDITION</span>
 			 </div>
 			 <div class="ProductDetails_exp">
 			   <span><%String Cond=request.getParameter("Cond"); %><%=Cond %></span>
@@ -245,7 +268,7 @@
 		  </div>
 		  <div class="ProductDetails_main">
 			 <div class="ProductDetails_main1">
-			   <span><font color="#7d7d7d">AREA</font></span>
+			   <span>AREA</span>
 			 </div>
 			 <div class="ProductDetails_exp">
 			   <span><%String Area=request.getParameter("Area"); %><%=Area %></span>
@@ -253,16 +276,17 @@
 		  </div>
 		  <div class="ProductDetails_main">
 			 <div class="ProductDetails_main1">
-			   <span><font color="#7d7d7d">SHOPPING DAYS</font></span>
+			   <span>SHOPPING DAYS</span>
 			 </div>
 			 <div class="ProductDetails_exp">
 			   <span><%String Ship=request.getParameter("Ship"); %><%=Ship %>日で発送</span>
 			 </div>
 		  </div>
 		</div>
-
-		<p class="pq"><span class="taitoru">出品者</span></p>
-
+			<p class="pq"><span class="taitoru">出品者</span></p>
+		<div class="user_icon_main">
+			<div class="user_icon"><span></span></div><div class="listing">浜田省吾</div>
+		</div>
       </div>
   </div>
 
@@ -316,7 +340,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-<script>
+/*<script>*/
 	const targets = document.querySelectorAll(".tkst");
 
 	document.addEventListener("wheel", function(e){

@@ -11,7 +11,7 @@
 }
 .imgagess img {
   background-color: #f0f0f0;
-  width: 100%; /* divの幅に対する割合 */
+  width: 100%;
   border-radius: 10px 5px 5px 5px;
   object-fit: contain;
 }
@@ -26,6 +26,7 @@
   left: 0;
   top: 0;
 }
+
 
 
 </style>
