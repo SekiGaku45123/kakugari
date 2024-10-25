@@ -39,3 +39,5 @@ public class All extends HttpServlet {
 			Page.footer(out);
 		}
 }
+
+//rmwb rojr dgvx tmde@qpp
