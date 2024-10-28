@@ -44,7 +44,7 @@ public class All extends HttpServlet {
 				System.out.print(list);
 
 				request.setAttribute("all", list);
-				request.getRequestDispatcher("kakugarilist.jsp")
+				request.getRequestDispatcher("../main_kakugari/kakugarilist.jsp")
 				.forward(request, response);
 			}catch (Exception e){
 				e.printStackTrace(out);
