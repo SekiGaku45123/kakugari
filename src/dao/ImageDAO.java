@@ -38,6 +38,7 @@ public class ImageDAO extends DAO {
 
 		while (rs.next()){
 			Images p=new Images();
+			p.setItem_id(rs.getString("item_id"));
 			p.setUser_id(rs.getString("user_id"));
 			p.setImage_data(rs.getString("image_data"));
 			p.setItem_name(rs.getString("item_name"));
