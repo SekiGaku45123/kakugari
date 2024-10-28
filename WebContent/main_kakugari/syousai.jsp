@@ -122,7 +122,12 @@
      scrollbar-width: none;
   }
 
-  .kounyu {
+.botan_mein{
+ display: flex;
+
+}
+
+.kounyu {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -131,7 +136,7 @@
 .kounyu button {
   color: white;
   font-weight: 900;
-  width: 30vw;
+  width: 20vw;
   border-radius: 5px;
   background: #ff8d02;
   border: none;
@@ -142,18 +147,22 @@
 .okini{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  float: right;
+  margin-top: 17px;
+  justify-content: center;
+  border-radius: 10px 10px;
 
 }
 
 .okini button{
-  color: white;
+  color: #4d9dff;
+  border: 2px solid #4d9dff;
   font-weight: 900;
-  width: 30vw;
+  margin-left: 15px;
+  width: 4em;
   border-radius: 5px;
-  background: #4d9dff;
-  border: none;
-  padding: 10px 20px;
+  background: white;
+  padding: 10px;
   cursor: pointer;
  }
 }
@@ -185,17 +194,22 @@
     margin: 20px auto 0;
  }
 
+.botan_mein{
+ display: flex;
+
+}
+
  .kounyu {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
 
 }
 
 .kounyu button {
   color: white;
   font-weight: 900;
-  width: 30em;
+  width: 50vw;
   border-radius: 5px;
   background: #ff8d02;
   border: none;
@@ -205,20 +219,19 @@
 
 .okini{
   display: flex;
+  float: right;
+  margin-top: 9px;
   justify-content: center;
-  margin-top: 20px;
-  margin-left: 50px;
-  width: 40%;
-  border: 1px solid #4d9dff;
-
+  border-radius: 10px 10px;
+  /*border: 2px solid #4d9dff;*/
 
 }
 
 .okini button{
   color: #4d9dff;
-  border: 3px solid #4d9dff;
+  border: 2px solid #4d9dff;
   font-weight: 900;
-  width: 10em;
+  margin-left: 30px;
   border-radius: 5px;
   background: white;
   padding: 10px 20px;
@@ -245,20 +258,23 @@
         <h2><%String Name=request.getParameter("Name"); %><%=Name %></h2>
         <p class="pq">￥<%String price=request.getParameter("price"); %><span class="mozi"><%=price %></span>（税込・送料込み）</p>
 
-		<div class="okini">
-          <!-- 商品IDを送信するフォーム -->
-          <form action="${pageContext.request.contextPath}/kakugari/FavoriteAddAction" method="post">
-            <input type="hidden" name="id" value="${item.item_id}">
-            <button type="submit">♡</button>
-          </form>
-        </div>
+		<div class="botan_mein">
+	        <div class="kounyu">
+	  		 <form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post">
+	    	  <input type="hidden" name="item_id" value="${item.item_id}">
+	    	  <button type="submit">購入手続きへ</button>
+		     </form>
+	        </div>
 
-        <div class="kounyu">
-  		 <form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post">
-    	  <input type="hidden" name="item_id" value="${item.item_id}">
-    	  <button type="submit">購入手続きへ</button>
-	     </form>
-        </div>
+	        <div class="okini">
+	          <!-- 商品IDを送信するフォーム -->
+	          <form action="${pageContext.request.contextPath}/kakugari/FavoriteAddAction" method="post">
+	            <input type="hidden" name="id" value="${item.item_id}">
+	            <button type="submit">♡</button>
+	          </form>
+	        </div>
+
+	     </div>
 
 		<br><div class="pq"></div>
 
