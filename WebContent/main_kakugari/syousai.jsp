@@ -268,8 +268,9 @@
 
 	        <div class="okini">
 	          <!-- 商品IDを送信するフォーム -->
-	          <form action="${pageContext.request.contextPath}/kakugari/FavoriteAddAction" method="post">
-	            <input type="hidden" name="id" value="${item.item_id}">
+	          <form action="favoriteAddAction" method="post">
+	            <input type="hidden" name="item_id" value="<%String Item_id=request.getParameter("Item_id"); %><%=Item_id %>">
+	            <input type="hidden" name="user_id" value="<%String User=request.getParameter("User"); %><%=User %>">">
 	            <button type="submit">♡</button>
 	          </form>
 	        </div>
