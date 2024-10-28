@@ -77,6 +77,7 @@ public class Images implements java.io.Serializable {
 	// 何か
 
 
+
 	public String getCategory() {
         return category;
     }

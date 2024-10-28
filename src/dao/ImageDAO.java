@@ -35,6 +35,7 @@ public class ImageDAO extends DAO {
 				"select * from images join item on images.item_id = item.item_id");
 		ResultSet rs=st.executeQuery();
 
+
 		while (rs.next()){
 			Images p=new Images();
 			p.setUser_id(rs.getString("user_id"));
