@@ -51,18 +51,26 @@
 
 .user_icon_main {
  display: flex;
+ margin: 0 0 17px 0;
 }
 
 .user_icon{
   border-radius: 50% 50% 50% 50%;
-  border: 2px dotted blue;
+  /*border: 2px dotted blue;*/
   width: 70px;
   height: 70px;
 }
 
+.user_icon img{
+  border-radius: 50% 50% 50% 50%;
+  object-fit: contain;
+  width:100%;
+  height:100%;
+}
+
 .listing{
   font-weight: 900;
-  border: 2px dotted red;
+  /*border: 2px dotted red;*/
   width: auto;
   height: 70px;
   text-align:center;
@@ -114,7 +122,12 @@
      scrollbar-width: none;
   }
 
-  .kounyu {
+.botan_mein{
+ display: flex;
+
+}
+
+.kounyu {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -123,7 +136,7 @@
 .kounyu button {
   color: white;
   font-weight: 900;
-  width: 30vw;
+  width: 20vw;
   border-radius: 5px;
   background: #ff8d02;
   border: none;
@@ -134,17 +147,22 @@
 .okini{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  float: right;
+  margin-top: 17px;
+  justify-content: center;
+  border-radius: 10px 10px;
+
 }
 
 .okini button{
-  color: white;
+  color: #4d9dff;
+  border: 2px solid #4d9dff;
   font-weight: 900;
-  width: 30vw;
+  margin-left: 15px;
+  width: 4em;
   border-radius: 5px;
-  background: #4d9dff;
-  border: none;
-  padding: 10px 20px;
+  background: white;
+  padding: 10px;
   cursor: pointer;
  }
 }
@@ -176,16 +194,22 @@
     margin: 20px auto 0;
  }
 
+.botan_mein{
+ display: flex;
+
+}
+
  .kounyu {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
+
 }
 
 .kounyu button {
   color: white;
   font-weight: 900;
-  width: 30em;
+  width: 50vw;
   border-radius: 5px;
   background: #ff8d02;
   border: none;
@@ -195,17 +219,21 @@
 
 .okini{
   display: flex;
+  float: right;
+  margin-top: 9px;
   justify-content: center;
-  margin-top: 20px;
+  border-radius: 10px 10px;
+  /*border: 2px solid #4d9dff;*/
+
 }
 
 .okini button{
-  color: white;
+  color: #4d9dff;
+  border: 2px solid #4d9dff;
   font-weight: 900;
-  width: 30em;
+  margin-left: 30px;
   border-radius: 5px;
-  background: #4d9dff;
-  border: none;
+  background: white;
   padding: 10px 20px;
   cursor: pointer;
  }
@@ -230,20 +258,23 @@
         <h2><%String Name=request.getParameter("Name"); %><%=Name %></h2>
         <p class="pq">￥<%String price=request.getParameter("price"); %><span class="mozi"><%=price %></span>（税込・送料込み）</p>
 
-		<div class="okini">
-          <!-- 商品IDを送信するフォーム -->
-          <form action="${pageContext.request.contextPath}/kakugari/FavoriteAddAction" method="post">
-            <input type="hidden" name="id" value="${item.item_id}">
-            <button type="submit">お気に入りに追加</button>
-          </form>
-        </div>
+		<div class="botan_mein">
+	        <div class="kounyu">
+	  		 <form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post">
+	    	  <input type="hidden" name="item_id" value="${item.item_id}">
+	    	  <button type="submit">購入手続きへ</button>
+		     </form>
+	        </div>
 
-        <div class="kounyu">
-  		 <form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post">
-    	  <input type="hidden" name="item_id" value="${item.item_id}">
-    	  <button type="submit">購入手続きへ</button>
-	     </form>
-        </div>
+	        <div class="okini">
+	          <!-- 商品IDを送信するフォーム -->
+	          <form action="${pageContext.request.contextPath}/kakugari/FavoriteAddAction" method="post">
+	            <input type="hidden" name="id" value="${item.item_id}">
+	            <button type="submit">♡</button>
+	          </form>
+	        </div>
+
+	     </div>
 
 		<br><div class="pq"></div>
 
@@ -286,8 +317,9 @@
 		</div>
 			<p class="pq"><span class="taitoru">出品者</span></p>
 		<div class="user_icon_main">
-			<div class="user_icon"><span></span></div><div class="listing">浜田省吾</div>
+			<div class="user_icon"><img src="<%=Image %>" alt="商品画像" ></div><div class="listing">浜田省吾</div>
 		</div>
+		<div class="pq"></div>
       </div>
   </div>
 

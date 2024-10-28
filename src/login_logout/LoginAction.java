@@ -18,21 +18,20 @@ public class LoginAction extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        String login = request.getParameter("login");
+        String maleaddress = request.getParameter("maleaddress");
         String password = request.getParameter("password");
 
         CustomerDAO dao = new CustomerDAO();
         User user = null;
 		try {
-			user = dao.search(login, password);
+			user = dao.search(maleaddress, password);
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 
         if (user != null) {
             session.setAttribute("customer", user);
-            request.getRequestDispatcher("login-out.jsp").forward(request, response); // ログイン成功時
+            request.getRequestDispatcher("../main_kakugari/all").forward(request, response); // ログイン成功時
         } else {
             request.getRequestDispatcher("login-error.jsp").forward(request, response); // ログイン失敗時
         }
