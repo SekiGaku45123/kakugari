@@ -1,0 +1,4 @@
+<servlet>
+<servlet-name>Contact</servlet-name>
+<servlet-class>Contact.ContactServlet</servlet-class>
+</servlet>

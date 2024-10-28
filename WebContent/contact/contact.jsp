@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -6,13 +7,17 @@
 </head>
 <body>
 <h2>お問い合わせフォーム</h2>
+<!-- エラーメッセージの表示 -->
+<c:if test="${not empty error}">
+<p style="color:red;">${error}</p>
+</c:if>
 <form action="contact" method="post">
 <label for="name">名前:</label><br>
-<input type="text" id="name" name="name" required><br><br>
+<input type="text" id="name" name="name" value="${name}" required><br><br>
 <label for="email">返信先メールアドレス:</label><br>
-<input type="email" id="email" name="email" required><br><br>
+<input type="email" id="email" name="email" value="${email}" required><br><br>
 <label for="message">お問い合わせ内容:</label><br>
-<textarea id="message" name="message" rows="5" cols="40" required></textarea><br><br>
+<textarea id="message" name="message" rows="5" cols="40" required>${message}</textarea><br><br>
 <!-- 利用規約のチェックボックス -->
 <label>
 <input type="checkbox" id="terms" name="terms" required>

@@ -1,4 +1,4 @@
-package rireki;
+package Rireki;
 
 import java.io.IOException;
 import java.sql.Connection;
