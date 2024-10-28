@@ -39,6 +39,7 @@
     					<p>￥ ${p.getItem_price() }</p>
   					</div>
 
+
 					${p.getItem_name() }
 			</div>
 				</c:forEach>
