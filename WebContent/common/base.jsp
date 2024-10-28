@@ -15,34 +15,18 @@
 <style>
 
 #bar {
-  position: relative;
-  height: 46px;
-  width: 46px;
-  display: inline-block;
-  box-sizing: border-box;
-  background-color: #fff;
-  border: 2px solid #444;
-  border-radius: 4px;
+ display: flex;
+ border: 1px solid #ffc954;
+ background: white;
+ border-radius: 50% 50%;
 }
-#bar div {
-  position: absolute;
-  left: 7px;
-  height: 2px;
-  width: 28px;
-  background-color: #444;
-  border-radius: 2px;
-  display: inline-block;
-  box-sizing: border-box;
+#bar img {
+  border-radius: 50% 50% 50% 50%;
+  object-fit: contain;
+  width:60px;
+  height:60px;
 }
-#bar div:nth-of-type(1) {
-  bottom: 10px;
-}
-#bar div:nth-of-type(2) {
-  bottom: 20px;
-}
-#bar div:nth-of-type(3) {
-  bottom: 30px;
-}
+
 
 #bar {
   color: blue; /* 文字の色 */
@@ -71,9 +55,7 @@ header #menu ul li.header-nav__item.current a:hover {
  <h2><img src="../images/kakugari.png" width="66" height="46"><span class="kakuspa">　カクガリ</span></h2>
  <input type="text" id="search" name="name" size="30" placeholder="なにをお探しですか？" />
  <div id="bar">
-  <div></div>
-  <div></div>
-  <div></div>
+    <img src="../icon_image/アイコン.png" alt="アイコン画像" >
 </div>
  <nav id="menu">
  	<ul>

@@ -8,32 +8,31 @@ import bean.User;
 
 public class CustomerDAO extends DAO {
 
-	public User search(String login,String password) throws Exception {
-		User customer = null;
+	public User search(String maleaddress,String password) throws Exception {
+		User user = null;
 
 		Connection con = getConnection();
 
 		PreparedStatement st = con.prepareStatement(
-				"select * from customer where login=? and password=?");
-		String user_id = null;
-		st.setString(1,user_id);
+				"select * from user where maleaddress=? and password=?");
+		st.setString(1,maleaddress);
 		st.setString(2,password);
 		ResultSet rs = st.executeQuery();
 
 
-		while(rs.next()){
-			customer = new User();
-			customer.setUser_id(rs.getString("user_id"));
-			customer.setMaleaddress(rs.getString("maleaddress"));
-			customer.setUser_name(rs.getString("user_name"));
-			customer.setUser_hurigana(rs.getString("User_hurigana"));
-			customer.setUser_address(rs.getString("User_address"));
-			customer.setTelephone(rs.getString("telephone"));
+		if(rs.next()){
+			user = new User();
+			user.setUser_id(rs.getString("user_id"));
+			user.setMaleaddress(rs.getString("maleaddress"));
+			user.setUser_name(rs.getString("user_name"));
+			user.setUser_hurigana(rs.getString("User_hurigana"));
+			user.setUser_address(rs.getString("User_address"));
+			user.setTelephone(rs.getString("telephone"));
 
 		}
 		st.close();
 		con.close();
 
-		return customer;
+		return user;
 	}
 }

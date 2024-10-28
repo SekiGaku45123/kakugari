@@ -51,18 +51,26 @@
 
 .user_icon_main {
  display: flex;
+ margin: 0 0 17px 0;
 }
 
 .user_icon{
   border-radius: 50% 50% 50% 50%;
-  border: 2px dotted blue;
+  /*border: 2px dotted blue;*/
   width: 70px;
   height: 70px;
 }
 
+.user_icon img{
+  border-radius: 50% 50% 50% 50%;
+  object-fit: contain;
+  width:100%;
+  height:100%;
+}
+
 .listing{
   font-weight: 900;
-  border: 2px dotted red;
+  /*border: 2px dotted red;*/
   width: auto;
   height: 70px;
   text-align:center;
@@ -135,6 +143,7 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+
 }
 
 .okini button{
@@ -180,6 +189,7 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+
 }
 
 .kounyu button {
@@ -197,15 +207,20 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  margin-left: 50px;
+  width: 40%;
+  border: 1px solid #4d9dff;
+
+
 }
 
 .okini button{
-  color: white;
+  color: #4d9dff;
+  border: 3px solid #4d9dff;
   font-weight: 900;
-  width: 30em;
+  width: 10em;
   border-radius: 5px;
-  background: #4d9dff;
-  border: none;
+  background: white;
   padding: 10px 20px;
   cursor: pointer;
  }
@@ -234,7 +249,7 @@
           <!-- 商品IDを送信するフォーム -->
           <form action="${pageContext.request.contextPath}/kakugari/FavoriteAddAction" method="post">
             <input type="hidden" name="id" value="${item.item_id}">
-            <button type="submit">お気に入りに追加</button>
+            <button type="submit">♡</button>
           </form>
         </div>
 
@@ -286,8 +301,9 @@
 		</div>
 			<p class="pq"><span class="taitoru">出品者</span></p>
 		<div class="user_icon_main">
-			<div class="user_icon"><span></span></div><div class="listing">浜田省吾</div>
+			<div class="user_icon"><img src="<%=Image %>" alt="商品画像" ></div><div class="listing">浜田省吾</div>
 		</div>
+		<div class="pq"></div>
       </div>
   </div>
 
