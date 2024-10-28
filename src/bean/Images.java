@@ -7,6 +7,7 @@ public class Images implements java.io.Serializable {
 	private String image_data2;
 
 	private String item_name;
+	private String user_id;
 	private int item_price;
 	private String item_detail;
 	private String category;
@@ -96,6 +97,10 @@ public class Images implements java.io.Serializable {
         return flag;
     }
 
+    public String getUser_id() {
+        return user_id;
+    }
+
     public void setCategory(String category) {
         this.category = category;
     }
@@ -114,6 +119,10 @@ public class Images implements java.io.Serializable {
 
     public void setFlag(boolean flag) {
         this.flag = flag;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
 }
