@@ -14,7 +14,7 @@ import bean.Images;
 import dao.ImageDAO;
 import tool.Page;
 
-@WebServlet(urlPatterns={"/main_kakugari/all"})
+@WebServlet(urlPatterns={"/main_kakugari/all", "/servlet/kakugari.All"})
 public class All extends HttpServlet {
 
 
@@ -53,5 +53,3 @@ public class All extends HttpServlet {
 			Page.footer(out);
 		}
 }
-
-//rmwb rojr dgvx tmde@qpp
