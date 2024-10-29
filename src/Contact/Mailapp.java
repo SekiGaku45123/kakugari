@@ -25,8 +25,8 @@ public class Mailapp extends HttpServlet {
         String subject = request.getParameter("subject");
         String body = request.getParameter("body");
 
-        final String username = "gaku0867motakimaru@gmail.com"; // 自分のメールアドレス
-        final String password = "rlhb bgun lygi wael"; // メールアカウントのパスワード
+        final String username = "yasai4611@gmail.com"; // 自分のメールアドレス
+        final String password = "eqya nran vkuj uwak"; // メールアカウントのパスワード
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
