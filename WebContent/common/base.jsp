@@ -12,6 +12,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Serif+JP:wght@200..900&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+<%
+    // セッションからログイン情報を取得
+    HttpSession sessions = request.getSession(false);
+    boolean isLoggedIn = (session != null && session.getAttribute("customer") != null);
+%>
+
 <style>
 
 header {
@@ -154,16 +160,20 @@ header #menu ul li.header-nav__item.current a:hover {
 <header>
  <h2><img src="../images/kakugari.png" width="66" height="46"><span class="kakuspa">　カクガリ</span></h2>
  <input type="text" id="search" name="name" size="30" placeholder="なにをお探しですか？" />
- <div class="login_in">
-  <a href="../login_logout/login-in.jsp">ログイン</a>
-  <a href="../main_kakugari/signup.jsp">新規登録</a>
+ <div id="logout-content" style="<%= isLoggedIn ? "display: none;" : "" %>">
+	 <div class="login_in">
+	  <a href="../login_logout/login-in.jsp">ログイン</a>
+	  <a href="../main_kakugari/signup.jsp">新規登録</a>
+	 </div>
  </div>
- <!-- <div id="bar">
-    <img src="../icon_image/main_icon.png" alt="アイコン画像" >
-</div> -->
+ <div id="login-content" style="<%= isLoggedIn ? "" : "display: none;" %>">
+	 <div id="bar">
+	    <img src="../icon_image/main_icon.png" alt="アイコン画像" >
+	</div>
+</div>
  <nav id="menu">
  	<ul>
-	 	<li class="header-nav__item"><a href="../main_kakugari/all">ホーム１</a></li>
+	 	<li class="header-nav__item"><a href="../main_kakugari/all">おすすめ</a></li>
 	 	<li class="header-nav__item"><a href="../main_kakugari/1.jsp">${customer.getUser_name()}さん</a></li>
 	 	<li class="header-nav__item"><a href="../main_kakugari/2.jsp">お気に入り一覧</a></li>
 	     <li class="header-nav__item">
