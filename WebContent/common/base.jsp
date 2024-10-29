@@ -171,6 +171,7 @@ header #menu ul li.header-nav__item.current a:hover {
 	    <img src="../icon_image/main_icon.png" alt="アイコン画像" >
 	</div>
 </div>
+
  <nav id="menu">
  	<ul>
 	 	<li class="header-nav__item"><a href="../main_kakugari/all">おすすめ</a></li>
