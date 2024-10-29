@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -33,7 +34,7 @@
         header {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* アイコンとタイトルを両端に配置 */
+            justify-content: space-between;
             margin-bottom: 20px;
         }
 
@@ -47,6 +48,7 @@
         header img {
             vertical-align: middle;
         }
+
 
         .kakuspa {
             font-family: "あめちゃんポップ　まる Light";
@@ -109,7 +111,6 @@
             color: red;
         }
 
-        /* メインメニューに戻るボタンのスタイル */
         .button-container {
             text-align: left;
             margin-top: 20px;
@@ -153,10 +154,11 @@
             <a href="${pageContext.request.contextPath}/main_kakugari/all">
                 <img src="../images/kakugari.png" width="66" height="46" alt="カクガリ">
                 <span class="kakuspa">カクガリ</span>
+                 <input type="text" id="search" name="name" size="30" placeholder="なにをお探しですか？" />
             </a>
         </header>
 
-        <h1>購入した商品</h1>
+        <h1>購入履歴</h1>
 
         <!-- タブの部分 -->
         <div class="tabs">
@@ -170,15 +172,15 @@
             <table id="currentDeals">
                 <thead>
                     <tr>
-                        <th>商品名</th>
+                        <th>商品ID</th>
                         <th>ステータス</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="product" items="${purchaseHistory}">
-                        <c:if test="${!product.completed}">
+                    <c:forEach var="history" items="${historyList}">
+                        <c:if test="${!history.completed}">
                             <tr>
-                                <td>${product.name}</td>
+                                <td>${history.itemId}</td>
                                 <td class="in-progress">取引中です。</td>
                             </tr>
                         </c:if>
@@ -190,15 +192,15 @@
             <table id="completedDeals" style="display:none;">
                 <thead>
                     <tr>
-                        <th>商品名</th>
+                        <th>商品ID</th>
                         <th>ステータス</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="product" items="${purchaseHistory}">
-                        <c:if test="${product.completed}">
+                    <c:forEach var="history" items="${historyList}">
+                        <c:if test="${history.completed}">
                             <tr>
-                                <td>${product.name}</td>
+                                <td>${history.itemId}</td>
                                 <td class="completed">取引が完了しました。</td>
                             </tr>
                         </c:if>
