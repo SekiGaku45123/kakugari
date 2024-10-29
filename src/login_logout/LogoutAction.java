@@ -17,6 +17,7 @@ public class LogoutAction extends HttpServlet {
 			HttpServletRequest request, HttpServletResponse response
         ) throws ServletException, IOException {
     	PrintWriter out=response.getWriter();
+
     	try {
         HttpSession session = request.getSession();
 

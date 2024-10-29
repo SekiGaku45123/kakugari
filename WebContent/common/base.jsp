@@ -148,7 +148,6 @@ header #menu ul li.header-nav__item.current a:hover {
 	background-color: #f0f0f0;
 	color: #ffa759;
 }
-
 </style>
 </head>
 <body>

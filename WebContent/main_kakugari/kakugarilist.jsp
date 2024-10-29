@@ -28,7 +28,6 @@
 }
 
 
-
 </style>
 	<div class="container text-center">
 		<div class="row grid gap-1">

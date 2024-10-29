@@ -39,4 +39,5 @@ public class Comment implements java.io.Serializable{
         this.posted_day = posted_day;
     }
 
+
 }
