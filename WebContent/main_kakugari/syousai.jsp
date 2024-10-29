@@ -1,6 +1,11 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    // セッションからログイン情報を取得
+    HttpSession sessions = request.getSession(false);
+    boolean isLoggedIn = (session != null && session.getAttribute("customer") != null);
+%>
 
 <c:import url="/common/base.jsp"></c:import>
 
@@ -165,6 +170,22 @@
   padding: 10px;
   cursor: pointer;
  }
+
+ .login-comment{
+ display: flex;
+  justify-content: center;
+  margin-top: 10px;
+
+ }
+ .login-comment button{
+  width: 100%;
+  padding: 10px 20px;
+  background: white;
+  color: #ff8d02;
+  font-weight: 900;
+  border: 1px solid #ff8d02;
+  border-radius: 5px 5px;
+ }
 }
 
 @media screen and (max-width: 959px) {
@@ -237,6 +258,23 @@
   padding: 10px 20px;
   cursor: pointer;
  }
+
+ .login-comment{
+ display: flex;
+  justify-content: center;
+  margin-top: 10px;
+
+ }
+ .login-comment button{
+  width: 100%;
+  padding: 10px 20px;
+  background: white;
+  color: #ff8d02;
+  font-weight: 900;
+  border: 1px solid #ff8d02;
+  border-radius: 5px 5px;
+ }
+
 }
   </style>
 
@@ -270,7 +308,7 @@
 	          <!-- 商品IDを送信するフォーム -->
 	          <form action="favoriteAddAction" method="post">
 	            <input type="hidden" name="item_id" value="<%String Item_id=request.getParameter("Item_id"); %><%=Item_id %>">
-	            <input type="hidden" name="user_id" value="<%String User=request.getParameter("User"); %><%=User %>">">
+	            <input type="hidden" name="user_id" value="<%String User=request.getParameter("User"); %><%=User %>">
 	            <button type="submit">♡</button>
 	          </form>
 	        </div>
@@ -321,6 +359,17 @@
 			<div class="user_icon"><img src="<%=Image %>" alt="商品画像" ></div><div class="listing">浜田省吾</div>
 		</div>
 		<div class="pq"></div>
+		<span class="taitoru">コメント</span>
+		<div id="login-content" style="<%= isLoggedIn ? "" : "display: none;" %>">
+	        <h2>ログイン済みのユーザーのみ表示されるコンテンツです</h2>
+	        <p>あなたのメールアドレス: <%= session.getAttribute("userEmail") %></p>
+	        <a href="../login_logout/logout">ログアウト</a>
+    	</div>
+
+	    <!-- ログインしていない場合にのみ表示する要素 -->
+	    <div id="logout-content" style="<%= isLoggedIn ? "display: none;" : "" %>">
+	        <div class="login-comment"><button onclick="location.href='../login_logout/login-in.jsp'">ログインして閲覧</button></div>
+	    </div>
       </div>
   </div>
 
