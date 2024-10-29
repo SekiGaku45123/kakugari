@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns={"/contact/contact"})
 public class Contact extends HttpServlet {
    // 不適切ワードのリスト
-   private static final List<String> bannedWords = Arrays.asList(
+   private static final List<String> bannedWords = Arrays.asList("はげ"
+
       );
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        // フォームからのデータを取得

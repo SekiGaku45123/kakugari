@@ -1,5 +1,4 @@
 package Contact;
-
 import java.io.IOException;
 import java.util.Properties;
 
@@ -17,45 +16,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/contact/email")
+
 public class Mailapp extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         String recipient = request.getParameter("recipient");
         String subject = request.getParameter("subject");
         String body = request.getParameter("body");
 
         final String username = "gaku0867motakimaru@gmail.com"; // 自分のメールアドレス
-        final String password = "rlhb bgun lygi wael"; // メールアカウントのパスワード  rmwb rojr dgvx tmde@qpp
+        final String password = "rlhb bgun lygi wael"; // メールアカウントのパスワード
 
-        // プロパティ設定
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com"); // SMTPサーバーのホスト
-        props.put("mail.smtp.port", "587"); // ポート番号
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
 
-        // セッションの取得
         Session session = Session.getInstance(props,
             new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
+
                     return new PasswordAuthentication(username, password);
+
                 }
+
             });
 
         try {
-            // メールメッセージの作成
+
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
             message.setSubject(subject);
             message.setText(body);
-
-            // メール送信
             Transport.send(message);
-
-            response.getWriter().println("メールが送信されました。");
+            response.setContentType("text/html; charset=UTF-8");
+            response.getWriter().println("お問い合わせありがとうございます！送信完了メールが送られます。");
+            response.getWriter().println("<p><a href=\"" + request.getContextPath() + "/main_kakugari/all\" class=\"return-link\">メインメニューに戻る</a></p>");
         } catch (MessagingException e) {
-            response.getWriter().println("メール送信に失敗しました: " + e.getMessage());
+            response.getWriter().println("エラーが発生しました。。: " + e.getMessage());
         }
     }
 }
