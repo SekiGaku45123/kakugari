@@ -26,7 +26,7 @@
                     <div class="col-12 d-flex align-items-center mb-3 p-3" style="border-bottom: 1px solid #eee;">
                         <!-- 商品の画像 -->
                         <div class="me-3">
-                            <img src="image/${item.item_id}.jpg" width="80" height="80" alt="${item.item_name}" style="object-fit: cover;">
+                            <img src="${item.getImage_data()}" width="80" height="80" alt="${item.item_name}" style="object-fit: cover;">
                         </div>
 
                         <!-- 商品の詳細 -->

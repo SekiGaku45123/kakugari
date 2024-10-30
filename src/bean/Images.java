@@ -10,6 +10,7 @@ public class Images implements java.io.Serializable {
 	private String user_id;
 	private int item_price;
 	private String item_detail;
+
 	private String category;
 	private String condition;
 	private String area;

@@ -2,6 +2,7 @@ package favorite;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,33 +14,33 @@ import javax.servlet.http.HttpSession;
 import bean.Favorite;
 import bean.User;
 import dao.FavoriteDAO;
-@WebServlet(urlPatterns={"/main_kakugari/favoriteAddAction"})
-public class FavoriteAddAction extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+@WebServlet(urlPatterns={"/kakugari/favoritesearch"})
+public class Favoritesearch extends HttpServlet {
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    	System.out.print("実行");
+    	System.out.println("実行");
     	PrintWriter out=response.getWriter();
     	HttpSession session = request.getSession();
 
         try {
 
-        	String item_id=request.getParameter("item_id");
         	User customer = (User) session.getAttribute("customer");
 
         	// Userクラス内にuser_idフィールドがあると仮定
-        	String user_id = customer.getUser_id();
+        	String key = customer.getUser_id();
 
-        	Favorite p=new Favorite();
-        	p.setItem_id(item_id);
-        	p.setUser_id(user_id);
+        	System.out.println(key);
 
         	FavoriteDAO dao=new FavoriteDAO();
-        	int line=dao.insert(p);
+        	List<Favorite> list=dao.search(key);
 
-        	if (line>0) {
-        	  request.getRequestDispatcher("kakugarilist.jsp");
-        	}
+        	System.out.print(list);
+
+        	request.setAttribute("favoriteItems", list);
+			request.getRequestDispatcher("../main_kakugari/favorite.jsp")
+			.forward(request, response);
 
         } catch (Exception e) {
         	e.printStackTrace(out);
