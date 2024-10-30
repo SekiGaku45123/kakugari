@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -9,27 +8,27 @@ import java.util.List;
 
 import bean.History;
 
-public class HistoryDAO {
-    private static final String JDBC_URL = "jdbc:h2:~/merukari";
-    private static final String JDBC_USER = "sa";
-    private static final String JDBC_PASS = "";
+public class HistoryDAO extends DAO {
 
-    public List<History> getHistory() {
+    public List<History> getHistory() throws Exception {
         List<History> historyList = new ArrayList<>();
-        String sql = "SELECT ITEM_ID, COMPLETED FROM HISTORY";
+        Connection con = getConnection();
+        String sql = "SELECT ITEM_ID, FLAG, IMAGE_DATA FROM HISTORY";  // IMAGE_PATHを取得
 
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        PreparedStatement st = con.prepareStatement(sql);
+        ResultSet rs = st.executeQuery();
 
-            while (rs.next()) {
-                int itemId = rs.getInt("ITEM_ID");
-                boolean completed = rs.getBoolean("COMPLETED"); // COMPLETEDフラグを取得
-                historyList.add(new History(itemId, completed));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        while (rs.next()) {
+            History history = new History();
+            history.setItem_Id(rs.getInt("ITEM_ID"));
+            history.setFlag(rs.getBoolean("FLAG"));
+            history.setImageData(rs.getString("IMAGE_DATA"));  // 画像パスをセット
+            historyList.add(history);
         }
+
+        rs.close();
+        st.close();
+        con.close();
 
         return historyList;
     }

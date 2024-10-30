@@ -49,7 +49,6 @@
             vertical-align: middle;
         }
 
-
         .kakuspa {
             font-family: "あめちゃんポップ　まる Light";
             font-size: 24px;
@@ -154,8 +153,8 @@
             <a href="${pageContext.request.contextPath}/main_kakugari/all">
                 <img src="../images/kakugari.png" width="66" height="46" alt="カクガリ">
                 <span class="kakuspa">カクガリ</span>
-                 <input type="text" id="search" name="name" size="30" placeholder="なにをお探しですか？" />
             </a>
+            <input type="text" id="search" name="name" size="30" placeholder="なにをお探しですか？" />
         </header>
 
         <h1>購入履歴</h1>
@@ -166,6 +165,7 @@
             <button id="tabCompleted">過去の取引</button>
         </div>
 
+
         <!-- 商品の履歴部分 -->
         <div class="history">
             <!-- 取引中の商品 -->
@@ -173,14 +173,16 @@
                 <thead>
                     <tr>
                         <th>商品ID</th>
+                        <th>画像</th>
                         <th>ステータス</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach var="history" items="${historyList}">
-                        <c:if test="${!history.completed}">
+                        <c:if test="${!history.Flag}">
                             <tr>
                                 <td>${history.itemId}</td>
+                                <td><img src="${history.imageData}" alt="商品画像" width="80" height="80"></td>
                                 <td class="in-progress">取引中です。</td>
                             </tr>
                         </c:if>
@@ -193,6 +195,7 @@
                 <thead>
                     <tr>
                         <th>商品ID</th>
+                        <th>画像</th>
                         <th>ステータス</th>
                     </tr>
                 </thead>
@@ -201,6 +204,7 @@
                         <c:if test="${history.completed}">
                             <tr>
                                 <td>${history.itemId}</td>
+                                <td><img src="${history.imagePath}" alt="商品画像" width="80" height="80"></td>
                                 <td class="completed">取引が完了しました。</td>
                             </tr>
                         </c:if>

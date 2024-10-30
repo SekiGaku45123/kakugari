@@ -1,35 +1,47 @@
 package bean;
 
-import java.io.Serializable;
-
-public class History implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private int itemId;
-    private boolean completed;
+public class History {
+    private int item_Id;
+    private boolean flag;
+    private String imageData;  // 画像パス
 
     // コンストラクタ
-    public History() {}
-
-    public History(int itemId, boolean completed) {
-        this.itemId = itemId;
-        this.completed = completed;
+    public History() {
     }
 
-    // GetterとSetter
-    public int getItemId() {
-        return itemId;
+    // itemIdのgetterとsetter
+    public int getItem_Id() {
+        return item_Id;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setItem_Id(int item_Id) {
+        this.item_Id = item_Id;
     }
 
-    public boolean isCompleted() {
-        return completed;
+    // completedのgetterとsetter
+    public boolean Flag() {
+        return flag;
     }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+    // imagePathのgetterとsetter
+    public String getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(String imageData) {
+        this.imageData = imageData;
+    }
+
+    @Override
+    public String toString() {
+        return "History{" +
+                "item_Id=" + item_Id +
+                ", flag=" + flag +
+                ", imageData='" + imageData + '\'' +
+                '}';
     }
 }
