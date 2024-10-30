@@ -48,33 +48,64 @@
                value="${customer.getUser_address()}" required>
     </div>
 
-        <div class="form-group">
-            <label>支払い方法</label><br>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="クレジットカード" checked>
-                <label class="form-check-label" for="creditCard">
-                    クレジットカード
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" value="銀行振込">
-                <label class="form-check-label" for="bankTransfer">
-                    銀行振込
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="代金引換">
-                <label class="form-check-label" for="cashOnDelivery">
-                    代金引換
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="paymentMethod" id="convenienceStore" value="コンビニ支払い">
-                <label class="form-check-label" for="convenienceStore">
-                    コンビニ支払い
-                </label>
-            </div>
-        </div>
+<div class="form-group">
+    <label>支払い方法</label><br>
+
+    <!-- クレジットカード -->
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="クレジットカード" checked onclick="toggleCreditCardInfo()">
+        <label class="form-check-label" for="creditCard">クレジットカード</label>
+    </div>
+
+    <!-- 銀行振込 -->
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" value="銀行振込" onclick="toggleCreditCardInfo()">
+        <label class="form-check-label" for="bankTransfer">銀行振込</label>
+    </div>
+
+    <!-- 代金引換 -->
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="代金引換" onclick="toggleCreditCardInfo()">
+        <label class="form-check-label" for="cashOnDelivery">代金引換</label>
+    </div>
+
+    <!-- コンビニ支払い -->
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="paymentMethod" id="convenienceStore" value="コンビニ支払い" onclick="toggleCreditCardInfo()">
+        <label class="form-check-label" for="convenienceStore">コンビニ支払い</label>
+    </div>
+</div>
+
+<!-- クレジットカード情報入力欄 -->
+<div id="creditCardInfo" style="display: none;">
+    <h5>クレジットカード情報</h5>
+    <div class="form-group">
+        <label for="cardNumber">カード番号</label>
+        <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="カード番号を入力してください">
+    </div>
+    <div class="form-group">
+        <label for="expiryDate">有効期限</label>
+        <input type="text" class="form-control" id="expiryDate" name="expiryDate" placeholder="MM/YY">
+    </div>
+    <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="text" class="form-control" id="cvv" name="cvv" placeholder="CVVを入力してください">
+    </div>
+</div>
+
+<script>
+    function toggleCreditCardInfo() {
+        // 「クレジットカード」ラジオボタンがチェックされているかを確認
+        const isCreditCardSelected = document.getElementById("creditCard").checked;
+        const creditCardInfo = document.getElementById("creditCardInfo");
+
+        // クレジットカード選択時のみ表示
+        creditCardInfo.style.display = isCreditCardSelected ? "block" : "none";
+    }
+
+    // ページが読み込まれた時に初期化
+    document.addEventListener("DOMContentLoaded", toggleCreditCardInfo);
+</script>
 
         <button type="submit" class="btn btn-danger">購入する</button>
     </form>
