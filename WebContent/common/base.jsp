@@ -176,7 +176,7 @@ header #menu ul li.header-nav__item.current a:hover {
  	<ul>
 	 	<li class="header-nav__item"><a href="../main_kakugari/all">おすすめ</a></li>
 	 	<li class="header-nav__item"><a href="../main_kakugari/1.jsp">${customer.getUser_name()}さん</a></li>
-	 	<li class="header-nav__item"><a href="../main_kakugari/2.jsp">お気に入り一覧</a></li>
+	 	<li class="header-nav__item"><a href="../main_kakugari/favorite.jsp">お気に入り一覧</a></li>
 	     <li class="header-nav__item">
     <a href="${pageContext.request.contextPath}/main_kakugari/rireki.jsp">購入履歴</a>
 </li>
