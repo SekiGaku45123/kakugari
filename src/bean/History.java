@@ -27,6 +27,7 @@ public class History {
         this.flag = flag;
     }
 
+
     // imagePathのgetterとsetter
     public String getImageData() {
         return imageData;

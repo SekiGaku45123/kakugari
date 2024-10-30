@@ -165,7 +165,6 @@
             <button id="tabCompleted">過去の取引</button>
         </div>
 
-
         <!-- 商品の履歴部分 -->
         <div class="history">
             <!-- 取引中の商品 -->
