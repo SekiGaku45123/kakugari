@@ -39,6 +39,7 @@
            background-color: #4CAF50;
            color: white;
            border: none;
+
            padding: 8px 16px;
            border-radius: 4px;
            cursor: pointer;
