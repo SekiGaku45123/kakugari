@@ -1,7 +1,8 @@
-<%@page contentType="text/html; charset=UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="../header.html" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../header.html" %>
 
+<!-- Bootstrap CSS読み込み -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
 
@@ -24,26 +25,29 @@
         width: 100%;
     }
 </style>
-<c:import url="/common/base.jsp">
-</c:import>
+
 <div class="container my-5">
     <h2 class="mb-4 text-center">商品リスト</h2>
 
     <hr>
 
     <h3 class="mb-3">購入情報入力</h3>
-    <form action="Purchaseaction" method="post">
-        <div class="form-group">
-            <label for="name">お名前</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="お名前を入力してください" required>
-        </div>
 
-        <div class="form-group">
-            <label for="address">ご住所</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="ご住所を入力してください" required>
-        </div>
+<form action="Purchaseaction" method="post">
+    <div class="form-group">
+        <label for="name">お名前</label>
+        <input type="text" class="form-control" id="name" name="name"
+               placeholder="お名前を入力してください"
+               value="${customer.getUser_name()}" required>
+    </div>
 
-        <!-- 支払い方法選択 -->
+    <div class="form-group">
+        <label for="address">ご住所</label>
+        <input type="text" class="form-control" id="address" name="address"
+               placeholder="ご住所を入力してください"
+               value="${customer.getUser_address()}" required>
+    </div>
+
         <div class="form-group">
             <label>支払い方法</label><br>
             <div class="form-check">
@@ -62,24 +66,21 @@
                 <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="代金引換">
                 <label class="form-check-label" for="cashOnDelivery">
                     代金引換
-
                 </label>
             </div>
-                        <div class="form-check">
-                <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="代金引換">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="convenienceStore" value="コンビニ支払い">
                 <label class="form-check-label" for="convenienceStore">
                     コンビニ支払い
-                    </label>
-             </div>
-
+                </label>
+            </div>
         </div>
 
         <button type="submit" class="btn btn-danger">購入する</button>
-
     </form>
 </div>
 
-<%@include file="../footer.html" %>
+<%@ include file="../footer.html" %>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

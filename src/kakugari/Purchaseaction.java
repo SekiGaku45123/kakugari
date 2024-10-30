@@ -9,24 +9,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.User;
+import dao.BuysearchDAO;
+
 @WebServlet(urlPatterns={"/main_kakugari/Purchaseaction"})
 public class Purchaseaction extends HttpServlet {
-    public void doPost(
-            HttpServletRequest request, HttpServletResponse response
-            ) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         HttpSession session = request.getSession();
 
-        String name = request.getParameter("name");
-        String address = request.getParameter("address");
+        User user = (User) session.getAttribute("search");
 
-        if (name.isEmpty() || address.isEmpty()) {
+        String name = user != null ? user.getUser_name() : request.getParameter("name");
+        String address = user != null ? user.getUser_address() : request.getParameter("address");
+
+        if (name == null || name.isEmpty() || address == null || address.isEmpty()) {
             request.getRequestDispatcher("purchase-error-empty.jsp")
                    .forward(request, response);
             return;
         }
 
-        session.removeAttribute("cart");
-        request.getRequestDispatcher("purchase-out.jsp")
-               .forward(request, response);
+        try {
+            BuysearchDAO dao = new BuysearchDAO();
+            User result = dao.search(name, address);
+
+            if (result != null) {
+                session.removeAttribute("cart");
+                request.getRequestDispatcher("purchase-out.jsp")
+                       .forward(request, response);
+            } else {
+                request.getRequestDispatcher("purchase-error.jsp")
+                       .forward(request, response);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("purchase-error.jsp")
+                   .forward(request, response);
+        }
     }
 }
