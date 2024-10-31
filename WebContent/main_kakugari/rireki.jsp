@@ -151,7 +151,7 @@
     <div class="container">
         <header>
             <a href="${pageContext.request.contextPath}/main_kakugari/all">
-                <img src="../images/kakugari.png" width="66" height="46" alt="カクガリ">
+                <img src="${pageContext.request.contextPath}/images/../images/kakugari.png" width="66" height="46" alt="カクガリ">
                 <span class="kakuspa">カクガリ</span>
             </a>
             <input type="text" id="search" name="name" size="30" placeholder="なにをお探しですか？" />
