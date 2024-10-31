@@ -181,7 +181,7 @@
                         <c:if test="${!history.flag}">
                             <tr>
                                 <td>${history.item_Id}</td>
-                                <td><img src="${history.image_Data}" alt="商品画像" width="80" height="80"></td>
+                                <td><img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80"></td>
                                 <td class="in-progress">取引中です。</td>
                             </tr>
                         </c:if>
@@ -203,7 +203,7 @@
                         <c:if test="${history.flag}">
                             <tr>
                                 <td>${history.item_Id}</td>
-                                <td><img src="${history.image_Data}" alt="商品画像" width="80" height="80"></td>
+                                <td><img src="${pageContext.request.contextPath}/images/${history.getImage_Data()}" alt="商品画像" width="80" height="80"></td>
                                 <td class="completed">取引が完了しました。</td>
                             </tr>
                         </c:if>
@@ -211,6 +211,8 @@
                 </tbody>
             </table>
         </div>
+
+        <h1>${history.image.Data }</h1>
 
         <!-- メインメニューに戻るボタン -->
         <div class="button-container">
