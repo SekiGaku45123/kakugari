@@ -56,4 +56,5 @@
     </c:otherwise>
 </c:choose>
 
-<%@ include file="../footer.html" %>
+<!-- footerの読み込み -->
+<jsp:include page="/footer.html" />

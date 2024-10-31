@@ -62,7 +62,8 @@
     </form>
 </div>
 
-<%@ include file="../footer.html" %>
+<!-- footerの読み込み -->
+<jsp:include page="/footer.html" />
 
 <!-- Bootstrap JavaScript読み込み -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
