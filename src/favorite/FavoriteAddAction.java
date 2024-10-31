@@ -2,6 +2,7 @@ package favorite;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import bean.Favorite;
 import bean.User;
 import dao.FavoriteDAO;
-@WebServlet(urlPatterns={"/main_kakugari/favoriteAddAction"})
+@WebServlet(urlPatterns={"/kakugari/favoriteAddAction"})
 public class FavoriteAddAction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,8 +39,12 @@ public class FavoriteAddAction extends HttpServlet {
         	int line=dao.insert(p);
 
         	if (line>0) {
-        	  request.getRequestDispatcher("kakugarilist.jsp");
+        		System.out.print("完成");
+
+        		response.sendRedirect("../kakugari/product?item_id=" + URLEncoder.encode(item_id, "UTF-8"));
+
         	}
+
 
         } catch (Exception e) {
         	e.printStackTrace(out);

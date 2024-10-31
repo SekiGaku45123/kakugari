@@ -12,6 +12,10 @@ public class Item implements java.io.Serializable {
     private boolean flag;
     private String item_name;
 
+	private String image_data;
+	private String image_data1;
+	private String image_data2;
+
     // ゲッター
     public String getItem_id() {
         return item_id;
@@ -92,6 +96,36 @@ public class Item implements java.io.Serializable {
 
     public void setItem_name(String item_name) {
         this.item_name = item_name;
+    }
+
+
+
+
+
+
+
+    public String getImage_data() {
+        return image_data;
+    }
+
+    public void setImage_data(String image_data) {
+        this.image_data = image_data;
+    }
+
+    public String getImage_data1() {
+        return image_data1;
+    }
+
+    public void setImage_data1(String image_data1) {
+        this.image_data1 = image_data1;
+    }
+
+	public String getImage_data2() {
+        return image_data2;
+    }
+
+	public void setImage_data2(String image_data2) {
+        this.image_data2 = image_data2;
     }
 
 }

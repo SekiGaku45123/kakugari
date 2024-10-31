@@ -52,7 +52,7 @@ public class FavoriteDAO extends DAO {
 		Connection con=getConnection();
 
 		PreparedStatement st=con.prepareStatement(
-				"SELECT item.item_id, item.user_id, item.item_price, item.category, item.item_detail, item.condition, item.area, item.shipping_days, item.flag, item.item_name, images.image_data FROM favorite JOIN item ON favorite.user_id = item.user_id JOIN images ON images.user_id = item.user_id WHERE item.user_id = ?;");
+				"SELECT item.item_id, item.user_id, item.item_price, item.category, item.item_detail, item.condition, item.area, item.shipping_days, item.flag, item.item_name, images.image_data FROM favorite JOIN item ON favorite.item_id = item.item_id JOIN images ON images.item_id = favorite.item_id WHERE favorite.user_id = ? ");
 		st.setString(1,key);
 		ResultSet rs=st.executeQuery();
 

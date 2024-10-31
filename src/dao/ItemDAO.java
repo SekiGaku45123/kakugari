@@ -16,14 +16,16 @@ public class ItemDAO extends DAO{
 		Connection con=getConnection();
 
 		PreparedStatement st=con.prepareStatement(
-				"select * from item WHERE item_id like ?");
-		st.setString(1, "%"+code+"%");
+				"select * from item join images on images.item_id = item.item_id WHERE item.item_id = ?");
+		st.setString(1, code);
 		ResultSet rs=st.executeQuery();
 
 
-		while (rs.next()){
+		if (rs.next()){
 			Item p=new Item();
 			p.setItem_id(rs.getString("item_id"));
+			p.setImage_data(rs.getString("image_data"));
+			p.setItem_name(rs.getString("item_name"));
 			p.setUser_id(rs.getString("user_id"));
 			p.setItem_price(rs.getInt("item_price"));
 			p.setCategory(rs.getString("category"));

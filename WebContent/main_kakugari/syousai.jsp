@@ -1,6 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.ArrayList, java.net.URLEncoder"%>
 <%
     // セッションからログイン情報を取得
     HttpSession sessions = request.getSession(false);
@@ -9,12 +10,7 @@
 
 <c:import url="/common/base.jsp"></c:import>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>商品詳細</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
+<style>
 
   .mozi {
   font-size: 30px;
@@ -279,23 +275,23 @@
 }
   </style>
 
-</head>
-<body>
 
+</head>
+
+<c:forEach var="pro" items="${pro}">
   <div class="oya">
       <!-- 左側：商品画像 -->
       <div class="product-image">
         <!-- 商品の画像を表示 (item.item_detail に画像URLまたはデータが格納される) -->
-
-        <img src="<%String Image=request.getParameter("Image"); %><%=Image %>" width="700" height="700" alt="商品画像" >
+        <img src="${pro.getImage_data()}" width="700" height="700" alt="商品画像" >
       </div>
 
       <!-- 右側：商品詳細 -->
        <div class="tkst">
         <!-- 商品IDや名前などの情報 -->
 
-        <h2><%String Name=request.getParameter("Name"); %><%=Name %></h2>
-        <p class="pq">￥<%String price=request.getParameter("price"); %><span class="mozi"><%=price %></span>（税込・送料込み）</p>
+        <h2>${pro.getItem_name()}</h2>
+        <p class="pq">￥<span class="mozi">${pro.getItem_price()}</span>（税込・送料込み）</p>
 
 		<div class="botan_mein">
 	        <div class="kounyu">
@@ -308,8 +304,7 @@
 	        <div class="okini">
 	          <!-- 商品IDを送信するフォーム -->
 	          <form action="favoriteAddAction" method="post">
-	            <input type="hidden" name="item_id" value="<%String Item_id=request.getParameter("Item_id"); %><%=Item_id %>">
-	            <input type="hidden" name="user_id" value="<%String User=request.getParameter("User"); %><%=User %>">
+	            <input type="hidden" name="item_id" value="${pro.getItem_id()}">
 	            <button type="submit">♡</button>
 	          </form>
 	        </div>
@@ -318,7 +313,7 @@
 
 		<br><div class="pq"></div>
 
-        <p><span class="taitoru">商品詳細</span><br><font color="#7d7d7d"><%String Detail=request.getParameter("Detail"); %><%=Detail %></font></p>
+        <p><span class="taitoru">商品詳細</span><br><font color="#7d7d7d">Detail</font></p>
 
         <p class="pq"><span class="taitoru">商品情報</span></p>
 		<div class="ProductDetails">
@@ -327,7 +322,7 @@
 			   <span>CATEGORY</span>
 			 </div>
 			 <div class="ProductDetails_exp">
-			   <span><%String Cate=request.getParameter("Cate"); %><%=Cate %></span>
+			   <span>${pro.getCategory()}</span>
 			 </div>
 		  </div>
 		  <div class="ProductDetails_main">
@@ -335,7 +330,7 @@
 			   <span>CONDITION</span>
 			 </div>
 			 <div class="ProductDetails_exp">
-			   <span><%String Cond=request.getParameter("Cond"); %><%=Cond %></span>
+			   <span>${pro.getCondition()}</span>
 			 </div>
 		  </div>
 		  <div class="ProductDetails_main">
@@ -343,7 +338,7 @@
 			   <span>AREA</span>
 			 </div>
 			 <div class="ProductDetails_exp">
-			   <span><%String Area=request.getParameter("Area"); %><%=Area %></span>
+			   <span>${pro.getArea()}</span>
 			 </div>
 		  </div>
 		  <div class="ProductDetails_main">
@@ -351,13 +346,13 @@
 			   <span>SHOPPING DAYS</span>
 			 </div>
 			 <div class="ProductDetails_exp">
-			   <span><%String Ship=request.getParameter("Ship"); %><%=Ship %>日で発送</span>
+			   <span>${pro.getShipping_days()}日で発送</span>
 			 </div>
 		  </div>
 		</div>
 			<p class="pq"><span class="taitoru">出品者</span></p>
 		<div class="user_icon_main">
-			<div class="user_icon"><img src="<%=Image %>" alt="商品画像" ></div><div class="listing">浜田省吾</div>
+			<div class="user_icon"><img src="${pro.getImage_data()}" alt="商品画像" ></div><div class="listing">浜田省吾</div>
 		</div>
 		<div class="pq"></div>
 		<span class="taitoru">コメント</span>
@@ -373,7 +368,7 @@
 	    </div>
       </div>
   </div>
-
+</c:forEach>
   <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
   <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
   <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
