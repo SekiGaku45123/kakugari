@@ -178,7 +178,7 @@ header #menu ul li.header-nav__item.current a:hover {
 	 	<li class="header-nav__item"><a href="">o</a></li>
 	 	<li class="header-nav__item"><a href="${pageContext.request.contextPath}/kakugari/favoritesearch">お気に入り一覧</a></li>
 	     <li class="header-nav__item">
-    <a href="${pageContext.request.contextPath}/main_kakugari/rireki.jsp">購入履歴</a>
+    <a href="${pageContext.request.contextPath}/history">購入履歴</a>
 </li>
 
 	 	<li class="header-nav__item"><a href="../contact/contact.jsp">お問い合わせ</a></li>

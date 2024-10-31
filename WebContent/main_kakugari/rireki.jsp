@@ -178,10 +178,10 @@
                 </thead>
                 <tbody>
                     <c:forEach var="history" items="${historyList}">
-                        <c:if test="${!history.Flag}">
+                        <c:if test="${!history.flag}">
                             <tr>
-                                <td>${history.itemId}</td>
-                                <td><img src="${history.imageData}" alt="商品画像" width="80" height="80"></td>
+                                <td>${history.item_Id}</td>
+                                <td><img src="${history.image_Data}" alt="商品画像" width="80" height="80"></td>
                                 <td class="in-progress">取引中です。</td>
                             </tr>
                         </c:if>
@@ -200,10 +200,10 @@
                 </thead>
                 <tbody>
                     <c:forEach var="history" items="${historyList}">
-                        <c:if test="${history.completed}">
+                        <c:if test="${history.flag}">
                             <tr>
-                                <td>${history.itemId}</td>
-                                <td><img src="${history.imagePath}" alt="商品画像" width="80" height="80"></td>
+                                <td>${history.item_Id}</td>
+                                <td><img src="${history.image_Data}" alt="商品画像" width="80" height="80"></td>
                                 <td class="completed">取引が完了しました。</td>
                             </tr>
                         </c:if>

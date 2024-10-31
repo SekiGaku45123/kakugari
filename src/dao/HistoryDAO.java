@@ -19,10 +19,11 @@ public class HistoryDAO extends DAO {
         ResultSet rs = st.executeQuery();
 
         while (rs.next()) {
+        	System.out.println(rs.getBoolean("FLAG"));
             History history = new History();
             history.setItem_Id(rs.getInt("ITEM_ID"));
             history.setFlag(rs.getBoolean("FLAG"));
-            history.setImageData(rs.getString("IMAGE_DATA"));  // 画像パスをセット
+            history.setImage_Data(rs.getString("IMAGE_DATA"));  // 画像パスをセット
             historyList.add(history);
         }
 

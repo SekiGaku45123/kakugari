@@ -2,8 +2,8 @@ package bean;
 
 public class History {
     private int item_Id;
-    private boolean flag;
-    private String imageData;  // 画像パス
+	private boolean flag;
+    private String image_Data;  // 画像パス
 
     // コンストラクタ
     public History() {
@@ -18,23 +18,32 @@ public class History {
         this.item_Id = item_Id;
     }
 
-    // completedのgetterとsetter
-    public boolean Flag() {
-        return flag;
-    }
+    public boolean isFlag() {
+		return flag;
+	}
 
-    public void setFlag(boolean flag) {
-        this.flag = flag;
-    }
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+
+
+//    // completedのgetterとsetter
+//    public boolean getFlag() {
+//        return flag;
+//    }
+//
+//    public void setFlag(boolean flag) {
+//        this.flag = flag;
+//    }
 
 
     // imagePathのgetterとsetter
-    public String getImageData() {
-        return imageData;
+    public String getImage_Data() {
+        return image_Data;
     }
 
-    public void setImageData(String imageData) {
-        this.imageData = imageData;
+    public void setImage_Data(String image_Data) {
+        this.image_Data = image_Data;
     }
 
     @Override
@@ -42,7 +51,7 @@ public class History {
         return "History{" +
                 "item_Id=" + item_Id +
                 ", flag=" + flag +
-                ", imageData='" + imageData + '\'' +
+                ", image_Data='" + image_Data + '\'' +
                 '}';
     }
 }

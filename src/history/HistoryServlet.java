@@ -32,4 +32,3 @@ public class HistoryServlet extends HttpServlet {
         }
     }
 }
-
