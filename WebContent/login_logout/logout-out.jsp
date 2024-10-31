@@ -4,4 +4,5 @@
 
 ログアウトしました。
 
-<%@include file="../footer.html" %>
+<!-- footerの読み込み -->
+<jsp:include page="/footer.html" />

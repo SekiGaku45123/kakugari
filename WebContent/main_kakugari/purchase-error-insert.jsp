@@ -4,4 +4,5 @@
 
 購入手続き中にエラーが発生しました。
 
-<%@ include file="../footer.html" %>
+<!-- footerの読み込み -->
+<jsp:include page="/footer.html" />

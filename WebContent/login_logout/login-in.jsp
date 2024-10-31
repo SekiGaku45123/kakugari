@@ -8,4 +8,5 @@
 <p><input type="submit" value="ログイン"></p>
 </form>
 
-<%@include file="../footer.html" %>
+<!-- footerの読み込み -->
+<jsp:include page="/footer.html" />

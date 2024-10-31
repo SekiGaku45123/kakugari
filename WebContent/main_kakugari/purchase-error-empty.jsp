@@ -4,5 +4,6 @@
 
 名前と住所を正しく入力してください。
 
-<%@ include file="../footer.html" %>
+<!-- footerの読み込み -->
+<jsp:include page="/footer.html" />
 　　

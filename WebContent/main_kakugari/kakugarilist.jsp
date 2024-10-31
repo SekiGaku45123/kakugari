@@ -43,3 +43,5 @@
 				</c:forEach>
 		</div>
 	</div>
+<!-- footerの読み込み -->
+<jsp:include page="/footer.html" />

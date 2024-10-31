@@ -437,6 +437,8 @@
 	  });
 	});
 </script>
+<!-- footerの読み込み -->
+<jsp:include page="/footer.html" />
 
 
 
