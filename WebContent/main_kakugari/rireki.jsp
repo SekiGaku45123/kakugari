@@ -157,6 +157,7 @@
             <input type="text" id="search" name="name" size="30" placeholder="なにをお探しですか？" />
         </header>
 
+
         <h1>購入履歴</h1>
 
         <!-- タブの部分 -->
