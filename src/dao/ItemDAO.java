@@ -21,6 +21,7 @@ public class ItemDAO extends DAO{
 		ResultSet rs=st.executeQuery();
 
 
+
 		if (rs.next()){
 			Item p=new Item();
 			p.setItem_id(rs.getString("item_id"));
@@ -34,6 +35,7 @@ public class ItemDAO extends DAO{
 			p.setArea(rs.getString("area"));
 			p.setShipping_days(rs.getInt("shipping_days"));
 		    p.setFlag(rs.getBoolean("flag"));
+		    System.out.print(rs.getString("item_name"));
 		    list.add(p);
 			}
 

@@ -1,7 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.util.ArrayList, java.net.URLEncoder"%>
 <%
     // セッションからログイン情報を取得
     HttpSession sessions = request.getSession(false);
@@ -10,7 +9,12 @@
 
 <c:import url="/common/base.jsp"></c:import>
 
-<style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品詳細</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
 
   .mozi {
   font-size: 30px;
@@ -97,7 +101,7 @@
 
 .product-image {
     position: sticky;
-    top:145px;
+    top:80px;
     left: 15%;
     /*border: 2px dotted blue;*/
     border-radius: 10px;
@@ -139,7 +143,7 @@
   font-weight: 900;
   width: 20vw;
   border-radius: 5px;
-  background: #ff8d02;
+  background: black;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -156,8 +160,8 @@
 }
 
 .okini button{
-  color: #4d9dff;
-  border: 2px solid #4d9dff;
+  color: black;
+  border: 1px solid black;
   font-weight: 900;
   margin-left: 15px;
   width: 4em;
@@ -177,9 +181,9 @@
   width: 100%;
   padding: 10px 20px;
   background: white;
-  color: #ff8d02;
-  font-weight: 900;
-  border: 1px solid #ff8d02;
+  color: black;
+  font-weight: 100;
+  border: 1px solid black;
   border-radius: 5px 5px;
  }
 }
@@ -228,7 +232,7 @@
   font-weight: 900;
   width: 50vw;
   border-radius: 5px;
-  background: #ff8d02;
+  background:black;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -246,8 +250,8 @@
 }
 
 .okini button{
-  color: #4d9dff;
-  border: 2px solid #4d9dff;
+  color: black;
+  border: 1px solid black;
   font-weight: 900;
   margin-left: 30px;
   border-radius: 5px;
@@ -266,9 +270,9 @@
   width: 100%;
   padding: 10px 20px;
   background: white;
-  color: #ff8d02;
-  font-weight: 900;
-  border: 1px solid #ff8d02;
+  color: black;
+  font-weight: 100;
+  border: 1px solid black;
   border-radius: 5px 5px;
  }
 
@@ -276,13 +280,12 @@
   </style>
 
 
-</head>
-
 <c:forEach var="pro" items="${pro}">
   <div class="oya">
       <!-- 左側：商品画像 -->
       <div class="product-image">
         <!-- 商品の画像を表示 (item.item_detail に画像URLまたはデータが格納される) -->
+
         <img src="${pro.getImage_data()}" width="700" height="700" alt="商品画像" >
       </div>
 
@@ -296,7 +299,7 @@
 		<div class="botan_mein">
 	        <div class="kounyu">
 	  		 <form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post">
-	    	  <input type="hidden" name="item_id" value="${item.item_id}">
+	    	  <input type="hidden" name="item_id" value="${pro.getItem_id()}">
 	    	  <button type="submit">購入手続きへ</button>
 		     </form>
 	        </div>
@@ -313,7 +316,7 @@
 
 		<br><div class="pq"></div>
 
-        <p><span class="taitoru">商品詳細</span><br><font color="#7d7d7d">Detail</font></p>
+        <p><span class="taitoru">商品詳細</span><br><font color="#7d7d7d">${pro.getItem_detail()}</font></p>
 
         <p class="pq"><span class="taitoru">商品情報</span></p>
 		<div class="ProductDetails">
@@ -369,55 +372,8 @@
       </div>
   </div>
 </c:forEach>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
-  <p>oasfhpvunrihgcmneirghfprnogfhwpoevn</p>
 
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 /*<script>*/
 	const targets = document.querySelectorAll(".tkst");

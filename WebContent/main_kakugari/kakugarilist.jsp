@@ -6,42 +6,113 @@
 <c:import url="/common/base.jsp">
 </c:import>
 <style>
-.imgagess{
+
+.scroll-container {
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.scroll-content {
+  display: inline-flex;
+animation: scroll 30s linear infinite;
+}
+
+.scroll-content1{
+	display: inline-flex;
+	animation: scro 30s -15s linear infinite;
+}
+
+
+.toire {
+  display: inline-block;
+  margin: 0 10px;
+  width: auto;
+}
+
+.imgagess {
   position: relative;
 }
+
 .imgagess img {
-  background-color: #f0f0f0;
-  width: 100%;
-  border-radius: 10px 5px 5px 5px;
   object-fit: contain;
+  width: 300px;
+  height: 300px;
+  background: #f5f5f5;
 }
-.imgagess p {
-  color: #ffffff; /* 文字色 */
-  font-size: 24px; /* 文字の大きさ */
+
+.price-overlay {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 10px 20px 20px 0;
-  padding: 0 5% 0 0;
-  font-weight: 900;
-  left: 0;
-  top: 0;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.toire p {
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100%{
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scro {
+  0% {
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(-200%);
+  }
 }
 
 
 </style>
-	<div class="container text-center">
-		<div class="row grid gap-1">
-				<c:forEach var="p" items="${all}">
-			<div class="col-6 col-lg-3 p-1 g-col-6 ">
-			<div class="imgagess">
-					<a href="../main_kakugari/syousai.jsp?item_id=${p.getItem_id()}"><img src="${p.getImage_data()}" width="200" height="200"></a>
-    					<p>￥ ${p.getItem_price() }</p>
-  					</div>
 
-					${p.getItem_name() }
-			</div>
-				</c:forEach>
-		</div>
-	</div>
+<div class="scroll-container">
+  <div class="scroll-content">
+    <!-- コンテンツを複製して2回表示 -->
+    <c:forEach var="p" items="${all}">
+      <div class="toire">
+        <div class="imgagess mese">
+          <a href="../kakugari/product?item_id=${p.getItem_id()}">
+            <img src="${p.getImage_data()}"  class="sasa">
+            <div class="price-overlay">￥${p.getItem_price()}</div>
+          </a>
+        </div>
+        <p>${p.getItem_name()}</p>
+      </div>
+    </c:forEach>
+   </div>
+   <div class="scroll-content1">
+    <!-- 2回目の繰り返し -->
+    <c:forEach var="p" items="${all}">
+      <div class="toire">
+        <div class="imgagess mese">
+          <a href="../kakugari/product?item_id=${p.getItem_id()}">
+            <img src="${p.getImage_data()}"  class="sasa">
+            <div class="price-overlay">￥${p.getItem_price()}</div>
+          </a>
+        </div>
+        <p>${p.getItem_name()}</p>
+      </div>
+    </c:forEach>
+   </div>
+</div>
+
+
 <!-- footerの読み込み -->
 <jsp:include page="/footer.html" />

@@ -50,7 +50,7 @@
         }
 
 
-        .kakuspa {
+        .kakusp {
             font-family: "あめちゃんポップ　まる Light";
             font-size: 24px;
             margin-left: 10px;
@@ -153,7 +153,7 @@
         <header>
             <a href="${pageContext.request.contextPath}/main_kakugari/all">
                 <img src="../images/kakugari.png" width="66" height="46" alt="カクガリ">
-                <span class="kakuspa">カクガリ</span>
+                <span class="kakusp">カクガリ</span>
                  <input type="text" id="search" name="name" size="30" placeholder="なにをお探しですか？" />
             </a>
         </header>
