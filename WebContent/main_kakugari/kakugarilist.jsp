@@ -62,11 +62,25 @@ animation: scroll 30s linear infinite;
 }
 
 .img_logo{
-	text-align: center;
+	position: relative;
+	color: white;
+	margin: 0 60px 10px;
+	display: flex;
+  	justify-content: center;
 }
 
 .img_logo img{
-border-radius: 10px 10px 10px 10px;
+
+	border-radius: 10px 10px 10px 10px;
+	object-fit: cover;
+	width: 100vw;
+  	height: 50vw;
+}
+.img_logo p{
+  	top:50%;
+  	left: 50%;
+  	transform: translate(-50%,-50%);
+	position: absolute;
 }
 
 @keyframes scroll {
@@ -91,6 +105,8 @@ border-radius: 10px 10px 10px 10px;
 </style>
 <div class="img_logo">
 	<img src="../kakugari_image/image_logo.jpg">
+	<p>フリマサイト</p><br>
+	<p>--fLEA MARKET--</p>
 </div>
 <div class="scroll-container">
   <div class="scroll-content">
