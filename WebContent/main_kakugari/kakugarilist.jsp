@@ -61,26 +61,37 @@ animation: scroll 30s linear infinite;
   overflow-wrap: break-word;
 }
 
-.img_logo{
-	position: relative;
-	color: white;
-	margin: 0 60px 10px;
-	display: flex;
-  	justify-content: center;
+.img_logo {
+    position: relative;
+    color: white;
+    margin: 0 60px 10px;
+    display: flex;
+    justify-content: center;
 }
 
-.img_logo img{
-
-	border-radius: 10px 10px 10px 10px;
-	object-fit: cover;
-	width: 100vw;
-  	height: 50vw;
+.img_logo img {
+    border-radius: 10px;
+    object-fit: cover;
+    width: 100vw;
+    height: 50vw;
 }
-.img_logo p{
-  	top:50%;
-  	left: 50%;
-  	transform: translate(-50%,-50%);
-	position: absolute;
+
+.img_logo p {
+    position: absolute;
+    color: white;
+    font-weight: bold;
+}
+
+
+.top-text {
+    top: 20%;
+    font-size: 9vw;
+}
+
+
+.bottom-text {
+    bottom: 30%;
+    font-size: 8vw;
 }
 
 @keyframes scroll {
@@ -105,8 +116,8 @@ animation: scroll 30s linear infinite;
 </style>
 <div class="img_logo">
 	<img src="../kakugari_image/image_logo.jpg">
-	<p>フリマサイト</p><br>
-	<p>--fLEA MARKET--</p>
+	<p class="top-text">フリマサイト</p><br>
+	<p class="bottom-text">--fLEA MARKET--</p>
 </div>
 <div class="scroll-container">
   <div class="scroll-content">
