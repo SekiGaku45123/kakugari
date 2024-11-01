@@ -94,7 +94,7 @@
        }
        .login_in a {
 	       width: 100%;
-	       padding: 0 10px 0;
+	       padding: 0 20px 0;
 	       color: #525252;
 	       font-weight: 900;
 	       border-radius: 5px;
