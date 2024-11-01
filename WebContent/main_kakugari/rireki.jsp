@@ -22,7 +22,7 @@
         }
 
         .container {
-            width: 90%;
+            width: 100%;
             max-width: 1200px;
             height: 90vh; /* 高さを画面にフィットさせる */
             overflow-y: auto; /* 縦スクロール可能に */
@@ -154,10 +154,10 @@
     <div class="container">
         <header>
             <a href="${pageContext.request.contextPath}/main_kakugari/all">
-                <img src="${pageContext.request.contextPath}/images/../images/kakugari.png" width="66" height="46" alt="カクガリ">
+                <img src="${pageContext.request.contextPath}/images/../images/読書のアイコン.png" width="66" height="46" alt="カクガリ">
                 <span class="kakuspa">カクガリ</span>
             </a>
-            <input type="text" id="search" name="name" size="30" placeholder="なにをお探しですか？" />
+
         </header>
 
         <h1>購入履歴</h1>
