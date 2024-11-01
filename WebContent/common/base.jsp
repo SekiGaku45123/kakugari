@@ -75,6 +75,11 @@
 	       overflow: hidden;
 	       margin: 25px auto;
 	   }
+	   .login-content{
+	   		display: grid;
+  			justify-content: flex-end;
+
+	   }
 	   .logout-content{
 	   		display: grid;
   			justify-content: flex-end;
@@ -140,23 +145,25 @@
 </head>
 <body>
 <header>
-	<h2><a href="../main_kakugari/all"><img src="../images/kakugari.png" width="66" height="46"><span class="kakuspa"> カクガリ</span></a></h2>
-		<div class="logout-content">
-		    <div class="login_in" style="<%= isLoggedIn ? "display: none;" : "" %>">
-		    	<a href="#"><img src="../kakugari_image/1023.png" class="images0"></a>
-		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
-		        <a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>
-		        <a href="../contact/contact.jsp"><img src="../kakugari_image/10894.png" class="images3"></a>
-		        <a href="#"><img src="../kakugari_image/888.png" class="images4"></a>
-		        <!--  <a href="../login_logout/login-in.jsp">ログイン</a>-->
-		        <!--<a href="../main_kakugari/signup.jsp">新規登録</a>-->
-		    </div>
-		</div>
-    <div id="login-content" style="<%= isLoggedIn ? "" : "display: none;" %>">
-        <div id="bar">
-            <img src="../icon_image/main_icon.png" alt="アイコン画像">
-        </div>
-    </div>
+<h2><a href="../main_kakugari/all"><img src="../images/読書のアイコン.png" width="66" height="46"><span class="kakuspa"> カクガリ</span></a></h2>
+<div class="logout-content">
+<div class="login_in" style="<%= isLoggedIn ? "display: none;" : "" %>">
+<a href="#"><img src="../kakugari_image/1023.png" class="images0"></a>
+<a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
+<a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>
+<a href="../contact/contact.jsp"><img src="../kakugari_image/10894.png" class="images3"></a>
+<a href="#"><img src="../kakugari_image/888.png" class="images4"></a>
+<!--  <a href="../login_logout/login-in.jsp">ログイン</a>-->
+<!--<a href="../main_kakugari/signup.jsp">新規登録</a>-->
+</div>
+<div class="login_in" style="<%= isLoggedIn ? "" : "display: none;" %>">
+<a href="#"><img src="../kakugari_image/1023.png" class="images0"></a>
+<a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
+<a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>
+<a href="../contact/contact.jsp"><img src="../kakugari_image/10894.png" class="images3"></a>
+<a href="#"><img src="../kakugari_image/888.png" class="images4"></a>
+</div>
+</div>
 <script type="text/javascript">
        const links = document.querySelectorAll(".header-nav__item > a");
        links.forEach(function (link) {
