@@ -112,7 +112,6 @@ animation: scroll 30s linear infinite;
   }
 }
 
-
 </style>
 <div class="img_logo">
 	<img src="../kakugari_image/image_logo.jpg">
