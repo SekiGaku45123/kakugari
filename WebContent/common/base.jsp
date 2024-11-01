@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>カクガリ</title>
+<!-- ファビコンの設定 -->
+<link rel="icon" href="/読書のアイコン.png" type="image/png" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../css/style.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">

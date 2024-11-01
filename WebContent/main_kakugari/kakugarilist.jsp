@@ -61,6 +61,14 @@ animation: scroll 30s linear infinite;
   overflow-wrap: break-word;
 }
 
+.img_logo{
+	text-align: center;
+}
+
+.img_logo img{
+border-radius: 10px 10px 10px 10px;
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(100%);
@@ -81,7 +89,9 @@ animation: scroll 30s linear infinite;
 
 
 </style>
-
+<div class="img_logo">
+	<img src="../kakugari_image/image_logo.jpg">
+</div>
 <div class="scroll-container">
   <div class="scroll-content">
     <!-- コンテンツを複製して2回表示 -->
