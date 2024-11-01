@@ -121,7 +121,6 @@ animation: scroll 30s linear infinite;
 </div>
 <div class="scroll-container">
   <div class="scroll-content">
-    <!-- コンテンツを複製して2回表示 -->
     <c:forEach var="p" items="${all}">
       <div class="toire">
         <div class="imgagess mese">
