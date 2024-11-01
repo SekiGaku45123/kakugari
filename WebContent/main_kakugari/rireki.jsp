@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
-        /* 全画面表示に対応 */
-        body, html {
+        /* 全画面表示対応 */
+        html, body {
             margin: 0;
             padding: 0;
             width: 100%;
@@ -23,7 +23,9 @@
 
         .container {
             width: 90%;
-            max-width: 900px;
+            max-width: 1200px;
+            height: 90vh; /* 高さを画面にフィットさせる */
+            overflow-y: auto; /* 縦スクロール可能に */
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -85,10 +87,11 @@
         .history {
             display: flex;
             justify-content: center;
+            width: 100%;
         }
 
         .history table {
-            width: 80%;
+            width: 100%;
             border-collapse: collapse;
         }
 
@@ -157,7 +160,6 @@
             <input type="text" id="search" name="name" size="30" placeholder="なにをお探しですか？" />
         </header>
 
-
         <h1>購入履歴</h1>
 
         <!-- タブの部分 -->
@@ -212,8 +214,6 @@
                 </tbody>
             </table>
         </div>
-
-        <h1>${history.image.Data }</h1>
 
         <!-- メインメニューに戻るボタン -->
         <div class="button-container">
