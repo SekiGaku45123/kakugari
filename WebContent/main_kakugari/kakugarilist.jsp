@@ -10,9 +10,10 @@
 .scroll-container {
   overflow: hidden;
   white-space: nowrap;
-  max-width: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
 
 .scroll-content {
@@ -23,6 +24,7 @@ animation: scroll 30s linear infinite;
 .scroll-content1{
 	display: inline-flex;
 	animation: scro 30s -15s linear infinite;
+
 }
 
 
@@ -94,13 +96,16 @@ animation: scroll 30s linear infinite;
     font-size: 8vw;
 }
 .font_title{
+width: 10vw;
 position: relative;
 left: 60px;
 }
 
 .pq {
   border-bottom: 1px solid #dedede;
+  width: 100%;
 }
+
 
 @keyframes scroll {
   0% {
