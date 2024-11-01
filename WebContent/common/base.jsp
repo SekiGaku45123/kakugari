@@ -52,7 +52,7 @@
            color: black;
            text-decoration: none;
            position: relative; /* 相対位置を設定 */
-           top: 7px;
+           top: 3px;
        }
 
        header #search {
