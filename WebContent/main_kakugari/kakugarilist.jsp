@@ -117,7 +117,7 @@ animation: scroll 30s linear infinite;
 <div class="img_logo">
 	<img src="../kakugari_image/image_logo.jpg">
 	<p class="top-text">フリマサイト</p><br>
-	<p class="bottom-text">--fLEA MARKET--</p>
+	<p class="bottom-text">--FLEA MARKET--</p>
 </div>
 <div class="scroll-container">
   <div class="scroll-content">
