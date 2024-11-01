@@ -54,7 +54,7 @@
            color: black;
            text-decoration: none;
            position: relative; /* 相対位置を設定 */
-           top: 7px;
+           top: 3px;
        }
 
        header #search {
@@ -96,7 +96,7 @@
        }
        .login_in a {
 	       width: 100%;
-	       padding: 0 10px 0;
+	       padding: 0 20px 0;
 	       color: #525252;
 	       font-weight: 900;
 	       border-radius: 5px;

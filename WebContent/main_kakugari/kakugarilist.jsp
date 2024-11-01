@@ -64,7 +64,7 @@ animation: scroll 30s linear infinite;
 .img_logo {
     position: relative;
     color: white;
-    margin: 0 60px 10px;
+    margin: 0 60px 20px;
     display: flex;
     justify-content: center;
 }
@@ -93,6 +93,14 @@ animation: scroll 30s linear infinite;
     bottom: 30%;
     font-size: 8vw;
 }
+.font_title{
+position: relative;
+left: 60px;
+}
+
+.pq {
+  border-bottom: 1px solid #dedede;
+}
 
 @keyframes scroll {
   0% {
@@ -112,12 +120,17 @@ animation: scroll 30s linear infinite;
   }
 }
 
-
 </style>
 <div class="img_logo">
 	<img src="../kakugari_image/image_logo.jpg">
 	<p class="top-text">フリマサイト</p><br>
-	<p class="bottom-text">--FREE MARKET--</p>
+	<p class="bottom-text">―FREE MARKET―</p>
+</div>
+
+<br><div class="pq"></div>
+
+<div class="font_title">
+<h2><font color="#4f4f4f">ALL</font></h2>
 </div>
 <div class="scroll-container">
   <div class="scroll-content">
@@ -148,7 +161,7 @@ animation: scroll 30s linear infinite;
     </c:forEach>
    </div>
 </div>
-
+<br><div class="pq"></div>
 
 <!-- footerの読み込み -->
 <jsp:include page="/footer.html" />
