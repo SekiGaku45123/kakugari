@@ -64,6 +64,7 @@ public class FavoriteDAO extends DAO {
 //        return favorites;
 //    }
 
+
     public List<Favorite> search(String key) throws Exception{
 
 		List<Favorite> list=new ArrayList<>();
