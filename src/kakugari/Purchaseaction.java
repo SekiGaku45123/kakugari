@@ -14,7 +14,7 @@ import dao.BuysearchDAO;
 
 @WebServlet(urlPatterns={"/main_kakugari/Purchaseaction"})
 public class Purchaseaction extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
 
@@ -33,19 +33,19 @@ public class Purchaseaction extends HttpServlet {
 
         try {
             BuysearchDAO dao = new BuysearchDAO();
-            User result = dao.search(name, address);
+            User user1 = dao.search(name, address);
 
-            if (result != null) {
+            if (user1 != null) {
                 session.removeAttribute("cart");
                 request.getRequestDispatcher("purchase-out.jsp")
                        .forward(request, response);
             } else {
-                request.getRequestDispatcher("purchase-error.jsp")
+                request.getRequestDispatcher("purchase-error-insert.jsp")
                        .forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            request.getRequestDispatcher("purchase-error.jsp")
+            request.getRequestDispatcher("purchase-error-insert.jsp")
                    .forward(request, response);
         }
     }
