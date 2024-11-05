@@ -204,7 +204,12 @@
 		    	<div id="overlay" class="overlay"></div>
 		    	<div id="slideMenu" class="menu_slide">
 			        <a href="#" id="closeLink"><img src="../kakugari_image/太いバツのアイコン2.png"></a>
-			        <p>おれはジャイアン櫻井翔</p>
+			        <div>
+			        	<from action="productsearch" method="post">
+			        	<input type="text" name="keyword">
+			        	<input type="submit" value="検索">
+			        	</from>
+			        </div>
 			    </div>
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
 		        <!--<a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>-->
