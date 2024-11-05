@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.HistoryDAO;
 
+
 @WebServlet("/kakugari3/deleteHistory") // アクセスするURLパターンを設定
 public class DeleteHistoryServlet extends HttpServlet {
     @Override
