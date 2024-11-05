@@ -36,14 +36,14 @@
                         </div>
 
                         <!-- 購入ボタンと削除リンク -->
-                        <div class="d-flex align-items-center">
-                            <!-- 購入ボタン -->
-                            <form action="purchase.action" method="post" class="me-2">
-                                <input type="hidden" name="item_id" value="${item.item_id}">
-                                <button type="submit" class="btn btn-danger btn-sm">購入</button>
-                            </form>
+						<div class="d-flex align-items-center">
+    					     <!-- 購入ボタン -->
+                             <form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post" class="me-2">
+       							 <input type="hidden" name="item_id" value="${item.item_id}">
+       							 <button type="submit" class="btn btn-danger btn-sm">購入</button>
+    						</form>
                             <!-- お気に入りから削除リンク -->
-                            <a href="FavoriteRemove.action?id=${item.item_id}" class="text-secondary">削除</a>
+                            <a href="${pageContext.request.contextPath}/kakugari/favoriteremove?id=${item.item_id}" class="text-secondary">削除</a>
                         </div>
                     </div>
                 </c:forEach>
