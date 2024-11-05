@@ -45,8 +45,8 @@ public class Productsearch extends HttpServlet {
 
 				System.out.print(list);
 
-				request.setAttribute("all", list);
-				request.getRequestDispatcher("../main_kakugari/kakugarilist.jsp")
+				request.setAttribute("search", list);
+				request.getRequestDispatcher("../main_kakugari/searchkakugari.jsp")
 				.forward(request, response);
 			}catch (Exception e){
 				e.printStackTrace(out);

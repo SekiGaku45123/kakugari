@@ -11,6 +11,7 @@
         font-family: 'Noto Sans JP', sans-serif;
         background-color: #f9f9f9;
     }
+
     .container {
         background-color: #ffffff;
         border-radius: 8px;
