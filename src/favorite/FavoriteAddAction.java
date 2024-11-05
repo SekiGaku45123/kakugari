@@ -38,6 +38,11 @@ public class FavoriteAddAction extends HttpServlet {
         	FavoriteDAO dao=new FavoriteDAO();
         	int line=dao.insert(p);
 
+        	if(line == 001){
+        		System.out.print("すでに登録されてるって！！厳しいって！！");
+        		response.sendRedirect("../kakugari/product?item_id=" + URLEncoder.encode(item_id, "UTF-8"));
+        	}
+
         	if (line>0) {
         		System.out.print("完成");
 
