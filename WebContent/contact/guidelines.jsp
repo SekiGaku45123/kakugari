@@ -35,6 +35,17 @@
            color: #555;
            margin-top: 10px;
        }
+       /* メインメニューリンク */
+       .return-link {
+           display: inline-block;
+           margin-top: 20px;
+           padding: 10px 20px;
+           color: #fff;
+           background-color: #1E90FF;
+           text-decoration: none;
+           border-radius: 5px;
+           transition: background-color 0.3s ease;
+       }
 </style>
 </head>
 <body>
@@ -81,6 +92,9 @@
 <h3>5. お問い合わせ</h3>
 <p>ガイドラインについての質問や不明点がある場合は、カスタマーサポートまでお問い合わせください。</p>
 <p class="note">※ こちらからもサポートを受けることができます。</p>
+</div>
+<!-- メインメニューに戻るリンク -->
+<p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">メインメニューに戻る</a></p>
 </div>
 </body>
 </html>

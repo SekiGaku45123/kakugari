@@ -50,6 +50,17 @@
            padding-left: 20px;
            color: #666;
        }
+       /* メインメニューリンク */
+       .return-link {
+           display: inline-block;
+           margin-top: 20px;
+           padding: 10px 20px;
+           color: #fff;
+           background-color: #4CAF50;
+           text-decoration: none;
+           border-radius: 5px;
+           transition: background-color 0.3s ease;
+       }
 </style>
 </head>
 <body>
@@ -131,6 +142,9 @@
 </div>
 </c:otherwise>
 </c:choose>
+</div>
+<!-- メインメニューに戻るリンク -->
+<p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">メインメニューに戻る</a></p>
 </div>
 </body>
 </html>
