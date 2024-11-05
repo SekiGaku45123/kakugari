@@ -6,6 +6,6 @@
 
 <c:forEach var="p" items="${search}">
 
-${p.getItem_price()}
+${p.getItem_name()}
 
 </c:forEach>

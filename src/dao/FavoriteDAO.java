@@ -12,6 +12,17 @@ public class FavoriteDAO extends DAO {
     public int insert(Favorite product) throws Exception {
         Connection con = getConnection();
 
+        PreparedStatement st1 = con.prepareStatement(
+                "SELECT COUNT(*) FROM favorite WHERE user_id = ? AND item_id = ?");
+        st1.setString(1, product.getUser_id());
+        st1.setString(2, product.getItem_id());
+        int kazu = st1.executeUpdate();
+        if (kazu > 0){
+        	System.out.print("この商品はすでにお気に入りに登録されています！！");
+        	int comment = 001;
+        	return comment;
+        }
+        else{
         PreparedStatement st = con.prepareStatement(
                 "INSERT INTO favorite (user_id, item_id) VALUES (?, ?)");
         st.setString(1, product.getUser_id());
@@ -21,6 +32,7 @@ public class FavoriteDAO extends DAO {
         st.close();
         con.close();
         return line;
+        }
     }
 
 //    public List<Favorite> getFavoritesByUserId(String user_id) throws Exception {
