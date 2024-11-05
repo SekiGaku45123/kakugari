@@ -166,18 +166,18 @@
 		    right: 0;
 		}
 
-		#closeLink {
-			float: right; /* 右寄せ */
-			padding:0;
-		    display: block; /* aタグをブロック要素にしてサイズを指定 */
-		    width: 35px;
-		    overflow: hidden; /* はみ出た部分を隠す */
+		.closeLink {
+		    float: right !important;
+		    padding: 0 !important;
+		    display: block !important;
+		    width: 35px !important;
+		    overflow: hidden !important;
 		}
 
-		#closeLink img {
-		    width: 100%; /* aタグの幅に合わせる */
-		    height: auto; /* 高さは自動調整 */
-		    object-fit: cover; /* 画像を枠に収める */
+		.closeLink img {
+		    width: 100% !important;
+		    height: auto !important;
+		    object-fit: cover !important;
 		}
 
 		.overlay {
@@ -193,7 +193,7 @@
 		}
 
 		.overlay.active {
-		    display: block; /* オーバーレイを表示 */
+		    display: block;
 		}
 </style>
 </head>
@@ -203,15 +203,15 @@
 	<h2><a href="../main_kakugari/all"><img src="../images/読書のアイコン.png" width="66" height="46"><span class="kakuspa"> カクガリ</span></a></h2>
 		<div class="logout-content">
 		    <div class="login_in" style="<%= isLoggedIn ? "display: none;" : "" %>">
-		    	<a href="#" id="openLink"><img src="../kakugari_image/1023.png" class="images0"></a>
-		    	<div id="overlay" class="overlay"></div>
-		    	<div id="slideMenu" class="menu_slide">
-			        <a href="#" id="closeLink"><img src="../kakugari_image/太いバツのアイコン2.png"></a>
+		    	<a href="#" class="openLink"><img src="../kakugari_image/1023.png" class="images0"></a>
+		    	<div class="overlay"></div>
+		    	<div class="menu_slide">
+			        <a href="#" class="closeLink"><img src="../kakugari_image/太いバツのアイコン2.png"></a>
 			        <div>
-			        	<from action="productsearch" method="post">
+			        	<form action="${pageContext.request.contextPath}/kakugari/productsearch" method="post">
 			        	<input type="text" name="keyword">
 			        	<input type="submit" value="検索">
-			        	</from>
+			        	</form>
 			        </div>
 			    </div>
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
@@ -222,11 +222,16 @@
 		        <!--<a href="../main_kakugari/signup.jsp">新規登録</a>-->
 		    </div>
     		<div class="login_in" style="<%= isLoggedIn ? "" : "display: none;" %>">
-        		<a href="#" id="openLink"><img src="../kakugari_image/1023.png" class="images0"></a>
-        		<div id="overlay" class="overlay"></div>
-        		<div id="slideMenu" class="menu_slide">
-			        <a href="#" id="closeLink">×</a>
-			        <p>おれはジャイアン櫻井翔</p>
+        		<a href="#" class="openLink"><img src="../kakugari_image/1023.png" class="images0"></a>
+		    	<div class="overlay"></div>
+		    	<div class="menu_slide">
+			        <a href="#" class="closeLink"><img src="../kakugari_image/太いバツのアイコン2.png"></a>
+			        <div>
+			        	<form action="${pageContext.request.contextPath}/kakugari/productsearch" method="post">
+			        	<input type="text" name="keyword">
+			        	<input type="submit" value="検索">
+			        	</form>
+			        </div>
 			    </div>
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
 		        <a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>
@@ -242,16 +247,24 @@
            }
        });
 
-       document.getElementById("openLink").addEventListener("click", function(event) {
-    	    event.preventDefault(); // デフォルトのリンク動作を無効化
-    	    document.getElementById("slideMenu").classList.add("open");
-    	    document.getElementById("overlay").classList.add("active");
-       });
+       document.querySelectorAll(".openLink").forEach(openLink => {
+    	    openLink.addEventListener("click", function(event) {
+    	        event.preventDefault();
+    	        const menuSlide = this.nextElementSibling.nextElementSibling; // メニュー要素を取得
+    	        const overlay = this.nextElementSibling; // オーバーレイ要素を取得
+    	        menuSlide.classList.add("open");
+    	        overlay.classList.add("active");
+    	    });
+    	});
 
-    	document.getElementById("closeLink").addEventListener("click", function(event) {
-    	    event.preventDefault(); // デフォルトのリンク動作を無効化
-    	    document.getElementById("slideMenu").classList.remove("open");
-    	    document.getElementById("overlay").classList.remove("active");
+    	document.querySelectorAll(".closeLink").forEach(closeLink => {
+    	    closeLink.addEventListener("click", function(event) {
+    	        event.preventDefault();
+    	        const menuSlide = this.closest(".menu_slide"); // メニュー要素を取得
+    	        const overlay = menuSlide.previousElementSibling; // オーバーレイ要素を取得
+    	        menuSlide.classList.remove("open");
+    	        overlay.classList.remove("active");
+    	    });
     	});
 </script>
 </header>

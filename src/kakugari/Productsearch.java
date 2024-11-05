@@ -40,6 +40,10 @@ public class Productsearch extends HttpServlet {
 
 				String keyword = request.getParameter("keyword");
 
+
+				System.out.print("ぺぺ２");
+				System.out.print(keyword);
+
 				ItemDAO dao=new ItemDAO();
 				List<Item> list=dao.search(keyword);
 
