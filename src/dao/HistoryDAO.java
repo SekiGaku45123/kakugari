@@ -33,4 +33,16 @@ public class HistoryDAO extends DAO {
 
         return historyList;
     }
+    public void deleteHistory(int itemId) throws Exception {
+        Connection con = getConnection();
+        String sql = "DELETE FROM HISTORY WHERE ITEM_ID = ?";
+
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setInt(1, itemId);
+        st.executeUpdate();
+
+        st.close();
+        con.close();
+    }
+
 }

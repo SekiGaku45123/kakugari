@@ -22,8 +22,8 @@
         }
 
         .container {
-            width: 100%;
-            max-width: 1200px;
+            width: 90%;
+            max-width: 1600px;
             height: 90vh; /* 高さを画面にフィットさせる */
             overflow-y: auto; /* 縦スクロール可能に */
             padding: 20px;
@@ -179,17 +179,24 @@
                         <th>ステータス</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <c:forEach var="history" items="${historyList}">
-                        <c:if test="${!history.flag}">
-                            <tr>
-                                <td>${history.item_Id}</td>
-                                <td><img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80"></td>
-                                <td class="in-progress">取引中です。</td>
-                            </tr>
-                        </c:if>
-                    </c:forEach>
-                </tbody>
+               <tbody>
+				    <c:forEach var="history" items="${historyList}">
+				        <c:if test="${!history.flag}">
+				            <tr>
+				                <td>${history.item_Id}</td>
+				                <td><img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80"></td>
+				                <td class="in-progress">取引中です。</td>
+				                <td>
+				                    <!-- 削除ボタン -->
+				                    <form action="${pageContext.request.contextPath}/kakugari3/deleteHistory" method="post" style="display:inline;">
+				                        <input type="hidden" name="itemId" value="${history.item_Id}">
+				                        <button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
+				                    </form>
+				                </td>
+				            </tr>
+				        </c:if>
+				    </c:forEach>
+				</tbody>
             </table>
 
             <!-- 過去の取引 -->
