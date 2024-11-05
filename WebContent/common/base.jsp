@@ -141,6 +141,58 @@
        #bar:hover {
            color: darkblue;
        }
+
+
+
+
+
+	   .menu_slide {
+		    position: fixed;
+		    top: 0;
+		    right: -500px;
+		    width: 500px;
+		    height: 100%;
+		    background-color: #fff;
+		    color: #333;
+		    transition: right 0.5s ease;
+		    padding: 20px;
+		    z-index: 1001;
+		    border-radius: 10px 0 0 10px;
+		}
+
+		.menu_slide.open {
+		    right: 0;
+		}
+
+		#closeLink {
+			float: right; /* 右寄せ */
+			padding:0;
+		    display: block; /* aタグをブロック要素にしてサイズを指定 */
+		    width: 35px;
+		    overflow: hidden; /* はみ出た部分を隠す */
+		}
+
+		#closeLink img {
+		    width: 100%; /* aタグの幅に合わせる */
+		    height: auto; /* 高さは自動調整 */
+		    object-fit: cover; /* 画像を枠に収める */
+		}
+
+		.overlay {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    background: rgba(0, 0, 0, 0.5);
+		    backdrop-filter: blur(5px);
+		    display: none;
+		    z-index: 1000;
+		}
+
+		.overlay.active {
+		    display: block; /* オーバーレイを表示 */
+		}
 </style>
 </head>
 <body>
@@ -148,7 +200,12 @@
 	<h2><a href="../main_kakugari/all"><img src="../images/読書のアイコン.png" width="66" height="46"><span class="kakuspa"> カクガリ</span></a></h2>
 		<div class="logout-content">
 		    <div class="login_in" style="<%= isLoggedIn ? "display: none;" : "" %>">
-		    	<a href="#"><img src="../kakugari_image/1023.png" class="images0"></a>
+		    	<a href="#" id="openLink"><img src="../kakugari_image/1023.png" class="images0"></a>
+		    	<div id="overlay" class="overlay"></div>
+		    	<div id="slideMenu" class="menu_slide">
+			        <a href="#" id="closeLink"><img src="../kakugari_image/太いバツのアイコン2.png"></a>
+			        <p>おれはジャイアン櫻井翔</p>
+			    </div>
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
 		        <!--<a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>-->
 		        <a href="../contact/contact.jsp"><img src="../kakugari_image/10894.png" class="images3"></a>
@@ -157,7 +214,12 @@
 		        <!--<a href="../main_kakugari/signup.jsp">新規登録</a>-->
 		    </div>
     		<div class="login_in" style="<%= isLoggedIn ? "" : "display: none;" %>">
-        		<a href="#"><img src="../kakugari_image/1023.png" class="images0"></a>
+        		<a href="#" id="openLink"><img src="../kakugari_image/1023.png" class="images0"></a>
+        		<div id="overlay" class="overlay"></div>
+        		<div id="slideMenu" class="menu_slide">
+			        <a href="#" id="closeLink">×</a>
+			        <p>おれはジャイアン櫻井翔</p>
+			    </div>
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
 		        <a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>
 		        <a href="../contact/contact.jsp"><img src="../kakugari_image/10894.png" class="images3"></a>
@@ -171,6 +233,18 @@
                link.closest(".header-nav__item").classList.add("current");
            }
        });
+
+       document.getElementById("openLink").addEventListener("click", function(event) {
+    	    event.preventDefault(); // デフォルトのリンク動作を無効化
+    	    document.getElementById("slideMenu").classList.add("open");
+    	    document.getElementById("overlay").classList.add("active");
+       });
+
+    	document.getElementById("closeLink").addEventListener("click", function(event) {
+    	    event.preventDefault(); // デフォルトのリンク動作を無効化
+    	    document.getElementById("slideMenu").classList.remove("open");
+    	    document.getElementById("overlay").classList.remove("active");
+    	});
 </script>
 </header>
 <!-- 各ページのコンテンツが入る部分 -->

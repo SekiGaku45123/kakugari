@@ -1,4 +1,4 @@
-package favorite;
+ package favorite;
 
 import java.io.IOException;
 import java.io.PrintWriter;
