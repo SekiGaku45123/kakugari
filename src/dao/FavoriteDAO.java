@@ -16,11 +16,18 @@ public class FavoriteDAO extends DAO {
                 "SELECT COUNT(*) FROM favorite WHERE user_id = ? AND item_id = ?");
         st1.setString(1, product.getUser_id());
         st1.setString(2, product.getItem_id());
-        int kazu = st1.executeUpdate();
-        if (kazu > 0){
-        	System.out.print("この商品はすでにお気に入りに登録されています！！");
-        	int comment = 001;
-        	return comment;
+
+        // executeUpdate を executeQuery に変更し、結果を ResultSet で取得
+        ResultSet rs = st1.executeQuery();
+        int kazu = 0;
+        if (rs.next()) {  // 結果があるか確認
+            kazu = rs.getInt(1);  // COUNT(*) の値を取得
+        }
+
+        if (kazu > 0) {
+            System.out.print("この商品はすでにお気に入りに登録されています！！");
+            int comment = 1;  // 整数は頭の 0 を省略
+            return comment;
         }
         else{
         PreparedStatement st = con.prepareStatement(
@@ -56,6 +63,7 @@ public class FavoriteDAO extends DAO {
 //        con.close();
 //        return favorites;
 //    }
+
 
     public List<Favorite> search(String key) throws Exception{
 
