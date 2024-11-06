@@ -63,27 +63,6 @@
             font-size: 28px;
         }
 
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .tabs button {
-            padding: 10px 20px;
-            margin: 0 10px;
-            border: none;
-            cursor: pointer;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .tabs button.active {
-            background-color: #d90000;
-            color: white;
-        }
-
         .history {
             display: flex;
             justify-content: center;
@@ -107,10 +86,6 @@
 
         .completed {
             color: green;
-        }
-
-        .in-progress {
-            color: red;
         }
 
         .button-container {
@@ -142,11 +117,6 @@
             h1 {
                 font-size: 24px;
             }
-
-            .tabs button {
-                padding: 8px 16px;
-                margin: 0 5px;
-            }
         }
     </style>
 </head>
@@ -157,51 +127,13 @@
                 <img src="${pageContext.request.contextPath}/images/../images/読書のアイコン.png" width="66" height="46" alt="カクガリ">
                 <span class="kakuspa">カクガリ</span>
             </a>
-
         </header>
 
+        <h1>購入履歴 - 過去の取引</h1>
 
-        <h1>購入履歴</h1>
-
-        <!-- タブの部分 -->
-        <div class="tabs">
-            <button id="tabCurrent" class="active">取引中</button>
-            <button id="tabCompleted">過去の取引</button>
-        </div>
-
-        <!-- 商品の履歴部分 -->
+        <!-- 過去の取引 -->
         <div class="history">
-            <!-- 取引中の商品 -->
-            <table id="currentDeals">
-                <thead>
-                    <tr>
-                        <th>商品ID</th>
-                        <th>画像</th>
-                        <th>ステータス</th>
-                    </tr>
-                </thead>
-               <tbody>
-				    <c:forEach var="history" items="${historyList}">
-				        <c:if test="${!history.flag}">
-				            <tr>
-				                <td>${history.item_Id}</td>
-				                <td><img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80"></td>
-				                <td class="in-progress">取引中です。</td>
-				                <td>
-				                    <!-- 削除ボタン -->
-				                    <form action="${pageContext.request.contextPath}/kakugari3/deleteHistory" method="post" style="display:inline;">
-				                        <input type="hidden" name="itemId" value="${history.item_Id}">
-				                        <button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
-				                    </form>
-				                </td>
-				            </tr>
-				        </c:if>
-				    </c:forEach>
-				</tbody>
-            </table>
-
-            <!-- 過去の取引 -->
-            <table id="completedDeals" style="display:none;">
+            <table id="completedDeals">
                 <thead>
                     <tr>
                         <th>商品ID</th>
@@ -214,8 +146,15 @@
                         <c:if test="${history.flag}">
                             <tr>
                                 <td>${history.item_Id}</td>
-                                <td><img src="${pageContext.request.contextPath}/images/${history.getImage_Data()}" alt="商品画像" width="80" height="80"></td>
+                                <td><img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80"></td>
                                 <td class="completed">取引が完了しました。</td>
+                                <td>
+                                    <!-- 削除ボタン -->
+                                    <form action="${pageContext.request.contextPath}/kakugari3/deleteHistory" method="post" style="display:inline;">
+                                        <input type="hidden" name="itemId" value="${history.item_Id}">
+                                        <button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
+                                    </form>
+                                </td>
                             </tr>
                         </c:if>
                     </c:forEach>
@@ -228,22 +167,5 @@
             <a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a>
         </div>
     </div>
-
-    <!-- タブの切り替えスクリプト -->
-    <script>
-        document.getElementById('tabCurrent').addEventListener('click', function() {
-            document.getElementById('currentDeals').style.display = 'table';
-            document.getElementById('completedDeals').style.display = 'none';
-            this.classList.add('active');
-            document.getElementById('tabCompleted').classList.remove('active');
-        });
-
-        document.getElementById('tabCompleted').addEventListener('click', function() {
-            document.getElementById('currentDeals').style.display = 'none';
-            document.getElementById('completedDeals').style.display = 'table';
-            this.classList.add('active');
-            document.getElementById('tabCurrent').classList.remove('active');
-        });
-    </script>
 </body>
 </html>
