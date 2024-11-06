@@ -2,6 +2,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList, java.net.URLEncoder"%>
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
 
 <c:import url="/common/base.jsp">
 </c:import>
@@ -86,14 +87,14 @@ animation: scroll 30s linear infinite;
 
 
 .top-text {
-    top: 20%;
-    font-size: 9vw;
+    top: 30%;
+    font-size: 7vw;
 }
 
 
 .bottom-text {
     bottom: 30%;
-    font-size: 8vw;
+    font-size: 7vw;
 }
 .font_title{
 width: 10vw;
@@ -125,6 +126,16 @@ left: 60px;
   }
 }
 
+.carousel-inner img {
+        border-radius: 15px; /* 角を丸くする */
+        margin: 0 auto;
+    }
+
+.carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        filter: invert(1); /* 白いアイコンを黒に反転 */
+    }
+
 </style>
 <div class="img_logo">
 	<img src="../kakugari_image/image_logo.jpg">
@@ -132,12 +143,50 @@ left: 60px;
 	<p class="bottom-text">―FREE MARKET―</p>
 </div>
 
+
 <br><div class="pq"></div>
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
+	<ol class="carousel-indicators">
+        <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleControls" data-slide-to="1"></li>
+        <li data-target="#carouselExampleControls" data-slide-to="2"></li>
+        <li data-target="#carouselExampleControls" data-slide-to="3"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-75 rounded" src="../kakugari_image/カクガリカード.jpg" alt="Image 1">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-75 rounded" src="../kakugari_image/初回限定.jpg" alt="Image 2">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-75 rounded" src="../kakugari_image/送料無料.jpg" alt="Image 3">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-75 rounded" src="../kakugari_image/招待コード.jpg" alt="Image 4">
+        </div>
+    </div>
+    <!-- 前後のコントローラー -->
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</div>
 
 <div class="font_title">
 <h2><font color="#4f4f4f">ALL</font></h2>
 </div>
-<div class="scroll-container">
+ <div class="scroll-container">
   <div class="scroll-content">
     <c:forEach var="p" items="${all}">
       <div class="toire">
@@ -152,7 +201,8 @@ left: 60px;
     </c:forEach>
    </div>
    <div class="scroll-content1">
-    <!-- 2回目の繰り返し -->
+
+
     <c:forEach var="p" items="${all}">
       <div class="toire">
         <div class="imgagess mese">
@@ -165,7 +215,8 @@ left: 60px;
       </div>
     </c:forEach>
    </div>
-</div>
+</div>-->
+
 <br><div class="pq"></div>
 
 <!-- footerの読み込み -->
