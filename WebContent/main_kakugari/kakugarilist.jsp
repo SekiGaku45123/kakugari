@@ -137,24 +137,30 @@ left: 60px;
     }
 
 .cardall{
-width:90%;
+width:100%;
 margin: 0 auto;
-background-color:blue;
 }
 
 .cardchildren {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  justify-content:center;
+  /*background: blue;*/
 }
 
-.card_img{
-background-color:black;
+
+.crad_size{
+  position: relative;
+  /*border: 2px solid #aaa;*/
+  padding: 0 5px;
 }
 
 .card_img img {
-  object-fit: cover;
-  width: 150px;
+  object-fit: contain;
+
+  width:250px;
+  height: 250px;
+  background:#f5f5f5;
 }
 
 
@@ -168,7 +174,7 @@ background-color:black;
 </div>
 
 
-<br><div class="pq"></div>
+<br><div class="pq"></div><br>
 
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
@@ -207,6 +213,8 @@ background-color:black;
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </div>
 
+<br><div class="pq"></div><br>
+
 <div class="font_title">
 <h2><font color="#4f4f4f">ALL</font></h2>
 </div>
@@ -239,21 +247,23 @@ background-color:black;
       </div>
     </c:forEach>
    </div>
-</div>-->
+</div>
 
-<br><div class="pq"></div>
+<br><div class="pq"></div><br>
 
 <div class="cardall">
         <div class="cardchildren">
             <!-- カードの数に応じてこの .col を5つ繰り返してください -->
             <c:forEach var="p" items="${all}">
                 <div class="card_img">
+                  <div class="crad_size">
                     <a href="../kakugari/product?item_id=${p.getItem_id()}"><img src="${p.getImage_data()}"  alt="商品画像"></a>
+                  </div>
                     <div class="card-body">
                         <!--  <p class="price">¥${p.getItem_price()}</p>
                         <p class="card-text">${p.getItem_name()}</p>-->
                     </div>
-            </div>
+                </div>
             </c:forEach>
         </div>
     </div>
