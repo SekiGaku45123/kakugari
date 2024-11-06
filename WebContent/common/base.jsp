@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>カクガリ</title>
+<!-- ファビコンの設定 -->
+<link rel="icon" href="/読書のアイコン.png" type="image/png" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../css/style.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -197,6 +199,7 @@
 </head>
 <body>
 <header>
+
 	<h2><a href="../main_kakugari/all"><img src="../images/読書のアイコン.png" width="66" height="46"><span class="kakuspa"> カクガリ</span></a></h2>
 		<div class="logout-content">
 		    <div class="login_in" style="<%= isLoggedIn ? "display: none;" : "" %>">
