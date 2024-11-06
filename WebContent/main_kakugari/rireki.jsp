@@ -141,10 +141,8 @@
                     <table id="completedDeals">
                         <thead>
                             <tr>
-                                <th>商品ID</th>
-                                <th>画像</th>
-                                <th>ステータス</th>
-                                <th>操作</th>
+
+
                             </tr>
                         </thead>
                         <tbody>
@@ -153,7 +151,7 @@
                                     <tr>
                                         <td>${history.item_Id}</td>
                                         <td><img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80"></td>
-                                        <td class="completed">取引が完了しました。</td>
+                                        <td class="completed">購入が完了しました。</td>
                                         <td>
                                             <!-- 削除ボタン -->
                                             <form action="${pageContext.request.contextPath}/kakugari3/deleteHistory" method="post" style="display:inline;">
