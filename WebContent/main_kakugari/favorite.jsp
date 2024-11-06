@@ -21,34 +21,40 @@
 
         <!-- 商品リストをテーブルとして表示 -->
         <div class="container">
-            <div class="row">
-                <c:forEach var="item" items="${favoriteItems}">
-                    <div class="col-12 d-flex align-items-center mb-3 p-3" style="border-bottom: 1px solid #eee;">
-                        <!-- 商品の画像 -->
-                        <div class="me-3">
-                            <img src="${item.getImage_data()}" width="80" height="80" alt="${item.item_name}" style="object-fit: cover;">
-                        </div>
-
-                        <!-- 商品の詳細 -->
-                        <div class="flex-grow-1">
-                            <h5 class="mb-1">${item.item_name}</h5>
-                            <p class="text-muted mb-1">￥${item.item_price}</p>
-                        </div>
-
-                        <!-- 購入ボタンと削除リンク -->
-						<div class="d-flex align-items-center">
-    					     <!-- 購入ボタン -->
-                             <form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post" class="me-2">
-       							 <input type="hidden" name="item_id" value="${item.item_id}">
-       							 <button type="submit" class="btn btn-danger btn-sm">購入</button>
-    						</form>
-                            <!-- お気に入りから削除リンク -->
-                            <a href="${pageContext.request.contextPath}/kakugari/favoriteremove?id=${item.item_id}" class="text-secondary">削除</a>
-                        </div>
+    <div class="row">
+        <div class="container">
+    <div class="row">
+        <c:forEach var="item" items="${favoriteItems}">
+            <div class="col-12 mb-3 p-3" style="border-bottom: 1px solid #eee;">
+                <!-- 商品の画像 -->
+                <div class="d-flex align-items-start">
+                    <div class="me-3">
+                        <a href="../kakugari/product?item_id=${item.getItem_id()}"><img src="${item.getImage_data()}" width="80" height="80" alt="${item.item_name}" style="object-fit: cover;"></a>
                     </div>
-                </c:forEach>
+
+                    <!-- 商品の詳細 -->
+                    <div class="flex-grow-1">
+                        <h5 class="mb-1">${item.item_name}</h5>
+                        <p class="text-muted mb-1">￥${item.item_price}</p>
+                    </div>
+                </div>
+
+                <!-- 購入ボタンと削除リンクを横並びに -->
+                <div class="d-flex justify-content-end mt-2">
+                    <!-- 購入ボタン -->
+                    <form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post" class="me-3">
+                        <input type="hidden" name="item_id" value="${item.item_id}">
+                        <button type="submit" class="btn btn-primary btn-sm">購入</button>
+                    </form>
+
+                    <!-- お気に入りから削除リンク -->
+                    <a href="${pageContext.request.contextPath}/kakugari/favoriteremove?id=${item.item_id}" class="btn btn-outline-danger btn-sm">削除</a>
+                </div>
             </div>
-        </div>
+        </c:forEach>
+    </div>
+</div>
+
     </c:when>
 
     <c:otherwise>
