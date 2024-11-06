@@ -59,7 +59,7 @@
 <li>不正行為や詐欺を行わないこと。</li>
 <li>他者の権利を侵害しないこと。</li>
 </ul>
-<p class="note">※ 詳細は<a href="terms.jsp" target="_blank">利用規約</a>ページを参照してください。</p>
+<p class="note">※ 詳細は"カクガリ利用規約"ページを参照してください。</p>
 </div>
 <div class="section">
 <h3>2. 出品ルール</h3>

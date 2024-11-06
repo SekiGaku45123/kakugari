@@ -11,9 +11,11 @@
 <!-- footer -->
 
 <ul style="list-style-type: none; padding: 0;">
+
 <li><a href="../contact/guidelines.jsp">ガイドライン</a></li>
 <li><a href="../guide/selling_guide.jsp">出品ガイド</a></li>
 <li><a href="../guide/privacy_policy.jsp">プライバシーポリシー</a></li>
+<li><a href="../guide/promise.jsp">カクガリ利用規約</a></li>
 </ul>
 <footer style="text-align: center;">
 <p>© 2024 TIC<br>大原学園</p>
