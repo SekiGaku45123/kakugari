@@ -4,6 +4,6 @@
 
 名前と住所を正しく入力してください。
 
-<!-- footerの読み込み -->
+<!-- footerの -->
 <jsp:include page="/footer.html" />
 　　

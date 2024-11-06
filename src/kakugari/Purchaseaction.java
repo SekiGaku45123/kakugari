@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.History;
 import bean.User;
 import dao.BuysearchDAO;
 
@@ -26,17 +25,6 @@ public class Purchaseaction extends HttpServlet {
         String name = user != null ? user.getUser_name() : request.getParameter("name");
         String address = user != null ? user.getUser_address() : request.getParameter("address");
 
-        int item_id = Integer.parseInt(request.getParameter("item_id"));
-        String flag = request.getParameter("flag");
-        String image_data = request.getParameter("image_data");
-        boolean flag_na = Boolean.parseBoolean(flag);
-
-        System.out.print(item_id);
-        System.out.print(flag);
-        System.out.print(image_data);
-
-
-
         if (name == null || name.isEmpty() || address == null || address.isEmpty()) {
             request.getRequestDispatcher("purchase-error-empty.jsp")
                    .forward(request, response);
@@ -48,22 +36,7 @@ public class Purchaseaction extends HttpServlet {
             User user1 = dao.search(name, address);
 
             if (user1 != null) {
-            	session.removeAttribute("cart");
-
-            	History p=new History();
-            	p.setItem_Id(item_id);
-            	p.setFlag(flag_na);
-            	p.setImage_Data(image_data);
-
-            	BuysearchDAO dao1 = new BuysearchDAO();
-                int line = dao1.insert(p);
-
-                if(line>0){
-                	System.out.print("完成しました。");
-                }
-
-
-
+                session.removeAttribute("cart");
                 request.getRequestDispatcher("purchase-out.jsp")
                        .forward(request, response);
             } else {

@@ -33,7 +33,6 @@
     </div>
 </div>
 
-<!-- footerの読み込み -->
 <jsp:include page="/footer.html" />
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -2,7 +2,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../header.html" %>
 
-<!-- Bootstrap CSS読み込み -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
 
@@ -28,7 +27,7 @@
 
 <div class="container">
     <h2 class="text-center mb-4">新規登録</h2>
-    <form action="../main_kakugari/signup" method="post">  <!-- URLマッピングを修正 -->
+    <form action="../main_kakugari/signup" method="post">  
         <div class="form-group">
             <label for="name">名前:</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="お名前を入力してください" required>
@@ -58,14 +57,12 @@
             <input type="text" class="form-control" id="telephone" name="telephone" placeholder="電話番号を入力してください" required>
         </div>
 
-        <button type="submit" class="btn btn-danger">登録</button> <!-- 赤いボタンに変更 -->
+        <button type="submit" class="btn btn-danger">登録</button> 
     </form>
 </div>
 
-<!-- footerの読み込み -->
 <jsp:include page="/footer.html" />
 
-<!-- Bootstrap JavaScript読み込み -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
