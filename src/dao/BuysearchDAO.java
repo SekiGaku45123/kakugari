@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import bean.History;
 import bean.User;
 
 public class BuysearchDAO extends DAO {
@@ -34,5 +35,21 @@ public class BuysearchDAO extends DAO {
 		con.close();
 
 		return user1;
+	}
+
+	public int insert(History p) throws Exception{
+		Connection con = getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"insert into history values(?, ?, ?)");
+		st.setInt(1, p.getItem_Id());
+		st.setBoolean(2, p.isFlag());
+		st.setString(3, p.getImage_Data());
+		int line=st.executeUpdate();
+
+		st.close();
+		con.close();
+
+		return line;
 	}
 }

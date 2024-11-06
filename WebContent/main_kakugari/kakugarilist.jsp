@@ -136,6 +136,30 @@ left: 60px;
         filter: invert(1); /* 白いアイコンを黒に反転 */
     }
 
+.cardall{
+width:90%;
+margin: 0 auto;
+background-color:blue;
+}
+
+.cardchildren {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.card_img{
+background-color:black;
+}
+
+.card_img img {
+  object-fit: cover;
+  width: 150px;
+}
+
+
+
+
 </style>
 <div class="img_logo">
 	<img src="../kakugari_image/image_logo.jpg">
@@ -218,6 +242,21 @@ left: 60px;
 </div>-->
 
 <br><div class="pq"></div>
+
+<div class="cardall">
+        <div class="cardchildren">
+            <!-- カードの数に応じてこの .col を5つ繰り返してください -->
+            <c:forEach var="p" items="${all}">
+                <div class="card_img">
+                    <a href="../kakugari/product?item_id=${p.getItem_id()}"><img src="${p.getImage_data()}"  alt="商品画像"></a>
+                    <div class="card-body">
+                        <!--  <p class="price">¥${p.getItem_price()}</p>
+                        <p class="card-text">${p.getItem_name()}</p>-->
+                    </div>
+            </div>
+            </c:forEach>
+        </div>
+    </div>
 
 <!-- footerの読み込み -->
 <jsp:include page="/footer.html" />

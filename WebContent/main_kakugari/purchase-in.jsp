@@ -42,6 +42,12 @@
                value="${customer.getUser_name()}" required>
     </div>
 
+
+	<input type="hidden" name="item_id" value="<%String Year=request.getParameter("item_id"); %><%=Year %>">
+	<input type="hidden" name="flag" value="<%String flag=request.getParameter("flag"); %><%=flag %>">
+	<input type="hidden" name="image_data" value="<%String image_data=request.getParameter("image_data"); %><%=image_data %>">
+
+
     <div class="form-group">
         <label for="address">ご住所</label>
         <input type="text" class="form-control" id="address" name="address"
