@@ -33,7 +33,6 @@ public class Purchaseaction extends HttpServlet {
         String image_data = request.getParameter("image_data");
 
 
-
         if (name == null || name.isEmpty() || address == null || address.isEmpty()) {
             request.getRequestDispatcher("purchase-error-empty.jsp")
                    .forward(request, response);

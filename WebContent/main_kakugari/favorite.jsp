@@ -20,6 +20,7 @@
 
 
 <c:choose>
+
     <c:when test="${not empty favoriteItems}">
         <!-- この行にtext-align: center;を追加 -->
         <p style="text-align: center;">${favoriteItems.size()}種類のいいねした商品があります</p>
