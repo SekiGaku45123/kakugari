@@ -155,12 +155,27 @@ margin: 0 auto;
   padding: 0 5px;
 }
 
+.card_img{
+  position: relative;
+}
+
 .card_img img {
   object-fit: contain;
-
   width:250px;
   height: 250px;
   background:#f5f5f5;
+}
+
+.price{
+  position: absolute;/*重ねたい子要素にabsolute*/
+  top:50%;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 0 30px 30px 0;
+  font-weight: bold;
+
 }
 
 
@@ -260,8 +275,8 @@ margin: 0 auto;
                     <a href="../kakugari/product?item_id=${p.getItem_id()}"><img src="${p.getImage_data()}"  alt="商品画像"></a>
                   </div>
                     <div class="card-body">
-                        <!--  <p class="price">¥${p.getItem_price()}</p>
-                        <p class="card-text">${p.getItem_name()}</p>-->
+                        <p class="price">¥${p.getItem_price()}</p>
+                        <p class="card-text">${p.getItem_name()}</p>
                     </div>
                 </div>
             </c:forEach>
