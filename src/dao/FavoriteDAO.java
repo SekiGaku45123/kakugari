@@ -100,4 +100,25 @@ public class FavoriteDAO extends DAO {
 		return list;
 
 	}
+    public int delete(Favorite product) throws Exception {
+        Connection con = getConnection();
+
+        PreparedStatement st = con.prepareStatement(
+                "DELETE FROM FAVORITE WHERE user_id = ? and item_id = ?");
+        st.setString(1, product.getUser_id());
+        st.setString(2, product.getItem_id());
+        int line = st.executeUpdate();
+
+
+        st.close();
+        con.close();
+        return line;
+    }
 }
+
+
+
+
+
+
+
