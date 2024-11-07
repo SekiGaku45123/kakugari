@@ -1,5 +1,11 @@
 <%@page contentType="text/html; charset=UTF-8" %>
-<%@include file="../header.html" %>
+<%@page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>いいね！一覧</title>
+</head>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList, java.net.URLEncoder"%>
@@ -11,14 +17,12 @@
 <!-- 「いいね！一覧」タイトルを中央揃え -->
 <h2 style="text-align: center; margin-top: 20px;">いいね！一覧</h2>
 
-<!-- 販売中のみ表示するチェックボックス -->
-<div>
-    <label><input type="checkbox" id="saleOnlyCheckbox"> 販売中のみ表示</label>
-</div>
+
 
 <c:choose>
     <c:when test="${not empty favoriteItems}">
-        <p>${favoriteItems.size()}種類のお気に入り商品があります。</p>
+        <!-- この行にtext-align: center;を追加 -->
+        <p style="text-align: center;">${favoriteItems.size()}種類のいいねした商品があります</p>
 
         <!-- 商品リストをテーブルとして表示 -->
         <div class="container">
@@ -61,9 +65,11 @@
     </c:when>
 
     <c:otherwise>
-        <p>お気に入りに商品がありません。</p>
+        <p style="text-align: center;">『いいね！』した商品がありません</p>
     </c:otherwise>
 </c:choose>
 
 <!-- footerの読み込み -->
+
 <jsp:include page="/footer.html" />
+

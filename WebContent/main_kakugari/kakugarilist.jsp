@@ -201,19 +201,28 @@ margin: 0 auto;
     </ol>
 
     <div class="carousel-inner">
-        <div class="carousel-item active">
+    <div class="carousel-item active">
+        <a href="https://aespa-official.jp/" target="_blank">
             <img class="d-block w-75 rounded" src="../kakugari_image/カクガリカード.jpg" alt="Image 1">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-75 rounded" src="../kakugari_image/初回限定.jpg" alt="Image 2">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-75 rounded" src="../kakugari_image/送料無料.jpg" alt="Image 3">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-75 rounded" src="../kakugari_image/招待コード.jpg" alt="Image 4">
-        </div>
+        </a>
     </div>
+    <div class="carousel-item">
+        <a href="https://www.dmm.co.jp/age_check/" target="_blank">
+            <img class="d-block w-75 rounded" src="../kakugari_image/初回限定.jpg" alt="Image 2">
+        </a>
+    </div>
+    <div class="carousel-item">
+        <a href="https://aespa-official.jp/" target="_blank">
+            <img class="d-block w-75 rounded" src="../kakugari_image/送料無料.jpg" alt="Image 3">
+        </a>
+    </div>
+    <div class="carousel-item">
+        <a href="https://aespa-official.jp/" target="_blank">
+            <img class="d-block w-75 rounded" src="../kakugari_image/招待コード.jpg" alt="Image 4">
+        </a>
+    </div>
+</div>
+
     <!-- 前後のコントローラー -->
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
