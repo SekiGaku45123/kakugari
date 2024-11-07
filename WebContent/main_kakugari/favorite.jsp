@@ -63,9 +63,11 @@
     </c:when>
 
     <c:otherwise>
-        <p style="text-align: center;">『いいね』した商品がありません</p>
+        <p style="text-align: center;">『いいね！』した商品がありません</p>
     </c:otherwise>
 </c:choose>
 
 <!-- footerの読み込み -->
+
 <jsp:include page="/footer.html" />
+
