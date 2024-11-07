@@ -47,6 +47,8 @@ public class BuysearchDAO extends DAO {
 		st.setString(3, p.getImage_Data());
 		int line=st.executeUpdate();
 
+		System.out.print("完成しました。");
+
 		st.close();
 		con.close();
 

@@ -169,7 +169,7 @@ margin: 0 auto;
 .price{
   position: absolute;/*重ねたい子要素にabsolute*/
   top:50%;
-  left: 10px;
+  left: 5px;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
   padding: 5px 10px;

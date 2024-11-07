@@ -17,6 +17,7 @@
        HttpSession sessionObj = request.getSession(false);
        boolean isLoggedIn = (session != null && session.getAttribute("customer") != null);
    %>
+
 <style>
        /* headerスタイル */
        header {
@@ -210,7 +211,10 @@
 			        <div>
 			        	<form action="${pageContext.request.contextPath}/kakugari/productsearch" method="post">
 			        	<input type="text" name="keyword">
+			        	<input type="text" id="searchInput" placeholder="検索...">
 			        	<input type="submit" value="検索">
+
+						<div id="suggestionBox" style="border: 1px solid #ccc; max-height: 200px; overflow-y: auto;"></div>
 			        	</form>
 			        </div>
 			    </div>
@@ -266,6 +270,8 @@
     	        overlay.classList.remove("active");
     	    });
     	});
+
+
 </script>
 </header>
 <!-- 各ページのコンテンツが入る部分 -->

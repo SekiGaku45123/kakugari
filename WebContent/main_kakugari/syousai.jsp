@@ -301,6 +301,7 @@
 	  		 <form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post">
 	    	  <input type="hidden" name="item_id" value="${pro.getItem_id()}">
 	    	  <input type="hidden" name="flag" value="${pro.getFlag()}">
+
 	    	  <input type="hidden" name="image_data" value="${pro.getImage_data()}">
 	    	  <button type="submit">購入手続きへ</button>
 		     </form>

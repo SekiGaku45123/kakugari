@@ -45,6 +45,8 @@
                     <!-- 購入ボタン -->
                     <form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post" class="me-3">
                         <input type="hidden" name="item_id" value="${item.item_id}">
+                        <input type="hidden" name="flag" value="${item.getFlag()}">
+	    	  			<input type="hidden" name="image_data" value="${item.getImage_data()}">
                         <button type="submit" class="btn btn-primary btn-sm">購入</button>
                     </form>
 

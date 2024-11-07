@@ -16,6 +16,7 @@ public class Item implements java.io.Serializable {
 	private String image_data1;
 	private String image_data2;
 
+
     // ゲッター
     public String getItem_id() {
         return item_id;
