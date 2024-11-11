@@ -12,7 +12,7 @@
 <div class="container my-5">
     <h2 class="mb-4 text-center">クレジットカード登録</h2>
 
-    <form action="../kakugari/cregit_register" method="post">
+    <form action="../kakugari/credit_register" method="post">
         <div class="form-group">
             <label for="cardNumber">カード番号</label>
             <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="カード番号を入力してください" required>
@@ -22,7 +22,7 @@
             <input type="text" class="form-control" id="expiryDate" name="expiryDate" placeholder="例）11月2027年→112027" required>
         </div>
         <div class="form-group">
-            <label for="cvv">セキュリティコード</label>
+            <label for="security_code">セキュリティコード</label>
             <input type="text" class="form-control" id="cvv" name="security_code" placeholder="セキュリティコードを入力してください" required>
         </div>
         <button type="submit" class="btn btn-primary">登録する</button>

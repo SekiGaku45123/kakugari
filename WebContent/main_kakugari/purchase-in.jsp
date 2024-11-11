@@ -61,7 +61,7 @@
 <div class="form-check">
     <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="クレジットカード" checked onclick="toggleCreditCardInfo()">
     <label class="form-check-label" for="creditCard">クレジットカード</label>
-    <button type="button" class="btn btn-primary"><a href="../main_kakugari/credit_register.jsp"><font color="white">クレジットカード登録へ</font></a></button>
+    <a href="../main_kakugari/credit_register.jsp"><button type="button" class="btn btn-primary w-100"><font color="white">クレジットカード登録へ</font></button></a>
 </div>
 
     <div class="form-check">
@@ -91,7 +91,7 @@
     document.addEventListener("DOMContentLoaded", toggleCreditCardInfo);
 </script>
 
-        <button type="submit" class="btn btn-danger">購入する</button>
+        <button type="submit" class="btn btn-danger w-100">購入する</button>
     </form>
 </div>
 

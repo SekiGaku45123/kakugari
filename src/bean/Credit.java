@@ -5,6 +5,8 @@ public class Credit {
     private String creditNumber;
     private String expiryDate;
     private String securityCode;
+    private String userid;
+
 
     // getterとsetter
     public String getId() {
@@ -38,4 +40,10 @@ public class Credit {
     public void setSecurityCode(String securityCode) {
         this.securityCode = securityCode;
     }
+    public String getUserId() {
+        return userid;
+}
+    public void setUserId(String Userid) {
+        this.userid = Userid;
+}
 }
