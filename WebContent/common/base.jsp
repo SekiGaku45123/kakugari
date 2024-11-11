@@ -196,6 +196,42 @@
 		.overlay.active {
 		    display: block;
 		}
+
+
+		.formm{
+			display: flex;
+		}
+		.sa-tin{
+			padding: 0 0 0 20px;
+			border:none;/*枠線を消す*/
+			outline: none;
+			background:#f7f7f7;
+			width: 230px;
+		}
+
+		.botan {
+		    position: relative;
+		    border: none;
+		    outline: none;
+		    width: 50px;
+		    height: 50px;
+		    background: #f7f7f7;
+		}
+
+		.botan::before {
+		    content: '';
+		    position: absolute;
+		    left: 0;
+		    top: 10px; /* 開始位置 */
+		    bottom: 10px; /* 終了位置 */
+		    width: 1.5px;
+		    background-color: #d6d6d6;
+		}
+		.botan img{
+			object-fit: contain;
+			width: 60%;
+			height: 60%;
+		}
 </style>
 </head>
 <body>
@@ -209,12 +245,11 @@
 		    	<div class="menu_slide">
 			        <a href="#" class="closeLink"><img src="../kakugari_image/太いバツのアイコン2.png"></a>
 			        <div>
-			        	<form action="${pageContext.request.contextPath}/kakugari/productsearch" method="post">
-			        	<input type="text" name="keyword">
-			        	<input type="text" id="searchInput" placeholder="検索...">
-			        	<input type="submit" value="検索">
-
-						<div id="suggestionBox" style="border: 1px solid #ccc; max-height: 200px; overflow-y: auto;"></div>
+			        	<form action="${pageContext.request.contextPath}/kakugari/productsearch" method="post" class="formm">
+			        	<input type="text" name="keyword" placeholder="検索" class="sa-tin">
+			        	<div class="waku">
+			        	<button type="submit" value="" class="botan"><img src="../kakugari_image/1023.png"></button>
+			        	</div>
 			        	</form>
 			        </div>
 			    </div>
@@ -231,9 +266,11 @@
 		    	<div class="menu_slide">
 			        <a href="#" class="closeLink"><img src="../kakugari_image/太いバツのアイコン2.png"></a>
 			        <div>
-			        	<form action="${pageContext.request.contextPath}/kakugari/productsearch" method="post">
-			        	<input type="text" name="keyword">
-			        	<input type="submit" value="検索">
+			        	<form action="${pageContext.request.contextPath}/kakugari/productsearch" method="post" class="formm">
+			        	<input type="text" name="keyword" placeholder="　検索" class="sa-tin">
+			        	<div class="waku">
+			        	<button type="submit" value="" class="botan"><img src="../kakugari_image/1023.png"></button>
+			        	</div>
 			        	</form>
 			        </div>
 			    </div>
