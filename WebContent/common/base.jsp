@@ -232,6 +232,10 @@
 			width: 60%;
 			height: 60%;
 		}
+
+		.collarfont{
+			color: #b3b3b3;
+		}
 </style>
 </head>
 <body>
@@ -240,17 +244,21 @@
 	<h2><a href="../main_kakugari/all"><img src="../images/読書のアイコン.png" width="66" height="46"><span class="kakuspa"> カクガリ</span></a></h2>
 		<div class="logout-content">
 		    <div class="login_in" style="<%= isLoggedIn ? "display: none;" : "" %>">
-		    	<a href="#" class="openLink"><img src="../kakugari_image/1023.png" class="images0"></a>
+		    	<a href="#" class="openLink" onclick="fetchItems(event)"><img src="../kakugari_image/1023.png" class="images0"></a>
 		    	<div class="overlay"></div>
 		    	<div class="menu_slide">
-			        <a href="#" class="closeLink"><img src="../kakugari_image/太いバツのアイコン2.png"></a>
+			        <a href="#" class="closeLink" id="asyncLink"><img src="../kakugari_image/太いバツのアイコン2.png"></a>
 			        <div>
 			        	<form action="${pageContext.request.contextPath}/kakugari/productsearch" method="post" class="formm">
 			        	<input type="text" name="keyword" placeholder="検索" class="sa-tin">
 			        	<div class="waku">
 			        	<button type="submit" value="" class="botan"><img src="../kakugari_image/1023.png"></button>
 			        	</div>
+
 			        	</form>
+			        	<span class="collarfont">CATEGORY</span>
+			        	<br><div class="pq"></div><br>
+			        	 <div id="itemsList"></div>
 			        </div>
 			    </div>
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
@@ -309,6 +317,33 @@
     	});
 
 
+
+
+
+    	function fetchItems(event) {
+            // デフォルトのリンク動作を防ぐ
+            event.preventDefault();
+
+            // AJAXリクエストを作成
+            fetch('${pageContext.request.contextPath}/kakugari/myServlet')  // サーブレットのURLにリクエストを送信
+	            .then(response => {
+	                // レスポンスがJSONであることを確認
+	                console.log("レスポンスを受け取りました", response);
+	                return response.json();
+	            }) // JSONデータを受け取る
+                .then(data => {
+                	console.log("取得したデータ:", data);
+                    let output = '<ul>';
+                    data.forEach(item => {
+                        output += `<li>ka: ${item.category}</li>`;
+                    });
+                    output += '</ul>';
+                    document.getElementById('itemsList').innerHTML = output;  // 受け取ったデータを表示
+                })
+                .catch(error => {
+                    console.error('Error:', error);  // エラーハンドリング
+                });
+        }
 </script>
 </header>
 <!-- 各ページのコンテンツが入る部分 -->

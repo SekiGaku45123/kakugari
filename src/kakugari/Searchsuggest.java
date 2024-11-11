@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,32 +16,39 @@ import com.google.gson.Gson;
 import bean.Item;
 import dao.ItemDAO;
 
-@WebServlet("/searchSuggestServlet")
+@WebServlet(urlPatterns = "/searchSuggestServlet", asyncSupported = true)
 public class Searchsuggest extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String query = request.getParameter("query");
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 非同期コンテキストの開始
+        AsyncContext asyncContext = request.startAsync();
 
-        // サーバー側でクエリの文字エンコーディングを設定
-        request.setCharacterEncoding("UTF-8");  // クエリ文字列の文字コードをUTF-8に設定
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+        // 非同期タスクの実行
+        asyncContext.start(() -> {
+            String query = request.getParameter("keyword");
 
-        try {
+            try {
+                // DAOを使ってサジェスト候補を取得
+                ItemDAO dao = new ItemDAO();
+                List<Item> suggestions = dao.suggest(query);
 
-        	ItemDAO dao=new ItemDAO();
-			List<Item> suggestions =dao.suggest(query);
+                // 結果をJSONに変換してレスポンスに書き込み
+                String json = new Gson().toJson(suggestions);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(json);
 
-			String json = new Gson().toJson(suggestions);
-            response.getWriter().write(json);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
+                // 非同期処理の完了を通知
+                asyncContext.complete();
 
-
+            } catch (SQLException e) {
+                e.printStackTrace();
+                asyncContext.complete();
+            } catch (Exception e) {
+                e.printStackTrace();
+                asyncContext.complete();
+            }
+        });
     }
-
 }
