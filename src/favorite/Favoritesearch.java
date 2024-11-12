@@ -1,4 +1,4 @@
- package favorite;
+package favorite;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,40 +14,46 @@ import javax.servlet.http.HttpSession;
 import bean.Favorite;
 import bean.User;
 import dao.FavoriteDAO;
-@WebServlet(urlPatterns={"/kakugari/favoritesearch"})
+
+@WebServlet(urlPatterns = { "/kakugari/favoritesearch" })
 public class Favoritesearch extends HttpServlet {
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    	System.out.println("実行");
-    	PrintWriter out=response.getWriter();
-    	HttpSession session = request.getSession();
+        System.out.println("Favoritesearch 実行");
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
 
         try {
+            // セッションからユーザー情報を取得
+            User customer = (User) session.getAttribute("customer");
 
-        	User customer = (User) session.getAttribute("customer");
+            // ログインしていない場合はエラーページにリダイレクト
+            if (customer == null) {
+                response.sendRedirect(request.getContextPath() + "/login_logout/login-in.jsp");
+                return;
+            }
 
-        	// Userクラス内にuser_idフィールドがあると仮定
-        	String key = customer.getUser_id();
+            // ログインしている場合、ユーザーIDを取得してお気に入りを検索
+            String key = customer.getUser_id();
+            System.out.println("ユーザーID: " + key);
 
-        	System.out.println(key);
+            FavoriteDAO dao = new FavoriteDAO();
+            List<Favorite> list = dao.search(key);
 
-        	FavoriteDAO dao=new FavoriteDAO();
-        	List<Favorite> list=dao.search(key);
+            System.out.println("検索結果: " + list);
 
-        	System.out.print(list);
-
-        	request.setAttribute("favoriteItems", list);
-			request.getRequestDispatcher("../main_kakugari/favorite.jsp")
-			.forward(request, response);
+            // 検索結果をリクエストに設定し、JSPに転送
+            request.setAttribute("favoriteItems", list);
+            request.getRequestDispatcher("../main_kakugari/favorite.jsp")
+                   .forward(request, response);
 
         } catch (Exception e) {
-        	e.printStackTrace(out);
-
+            e.printStackTrace(out);
+            // エラーが発生した場合もエラーページにリダイレクト
+            response.sendRedirect(request.getContextPath() + "/login-in.jsp");
         }
     }
-
-
-
 }
