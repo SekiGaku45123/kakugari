@@ -269,6 +269,7 @@
 <body>
 <header>
 
+
 	<h2><a href="../main_kakugari/all"><img src="../images/読書のアイコン.png" width="66" height="46"><span class="kakuspa"> カクガリ</span></a></h2>
 		<div class="logout-content">
 		    <div class="login_in" style="<%= isLoggedIn ? "display: none;" : "" %>">
