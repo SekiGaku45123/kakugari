@@ -236,6 +236,34 @@
 		.collarfont{
 			color: #b3b3b3;
 		}
+
+		.custom-list {
+		    list-style-type: none; /* リストマーカーを削除 */
+		    padding: 0;
+		    margin: 0;
+		}
+
+		/* <a>のスタイル */
+		.custom-link {
+		    text-decoration: none; /* 下線を削除 */
+		    color: inherit;           /* テキストの色 */
+		    padding: 10px;
+		    font-size: 20px;
+		    display: block;
+
+		}
+
+		.custom-link a{
+			font-weight: 100;
+		}
+
+		/* <a>リンクにホバー効果を追加 */
+		.custom-link a:hover,
+		.custom-link a:active,
+		.custom-link a:visited {
+		    color: inherit !important; /* すべての状態で色を固定 */
+		    text-decoration: none !important;
+		}
 </style>
 </head>
 <body>
@@ -258,7 +286,8 @@
 			        	</form>
 			        	<span class="collarfont">CATEGORY</span>
 			        	<br><div class="pq"></div><br>
-			        	 <div id="itemsList"></div>
+
+			        	<div id="getData"></div>
 			        </div>
 			    </div>
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
@@ -324,6 +353,9 @@
             // デフォルトのリンク動作を防ぐ
             event.preventDefault();
 
+            var getData = document.getElementById('getData'); // Htmlのdivの部分を指定する
+            getData.innerHTML = '';
+
             // AJAXリクエストを作成
             fetch('${pageContext.request.contextPath}/kakugari/myServlet')  // サーブレットのURLにリクエストを送信
 	            .then(response => {
@@ -333,15 +365,31 @@
 	            }) // JSONデータを受け取る
                 .then(data => {
                 	console.log("取得したデータ:", data);
-                    let output = '<ul>';
-                    data.forEach(item => {
-                        output += `<li>ka: ${item.category}</li>`;
-                    });
-                    output += '</ul>';
-                    document.getElementById('itemsList').innerHTML = output;  // 受け取ったデータを表示
+                	var list = document.createElement('ul');
+                	list.className = 'custom-list';
+                	var getData = document.getElementById('getData'); // Htmlのdivの部分を指定する
+
+
+                	for (var i = 0; i < data.length; i++) {
+
+                	    var listItem = document.createElement('li');
+                	    var link = document.createElement('a');
+                	    link.href = "your-link-url-here"; // ここにリンク先のURLを設定します
+                	    link.textContent = data[i].category; // リンクのテキストを設定
+                	    listItem.className = 'custom-link';
+
+                	    // <li>に<a>を追加
+                	    listItem.appendChild(link);
+
+                	    // <ul>の子要素として<li>を追加
+                	    list.appendChild(listItem);
+                	}
+
+
+                	getData.appendChild(list);
                 })
                 .catch(error => {
-                    console.error('Error:', error);  // エラーハンドリング
+                    console.error('Error:', error);
                 });
         }
 </script>

@@ -59,6 +59,28 @@ public class ImageDAO extends DAO {
 		return list;
 	}
 
+	public List<Images> category() throws Exception {
 
+		List<Images> list = new ArrayList<>();
+
+		Connection con=getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"select DISTINCT item.category from images join item on images.item_id = item.item_id");
+		ResultSet rs=st.executeQuery();
+
+
+		while (rs.next()){
+			Images p=new Images();
+			p.setCategory(rs.getString("category"));
+			list.add(p);
+		}
+
+		st.close();
+		con.close();
+
+		return list;
+
+	}
 
 }

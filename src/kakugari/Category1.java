@@ -31,9 +31,9 @@ public class Category1 extends HttpServlet {
 
         try {
             ImageDAO dao = new ImageDAO();
-            List<Images> list = dao.all();
+            List<Images> list = dao.category();
 
-            // リストをJSON形式に変換して出力
+            // リストをJSON形式に変換
             String json = new Gson().toJson(list);
             response.getWriter().write(json);
 
