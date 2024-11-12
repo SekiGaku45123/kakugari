@@ -269,7 +269,6 @@
 <body>
 <header>
 
-
 	<h2><a href="../main_kakugari/all"><img src="../images/読書のアイコン.png" width="66" height="46"><span class="kakuspa"> カクガリ</span></a></h2>
 		<div class="logout-content">
 		    <div class="login_in" style="<%= isLoggedIn ? "display: none;" : "" %>">
@@ -298,23 +297,27 @@
 		        <!--<a href="../main_kakugari/signup.jsp">新規登録</a>-->
 		    </div>
     		<div class="login_in" style="<%= isLoggedIn ? "" : "display: none;" %>">
-        		<a href="#" class="openLink"><img src="../kakugari_image/1023.png" class="images0"></a>
+        		<a href="#" class="openLink" onclick="fetchItems1(event)"><img src="../kakugari_image/1023.png" class="images0"></a>
 		    	<div class="overlay"></div>
 		    	<div class="menu_slide">
-			        <a href="#" class="closeLink"><img src="../kakugari_image/太いバツのアイコン2.png"></a>
+			        <a href="#" class="closeLink" id="asyncLink"><img src="../kakugari_image/太いバツのアイコン2.png"></a>
 			        <div>
 			        	<form action="${pageContext.request.contextPath}/kakugari/productsearch" method="post" class="formm">
-			        	<input type="text" name="keyword" placeholder="　検索" class="sa-tin">
+			        	<input type="text" name="keyword" placeholder="検索" class="sa-tin">
 			        	<div class="waku">
 			        	<button type="submit" value="" class="botan"><img src="../kakugari_image/1023.png"></button>
 			        	</div>
+
 			        	</form>
+			        	<span class="collarfont">CATEGORY</span>
+			        	<br><div class="pq"></div><br>
+			        	<div id="getData1"></div>
 			        </div>
 			    </div>
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
 		        <a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>
 		        <a href="../contact/contact.jsp"><img src="../kakugari_image/10894.png" class="images3"></a>
-		        <a href="../login_logout/logout"><img src="../kakugari_image/888.png" class="images4"></a>
+		        <a href="#"><img src="../kakugari_image/888.png" class="images4"></a>
 		</div>
     </div>
 <script type="text/javascript">
@@ -387,6 +390,50 @@
 
 
                 	getData.appendChild(list);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+    	function fetchItems1(event) {
+            // デフォルトのリンク動作を防ぐ
+            event.preventDefault();
+
+            var getData1 = document.getElementById('getData1'); // Htmlのdivの部分を指定する
+            getData1.innerHTML = '';
+
+            // AJAXリクエストを作成
+            fetch('${pageContext.request.contextPath}/kakugari/myServlet')  // サーブレットのURLにリクエストを送信
+	            .then(response => {
+	                // レスポンスがJSONであることを確認
+	                console.log("レスポンスを受け取りました", response);
+	                return response.json();
+	            }) // JSONデータを受け取る
+                .then(data => {
+                	console.log("取得したデータ:", data);
+                	var list = document.createElement('ul');
+                	list.className = 'custom-list';
+                	var getData1 = document.getElementById('getData1'); // Htmlのdivの部分を指定する
+
+
+                	for (var i = 0; i < data.length; i++) {
+
+                	    var listItem = document.createElement('li');
+                	    var link = document.createElement('a');
+                	    link.href = "../kakugari/productsearch?category="+encodeURIComponent(data[i].category); // ここにリンク先のURLを設定します
+                	    link.textContent = data[i].category; // リンクのテキストを設定
+                	    listItem.className = 'custom-link';
+
+                	    // <li>に<a>を追加
+                	    listItem.appendChild(link);
+
+                	    // <ul>の子要素として<li>を追加
+                	    list.appendChild(listItem);
+                	}
+
+
+                	getData1.appendChild(list);
                 })
                 .catch(error => {
                     console.error('Error:', error);
