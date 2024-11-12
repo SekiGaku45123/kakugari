@@ -68,6 +68,17 @@
        a:hover {
            text-decoration: underline;
        }
+       /* メインメニューリンク */
+       .return-link {
+           display: inline-block;
+           margin-top: 20px;
+           padding: 10px 20px;
+           color: #fff;
+           background-color: #0056b3;
+           text-decoration: none;
+           border-radius: 5px;
+           transition: background-color 0.3s ease;
+       }
 </style>
 </head>
 <body>
@@ -101,6 +112,8 @@
 </div>
 <input type="submit" value="確認">
 </form>
-</div>
+
 </body>
+<p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">メインメニューに戻る</a></p>
+</div>
 </html>
