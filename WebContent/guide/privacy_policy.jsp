@@ -149,3 +149,4 @@
 </div>
 </body>
 </html>
+<jsp:include page="/footer.html" />

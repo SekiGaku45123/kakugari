@@ -1,6 +1,8 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="/common/base.jsp">
+</c:import>
 <html>
 <head>
 <title>お問い合わせフォーム</title>
@@ -14,7 +16,7 @@
        }
        h2 {
            text-align: center;
-           color: #0056b3;
+           color: #004494;
        }
        .form-container {
            max-width: 600px;
@@ -117,3 +119,4 @@
 <p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">メインメニューに戻る</a></p>
 </div>
 </html>
+<jsp:include page="/footer.html" />
