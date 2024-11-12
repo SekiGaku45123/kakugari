@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>いいね！一覧</title>
+
 </head>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -72,5 +73,7 @@
 
 <!-- footerの読み込み -->
 
-<jsp:include page="/footer.html" />
+<div class="container">
+    <jsp:include page="/footer.html" />
+</div>
 

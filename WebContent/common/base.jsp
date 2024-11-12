@@ -317,7 +317,7 @@
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
 		        <a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>
 		        <a href="../contact/contact.jsp"><img src="../kakugari_image/10894.png" class="images3"></a>
-		        <a href="#"><img src="../kakugari_image/888.png" class="images4"></a>
+		        <a href="../login_logout/logout"><img src="../kakugari_image/888.png" class="images4"></a>
 		</div>
     </div>
 <script type="text/javascript">
