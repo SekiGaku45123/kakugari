@@ -45,14 +45,24 @@ public class ItemDAO extends DAO{
 			return list;
 		}
 
-	public List<Item> search(String keyword) throws Exception {
+	public List<Item> search(String keyword, String category) throws Exception {
 
 		List<Item> list = new ArrayList<>();
 
 		Connection con=getConnection();
 
+		String catego = "";
+
+		if(category != null){
+			catego = "select * from item join images on images.item_id = item.item_id WHERE item.category LIKE ? OR item.category LIKE ?";
+			keyword = category;
+			System.out.print(keyword);
+		}else{
+			catego = "select * from item join images on images.item_id = item.item_id WHERE item.item_name LIKE ? OR item.item_name LIKE ?";
+		}
+
 		PreparedStatement st = con.prepareStatement(
-				"select * from item join images on images.item_id = item.item_id WHERE item.item_name LIKE ? OR item.item_name LIKE ?");
+				catego);
 		st.setString(1, keyword + "%");
 		st.setString(2, "%" + keyword + "%");
 		ResultSet rs=st.executeQuery();

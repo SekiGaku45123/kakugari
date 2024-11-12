@@ -286,7 +286,6 @@
 			        	</form>
 			        	<span class="collarfont">CATEGORY</span>
 			        	<br><div class="pq"></div><br>
-
 			        	<div id="getData"></div>
 			        </div>
 			    </div>
@@ -374,7 +373,7 @@
 
                 	    var listItem = document.createElement('li');
                 	    var link = document.createElement('a');
-                	    link.href = "your-link-url-here"; // ここにリンク先のURLを設定します
+                	    link.href = "../kakugari/productsearch?category="+encodeURIComponent(data[i].category); // ここにリンク先のURLを設定します
                 	    link.textContent = data[i].category; // リンクのテキストを設定
                 	    listItem.className = 'custom-link';
 
