@@ -21,10 +21,14 @@ public class Purchaseaction extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        User user = (User) session.getAttribute("search");
+        User user = (User) session.getAttribute("customer");
+        System.out.print(user);
 
         String name = user != null ? user.getUser_name() : request.getParameter("name");
         String address = user != null ? user.getUser_address() : request.getParameter("address");
+        System.out.print(name);
+        System.out.print(address);
+
 
         int item_id = Integer.parseInt(request.getParameter("item_id"));
         String flag = request.getParameter("flag");
