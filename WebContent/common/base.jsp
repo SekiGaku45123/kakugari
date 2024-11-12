@@ -292,7 +292,7 @@
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
 		        <!--<a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>-->
 		        <a href="../contact/contact.jsp"><img src="../kakugari_image/10894.png" class="images3"></a>
-		        <a href="#"><img src="../kakugari_image/888.png" class="images4"></a>
+		        <a href="../login_logout/login-in.jsp"><img src="../kakugari_image/888.png" class="images4"></a>
 		        <!--  <a href="../login_logout/login-in.jsp">ログイン</a>-->
 		        <!--<a href="../main_kakugari/signup.jsp">新規登録</a>-->
 		    </div>
