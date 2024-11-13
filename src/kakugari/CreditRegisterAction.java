@@ -20,7 +20,6 @@ public class CreditRegisterAction extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        // クレジットカード情報の取得
         String cardNumber = request.getParameter("cardNumber");
         String expiryDate = request.getParameter("expiryDate");
         String securityCode = request.getParameter("security_code");
@@ -30,16 +29,21 @@ public class CreditRegisterAction extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("customer");
 
+
+
         if (user == null) {
             response.sendRedirect("../main_kakugari/login.jsp");
             return;
         }
 
-        // クレジットカード情報の設定
+
+        String user_id = user.getUser_id();
+
         Credit credit = new Credit();
         credit.setCreditNumber(cardNumber);
         credit.setExpiryDate(expiryDate);
         credit.setSecurityCode(securityCode);
+        credit.setUserId(user_id);
 
         try {
             CreditDAO dao = new CreditDAO();
