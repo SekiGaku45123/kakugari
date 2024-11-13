@@ -10,44 +10,78 @@
 
 <style>
 .main_search{
-	background: #f5f5f5;
 	display: grid;
-	grid-template-columns: 30% 70%;
+	grid-template-columns: 25% 75%;
 	padding: 0 2vw;
 
 }
 .narrow_down{
 	background: red;
-	text-align:center;
-  	padding:20px 0;
+	padding:0 10px;
 }
 
 .search_list{
-	background: blue;
 	text-align:center;
-  	padding:20px 0 20px 8px;
+  	padding:0 0 20px 8px;
 
 }
 
 .kakaka{
 	max-width: 19%;
-	max-right: 19%;
 	display: grid;
 	grid-template-columns: repeat(5, 100%);
 	column-gap: 5%;
-	row-gap: 15px;
+	row-gap: 40px;
+	position: relative;
 }
 
-.kakaka div{
-	background: yellow;
-	width: 100%;
-  	padding-top: 100%;
+.imggmi{
+	position: relative;
+	width:12vw;
+	height: 12vw;
+}
+
+.imggmi img{
+	border-radius: 5px 5px 5px 5px;
+	object-fit: cover;
+	width:100%;
+	height: 100%;
+	background:Yellow;
+}
+
+.imggmi p {
+  collar:#8f8d8d;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /* 2行で切り捨て */
+  line-clamp: 2;
+}
+
+
 
 </style>
 
 <div class="main_search">
 	<div class="narrow_down">
 		<span>絞り込む</span>
+		<details>
+		  <summary>カテゴリー</summary>
+		  折りたたまれている部分です。
+		</details>
+		<details>
+		  <summary>販売状況</summary>
+		  折りたたまれている部分です。
+		</details>
+		<details>
+		  <summary>商品状態</summary>
+		  折りたたまれている部分です。
+		</details>
+		<details>
+		  <summary>価格</summary>
+		  折りたたまれている部分です。
+		</details>
 
 
 
@@ -55,7 +89,11 @@
 	<div class="search_list">
 		<div class="kakaka">
 		<c:forEach var="p" items="${search}">
-			<div>${p.getItem_name()}</div>
+			<div class="imggmi">
+			<img src="${p.getImage_data()}">
+			<p>${p.getItem_name()}</p>
+			</div>
+
 		</c:forEach>
 		</div>
 
