@@ -55,7 +55,7 @@ public class CreditDAO extends DAO {
         st.setString(2, credit.getCreditNumber());
         st.setString(3, credit.getExpiryDate());
         st.setString(4, credit.getSecurityCode());
-        st.setString(5,"1");
+        st.setString(5, credit.getUserId());
 
         // クエリ実行
         int result = st.executeUpdate();
