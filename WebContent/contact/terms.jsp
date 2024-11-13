@@ -31,6 +31,22 @@
            text-align: center;
            margin-top: 20px;
        }
+       a {
+           display: inline-block;
+           margin-top: 20px;
+           text-decoration: none;
+           color: #0056b3;
+           font-weight: bold;
+           text-align: center;
+           border: 1px solid #0056b3;
+           padding: 10px 15px;
+           border-radius: 5px;
+           transition: background 0.3s, color 0.3s;
+       }
+       a:hover {
+           background: #0056b3;
+           color: white;
+       }
 </style>
 </head>
 <body>
@@ -54,6 +70,8 @@
 <p><strong>6. 免責事項</strong></p>
 <p>- お問い合わせ内容に対して当社が回答する義務を負うものではなく、特定の結果を保証するものではありません。</p>
 <p>- ユーザーは、当社が提供する回答や対応によって直接的または間接的に被った損害に対して、当社が一切の責任を負わないことに同意します。</p>
+</div>
+<a href="contact.jsp">お問い合わせフォームに戻る</a>
 </div>
 </div>
 </body>

@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/common/base.jsp">
 </c:import>
+
 <html>
 <head>
 <title>お問い合わせフォーム</title>
@@ -18,6 +19,7 @@
            text-align: center;
            color: #004494;
        }
+
        .form-container {
            max-width: 600px;
            margin: 0 auto;
