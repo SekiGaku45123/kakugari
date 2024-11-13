@@ -21,6 +21,7 @@ public class BuysearchDAO extends DAO {
 		ResultSet rs = st.executeQuery();
 
 
+
 		if(rs.next()){
 			user1 = new User();
 			user1.setUser_id(rs.getString("user_id"));

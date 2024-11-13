@@ -14,6 +14,7 @@ import bean.History;
 import bean.User;
 import dao.HistoryDAO;
 
+
 @WebServlet("/history") // アクセスするURLパターンを設定
 public class HistoryServlet extends HttpServlet {
     @Override

@@ -15,6 +15,7 @@ public class History {
         return item_Id;
     }
 
+
     public void setItem_Id(int item_Id) {
         this.item_Id = item_Id;
     }

@@ -19,6 +19,7 @@ public class Purchaseaction extends HttpServlet {
             throws ServletException, IOException {
 
 
+
         HttpSession session = request.getSession();
 
         User user = (User) session.getAttribute("customer");
