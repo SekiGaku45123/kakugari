@@ -11,12 +11,13 @@ import bean.History;
 
 public class HistoryDAO extends DAO {
 
-    public List<History> getHistory() throws Exception {
+    public List<History> getHistory(String user_id) throws Exception {
         List<History> historyList = new ArrayList<>();
         Connection con = getConnection();
-        String sql = "SELECT ITEM_ID, FLAG, IMAGE_DATA FROM HISTORY";  // IMAGE_PATHを取得
+        String sql = "SELECT ITEM_ID, FLAG, IMAGE_DATA FROM HISTORY where user_id = ?";  // IMAGE_PATHを取得
 
         PreparedStatement st = con.prepareStatement(sql);
+        st.setString(1,user_id);
         ResultSet rs = st.executeQuery();
 
         while (rs.next()) {

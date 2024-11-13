@@ -63,13 +63,10 @@
                             <c:forEach var="history" items="${historyList}">
                                 <c:if test="${history.flag}">
                                     <tr>
-                                        <td>${history.item_Id}</td>
-                                        <td><img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80"></td>
+
+                                        <td><a href="${pageContext.request.contextPath}/kakugari/product?item_id=${history.item_Id}"><img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80"></a></td>
                                         <td class="completed">購入が完了しました。</td>
-                                        <td>
-                                            <!-- 削除ボタン -->
-                                            <button onclick="openDeleteModal('${history.item_Id}')">削除</button>
-                                        </td>
+
                                     </tr>
                                 </c:if>
                             </c:forEach>
@@ -84,48 +81,6 @@
         </div>
     </div>
 
-    <!-- 削除確認モーダルウィンドウ -->
-    <div id="deleteConfirmModal" class="modal">
-        <div class="modal-content">
-            <p>本当に削除しますか？</p>
-            <button onclick="confirmDelete()">はい</button>
-            <button onclick="cancelDelete()">キャンセル</button>
-        </div>
-    </div>
 
-    <form id="deleteForm" action="${pageContext.request.contextPath}/kakugari3/deleteHistory" method="post" style="display:none;">
-        <input type="hidden" id="deleteItemId" name="itemId" value="">
-    </form>
-
-    <script>
-        // 削除用モーダルの開閉制御
-        let currentItemId = null;
-
-        function openDeleteModal(itemId) {
-            currentItemId = itemId;
-            document.getElementById('deleteConfirmModal').style.display = 'flex';
-        }
-
-        function confirmDelete() {
-            if (currentItemId) {
-                // 削除フォームにアイテムIDを設定して送信
-                document.getElementById('deleteItemId').value = currentItemId;
-                document.getElementById('deleteForm').submit();
-            }
-        }
-
-        function cancelDelete() {
-            currentItemId = null;
-            document.getElementById('deleteConfirmModal').style.display = 'none';
-        }
-
-        // モーダル外をクリックした際に閉じる
-        window.onclick = function(event) {
-            const modal = document.getElementById('deleteConfirmModal');
-            if (event.target === modal) {
-                cancelDelete();
-            }
-        }
-    </script>
 </body>
 </html>
