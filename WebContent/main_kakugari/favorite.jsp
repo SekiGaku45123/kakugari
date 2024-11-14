@@ -54,6 +54,7 @@
 
         <c:otherwise>
             <p style="text-align: center;">『いいね！』した商品がありません</p>
+            <br><br><br><br><br><br><br><br><br><br>
         </c:otherwise>
     </c:choose>
 </div>
