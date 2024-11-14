@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList, java.net.URLEncoder"%>
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <c:import url="/common/base.jsp">
 </c:import>
 
@@ -104,7 +104,7 @@
 .pet-select{
 	width:100%;
 	padding: 10px 0 10px 5px;
-	margin: 0 0 10px 0;
+	margin: 10px 0 10px 0;
 	border-radius: 5px 5px 5px 5px;
 }
 
@@ -113,7 +113,7 @@
 }
 
 .price_min_max{
-	padding: 0 0 0 10px;
+	padding: 0 0 0 0;
 	margin: 0 0 10px 0;
 	text-align: center;
 }
@@ -151,19 +151,22 @@ input[type="number"] {
 </style>
 
 
+<c:set var="item1" value="${searchtin}" />
+
 <div class="main_search">
 	<div class="narrow_down">
 		<div class="underline"><font color="#666666">絞り込む</font></div>
 		<div class="underline_no"></div>
 		<details class="custom-details">
 			<summary>カテゴリー</summary>
-				<select name="pets" class="pet-select">
-					<option value="" class="font">すべて</option>
+				<select name="pets" class="pet-select" id="mySelectBox">
+					<option value="" class="font" >すべて</option>
 					<c:forEach var="q" items="${searchcategory}">
-					<option value="${q.getCategory()}">${q.getCategory()}</option>
+					<option value="${q.getCategory()}" <c:if test="${item1 == q.getCategory()}">selected</c:if>>${q.getCategory()}</option>
 					</c:forEach>
 				</select>
 		</details>
+		<div id="result"></div>
 		<div class="underline_no"></div>
 		<details class="custom-details">
 			<summary>販売状況</summary>
@@ -225,3 +228,29 @@ input[type="number"] {
 
 <!-- footerの読み込み -->
 <jsp:include page="/footer.html" />
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		  $('#mySelectBox').change(function() {
+		    var selectedValue = $(this).val();
+			var sati
+		    $.ajax({
+		      url: '../kakugari/categorysibori',  // サーバーのURL
+		      type: 'POST',
+		      data: { value: selectedValue},
+		      success: function(response) {
+		        $('#result').html(response);
+		      },
+		      error: function(xhr, status, error) {
+		        console.error('AJAX request failed:', error);
+		      }
+		    });
+		  });
+		});
+
+</script>
+
+
+
+

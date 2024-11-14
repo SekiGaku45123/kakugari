@@ -1,7 +1,6 @@
 package kakugari;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,12 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import bean.Item;
 import dao.ItemDAO;
-import tool.Page;
 
-@WebServlet(urlPatterns={"/kakugari/productsearch"})
-public class Productsearch extends HttpServlet {
+@WebServlet(urlPatterns={"/kakugari/categorysibori"})
+public class Categorysibori extends HttpServlet {
 
 
 	public void doGet (
@@ -34,38 +34,34 @@ public class Productsearch extends HttpServlet {
 				HttpServletRequest request, HttpServletResponse response
 		)
 				throws ServletException, IOException {
-			PrintWriter out=response.getWriter();
-			Page.header(out);
+			response.setContentType("application/json");
+	        response.setCharacterEncoding("UTF-8");
 			try{
 
 				String keyword = request.getParameter("keyword");
-				String category = request.getParameter("category");
+				String category = request.getParameter("value");
+				String hanbai = request.getParameter("");
+				String urikire = request.getParameter("");
+				String sinpin = request.getParameter("");
+				String yogore = request.getParameter("");
+				String gatiyogore = request.getParameter("");
 
+				String pricemin = request.getParameter("");
+				String pricemax = request.getParameter("");
 
 
 				System.out.print("ぺぺ２");
-				System.out.print(keyword);
-				System.out.print("ka45");
 				System.out.print(category);
-				System.out.print("ぺぺ45");
 
 				ItemDAO dao=new ItemDAO();
-				List<Item> list=dao.search(keyword, category);
-
-				ItemDAO dao1=new ItemDAO();
-				List<Item> list1=dao1.categoryall();
+				List<Item> list=dao.categorysibori(keyword, category, hanbai, urikire, sinpin, yogore, gatiyogore, pricemin, pricemax);
 
 				System.out.print(list);
 
-				request.setAttribute("search", list);
-				request.setAttribute("searchtin", category);
-				request.setAttribute("searchcategory", list1);
-				request.getRequestDispatcher("../main_kakugari/searchkakugari.jsp")
-				.forward(request, response);
-			}catch (Exception e){
-				e.printStackTrace(out);
-			}
-
-			Page.footer(out);
+				String json = new Gson().toJson(list);
+	            response.getWriter().write(json);
+			}catch (Exception e) {
+	            e.printStackTrace(response.getWriter());
+	        }
 		}
 }
