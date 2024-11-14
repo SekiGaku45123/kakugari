@@ -43,11 +43,7 @@
                 <c:otherwise>
                     <table>
                         <thead>
-                            <tr>
-                                <th>商品画像</th>
-                                <th>ステータス</th>
-                                <th>購入日</th>
-                            </tr>
+
                         </thead>
                         <tbody>
                             <c:forEach var="history" items="${historyList}">
