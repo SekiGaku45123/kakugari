@@ -90,19 +90,18 @@ public class ItemDAO extends DAO{
 
 		return list;
 	}
-	public List<Item> suggest(String query) throws Exception {
+	public List<Item> categoryall() throws Exception {
 
 		List<Item> suggestions = new ArrayList<>();
 
 		Connection con=getConnection();
 
 		PreparedStatement st = con.prepareStatement(
-				"SELECT item_name FROM item WHERE item_name LIKE ? LIMIT 10");
-            st.setString(1, query + "%"); // 部分一致で検索
+				"SELECT DISTINCT category FROM ITEM ");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
             	Item p=new Item();
-            	p.setItem_name(rs.getString("item_name"));
+            	p.setCategory(rs.getString("category"));
 
             	suggestions.add(p);
             }

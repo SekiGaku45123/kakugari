@@ -48,9 +48,13 @@ public class Productsearch extends HttpServlet {
 				ItemDAO dao=new ItemDAO();
 				List<Item> list=dao.search(keyword, category);
 
+				ItemDAO dao1=new ItemDAO();
+				List<Item> list1=dao1.categoryall();
+
 				System.out.print(list);
 
 				request.setAttribute("search", list);
+				request.setAttribute("searchcategory", list1);
 				request.getRequestDispatcher("../main_kakugari/searchkakugari.jsp")
 				.forward(request, response);
 			}catch (Exception e){

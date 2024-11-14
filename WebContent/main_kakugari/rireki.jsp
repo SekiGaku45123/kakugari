@@ -1,6 +1,6 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -43,9 +43,7 @@
                 </c:when>
                 <c:otherwise>
                     <table>
-                        <thead>
 
-                        </thead>
                         <tbody>
                             <c:forEach var="history" items="${historyList}">
                                 <c:if test="${history.flag}">
@@ -57,8 +55,8 @@
                                         </td>
                                         <td class="completed">購入が完了しました。</td>
                                         <td class="purchase-date">
-                                            <c:out value="${history.purchase_Date}" />
-                                        </td>
+										    <fmt:formatDate value="${history.purchase_Date}" pattern="yyyy-MM-dd HH:mm" />
+										</td>
                                     </tr>
                                 </c:if>
                             </c:forEach>
@@ -67,7 +65,6 @@
                 </c:otherwise>
             </c:choose>
         </div>
-
 
         <div class="button-container">
             <a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a>
