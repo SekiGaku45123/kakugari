@@ -12,17 +12,21 @@
 .main_search{
 	display: grid;
 	grid-template-columns: 25% 75%;
-	padding: 0 2vw;
+	column-gap: 5px;
+	padding: 0 5vw;
 
 }
 .narrow_down{
-	background: red;
+	border:solid 2px #cccccc;
+	border-radius: 10px 0 0 10px;
 	padding:0 10px;
 }
 
 .search_list{
+	border:solid 2px #cccccc;
 	text-align:center;
-  	padding:0 0 20px 8px;
+  	padding:10px 0 25px 8px;
+  	border-radius: 0 10px 10px 0;
 
 }
 
@@ -59,29 +63,79 @@
   line-clamp: 2;
 }
 
+.underline{
+	font-weight: 700;
+	margin: 10px 0;
+}
 
+.custom-details summary {
+  list-style: none; /* デフォルトの三角アイコンを非表示にする */
+  cursor: pointer; /* カーソルをポインタにする */
+  position: relative;
+  padding-right: 1.5em; /* アイコン用のスペースを確保 */
+  height: 50px;
+  line-height: 50px;
+  font-weight: 700;
+  padding-left: 10px;
+}
+
+.underline_no{
+	border-bottom: 1px solid #cccccc;
+}
+
+.custom-details summary::after{
+	content: "+"; /* 閉じた状態のアイコン */
+	position: absolute;
+	right: 10px; /* アイコンを右端に表示 */
+	font-size: 1.2em;
+	color: #333;
+
+}
+
+.custom-details[open] summary::after {
+  content: "-"; /* 開いた状態のアイコン */
+}
+
+.custom-details summary:hover {
+  background-color: #f5f5f5;
+  border-radius: 10px 10px 10px 10px;
+}
 
 </style>
 
+
+
 <div class="main_search">
 	<div class="narrow_down">
-		<span>絞り込む</span>
-		<details>
+		<div class="underline"><font color="#666666">絞り込む</font></div>
+		<div class="underline_no"></div>
+		<details class="custom-details">
 		  <summary>カテゴリー</summary>
-		  折りたたまれている部分です。
+			<select name="pets" id="pet-select">
+			  <option value="">すべて</option>
+			  <option value="dog">あ</option>
+			  <option value="cat">い</option>
+			  <option value="hamster">う</option>
+			  <option value="parrot">え</option>
+			  <option value="spider">お</option>
+			</select>
 		</details>
-		<details>
+		<div class="underline_no"></div>
+		<details class="custom-details">
 		  <summary>販売状況</summary>
 		  折りたたまれている部分です。
 		</details>
-		<details>
+		<div class="underline_no"></div>
+		<details class="custom-details">
 		  <summary>商品状態</summary>
 		  折りたたまれている部分です。
 		</details>
-		<details>
+		<div class="underline_no"></div>
+		<details class="custom-details">
 		  <summary>価格</summary>
 		  折りたたまれている部分です。
 		</details>
+		<div class="underline_no"></div>
 
 
 
