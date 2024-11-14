@@ -3,7 +3,8 @@ package bean;
 public class History {
     private int item_Id;
 	private boolean flag;
-    private String image_Data;  // 画像パス
+    private String image_Data;
+    private String user_id;// 画像パス
 
     // コンストラクタ
     public History() {
@@ -13,6 +14,7 @@ public class History {
     public int getItem_Id() {
         return item_Id;
     }
+
 
     public void setItem_Id(int item_Id) {
         this.item_Id = item_Id;
@@ -26,6 +28,14 @@ public class History {
 		this.flag = flag;
 	}
 
+	public String getUser_Id() {
+
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 
 //    // completedのgetterとsetter
 //    public boolean getFlag() {
@@ -54,4 +64,6 @@ public class History {
                 ", image_Data='" + image_Data + '\'' +
                 '}';
     }
+
+
 }

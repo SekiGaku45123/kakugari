@@ -65,6 +65,8 @@
 <tr>
 <td>${history.item_Id}</td>
 <td><a href="${pageContext.request.contextPath}/kakugari/product?item_id=${history.item_Id}"><img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80"></a></td>
+
+                                        <td><a href="${pageContext.request.contextPath}/kakugari/product?item_id=${history.item_Id}"><img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80"></a></td>
 <td class="completed">購入が完了しました。</td>
 
                                     </tr>

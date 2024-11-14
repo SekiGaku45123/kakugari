@@ -21,6 +21,7 @@ public class BuysearchDAO extends DAO {
 		ResultSet rs = st.executeQuery();
 
 
+
 		if(rs.next()){
 			user1 = new User();
 			user1.setUser_id(rs.getString("user_id"));
@@ -41,10 +42,11 @@ public class BuysearchDAO extends DAO {
 		Connection con = getConnection();
 
 		PreparedStatement st = con.prepareStatement(
-				"insert into history values(?, ?, ?)");
-		st.setInt(1, p.getItem_Id());
-		st.setBoolean(2, p.isFlag());
-		st.setString(3, p.getImage_Data());
+				"insert into history values(?, ?, ?, ?)");
+		st.setString(1, p.getUser_Id());
+		st.setInt(2, p.getItem_Id());
+		st.setBoolean(3, p.isFlag());
+		st.setString(4, p.getImage_Data());
 		int line=st.executeUpdate();
 
 		System.out.print("完成しました。");
