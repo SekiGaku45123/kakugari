@@ -7,9 +7,7 @@
 <link rel="stylesheet" href="../css/style.css">
 <style>
     /* フッター全体のスタイル */
-    footer {
-
-
+    .site-footer {
         background-color: #333;  /* 背景色 */
         color: #fff;  /* テキスト色 */
         padding: 20px 0;
@@ -19,7 +17,7 @@
     }
 
     /* リストを横一列に並べるスタイル */
-    footer ul {
+    .site-footer ul {
         list-style-type: none;
         padding: 0;
         display: flex;
@@ -30,31 +28,31 @@
     }
 
     /* リンクスタイル */
-    footer ul li {
+    .site-footer ul li {
         font-size: 16px;
         font-weight: bold;
     }
 
-    footer ul li a {
+    .site-footer ul li a {
         color: #c0c0c0;  /* リンクの色 */
         text-decoration: none;
     }
 
     /* リンクホバー時のエフェクト */
-    footer ul li a:hover {
+    .site-footer ul li a:hover {
         color: #ffffff;
         border-bottom: 1px solid #ffffff;  /* ホバー時の下線 */
     }
 
     /* 区切り線 */
-    footer ul li:not(:last-child)::after {
+    .site-footer ul li:not(:last-child)::after {
         content: "|";
         color: #555;
         margin-left: 15px;
     }
 
     /* フッターの著作権表示 */
-    footer p {
+    .site-footer p {
         font-size: 14px;
         color: #aaa;
         margin-top: 20px;
@@ -64,7 +62,7 @@
 <body>
 
 <!-- footer -->
-<footer>
+<footer class="site-footer">
     <ul>
         <li><a href="../guide/promise.jsp">カクガリ利用規約</a></li>
         <li><a href="../contact/guidelines.jsp">ガイドライン</a></li>

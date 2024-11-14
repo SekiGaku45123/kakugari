@@ -1,108 +1,84 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!-- CSSを内部スタイルとして埋め込み -->
-<style>
-    /* ベーススタイル */
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f9;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+<!-- base.jspをインクルードしてヘッダーとフッターを共通化 -->
+<c:import url="/common/base.jsp" />
 
-    /* 中央配置のためのラッパー */
-    .login-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100vh;
-        background-color: #f0f2f5;
-    }
-
-    /* ログインフォームのコンテナ */
-    .login-container {
-        background-color: #fff;
-        padding: 40px;
-        width: 100%;
-        max-width: 400px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        border-radius: 8px;
-        text-align: center;
-        border: 1px solid #ddd;
-    }
-
-    .login-container h2 {
-        font-size: 28px;
-        color: #333;
-        margin-bottom: 10px;
-    }
-
-    .text-muted {
-        font-size: 14px;
-        color: #777;
-        margin-bottom: 30px;
-    }
-
-    /* フォームスタイル */
-    .login-form .form-group {
-        margin-bottom: 20px;
-        text-align: left;
-    }
-
-    .login-form label {
-        font-size: 14px;
-        color: #555;
-    }
-
-    .login-form input[type="text"],
-    .login-form input[type="password"] {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        margin-top: 5px;
-    }
-
-    .login-form input[type="submit"] {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .login-form input[type="submit"]:hover {
-        background-color: #45a049;
-    }
-
-    /* メディアクエリ（レスポンシブ対応） */
-    @media (max-width: 500px) {
-        .login-container {
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ログインページ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 共通スタイルの適用 */
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
             padding: 20px;
+            background-color: #ffffff; /* 白背景 */
         }
-    }
-</style>
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background: #ffffff; /* 内側ボックスも白背景 */
+            border: 2px solid #ccc; /* ボーダー */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .login-container h2 {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .login-container .text-muted {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .login-form .form-group {
+            margin-bottom: 15px;
+        }
+        .login-form .form-group label {
+            float: left;
+            font-weight: 600;
+            color: #333;
+        }
+        .login-form .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .login-form .btn-primary {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            background-color: #007bff;
+            border: none;
+        }
+        .login-form .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
 
 <div class="login-wrapper">
     <div class="login-container">
         <h2>ログイン</h2>
         <p class="text-muted">アカウントにサインインしてください</p>
 
-        <form action="Login.action" method="post" class="login-form">
+        <form action="Login.action" method="post" class="login-form" id="login-form">
             <div class="form-group">
                 <label for="email">メールアドレス</label>
-                <input type="text" id="email" name="maleaddress" placeholder="例: example@example.com" required>
+                <input type="text" id="email" name="maleaddress" placeholder="例: kakugari@botton.com" value="${param.email}" required>
             </div>
 
             <div class="form-group">
@@ -117,3 +93,8 @@
     </div>
 </div>
 
+<jsp:include page="/footer.html" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
