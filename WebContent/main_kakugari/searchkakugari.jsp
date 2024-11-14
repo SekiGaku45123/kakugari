@@ -93,23 +93,59 @@
 }
 
 .custom-details[open] summary::after {
-  content: "-"; /* 開いた状態のアイコン */
+  	content: "-";
 }
 
 .custom-details summary:hover {
-  background-color: #f5f5f5;
-  border-radius: 10px 10px 10px 10px;
+	  background-color: #f5f5f5;
+	  border-radius: 10px 10px 10px 10px;
 }
 
 .pet-select{
 	width:100%;
-	padding: 10px 0;
+	padding: 10px 0 10px 5px;
 	margin: 0 0 10px 0;
 	border-radius: 5px 5px 5px 5px;
 }
 
-select {
-    color: red; /* セレクトボックス全体のフォントカラーを変更 */
+.checkbox1{
+	padding: 0 0 0 10px;
+}
+
+.price_min_max{
+	padding: 0 0 0 10px;
+	margin: 0 0 10px 0;
+	text-align: center;
+}
+
+.price_min{
+	width:40%;
+	margin: 0 5px 0 0;
+	padding: 5px 0 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+.price_max{
+	width:40%;
+	margin: 0 0 0 5px;
+	padding: 5px 0  5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+.price_min::-webkit-inner-spin-button,
+.price_min::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance:textfield;
+}
+
+.price_max::-webkit-inner-spin-button,
+.price_max::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance:textfield;
+}
+
+input[type="number"] {
+    padding-left: 5px; /* 左側に5pxの余白を追加 */
 }
 
 </style>
@@ -120,30 +156,48 @@ select {
 		<div class="underline"><font color="#666666">絞り込む</font></div>
 		<div class="underline_no"></div>
 		<details class="custom-details">
-		<summary>カテゴリー</summary>
-		<select name="pets" class="pet-select">
-		<option value="" class="font">すべて</option>
-		<option value="dog">あ</option>
-		<option value="cat">い</option>
-		<option value="hamster">う</option>
-		<option value="parrot">え</option>
-		<option value="spider">お</option>
-		</select>
+			<summary>カテゴリー</summary>
+				<select name="pets" class="pet-select">
+					<option value="" class="font">すべて</option>
+					<c:forEach var="q" items="${searchcategory}">
+					<option value="${q.getCategory()}">${q.getCategory()}</option>
+					</c:forEach>
+				</select>
 		</details>
 		<div class="underline_no"></div>
 		<details class="custom-details">
-		<summary>販売状況</summary>
-				  折りたたまれている部分です。
+			<summary>販売状況</summary>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales" name="scales" />
+			    	<label for="horns">販売中</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales" name="scales" />
+			    	<label for="horns">売り切れ</label>
+			  	</div>
 		</details>
 		<div class="underline_no"></div>
 		<details class="custom-details">
-		<summary>商品状態</summary>
-				  折りたたまれている部分です。
+			<summary>商品状態</summary>
+				<div class="checkbox1">
+			    	<input type="checkbox" id="scales" name="scales" />
+			    	<label for="horns">新品・未使用</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales" name="scales" />
+			    	<label for="horns">目立った傷や汚れなし</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales" name="scales" />
+			    	<label for="horns">全体的に状態が悪い</label>
+			  	</div>
 		</details>
 		<div class="underline_no"></div>
 		<details class="custom-details">
-		<summary>価格</summary>
-				  折りたたまれている部分です。
+			<summary>価格</summary>
+			<div class="price_min_max">
+			<input type="number" class="price_min" name="price_min" placeholder="￥300"/>～<input type="number" class="price_max" name="price_max" placeholder="￥99999"/>
+			</div>
 		</details>
 		<div class="underline_no"></div>
 
@@ -152,12 +206,12 @@ select {
 	<div class="search_list">
 		<div class="kakaka">
 		<c:forEach var="p" items="${search}">
-		<div class="imggmi">
-		<img src="${p.getImage_data()}">
-		<p>${p.getItem_name()}</p>
-		</div>
+			<div class="imggmi">
+				<img src="${p.getImage_data()}">
+				<p>${p.getItem_name()}</p>
+			</div>
 
-				</c:forEach>
+		</c:forEach>
 		</div>
 
 	</div>

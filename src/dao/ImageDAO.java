@@ -66,7 +66,7 @@ public class ImageDAO extends DAO {
 		Connection con=getConnection();
 
 		PreparedStatement st = con.prepareStatement(
-				"select DISTINCT item.category from images join item on images.item_id = item.item_id");
+				"select DISTINCT category from item");
 		ResultSet rs=st.executeQuery();
 
 
