@@ -33,7 +33,6 @@ public class HistoryDAO extends DAO {
         st.close();
         con.close();
 
-
         return historyList;
     }
 

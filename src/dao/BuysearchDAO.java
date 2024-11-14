@@ -13,6 +13,7 @@ public class BuysearchDAO extends DAO {
     public User search(String name, String address) throws Exception {
         User user1 = null;
 
+
         Connection con = getConnection();
 
         String sql = "SELECT * FROM user WHERE user_name = ? AND user_address = ?";

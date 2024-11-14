@@ -68,6 +68,7 @@
             </c:choose>
         </div>
 
+
         <div class="button-container">
             <a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a>
         </div>
