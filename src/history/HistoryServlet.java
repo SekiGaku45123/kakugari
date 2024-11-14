@@ -24,6 +24,7 @@ public class HistoryServlet extends HttpServlet {
     	User user = (User) session.getAttribute("customer");
 
     	String user_id = user.getUser_id();
+
         try {
             // HistoryDAOのインスタンスを生成し、履歴リストを取得
             HistoryDAO dao = new HistoryDAO();
