@@ -101,6 +101,17 @@
   border-radius: 10px 10px 10px 10px;
 }
 
+.pet-select{
+	width:100%;
+	padding: 10px 0;
+	margin: 0 0 10px 0;
+	border-radius: 5px 5px 5px 5px;
+}
+
+select .fontcollarr{
+    color: red; /* セレクトボックス全体のフォントカラーを変更 */
+}
+
 </style>
 
 
@@ -111,8 +122,8 @@
 		<div class="underline_no"></div>
 		<details class="custom-details">
 		  <summary>カテゴリー</summary>
-			<select name="pets" id="pet-select">
-			  <option value="">すべて</option>
+			<select name="pets" class="pet-select">
+			  <option value="" class="fontcollarr">すべて</option>
 			  <option value="dog">あ</option>
 			  <option value="cat">い</option>
 			  <option value="hamster">う</option>
