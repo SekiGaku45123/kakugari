@@ -21,6 +21,7 @@ public class Purchaseaction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
         // セッションからユーザー情報を取得
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("customer");

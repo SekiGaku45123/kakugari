@@ -12,6 +12,7 @@ public class History {
     // コンストラクタ
     public History() {}
 
+
     // 商品IDのgetterとsetter
     public int getItem_Id() {
         return item_Id;
