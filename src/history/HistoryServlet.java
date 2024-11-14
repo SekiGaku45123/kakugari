@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.History;
 import bean.User;
-import dao.HistoryDAO;
+import dao.BuysearchDAO;
 
 
 @WebServlet("/history") // アクセスするURLパターンを設定
@@ -27,8 +27,8 @@ public class HistoryServlet extends HttpServlet {
 
         try {
             // HistoryDAOのインスタンスを生成し、履歴リストを取得
-            HistoryDAO dao = new HistoryDAO();
-            List<History> historyList = dao.getHistory(user_id);
+            BuysearchDAO dao = new BuysearchDAO();
+            List<History> historyList = dao.getHistoryByUserId(user_id);
 
             // リクエスト属性に履歴リストを設定
             request.setAttribute("historyList", historyList);
