@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>購入履歴 - 過去の取引</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
+<meta charset="UTF-8">
+<title>購入履歴 - 過去の取引</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
         html, body {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
@@ -42,45 +42,44 @@
         .modal-content button {
             margin: 10px; padding: 10px 20px; cursor: pointer;
         }
-    </style>
-
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>購入履歴 - 過去の取引</h1>
-        <div class="history">
-            <c:choose>
-                <c:when test="${empty historyList}">
-                    <p style="font-size: 30px; color: #333;">履歴がありません。</p>
-                </c:when>
-                <c:otherwise>
-                    <table>
-                        <thead>
-                            <tr>
+<div class="container">
+<h1>購入履歴 - 過去の取引</h1>
+<div class="history">
+<c:choose>
+<c:when test="${empty historyList}">
+<p style="font-size: 30px; color: #333;">履歴がありません。</p>
+</c:when>
+<c:otherwise>
+<table>
+<thead>
+<tr>
 
                             </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="history" items="${historyList}">
-                                <c:if test="${history.flag}">
-                                    <tr>
+</thead>
+<tbody>
+<c:forEach var="history" items="${historyList}">
+<c:if test="${history.flag}">
+<tr>
 
                                         <td><a href="${pageContext.request.contextPath}/kakugari/product?item_id=${history.item_Id}"><img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80"></a></td>
-                                        <td class="completed">購入が完了しました。</td>
+<td class="completed">購入が完了しました。</td>
 
                                     </tr>
-                                </c:if>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </c:otherwise>
-            </c:choose>
-        </div>
+</c:if>
+</c:forEach>
+</tbody>
+</table>
+</c:otherwise>
+</c:choose>
+</div>
 
         <div class="button-container">
-            <a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a>
-        </div>
-    </div>
+<a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a>
+</div>
+</div>
 
 
 </body>

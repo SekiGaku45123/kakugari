@@ -16,6 +16,7 @@
            text-align: center;
            color: #0056b3;
        }
+
        .form-container {
            max-width: 600px;
            margin: 0 auto;
@@ -117,3 +118,4 @@
 <p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">メインメニューに戻る</a></p>
 </div>
 </html>
+<jsp:include page="/footer.html" />
