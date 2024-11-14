@@ -46,26 +46,23 @@
 </style>
 
 <div class="main_search">
-	<div class="narrow_down">
-		<span>絞り込む</span>
-
+<div class="narrow_down">
+<span>絞り込む</span>
 
 
 	</div>
-	<div class="search_list">
-		<div class="kakaka">
-		<c:forEach var="p" items="${search}">
-			<div>${p.getItem_name()}</div>
-		</c:forEach>
-		</div>
+<div class="search_list">
+<div class="kakaka">
+<c:forEach var="p" items="${search}">
+<div>${p.getItem_name()}</div>
+</c:forEach>
+</div>
 
 	</div>
-
 
 
 
 </div>
-
 
 
 <br><br><br><br><br><br><br><br><br>
