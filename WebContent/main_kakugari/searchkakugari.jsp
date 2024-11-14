@@ -8,6 +8,7 @@
 </c:import>
 
 
+
 <style>
 .main_search{
 	background: #f5f5f5;
