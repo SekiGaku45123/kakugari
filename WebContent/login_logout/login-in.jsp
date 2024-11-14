@@ -4,7 +4,6 @@
 <!-- base.jspをインクルードしてヘッダーとフッターを共通化 -->
 <c:import url="/common/base.jsp" />
 
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,31 +11,32 @@
     <title>ログインページ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Custom styling for the login form */
+        /* 共通スタイルの適用 */
         .login-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 80vh;
             padding: 20px;
-            background-color: #f8f9fa;
+            background-color: #ffffff; /* 白背景 */
         }
         .login-container {
             width: 100%;
             max-width: 400px;
             padding: 20px;
-            background: #fff;
+            background: #ffffff; /* 内側ボックスも白背景 */
+            border: 2px solid #ccc; /* ボーダー */
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
         .login-container h2 {
-            font-weight: 700;
+            font-weight: bold;
             margin-bottom: 10px;
             color: #333;
         }
         .login-container .text-muted {
-            font-size: 0.9em;
+            font-size: 1em;
             color: #666;
             margin-bottom: 20px;
         }
@@ -45,25 +45,26 @@
         }
         .login-form .form-group label {
             float: left;
-            font-weight: 500;
+            font-weight: 600;
+            color: #333;
         }
         .login-form .form-group input {
             width: 100%;
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid #ced4da;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         .login-form .btn-primary {
             width: 100%;
             padding: 10px;
             border-radius: 5px;
-            font-weight: 600;
+            font-weight: bold;
             background-color: #007bff;
-            border-color: #007bff;
+            border: none;
         }
         .login-form .btn-primary:hover {
             background-color: #0056b3;
-            border-color: #0056b3;
         }
     </style>
 </head>
@@ -74,10 +75,10 @@
         <h2>ログイン</h2>
         <p class="text-muted">アカウントにサインインしてください</p>
 
-        <form action="Login.action" method="post" class="login-form">
+        <form action="Login.action" method="post" class="login-form" id="login-form">
             <div class="form-group">
                 <label for="email">メールアドレス</label>
-                <input type="text" id="email" name="maleaddress" placeholder="例: example@example.com" required>
+                <input type="text" id="email" name="maleaddress" placeholder="例: kakugari@botton.com" value="${param.email}" required>
             </div>
 
             <div class="form-group">

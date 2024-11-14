@@ -21,7 +21,7 @@
 
     <c:choose>
         <c:when test="${not empty favoriteItems}">
-            <p style="text-align: center;">${favoriteItems.size()}種類のいいねした商品があります</p>
+            <p style="text-align: center;">${favoriteItems.size()}個の『いいね！』した商品があります</p>
             <div class="container">
                 <div class="row">
                     <c:forEach var="item" items="${favoriteItems}">
