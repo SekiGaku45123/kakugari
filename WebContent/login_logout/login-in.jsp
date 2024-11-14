@@ -4,6 +4,7 @@
 <!-- base.jspをインクルードしてヘッダーとフッターを共通化 -->
 <c:import url="/common/base.jsp" />
 
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>

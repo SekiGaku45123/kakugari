@@ -60,4 +60,5 @@
 
 <!-- Footer inclusion with the footer container to remove extra space -->
 
+
 <jsp:include page="/footer.html" />
