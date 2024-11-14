@@ -73,10 +73,10 @@ animation: scroll 30s linear infinite;
 }
 
 .img_logo img {
-    border-radius: 10px;
+    border-radius: 30px;
     object-fit: cover;
     width: 100vw;
-    height: 50vw;
+    height: 80vh;
 }
 
 .img_logo p {
@@ -283,10 +283,10 @@ margin: 0 auto;
                   <div class="crad_size">
                     <a href="../kakugari/product?item_id=${p.getItem_id()}"><img src="${p.getImage_data()}"  alt="商品画像"></a>
                   </div>
-                    <div class="card-body">
-                        <p class="price">¥${p.getItem_price()}</p>
-                        <p class="card-text">${p.getItem_name()}</p>
-                    </div>
+               	  <div class="card-body">
+                     <p class="price">¥${p.getItem_price()}</p>
+                     <p class="card-text">${p.getItem_name()}</p>
+                  </div>
                 </div>
             </c:forEach>
         </div>
