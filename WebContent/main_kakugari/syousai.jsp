@@ -392,8 +392,9 @@
 	});
 </script>
 <!-- footerの読み込み -->
-<jsp:include page="/footer.html" />
-
+<div class="footer-container">
+  <jsp:include page="/footer.html" />
+</div>
 
 
 
