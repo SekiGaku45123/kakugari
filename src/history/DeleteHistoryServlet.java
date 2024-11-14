@@ -23,7 +23,7 @@ public class DeleteHistoryServlet extends HttpServlet {
 
                 // HistoryDAOを使って履歴を削除
                 HistoryDAO dao = new HistoryDAO();
-                dao.deleteHistory(itemId);
+                //dao.deleteHistory(itemId);
 
                 // 削除後、購入履歴ページにリダイレクト
                 response.sendRedirect(request.getContextPath() + "/history");
