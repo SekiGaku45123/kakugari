@@ -14,7 +14,7 @@ import bean.Item;
 import dao.ItemDAO;
 import tool.Page;
 
-@WebServlet(urlPatterns={"/kakugari/confirm"})
+@WebServlet(urlPatterns={"/confirm"})
 public class Confirm extends HttpServlet {
 
 
@@ -40,13 +40,17 @@ public class Confirm extends HttpServlet {
 
 				String keyword = request.getParameter("item_id");
 
+
+				System.out.println(keyword);
+				System.out.println("で");
+
 				ItemDAO dao=new ItemDAO();
 				List<Item> list=dao.confirm(keyword);
 
 				System.out.print(list);
 
 				request.setAttribute("list", list);
-				request.getRequestDispatcher("../main_kakugari/purchase-in.jsp")
+				request.getRequestDispatcher("/main_kakugari/purchase-in.jsp")
 				.forward(request, response);
 
 			}catch (Exception e){

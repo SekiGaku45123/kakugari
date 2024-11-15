@@ -236,7 +236,11 @@ public class ItemDAO extends DAO{
 			Item p=new Item();
 			p.setItem_id(rs.getString("item_id"));
 			p.setUser_id(rs.getString("user_id"));
-			p.setImage_data(rs.getString("image_data"));
+			String imageData = rs.getString("image_data");
+		    if (imageData.startsWith("..")) {
+		        imageData = imageData.substring(2); // 先頭の「..」を削除
+		    }
+		    p.setImage_data(imageData);
 			p.setItem_name(rs.getString("item_name"));
 			p.setItem_price(rs.getInt("item_price"));
 			p.setItem_detail(rs.getString("item_detail"));
