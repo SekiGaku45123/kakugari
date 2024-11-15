@@ -3,16 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList, java.net.URLEncoder" %>
 
-<c:import url="/common/base.jsp" /> <!-- base.jspをインクルード -->
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>いいね！一覧</title>
+<title>いいね！一覧 - カクガリ</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../css/style.css">
 
+<c:import url="/common/base.jsp" /> <!-- base.jspをインクルード -->
 
 <!-- base.jspのheaderはインクルードされているので、この時点でheaderが表示される -->
 
@@ -45,6 +45,7 @@
                                     <button type="submit" class="btn btn-primary btn-sm">購入</button>
                                 </form>
                                 <a href="${pageContext.request.contextPath}/kakugari/favoriteremove?id=${item.item_id}" class="btn btn-outline-danger btn-sm">削除</a>
+
                             </div>
                             <br><br><br>
                         </div>

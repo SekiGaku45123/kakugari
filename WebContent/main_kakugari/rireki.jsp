@@ -6,7 +6,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>購入履歴 - 過去の取引</title>
+    <title>購入履歴 - 過去の取引 - カクガリ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
@@ -118,9 +118,8 @@
         <div class="button-container">
             <a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a>
         </div>
-
     </div>
-<br>
+
     <!-- フッター -->
     <footer class="site-footer">
         <ul>
