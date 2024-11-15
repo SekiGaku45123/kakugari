@@ -287,6 +287,7 @@ var category1 = "${category1}";
 	                    result.innerHTML = '';
 	                    if (response.length > 0) {
 	                        // responseにデータがある場合の処理
+	                        kakaka.style.display = 'none';
 	                        for (var i = 0; i < response.length; i++) {
 	                            // 新しい要素を作成して追加
 	                            var imggmi = document.createElement('div');
@@ -297,7 +298,7 @@ var category1 = "${category1}";
 	                            itemImage.src = response[i].image_data;
 	                            itemImage.alt = response[i].item_name;
 
-	                            itemprice.textContent = response[i].item_price;
+	                            itemprice.textContent = "￥"+ response[i].item_price;
 
 	                            itemname.textContent = response[i].item_name;
 
