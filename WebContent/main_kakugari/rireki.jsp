@@ -15,7 +15,7 @@
         html, body {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
-            background-color: #f4f4f4; font-family: Arial, sans-serif;
+            background-color: #ffff; font-family: Arial, sans-serif;
         }
         .container {
             width: 90%; max-width: 1600px; height: auto;
@@ -36,46 +36,57 @@
         .return-link:hover { background-color: #ccc; }
         .purchase-date { font-size: 14px; color: #666; }
 
-        /* フッター全体のスタイル */
-        .site-footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            border-top: 2px solid #444;
-            text-align: center;
-            margin: 0;
-            margin-top: auto;
-        }
-        .site-footer ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 0;
-        }
-        .site-footer ul li {
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .site-footer ul li a {
-            color: #c0c0c0;
-            text-decoration: none;
-        }
-        .site-footer ul li a:hover {
-            color: #ffffff;
-            border-bottom: 1px solid #ffffff;
-        }
-        .site-footer ul li:not(:last-child)::after {
-            content: "|";
-            color: #555;
-            margin-left: 15px;
-        }
-        .site-footer p {
-            font-size: 14px;
-            color: #aaa;
-            margin-top: 20px;
+	         /* フッター全体のスタイル */
+	    .site-footer {
+	        background-color: #f5f5f5;  /* 背景色 */
+	        color: #fff;  /* テキスト色 */
+	        padding: 20px 0;
+	        border-top: 2px solid #f5f5f5;  /* 上のボーダー */
+	        text-align: center;
+	        margin: 0; /* 余白を削除 */
+	        margin-top: auto; /* ページの下部にフッターを固定 */
+	    }
+
+	    /* リストを横一列に並べるスタイル */
+	    .site-footer ul {
+	        list-style-type: none;
+	        padding: 0;
+	        display: flex;
+	        justify-content: center;
+	        align-items: center;
+	        gap: 20px;
+	        margin: 0;
+	    }
+
+	    /* リンクスタイル */
+	    .site-footer ul li {
+	        font-size: 16px;
+	        font-weight: bold;
+	    }
+
+	    .site-footer ul li a {
+	        color: #333;  /* リンクの色 */
+	        text-decoration: none;
+	    }
+
+	    /* リンクホバー時のエフェクト */
+	    .site-footer ul li a:hover {
+	        color: #0000ff;
+	        border-bottom: 1px solid #ffffff;  /* ホバー時の下線 */
+	    }
+
+	    /* 区切り線 */
+	    .site-footer ul li:not(:last-child)::after {
+	        content: "|";
+	        color: #555;
+	        margin-left: 15px;
+	    }
+
+	    /* フッターの著作権表示 */
+	    .site-footer p {
+	        font-size: 14px;
+	        color: #333;
+	        margin-top: 20px;
         }
     </style>
 </head>
