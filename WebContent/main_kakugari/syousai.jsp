@@ -96,7 +96,7 @@
     justify-content: center;
     align-items: flex-start;
     width: max(90%, 960px);
-    height: 80%;
+    height: 115%;
     margin: 0 auto;
 }
 
@@ -392,7 +392,7 @@
 	  });
 	});
 </script>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
 <!-- footerの読み込み -->
 <div class="footer-container">
   <jsp:include page="/footer.html" />
