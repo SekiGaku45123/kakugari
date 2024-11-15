@@ -14,6 +14,7 @@
 	grid-template-columns: 25% 75%;
 	column-gap: 5px;
 	padding: 0 5vw;
+	align-items: start;
 
 }
 .narrow_down{
