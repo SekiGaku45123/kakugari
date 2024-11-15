@@ -296,7 +296,7 @@
 
 		<div class="botan_mein">
 	        <div class="kounyu">
-	  		 <form action="${pageContext.request.contextPath}/main_kakugari/purchase-in.jsp" method="post">
+	  		 <form action="${pageContext.request.contextPath}/kakugari/confirm" method="post">
 	    	  <input type="hidden" name="item_id" value="${pro.getItem_id()}">
 	    	  <input type="hidden" name="flag" value="${pro.getFlag()}">
 
