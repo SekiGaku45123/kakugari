@@ -91,12 +91,9 @@
 	@media screen and (min-width: 960px) {
   .oya {
     /*border: 2px dotted red;*/
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: max(90%, 960px);
-    height: 56vw;
+     display: grid;
+  grid-template-columns: 55% 45%; /* 左側1、右側3の割合 */
+  align-items: start;
     margin: 0 auto;
 }
 
@@ -120,7 +117,7 @@
     width: max(30vw, 334px);
     /*height: ;*/
     max-width: 100%;
-    margin-left: 100px;
+    margin-left: 85px;
     padding: 0;
 
     /*スクロールバー非表示*/
