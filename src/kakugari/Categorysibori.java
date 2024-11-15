@@ -40,21 +40,45 @@ public class Categorysibori extends HttpServlet {
 
 				String keyword = request.getParameter("keyword");
 				String category = request.getParameter("value");
-				String hanbai = request.getParameter("");
-				String urikire = request.getParameter("");
-				String sinpin = request.getParameter("");
-				String yogore = request.getParameter("");
-				String gatiyogore = request.getParameter("");
+				String hanbai = request.getParameter("hanbai");
+				boolean han_bai = Boolean.parseBoolean(hanbai);
 
-				String pricemin = request.getParameter("");
-				String pricemax = request.getParameter("");
+				String urikire = request.getParameter("urikire");
+				boolean uri_kire = Boolean.parseBoolean(urikire);
+
+				String sinpin = request.getParameter("isNew");
+				boolean sin_pin = Boolean.parseBoolean(sinpin);
+
+				String yogore = request.getParameter("noDamage");
+				boolean yogo_re = Boolean.parseBoolean(yogore);
+
+				String gatiyogore = request.getParameter("poorCondition");
+				boolean gati_yogore = Boolean.parseBoolean(gatiyogore);
+
+				String item1 = request.getParameter("item1");
+
+				String pricemin = request.getParameter("priceMin");
+				String pricemax = request.getParameter("priceMax");
+
+				System.out.println("データ");
+				System.out.println(keyword);
+				System.out.println(category);
+				System.out.println(han_bai);
+				System.out.println(uri_kire);
+				System.out.println(sin_pin);
+				System.out.println(yogo_re);
+				System.out.println(gati_yogore);
+				System.out.println(item1);
+				System.out.println(pricemin);
+				System.out.println(pricemax);
+				System.out.println("終了");
 
 
 				System.out.print("ぺぺ２");
 				System.out.print(category);
 
 				ItemDAO dao=new ItemDAO();
-				List<Item> list=dao.categorysibori(keyword, category, hanbai, urikire, sinpin, yogore, gatiyogore, pricemin, pricemax);
+				List<Item> list=dao.categorysibori(keyword, category, han_bai, uri_kire, sin_pin, yogo_re, gati_yogore, pricemin, pricemax);
 
 				System.out.print(list);
 
