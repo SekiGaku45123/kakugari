@@ -118,8 +118,9 @@
         <div class="button-container">
             <a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a>
         </div>
-    </div>
 
+    </div>
+<br>
     <!-- フッター -->
     <footer class="site-footer">
         <ul>
