@@ -2,14 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- base.jspをインクルードしてヘッダーとフッターを共通化 -->
-<c:import url="/common/base.jsp" />
+
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ログインページ</title>
+    <title>ログインページ - カクガリ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <c:import url="/common/base.jsp" />
+
     <style>
         /* 共通スタイルの適用 */
         .login-wrapper {

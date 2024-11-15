@@ -7,14 +7,15 @@
     boolean isLoggedIn = (session != null && session.getAttribute("customer") != null);
 %>
 
-<c:import url="/common/base.jsp"></c:import>
 
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>商品詳細</title>
+  <title>商品詳細 - カクガリ</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <c:import url="/common/base.jsp"></c:import>
   <style>
+
 
   .mozi {
   font-size: 30px;
@@ -391,6 +392,7 @@
 	  });
 	});
 </script>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <!-- footerの読み込み -->
 <div class="footer-container">
   <jsp:include page="/footer.html" />
