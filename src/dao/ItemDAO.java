@@ -214,6 +214,46 @@ public class ItemDAO extends DAO{
 	    con.close();
 	    return list;
 	}
+	public List<Item> confirm(String keyword) throws Exception {
+
+		List<Item> list = new ArrayList<>();
+
+		Connection con=getConnection();
+
+		String catego = "";
+
+
+		catego = "select * from item join images on images.item_id = item.item_id WHERE item.item_id LIKE ?";
+
+
+		PreparedStatement st = con.prepareStatement(
+				catego);
+		st.setString(1, keyword);
+		ResultSet rs=st.executeQuery();
+
+
+		while (rs.next()){
+			Item p=new Item();
+			p.setItem_id(rs.getString("item_id"));
+			p.setUser_id(rs.getString("user_id"));
+			p.setImage_data(rs.getString("image_data"));
+			p.setItem_name(rs.getString("item_name"));
+			p.setItem_price(rs.getInt("item_price"));
+			p.setItem_detail(rs.getString("item_detail"));
+			p.setCategory(rs.getString("category"));
+			p.setCondition(rs.getString("condition"));
+			p.setArea(rs.getString("area"));
+			p.setShipping_days(rs.getInt("shipping_days"));
+			p.setFlag(rs.getBoolean("flag"));
+
+			list.add(p);
+		}
+
+		st.close();
+		con.close();
+
+		return list;
+	}
 
 }
 

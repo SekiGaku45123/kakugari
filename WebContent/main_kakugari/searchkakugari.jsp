@@ -19,7 +19,7 @@
 }
 .narrow_down{
 	border:solid 2px #cccccc;
-	border-radius: 10px 0 0 10px;
+	border-radius: 10px 0 5px 10px;
 	padding:0 10px;
 }
 
@@ -27,7 +27,7 @@
 	border:solid 2px #cccccc;
 	text-align:center;
   	padding:10px 0 25px 8px;
-  	border-radius: 0 10px 10px 0;
+  	border-radius: 0 10px 10px 5px;
 
 }
 
@@ -218,22 +218,23 @@ input[type="number"] {
 			</div>
 		</details>
 		<div class="underline_no"></div>
-
+		<br>
 
 	</div>
 	<div class="search_list">
-		<div class="kakaka" id="hantei">
-		<c:forEach var="p" items="${search}">
-			<div class="imggmi">
-					<img src="${p.getImage_data()}">
-					<p class="price_im">￥${p.getItem_price()}</p>
-					<p>${p.getItem_name()}</p>
-			</div>
-		</c:forEach>
 
-		</div>
-		<div class="kakaka" id="result">
-		</div>
+			<div class="kakaka" id="hantei">
+			<c:forEach var="p" items="${search}">
+				<div class="imggmi">
+						<img src="${p.getImage_data()}">
+						<p class="price_im">￥${p.getItem_price()}</p>
+						<p>${p.getItem_name()}</p>
+				</div>
+			</c:forEach>
+
+			</div>
+			<div class="kakaka" id="result">
+			</div>
 	</div>
 
 
