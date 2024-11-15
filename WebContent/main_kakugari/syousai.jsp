@@ -96,7 +96,7 @@
     justify-content: center;
     align-items: flex-start;
     width: max(90%, 960px);
-    height: 115%;
+    height: 56vw;
     margin: 0 auto;
 }
 
