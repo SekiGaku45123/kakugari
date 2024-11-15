@@ -28,15 +28,21 @@
         width: 100%;
     }
 </style>
-
+<c:set var="customer" value="${sessionScope.customer}" />
 <div class="container my-5">
     <h2 class="mb-4 text-center">商品リスト</h2>
 
     <hr>
 
     <h3 class="mb-3">購入情報入力</h3>
+    <c:forEach var="list" items="${list}">
+        <img src="${list.getImage_data()}" alt="商品画像" >
+        <h2>${list.getItem_name()}</h2>
+        <p class="pq">￥<span class="mozi">${list.getItem_price()}</span>（税込・送料込み）</p>
+     </c:forEach>
 
     <form action="Purchaseaction" method="post">
+
         <div class="form-group">
             <label for="name">お名前</label>
             <input type="text" class="form-control" id="name" name="name"
@@ -44,9 +50,7 @@
                    value="${customer.getUser_name()}" required>
         </div>
 
-        <input type="hidden" name="item_id" value="<% String Year = request.getParameter("item_id"); %><%= Year %>">
-        <input type="hidden" name="flag" value="<% String flag = request.getParameter("flag"); %><%= flag %>">
-        <input type="hidden" name="image_data" value="<% String image_data = request.getParameter("image_data"); %><%= image_data %>">
+
 
         <div class="form-group">
             <label for="address">ご住所</label>
@@ -67,8 +71,10 @@
                     </button>
                 </a>
             </div>
-            <p id="text">"${credit.getCredit_()}"</p>
-            <button onclick="unmaskText()">最初の12文字をマスクする</button>
+<p id="text">${fn:escapeXml(credit.getCreditNumber())}</p>
+<button id="unmaskButton" type="button" class="btn btn-info mt-2">最初の12文字をマスク/解除</button>
+
+
 
 			</div>
 
@@ -86,37 +92,34 @@
                 <input class="form-check-input" type="radio" name="paymentMethod" id="convenienceStore" value="コンビニ支払い" onclick="toggleCreditCardInfo()">
                 <label class="form-check-label" for="convenienceStore">コンビニ支払い</label>
             </div>
-        </div>
+<div class="form-check">
+    <a href="../main_kakugari/purchase-connfirm.jsp" class="btn btn-danger w-100 text-center">
+        購入確認画面へ
+    </a>
+</div>
 
-        <script>
-            function toggleCreditCardInfo() {
-                const isCreditCardSelected = document.getElementById("creditCard").checked;
-                const creditCardInfo = document.getElementById("creditCardInfo");
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const originalText = '${fn:escapeXml(credit.getCreditNumber())}';
+        const maskedText = originalText.replace(/^.{12}/, "**** **** ****");
 
-                creditCardInfo.style.display = isCreditCardSelected ? "block" : "none";
+        const textElement = document.getElementById("text");
+        textElement.innerText = maskedText;
+
+        let isMasked = true;
+        document.getElementById("unmaskButton").addEventListener("click", () => {
+            if (isMasked) {
+                textElement.innerText = originalText;
+            } else {
+                textElement.innerText = maskedText;
             }
-
-            document.addEventListener("DOMContentLoaded", toggleCreditCardInfo);
-
-
-
-
-            const originalText = '${customer.getUser_address()}';
-            let maskedText = originalText.replace(/^.{7}/, "*******");
-            // 初期表示時にマスクされたテキストを表示
-            document.getElementById("text").innerText = maskedText;
-            // ボタンが押されたときに元のテキストを表示する関数
-            function unmaskText() {
-            	document.getElementById("text").innerText = originalText;
-            	}
+            isMasked = !isMasked;
+        });
+    });
+</script>
 
 
 
-
-
-        </script>
-
-        <button type="submit" class="btn btn-danger w-100">購入する</button>
     </form>
 </div>
 
