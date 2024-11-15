@@ -46,6 +46,7 @@
                                 </form>
                                 <a href="${pageContext.request.contextPath}/kakugari/favoriteremove?id=${item.item_id}" class="btn btn-outline-danger btn-sm">削除</a>
                             </div>
+                            <br><br><br>
                         </div>
                     </c:forEach>
                 </div>
