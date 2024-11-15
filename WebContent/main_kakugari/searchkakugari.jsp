@@ -148,34 +148,48 @@ input[type="number"] {
     padding-left: 5px; /* 左側に5pxの余白を追加 */
 }
 
+.price_im{
+  position: absolute;/*重ねたい子要素にabsolute*/
+  top:65%;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 1.3vw;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 0 30px 30px 0;
+  font-weight: bold;
+}
+
 </style>
 
 
-<c:set var="item1" value="${searchtin}" />
+
 
 <div class="main_search">
+	<c:set var="item1" value="${searchtin}" />
+	<c:set var="category1" value="${categoryy}" />
 	<div class="narrow_down">
 		<div class="underline"><font color="#666666">絞り込む</font></div>
 		<div class="underline_no"></div>
 		<details class="custom-details">
 			<summary>カテゴリー</summary>
 				<select name="pets" class="pet-select" id="mySelectBox">
-					<option value="" class="font" >すべて</option>
+					<option value="all" class="font" >すべて</option>
 					<c:forEach var="q" items="${searchcategory}">
 					<option value="${q.getCategory()}" <c:if test="${item1 == q.getCategory()}">selected</c:if>>${q.getCategory()}</option>
 					</c:forEach>
 				</select>
 		</details>
-		<div id="result"></div>
+
 		<div class="underline_no"></div>
 		<details class="custom-details">
 			<summary>販売状況</summary>
 			  	<div class="checkbox1">
-			    	<input type="checkbox" id="scales" name="scales" />
+			    	<input type="checkbox" id="scales1" name="scales" />
 			    	<label for="horns">販売中</label>
 			  	</div>
 			  	<div class="checkbox1">
-			    	<input type="checkbox" id="scales" name="scales" />
+			    	<input type="checkbox" id="scales2" name="scales" />
 			    	<label for="horns">売り切れ</label>
 			  	</div>
 		</details>
@@ -183,15 +197,15 @@ input[type="number"] {
 		<details class="custom-details">
 			<summary>商品状態</summary>
 				<div class="checkbox1">
-			    	<input type="checkbox" id="scales" name="scales" />
+			    	<input type="checkbox" id="isNew" name="scales" />
 			    	<label for="horns">新品・未使用</label>
 			  	</div>
 			  	<div class="checkbox1">
-			    	<input type="checkbox" id="scales" name="scales" />
+			    	<input type="checkbox" id="noDamage" name="scales" />
 			    	<label for="horns">目立った傷や汚れなし</label>
 			  	</div>
 			  	<div class="checkbox1">
-			    	<input type="checkbox" id="scales" name="scales" />
+			    	<input type="checkbox" id="poorCondition" name="scales" />
 			    	<label for="horns">全体的に状態が悪い</label>
 			  	</div>
 		</details>
@@ -207,16 +221,18 @@ input[type="number"] {
 
 	</div>
 	<div class="search_list">
-		<div class="kakaka">
+		<div class="kakaka" id="hantei">
 		<c:forEach var="p" items="${search}">
 			<div class="imggmi">
-				<img src="${p.getImage_data()}">
-				<p>${p.getItem_name()}</p>
+					<img src="${p.getImage_data()}">
+					<p class="price_im">￥${p.getItem_price()}</p>
+					<p>${p.getItem_name()}</p>
 			</div>
-
 		</c:forEach>
-		</div>
 
+		</div>
+		<div class="kakaka" id="result">
+		</div>
 	</div>
 
 
@@ -231,23 +247,87 @@ input[type="number"] {
 
 <script type="text/javascript">
 
+var item1 = "${item1}";
+var category1 = "${category1}";
+
 	$(document).ready(function() {
-		  $('#mySelectBox').change(function() {
-		    var selectedValue = $(this).val();
-			var sati
+		  $('.main_search select, .main_search input[type="checkbox"], .main_search input[type="number"]').change(function() {
+			var selectedValue = $('#mySelectBox').val();
+
+			var hanbai = $('#scales1').is(':checked');
+			var urikire = $('#scales2').is(':checked');
+
+	        // 価格
+	        var priceMin = $('input[name="price_min"]').val();
+	        var priceMax = $('input[name="price_max"]').val();
+
+	        // 商品状態
+	        var isNew = $('#isNew').is(':checked');              // 新品・未使用
+	        var noDamage = $('#noDamage').is(':checked');        // 目立った傷や汚れなし
+	        var poorCondition = $('#poorCondition').is(':checked');// 全体的に状態が悪い
+
 		    $.ajax({
 		      url: '../kakugari/categorysibori',  // サーバーのURL
 		      type: 'POST',
-		      data: { value: selectedValue},
-		      success: function(response) {
-		        $('#result').html(response);
-		      },
+		      data: {
+		    	    value: selectedValue,
+		    	    hanbai: hanbai,
+		    	    urikire: urikire,
+	                priceMin: priceMin,
+	                priceMax: priceMax,
+	                isNew: isNew,
+	                noDamage: noDamage,
+	                poorCondition: poorCondition,
+	                item1: item1,        // 追加されたitem1
+	                keyword: category1 // 追加されたcategory1
+	                },
+	                success: function(response) {
+	                    var result = document.getElementById('result'); // Htmlのdivの部分を指定する
+	                    var kakaka = document.getElementById('hantei');
+	                    result.innerHTML = '';
+	                    if (response.length > 0) {
+	                        // responseにデータがある場合の処理
+	                        kakaka.style.display = 'none'; // kakakaを非表示にする
+	                        for (var i = 0; i < response.length; i++) {
+	                            // 新しい要素を作成して追加
+	                            var imggmi = document.createElement('div');
+	                            var itemImage = document.createElement('img');
+	                            var itemprice = document.createElement('p');
+	                            var itemname = document.createElement('p');
+
+	                            itemImage.src = response[i].image_data;
+	                            itemImage.alt = response[i].item_name;
+
+	                            itemprice.textContent = response[i].item_price;
+
+	                            itemname.textContent = response[i].item_name;
+
+
+	                            itemprice.className = 'price_im';
+
+	                            imggmi.className = 'imggmi';
+
+	                            imggmi.appendChild(itemImage);
+	                            imggmi.appendChild(itemprice);
+	                            imggmi.appendChild(itemname);
+
+	                            result.appendChild(imggmi);
+	                        }
+	                    } if(response.length === 0){
+	                        // responseが空（データがない）場合の処理
+	                        var noDataDiv = document.createElement('div');
+	                        noDataDiv.textContent = 'データが見つかりませんでした'; // メッセージを設定
+	                        result.appendChild(noDataDiv); // メッセージを表示
+	                    }
+	                },
 		      error: function(xhr, status, error) {
 		        console.error('AJAX request failed:', error);
 		      }
 		    });
 		  });
 		});
+
+
 
 </script>
 

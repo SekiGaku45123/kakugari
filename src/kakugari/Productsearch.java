@@ -58,6 +58,7 @@ public class Productsearch extends HttpServlet {
 				System.out.print(list);
 
 				request.setAttribute("search", list);
+				request.setAttribute("categoryy", keyword);
 				request.setAttribute("searchtin", category);
 				request.setAttribute("searchcategory", list1);
 				request.getRequestDispatcher("../main_kakugari/searchkakugari.jsp")
