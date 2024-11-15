@@ -27,6 +27,20 @@
     button {
         width: 100%;
     }
+
+    .saizu{
+    	position: relative;
+    	left:0;
+    	width: 150px;
+    	right: 150px;
+    	background-color: black;
+    }
+    .saizu img{
+    	width: 100%;
+    	right: auto;
+    	object-fit: contain;
+    	background-color: black;
+    }
 </style>
 <c:set var="customer" value="${sessionScope.customer}" />
 <div class="container my-5">
@@ -36,7 +50,7 @@
 
     <h3 class="mb-3">購入情報入力</h3>
     <c:forEach var="list" items="${list}">
-        <img src="${list.getImage_data()}" alt="商品画像" >
+        <div class="saizu"><img src="${pageContext.request.contextPath}${list.getImage_data()}" alt="商品画像" ></div>
         <h2>${list.getItem_name()}</h2>
         <p class="pq">￥<span class="mozi">${list.getItem_price()}</span>（税込・送料込み）</p>
      </c:forEach>
