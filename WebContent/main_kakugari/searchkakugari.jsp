@@ -287,7 +287,6 @@ var category1 = "${category1}";
 	                    result.innerHTML = '';
 	                    if (response.length > 0) {
 	                        // responseにデータがある場合の処理
-	                        kakaka.style.display = 'none'; // kakakaを非表示にする
 	                        for (var i = 0; i < response.length; i++) {
 	                            // 新しい要素を作成して追加
 	                            var imggmi = document.createElement('div');
@@ -315,6 +314,7 @@ var category1 = "${category1}";
 	                        }
 	                    } if(response.length === 0){
 	                        // responseが空（データがない）場合の処理
+	                        kakaka.style.display = 'none'; // kakakaを非表示にする
 	                        var noDataDiv = document.createElement('div');
 	                        noDataDiv.textContent = 'データが見つかりませんでした'; // メッセージを設定
 	                        result.appendChild(noDataDiv); // メッセージを表示
