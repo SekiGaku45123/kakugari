@@ -87,14 +87,14 @@ animation: scroll 30s linear infinite;
 
 
 .top-text {
-    top: 30%;
-    font-size: 7vw;
+    top: 200px;
+    font-size: 70px;
 }
 
 
 .bottom-text {
-    bottom: 30%;
-    font-size: 7vw;
+    bottom: 200px;
+    font-size: 70px;
 }
 .font_title{
 width: 10vw;
