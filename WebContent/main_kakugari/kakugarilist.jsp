@@ -87,14 +87,14 @@ animation: scroll 30s linear infinite;
 
 
 .top-text {
-    top: 30%;
-    font-size: 7vw;
+    top: 200px;
+    font-size: 70px;
 }
 
 
 .bottom-text {
-    bottom: 30%;
-    font-size: 7vw;
+    bottom: 200px;
+    font-size: 70px;
 }
 .font_title{
 width: 10vw;
@@ -180,12 +180,11 @@ margin: 0 auto;
 
 
 
-
 </style>
 <div class="img_logo">
-	<img src="../kakugari_image/image_logo.jpg">
-	<p class="top-text">フリマサイト</p><br>
-	<p class="bottom-text">―FREE MARKET―</p>
+<img src="../kakugari_image/image_logo.jpg">
+<p class="top-text">フリマサイト</p><br>
+<p class="bottom-text">―FREE MARKET―</p>
 </div>
 
 
@@ -194,47 +193,47 @@ margin: 0 auto;
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
 	<ol class="carousel-indicators">
-        <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleControls" data-slide-to="1"></li>
-        <li data-target="#carouselExampleControls" data-slide-to="2"></li>
-        <li data-target="#carouselExampleControls" data-slide-to="3"></li>
-    </ol>
+<li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+<li data-target="#carouselExampleControls" data-slide-to="1"></li>
+<li data-target="#carouselExampleControls" data-slide-to="2"></li>
+<li data-target="#carouselExampleControls" data-slide-to="3"></li>
+</ol>
 
     <div class="carousel-inner">
-    <div class="carousel-item active">
-        <a href="https://aespa-official.jp/" target="_blank">
-            <img class="d-block w-75 rounded" src="../kakugari_image/カクガリカード.jpg" alt="Image 1">
-        </a>
-    </div>
-    <div class="carousel-item">
-        <a href="https://www.dmm.co.jp/age_check/" target="_blank">
-            <img class="d-block w-75 rounded" src="../kakugari_image/初回限定.jpg" alt="Image 2">
-        </a>
-    </div>
-    <div class="carousel-item">
-        <a href="https://aespa-official.jp/" target="_blank">
-            <img class="d-block w-75 rounded" src="../kakugari_image/送料無料.jpg" alt="Image 3">
-        </a>
-    </div>
-    <div class="carousel-item">
-        <a href="https://aespa-official.jp/" target="_blank">
-            <img class="d-block w-75 rounded" src="../kakugari_image/招待コード.jpg" alt="Image 4">
-        </a>
-    </div>
+<div class="carousel-item active">
+<a href="https://aespa-official.jp/" target="_blank">
+<img class="d-block w-75 rounded" src="../kakugari_image/カクガリカード.jpg" alt="Image 1">
+</a>
+</div>
+<div class="carousel-item">
+<a href="https://www.dmm.co.jp/age_check/" target="_blank">
+<img class="d-block w-75 rounded" src="../kakugari_image/初回限定.jpg" alt="Image 2">
+</a>
+</div>
+<div class="carousel-item">
+<a href="https://aespa-official.jp/" target="_blank">
+<img class="d-block w-75 rounded" src="../kakugari_image/送料無料.jpg" alt="Image 3">
+</a>
+</div>
+<div class="carousel-item">
+<a href="https://aespa-official.jp/" target="_blank">
+<img class="d-block w-75 rounded" src="../kakugari_image/招待コード.jpg" alt="Image 4">
+</a>
+</div>
 </div>
 
     <!-- 前後のコントローラー -->
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<span class="sr-only">Previous</span>
+</a>
+<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span>
+<span class="sr-only">Next</span>
+</a>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </div>
 
 <br><div class="pq"></div><br>
@@ -242,55 +241,55 @@ margin: 0 auto;
 <div class="font_title">
 <h2><font color="#4f4f4f">ALL</font></h2>
 </div>
- <div class="scroll-container">
-  <div class="scroll-content">
-    <c:forEach var="p" items="${all}">
-      <div class="toire">
-        <div class="imgagess mese">
-          <a href="../kakugari/product?item_id=${p.getItem_id()}">
-            <img src="${p.getImage_data()}"  class="sasa">
-            <div class="price-overlay">￥${p.getItem_price()}</div>
-          </a>
-        </div>
-        <p>${p.getItem_name()}</p>
-      </div>
-    </c:forEach>
-   </div>
-   <div class="scroll-content1">
+<div class="scroll-container">
+<div class="scroll-content">
+<c:forEach var="p" items="${all}">
+<div class="toire">
+<div class="imgagess mese">
+<a href="../kakugari/product?item_id=${p.getItem_id()}">
+<img src="${p.getImage_data()}"  class="sasa">
+<div class="price-overlay">￥${p.getItem_price()}</div>
+</a>
+</div>
+<p>${p.getItem_name()}</p>
+</div>
+</c:forEach>
+</div>
+<div class="scroll-content1">
 
 
     <c:forEach var="p" items="${all}">
-      <div class="toire">
-        <div class="imgagess mese">
-          <a href="../kakugari/product?item_id=${p.getItem_id()}">
-            <img src="${p.getImage_data()}"  class="sasa">
-            <div class="price-overlay">￥${p.getItem_price()}</div>
-          </a>
-        </div>
-        <p>${p.getItem_name()}</p>
-      </div>
-    </c:forEach>
-   </div>
+<div class="toire">
+<div class="imgagess mese">
+<a href="../kakugari/product?item_id=${p.getItem_id()}">
+<img src="${p.getImage_data()}"  class="sasa">
+<div class="price-overlay">￥${p.getItem_price()}</div>
+</a>
+</div>
+<p>${p.getItem_name()}</p>
+</div>
+</c:forEach>
+</div>
 </div>
 
 <br><div class="pq"></div><br>
 
 <div class="cardall">
-        <div class="cardchildren">
-            <!-- カードの数に応じてこの .col を5つ繰り返してください -->
-            <c:forEach var="p" items="${all}">
-                <div class="card_img">
-                  <div class="crad_size">
-                    <a href="../kakugari/product?item_id=${p.getItem_id()}"><img src="${p.getImage_data()}"  alt="商品画像"></a>
-                  </div>
-               	  <div class="card-body">
-                     <p class="price">¥${p.getItem_price()}</p>
-                     <p class="card-text">${p.getItem_name()}</p>
-                  </div>
-                </div>
-            </c:forEach>
-        </div>
-    </div>
+<div class="cardchildren">
+<!-- カードの数に応じてこの .col を5つ繰り返してください -->
+<c:forEach var="p" items="${all}">
+<div class="card_img">
+<div class="crad_size">
+<a href="../kakugari/product?item_id=${p.getItem_id()}"><img src="${p.getImage_data()}"  alt="商品画像"></a>
+</div>
+<div class="card-body">
+<p class="price">¥${p.getItem_price()}</p>
+<p class="card-text">${p.getItem_name()}</p>
+</div>
+</div>
+</c:forEach>
+</div>
+</div>
 
 <!-- footerの読み込み -->
 <jsp:include page="/footer.html" />
