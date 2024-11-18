@@ -1,6 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <%
     // セッションからログイン情報を取得
     HttpSession sessions = request.getSession(false);
@@ -117,7 +118,7 @@
     width: max(30vw, 334px);
     /*height: ;*/
     max-width: 100%;
-    margin-left: 85px;
+    margin-left: 0; /*いつか変えるかもしれない*/
     padding: 0;
 
     /*スクロールバー非表示*/
@@ -131,12 +132,14 @@
 }
 
 .kounyu {
+  z-index: 9999;
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
 .kounyu button {
+  display: block;
   color: white;
   font-weight: 900;
   width: 20vw;
@@ -144,7 +147,8 @@
   background: black;
   border: none;
   padding: 10px 20px;
-  cursor: pointer;
+
+  /*cursor: pointer;*/
 }
 
 .okini{
@@ -184,6 +188,87 @@
   border: 1px solid black;
   border-radius: 5px 5px;
  }
+
+ .comment_list{
+ width: 100%;
+ height: 250px;
+ padding: 50px 0;
+ background: red;
+ box-sizing: border-box;
+ overflow-y:scroll;
+ overscroll-behavior: contain;
+ position: relative; /* static から relative に変更 */
+ z-index:9998;
+
+ }
+
+.comment_list::-webkit-scrollbar{
+  display: none;
+}
+
+ .comment_left{
+ padding: 0 10px 0 0;
+ background: white;
+ border-radius: 0 10px 10px 0;
+ width:25vw;
+ }
+ .comment_light{
+ padding: 0 0 0 10px;
+ margin: 0 0 0 auto;
+ background: white;
+ border-radius: 10px 0 0 10px;
+ width:25vw;
+
+ }
+
+
+.comment_input textarea{
+  position: relative;
+  padding: 1px 20px 1px;
+  margin: 10px 0 10px 0;
+  border-radius: 20px;
+  z-index:9998;
+  field-sizing: content;
+  width: 80%;
+  min-height: 1lh;
+  max-height: 5lh;
+  resize: none;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+}
+
+textarea::-webkit-scrollbar{
+  display: none;
+}
+
+.comment_input button{
+
+position: relative;
+width: 18%;
+height: 1lh;
+margin: 10px 0;
+float: right;
+background: transparent;
+
+ border: none;
+
+ outline: none;
+
+ box-shadow: none;
+
+}
+
+.comment_input button img{
+object-fit: contain;
+width: auto;
+height: 100%;
+}
+
+.comment_input button img:hover{
+filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-rotate(198deg) brightness(99%) contrast(103%);
+}
+
+
 }
 
 @media screen and (max-width: 959px) {
@@ -228,7 +313,7 @@
 .kounyu button {
   color: white;
   font-weight: 900;
-  width: 50vw;
+  width: 100%;
   border-radius: 5px;
   background:black;
   border: none;
@@ -277,6 +362,10 @@
 }
   </style>
 
+
+<c:set var="user_id" value="${user_data.getUser_id()}" />
+
+<c:set var="item_idid" value="${pro[0].getItem_id()}"/>
 
 <c:forEach var="pro" items="${pro}">
   <div class="oya">
@@ -361,9 +450,15 @@
 		<div class="pq"></div>
 		<span class="taitoru">コメント</span>
 		<div id="login-content" style="<%= isLoggedIn ? "" : "display: none;" %>">
-	        <h2>ログイン済みのユーザーのみ表示されるコンテンツです</h2>
-	        <p>あなたのメールアドレス: <%= session.getAttribute("userEmail") %></p>
-	        <a href="../login_logout/logout">ログアウト</a>
+	        <div class="comment_list">
+	        	<div id="dorihu"></div>
+	        </div>
+	        <div class="comment_input">
+	        	<textarea id="comment_input" name="comment_input"></textarea>
+	        	<button id="send_button"><img src="../kakugari_image/19610.png" alt="送信"/></button>
+	        </div>
+
+
     	</div>
 
 	    <!-- ログインしていない場合にのみ表示する要素 -->
@@ -388,6 +483,62 @@
 	    target.scrollBy(e.deltaX, e.deltaY);
 	  });
 	});
+
+
+	var user_id = "${user_id }";
+	var item_idid="${item_idid}";
+
+	document.getElementById("send_button").addEventListener("click", function(event) {
+        event.preventDefault(); // フォーム送信を防止
+        const commentValue = document.getElementById("comment_input").value.trim();
+        if (commentValue) {
+            console.log("入力されたコメント:", commentValue);
+            $.ajax({
+  		      url: '../kakugari/comment_insert',  // サーバーのURL
+  		      type: 'POST',
+  		      data: {
+  		    	    comment:commentValue,
+  		    	    user_id:user_id,
+  		    	    item_id:item_idid
+  	                },
+	  	              success: function(cocomment) {
+	  	                console.log(cocomment);
+	  	                var dorihu = document.getElementById('dorihu');
+
+	  	                if (dorihu) {  // dorihu が存在するか確認
+	  	                    dorihu.innerHTML = '';
+
+	  	                    for (var i = 0; i < cocomment.length; i++) {
+	  	                        console.log(user_id, cocomment[i].user_id + "一致");
+
+	  	                        if (user_id == cocomment[i].user_id) {
+	  	                            var commentlight = document.createElement('div');
+	  	                            var commentp = document.createElement('p');
+	  	                            commentlight.className = 'comment_light';
+	  	                            commentp.textContent = cocomment[i].comment;
+	  	                            commentlight.appendChild(commentp);
+	  	                            dorihu.appendChild(commentlight);
+	  	                        } else {
+	  	                            var commentleft = document.createElement('div');
+	  	                            var commentpp = document.createElement('p');
+	  	                            commentleft.className = 'comment_left';  // commentleft を使う
+	  	                            commentpp.textContent = cocomment[i].comment;
+	  	                            commentleft.appendChild(commentpp);  // commentleft に追加
+	  	                            dorihu.appendChild(commentleft);  // commentleft を dorihu に追加
+	  	                        }
+	  	                    }
+	  	                } else {
+	  	                    console.error('dorihu 要素が見つかりません');
+	  	                }
+
+  	                },
+            });
+        } else {
+            console.log("コメントが空です。");
+        }
+    });
+
+
 </script>
 <br><br><br><br><br><br><br><br>
 <!-- footerの読み込み -->

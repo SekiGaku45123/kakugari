@@ -29,7 +29,7 @@
            width: auto;
            margin: 0 auto 10px;
            background-color: white;
-           z-index: 9999;
+           z-index: 10000;
        }
        header::after {
 	       content: '';
