@@ -118,6 +118,7 @@
     width: max(30vw, 334px);
     /*height: ;*/
     max-width: 100%;
+    z-index:9998;
     margin-left: 0; /*いつか変えるかもしれない*/
     padding: 0;
 
@@ -193,7 +194,9 @@
  width: 100%;
  height: 250px;
  padding: 50px 0;
- background: red;
+ /*background: white;*/
+ border: 1px solid #b8b8b8;
+ border-radius: 5px 5px;
  box-sizing: border-box;
  overflow-y:scroll;
  overscroll-behavior: contain;
@@ -208,16 +211,18 @@
 
  .comment_left{
  padding: 0 10px 0 0;
- background: white;
+ background: #e8e8e8;
  border-radius: 0 10px 10px 0;
  width:25vw;
+ overflow-wrap: break-word;
  }
  .comment_light{
  padding: 0 0 0 10px;
  margin: 0 0 0 auto;
- background: white;
+ background: #e8e8e8;
  border-radius: 10px 0 0 10px;
  width:25vw;
+ overflow-wrap: break-word;
 
  }
 
@@ -343,7 +348,8 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
   cursor: pointer;
  }
 
- .login-comment{
+
+  .login-comment{
  display: flex;
   justify-content: center;
   margin-top: 10px;
@@ -358,6 +364,88 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
   border: 1px solid black;
   border-radius: 5px 5px;
  }
+
+ .comment_list{
+ width: 100%;
+ height: 250px;
+ padding: 50px 0;
+ /*background: red;*/
+ border: 1px solid #b8b8b8;
+ border-radius: 5px 5px;
+ box-sizing: border-box;
+ overflow-y:scroll;
+ overscroll-behavior: contain;
+ position: relative; /* static から relative に変更 */
+ z-index:9998;
+
+ }
+
+.comment_list::-webkit-scrollbar{
+  display: none;
+}
+
+ .comment_left{
+ padding: 0 10px 0 0;
+ background: #e8e8e8;
+ border-radius: 0 10px 10px 0;
+ width:55vw;
+ overflow-wrap: break-word;
+ }
+ .comment_light{
+ padding: 0 0 0 10px;
+ margin: 0 0 0 auto;
+ background: #e8e8e8;
+ border-radius: 10px 0 0 10px;
+ width:55vw;
+ overflow-wrap: break-word;
+ }
+
+
+.comment_input textarea{
+  position: relative;
+  padding: 1px 20px 1px;
+  margin: 10px 0 10px 0;
+  border-radius: 20px;
+  z-index:9998;
+  field-sizing: content;
+  width: 80%;
+  min-height: 1lh;
+  max-height: 5lh;
+  resize: none;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+}
+
+textarea::-webkit-scrollbar{
+  display: none;
+}
+
+.comment_input button{
+
+position: relative;
+width: 18%;
+height: 1lh;
+margin: 10px 0;
+float: right;
+background: transparent;
+
+ border: none;
+
+ outline: none;
+
+ box-shadow: none;
+
+}
+
+.comment_input button img{
+object-fit: contain;
+width: auto;
+height: 100%;
+}
+
+.comment_input button img:hover{
+filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-rotate(198deg) brightness(99%) contrast(103%);
+}
 
 }
   </style>
@@ -488,55 +576,65 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	var user_id = "${user_id }";
 	var item_idid="${item_idid}";
 
-	document.getElementById("send_button").addEventListener("click", function(event) {
-        event.preventDefault(); // フォーム送信を防止
-        const commentValue = document.getElementById("comment_input").value.trim();
-        if (commentValue) {
-            console.log("入力されたコメント:", commentValue);
-            $.ajax({
-  		      url: '../kakugari/comment_insert',  // サーバーのURL
-  		      type: 'POST',
-  		      data: {
-  		    	    comment:commentValue,
-  		    	    user_id:user_id,
-  		    	    item_id:item_idid
-  	                },
-	  	              success: function(cocomment) {
-	  	                console.log(cocomment);
-	  	                var dorihu = document.getElementById('dorihu');
+	function fetchComments(isInitialLoad = false) {
+		const commentValue = isInitialLoad ? '' : document.getElementById("comment_input").value.trim();
+	    $.ajax({
+	        url: '../kakugari/comment_insert', // サーバーのURL
+	        type: 'POST',
+	        data: {
+	            comment: commentValue,
+	            user_id: user_id,
+	            item_id: item_idid
+	        },
+	        success: function (cocomment) {
+	            console.log(cocomment);
+	            var dorihu = document.getElementById('dorihu');
 
-	  	                if (dorihu) {  // dorihu が存在するか確認
-	  	                    dorihu.innerHTML = '';
+	            if (dorihu) {  // dorihu が存在するか確認
+	                dorihu.innerHTML = '';
 
-	  	                    for (var i = 0; i < cocomment.length; i++) {
-	  	                        console.log(user_id, cocomment[i].user_id + "一致");
+	                for (var i = 0; i < cocomment.length; i++) {
+	                    console.log(user_id, cocomment[i].user_id + "一致");
 
-	  	                        if (user_id == cocomment[i].user_id) {
-	  	                            var commentlight = document.createElement('div');
-	  	                            var commentp = document.createElement('p');
-	  	                            commentlight.className = 'comment_light';
-	  	                            commentp.textContent = cocomment[i].comment;
-	  	                            commentlight.appendChild(commentp);
-	  	                            dorihu.appendChild(commentlight);
-	  	                        } else {
-	  	                            var commentleft = document.createElement('div');
-	  	                            var commentpp = document.createElement('p');
-	  	                            commentleft.className = 'comment_left';  // commentleft を使う
-	  	                            commentpp.textContent = cocomment[i].comment;
-	  	                            commentleft.appendChild(commentpp);  // commentleft に追加
-	  	                            dorihu.appendChild(commentleft);  // commentleft を dorihu に追加
-	  	                        }
-	  	                    }
-	  	                } else {
-	  	                    console.error('dorihu 要素が見つかりません');
-	  	                }
+	                    if (user_id == cocomment[i].user_id) {
+	                        var commentlight = document.createElement('div');
+	                        var commentp = document.createElement('p');
+	                        commentlight.className = 'comment_light';
+	                        commentp.textContent = cocomment[i].comment;
+	                        commentlight.appendChild(commentp);
+	                        dorihu.appendChild(commentlight);
+	                    } else {
+	                        var commentleft = document.createElement('div');
+	                        var commentpp = document.createElement('p');
+	                        commentleft.className = 'comment_left';  // commentleft を使う
+	                        commentpp.textContent = cocomment[i].comment;
+	                        commentleft.appendChild(commentpp);  // commentleft に追加
+	                        dorihu.appendChild(commentleft);  // commentleft を dorihu に追加
+	                    }
+	                }
+	            } else {
+	                console.error('dorihu 要素が見つかりません');
+	            }
+	        },
+	    });
+	}
 
-  	                },
-            });
-        } else {
-            console.log("コメントが空です。");
-        }
-    });
+	// ページが読み込まれたときに実行
+	window.onload = function () {
+	    fetchComments(true);
+	};
+
+	// ボタンがクリックされたときにも実行
+	document.getElementById("send_button").addEventListener("click", function (event) {
+	    event.preventDefault(); // フォーム送信を防止
+	    const commentValue = document.getElementById("comment_input").value.trim();
+	    if (commentValue) {
+	        console.log("入力されたコメント:", commentValue);
+	        fetchComments(); // コメントを取得する関数を呼び出す
+	    } else {
+	        console.log("コメントが空です。");
+	    }
+	});
 
 
 </script>

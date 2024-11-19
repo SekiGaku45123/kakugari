@@ -67,7 +67,7 @@ animation: scroll 30s linear infinite;
 .img_logo {
     position: relative;
     color: white;
-    margin: 0 60px 20px;
+    margin: 0 20px 20px;
     display: flex;
     justify-content: center;
 }
@@ -75,27 +75,26 @@ animation: scroll 30s linear infinite;
 .img_logo img {
     border-radius: 30px;
     object-fit: cover;
-    width: 100vw;
-    height: 80vh;
+    width: 67vw;
+    height: auto;
 }
 
 .img_logo p {
     position: absolute;
     color: #ff476f;
     font-weight: bold;
+    font-size: 6vw;
+    text-align: center;
+    top: 12vw;
 }
 
 
 .top-text {
-    top: 200px;
-    font-size: 70px;
+/*    top: 6vw;
+    font-size: 7vw;
+    text-align: center;*/
 }
 
-
-.bottom-text {
-    bottom: 200px;
-    font-size: 70px;
-}
 .font_title{
 width: 10vw;
 position: relative;
@@ -182,9 +181,10 @@ margin: 0 auto;
 
 </style>
 <div class="img_logo">
-<img src="../kakugari_image/image_logo.jpg">
-<p class="top-text">フリマサイト</p><br>
-<p class="bottom-text">―FREE MARKET―</p>
+
+	<img src="../kakugari_image/image_logo.jpg">
+	<p>フリマサイト<br>―FREE MARKET―</p>
+
 </div>
 
 
