@@ -44,7 +44,11 @@ public class Purchaseaction extends HttpServlet {
         System.out.print(item_id);
         String flag = request.getParameter("flag");
         boolean isAttend = Boolean.parseBoolean(flag);
-        //String image_data = request.getParameter("image_data");
+        String image_data = request.getParameter("image_data");
+
+        if (!image_data.startsWith("..")) {
+        	image_data = ".." + image_data; // 先頭に「..」を追加
+        }
 
         // 購入日時を現在のタイムスタンプで取得
         Timestamp purchase_Date = new Timestamp(System.currentTimeMillis());
@@ -62,6 +66,7 @@ public class Purchaseaction extends HttpServlet {
             purchase.setUser_Id(user_id);
             purchase.setItem_Id(item_id);
             purchase.setFlag(isAttend);
+            purchase.setImage_Data(image_data);
             purchase.setPurchase_Date(purchase_Date); // 購入日時をセット
 
             // DAOを使用して購入情報を挿入
