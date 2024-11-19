@@ -39,10 +39,12 @@ public class Comment_insert extends HttpServlet {
         	System.out.print(user_id);
         	System.out.print(item_id);
 
-        	Comment p = new Comment();
-        	p.setItem_id(item_id);
-        	p.setUser_id(user_id);
-        	p.setComment(comment);
+        	if(comment != null && !comment.isEmpty()){
+	        	Comment p = new Comment();
+	        	p.setItem_id(item_id);
+	        	p.setUser_id(user_id);
+	        	p.setComment(comment);
+
 
 
             CommentDAO dao = new CommentDAO();
@@ -58,6 +60,17 @@ public class Comment_insert extends HttpServlet {
             	String json = new Gson().toJson(list);
                 response.getWriter().write(json);
             }
+        	}else{
+
+            	CommentDAO dao1 = new CommentDAO();
+            	List<Comment> list = dao1.commentsearch(item_id);
+
+            	System.out.print(list);
+
+            	String json = new Gson().toJson(list);
+                response.getWriter().write(json);
+
+        	}
 
 
 
