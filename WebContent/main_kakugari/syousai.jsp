@@ -366,6 +366,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
  }
 
  .comment_list{
+ display: block;
  width: 100%;
  height: 250px;
  padding: 50px 0;
@@ -395,11 +396,23 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
  padding: 0 0 0 10px;
  margin: 0 0 0 auto;
  background: #e8e8e8;
- border-radius: 10px 0 0 10px;
  width:55vw;
  overflow-wrap: break-word;
+
  }
 
+ .comment_light p{
+ padding: 0 0 0 15px;
+	float: right;
+	clear:  both;
+	background: #e8e8e8;
+	border-radius: 10px 0 0 10px;
+ }
+.comment_list:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 
 .comment_input textarea{
   position: relative;
@@ -414,6 +427,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
   resize: none;
   overflow-y: scroll;
   overscroll-behavior: contain;
+
 }
 
 textarea::-webkit-scrollbar{
@@ -541,6 +555,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 		<div id="login-content" style="<%= isLoggedIn ? "" : "display: none;" %>">
 	        <div class="comment_list">
 	        	<div id="dorihu"></div>
+	        	<br>
 	        </div>
 	        <div class="comment_input">
 	        	<textarea id="comment_input" name="comment_input"></textarea>
