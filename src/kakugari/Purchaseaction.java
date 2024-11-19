@@ -1,5 +1,6 @@
 package kakugari;
 
+
 import java.io.IOException;
 import java.sql.Timestamp;
 
@@ -21,7 +22,6 @@ public class Purchaseaction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
         // セッションからユーザー情報を取得
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("customer");
@@ -38,10 +38,13 @@ public class Purchaseaction extends HttpServlet {
         String user_id = user.getUser_id();
 
         // 購入情報をリクエストから取得
-        int item_id = Integer.parseInt(request.getParameter("item_id"));
+        String itemIdStr = request.getParameter("item_id");
+        System.out.print(itemIdStr);
+        int item_id = Integer.parseInt(itemIdStr.trim());
+        System.out.print(item_id);
         String flag = request.getParameter("flag");
         boolean isAttend = Boolean.parseBoolean(flag);
-        String image_data = request.getParameter("image_data");
+        //String image_data = request.getParameter("image_data");
 
         // 購入日時を現在のタイムスタンプで取得
         Timestamp purchase_Date = new Timestamp(System.currentTimeMillis());
@@ -58,7 +61,6 @@ public class Purchaseaction extends HttpServlet {
             purchase.setUser_Id(user_id);
             purchase.setItem_Id(item_id);
             purchase.setFlag(isAttend);
-            purchase.setImage_Data(image_data);
             purchase.setPurchase_Date(purchase_Date); // 購入日時をセット
 
             // DAOを使用して購入情報を挿入
@@ -79,4 +81,5 @@ public class Purchaseaction extends HttpServlet {
             request.getRequestDispatcher("purchase-error-insert.jsp").forward(request, response);
         }
     }
+
 }

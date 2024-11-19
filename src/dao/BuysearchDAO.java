@@ -50,13 +50,12 @@ public class BuysearchDAO extends DAO {
 
         try {
             con = getConnection();
-            String sql = "INSERT INTO history (USER_ID, ITEM_ID, FLAG, IMAGE_DATA, PURCHASE_DATE) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO history (USER_ID, ITEM_ID, FLAG, IMAGE_DATA, PURCHASE_DATE) VALUES (?, ?, ?, null, ?)";
             st = con.prepareStatement(sql);
             st.setString(1, history.getUser_Id());
             st.setInt(2, history.getItem_Id());
             st.setBoolean(3, history.isFlag());
-            st.setString(4, history.getImage_Data());
-            st.setTimestamp(5, history.getPurchase_Date()); // 購入日時を挿入
+            st.setTimestamp(4, history.getPurchase_Date()); // 購入日時を挿入
 
             int line = st.executeUpdate();
             System.out.println("購入情報の登録が完了しました。");

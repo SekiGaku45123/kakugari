@@ -47,6 +47,9 @@
     <h2 class="mb-4 text-center">商品リスト</h2>
 
     <hr>
+    <c:set var="item_id" value="${list[0].item_id}" />
+
+    <c:set var="flag" value="${list[0].flag}" />
 
     <h3 class="mb-3">購入情報入力</h3>
     <c:forEach var="list" items="${list}">
@@ -55,7 +58,11 @@
         <p class="pq">￥<span class="mozi">${list.getItem_price()}</span>（税込・送料込み）</p>
      </c:forEach>
 
-    <form action="Purchaseaction" method="post">
+    <form action="${pageContext.request.contextPath}/main_kakugari/Purchaseaction" method="post">
+
+
+    	<input type="hidden" name="item_id" value="${item_id} "/>
+    	<input type="hidden" name="flag" value="${flag}"/>
 
         <div class="form-group">
             <label for="name">お名前</label>
@@ -79,7 +86,7 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="クレジットカード" checked onclick="toggleCreditCardInfo()">
                 <label class="form-check-label" for="creditCard">クレジットカード</label>
-                <a href="../main_kakugari/credit_register.jsp">
+                <a href="../kakugari/credit_register.jsp">
                     <button type="button" class="btn btn-primary w-100">
                         <font color="white">クレジットカード登録へ</font>
                     </button>
@@ -106,11 +113,8 @@
                 <input class="form-check-input" type="radio" name="paymentMethod" id="convenienceStore" value="コンビニ支払い" onclick="toggleCreditCardInfo()">
                 <label class="form-check-label" for="convenienceStore">コンビニ支払い</label>
             </div>
-<div class="form-check">
-    <a href="../main_kakugari/purchase-connfirm.jsp" class="btn btn-danger w-100 text-center">
-        購入確認画面へ
-    </a>
-</div>
+
+
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -132,6 +136,7 @@
     });
 </script>
 
+                    <button type="submit" class="btn btn-danger w-100">購入する</button>
 
 
     </form>
