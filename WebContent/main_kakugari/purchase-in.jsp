@@ -51,6 +51,7 @@
     <c:set var="item_id" value="${list[0].item_id}" />
 
     <c:set var="flag" value="${list[0].flag}" />
+    <c:set var="image_data" value="${list[0].getImage_data() }"/>
 
     <h3 class="mb-3">購入情報入力</h3>
     <c:forEach var="list" items="${list}">
@@ -64,6 +65,7 @@
 
     	<input type="hidden" name="item_id" value="${item_id} "/>
     	<input type="hidden" name="flag" value="${flag}"/>
+    	<input type="hidden" name="image_data" value="${image_data}"/>
 
         <div class="form-group">
             <label for="name">お名前</label>
