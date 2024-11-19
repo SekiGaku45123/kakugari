@@ -216,7 +216,7 @@ margin: 0 auto;
 </a>
 </div>
 <div class="carousel-item">
-<a href="https://ja.stripchat.com/" target="_blank">
+<a href="https://ponpon.in/" target="_blank">
 <img class="d-block w-75 rounded" src="../kakugari_image/招待コード.jpg" alt="Image 4">
 </a>
 </div>
