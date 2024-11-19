@@ -401,6 +401,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 
  }
 
+
  .comment_light p{
  padding: 0 0 0 15px;
 	float: right;
