@@ -264,12 +264,41 @@
 		    color: inherit !important; /* すべての状態で色を固定 */
 		    text-decoration: none !important;
 		}
+
+		.hidden {
+		    opacity: 0;
+		    visibility: hidden;
+		    pointer-events: none;
+		    position: absolute;
+		}
+
+		/* 表示状態 */
+		.visible {
+			position: absolute;
+			border-radius: 10px;
+		    opacity: 1;
+		    background-color: #f5f5f5;
+		    border: 1px solid #000000;
+		    margin: 0 0 0 150px;
+		    width:150px;
+		    height: 80px;
+		    visibility: visible;
+		}
+		.visible p{
+			margin: 10px 0;
+			text-align: center;
+		}
+		.visible p a:hover{
+			background-color:#e8e8e8;
+			padding: 5px 10px;
+		}
 </style>
 </head>
 <body>
 <header>
 
 	<h2><a href="../main_kakugari/all"><img src="../images/読書のアイコン.png" width="66" height="46"><span class="kakuspa"> カクガリ</span></a></h2>
+
 		<div class="logout-content">
 		    <div class="login_in" style="<%= isLoggedIn ? "display: none;" : "" %>">
 		    	<a href="#" class="openLink" onclick="fetchItems(event)"><img src="../kakugari_image/1023.png" class="images0"></a>
@@ -292,10 +321,15 @@
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
 		        <!--<a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>-->
 		        <a href="../contact/contact.jsp"><img src="../kakugari_image/10894.png" class="images3"></a>
-		        <a href="../login_logout/login-in.jsp"><img src="../kakugari_image/888.png" class="images4"></a>
-		        <!--  <a href="../login_logout/login-in.jsp">ログイン</a>-->
+		        <a href="#" id="fadeLink"><img src="../kakugari_image/888.png" class="images4"></a>
+		        <div id="fadeElement" class="hidden">
+		        	<p><a href="../login_logout/login-in.jsp">ログイン</a></p>
+		        	<p><a href="../main_kakugari/signup.jsp">新規作成</a></p>
+		        </div>
+		        <!--  <a href="../login_logout/login-in.jsp">ログイン</a>   ../login_logout/login-in.jsp-->
 		        <!--<a href="../main_kakugari/signup.jsp">新規登録</a>-->
 		    </div>
+
     		<div class="login_in" style="<%= isLoggedIn ? "" : "display: none;" %>">
         		<a href="#" class="openLink" onclick="fetchItems1(event)"><img src="../kakugari_image/1023.png" class="images0"></a>
 		    	<div class="overlay"></div>
@@ -349,6 +383,18 @@
     	});
 
 
+//フェードイン
+    	document.getElementById("fadeLink").addEventListener("click", function (event) {
+		    event.preventDefault(); // デフォルトのリンク動作を無効化
+		    const element = document.getElementById("fadeElement");
+		    if (element.classList.contains("hidden")) {
+		        element.classList.remove("hidden");
+		        element.classList.add("visible");
+		    } else {
+		        element.classList.remove("visible");
+		        element.classList.add("hidden");
+		    }
+		});
 
 
 
