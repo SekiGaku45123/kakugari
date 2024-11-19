@@ -41,6 +41,7 @@
     	object-fit: contain;
     	background-color: black;
     }
+
 </style>
 <c:set var="customer" value="${sessionScope.customer}" />
 <div class="container my-5">

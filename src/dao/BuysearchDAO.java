@@ -43,6 +43,7 @@ public class BuysearchDAO extends DAO {
         return user1;
     }
 
+
     // 購入情報を挿入
     public int insert(History history) throws Exception {
         Connection con = null;

@@ -49,6 +49,7 @@ public class Purchaseaction extends HttpServlet {
         // 購入日時を現在のタイムスタンプで取得
         Timestamp purchase_Date = new Timestamp(System.currentTimeMillis());
 
+
         // 名前と住所が入力されていない場合、エラーページに遷移
         if (name == null || name.isEmpty() || address == null || address.isEmpty()) {
             request.getRequestDispatcher("purchase-error-empty.jsp").forward(request, response);
