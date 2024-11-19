@@ -227,6 +227,14 @@
 
  }
 
+ .comment_left p{
+	padding: 0 10px 0 0;
+	float: left;
+	clear:  both;
+	background: #e8e8e8;
+	border-radius: 0 10px 10px 0;
+ }
+
  .comment_light p{
  	padding: 0 0 0 15px;
 	float: right;
@@ -402,7 +410,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
  .comment_left{
  padding: 0 10px 0 0;
  background: #e8e8e8;
- border-radius: 0 10px 10px 0;
+
  width:55vw;
  overflow-wrap: break-word;
  }
@@ -415,7 +423,13 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 
  }
 
-
+ .comment_left p{
+	padding: 0 10px 0 0;
+	float: left;
+	clear:  both;
+	background: #e8e8e8;
+	border-radius: 0 10px 10px 0;
+ }
 
  .comment_light p{
  padding: 0 0 0 15px;
