@@ -3,6 +3,9 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,6 +80,7 @@ public class BuysearchDAO extends DAO {
         st.setString(1, userId);
         ResultSet rs = st.executeQuery();
 
+
         while (rs.next()) {
             History history = new History();
             history.setUser_Id(rs.getString("user_id"));
@@ -84,6 +88,20 @@ public class BuysearchDAO extends DAO {
             history.setFlag(rs.getBoolean("flag"));
             history.setImage_Data(rs.getString("image_data"));
             history.setPurchase_Date(rs.getTimestamp("purchase_date"));
+
+            Timestamp purchaseDate = rs.getTimestamp("purchase_date");
+
+            LocalDateTime purchaseTime = purchaseDate.toLocalDateTime();
+
+            LocalDateTime now = LocalDateTime.now();
+
+            Duration duration = Duration.between(purchaseTime, now);
+            long minutesElapsed = duration.toMinutes();
+
+            String cancelNot = (minutesElapsed >= 30) ? "not" : "OK";
+            history.setCancel_not(cancelNot);
+
+            System.out.println(cancelNot);
             System.out.println("取得した日時: " + history.getPurchase_Date()); // デバッグ用
             historyList.add(history);
         }

@@ -118,13 +118,18 @@
                                             <fmt:formatDate value="${history.purchase_Date}" pattern="yyyy-MM-dd HH:mm" />
                                         </td>
                                         <td>
-                                      <c:forEach var="history" items="${historyList}">
+                                      <c:forEach var="history2" items="${historyList}">
 									    <form action="${pageContext.request.contextPath}/deleteHistory" method="post" style="display:inline;">
-									        <input type="hidden" name="itemId" value="${history.item_Id}" />
-
-									</c:forEach>
+									        <input type="hidden" name="itemId" value="${history2.item_Id}" />
+									  </c:forEach>
+									<div class="cancel" style="display: ${history.cancel_not == 'not' ? 'none' : 'block'};">
 									<button type="submit" onclick="return confirm('この履歴を削除しますか？');">キャンセル</button>
+									</div>
+									<div class="cancel" style="display: ${history.cancel_not != 'not' ? 'none' : 'block'};">
+									キャンセルできません。
+									</div>
 									</form>
+
 									</td>
                                     </tr>
                                 </c:if>

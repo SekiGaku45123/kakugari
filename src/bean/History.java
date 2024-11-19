@@ -8,9 +8,18 @@ public class History {
     private String image_Data;    // 画像パス
     private String user_id;       // ユーザーID
     private Timestamp purchase_Date; // 購入日時
+    private String cancel_not;
 
     // コンストラクタ
     public History() {}
+
+    public String getCancel_not() {
+        return cancel_not;
+    }
+
+    public void setCancel_not(String cancel_not) {
+        this.cancel_not = cancel_not;
+    }
 
     // 商品IDのgetterとsetter
     public int getItem_Id() {
