@@ -1,9 +1,19 @@
-<%@page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.ArrayList, java.net.URLEncoder" %>
+
+
+<!DOCTYPE html>
 <html>
 <head>
-<title>お問い合わせフォーム</title>
+<meta charset="UTF-8">
+<title>お問い合わせフォーム - カクガリ</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../css/style.css">
+
+<c:import url="/common/base.jsp" /> <!-- base.jspをインクルード -->
+
 <style>
        body {
            font-family: Arial, sans-serif;

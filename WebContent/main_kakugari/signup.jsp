@@ -1,9 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../header.html" %>
+<% request.setCharacterEncoding("UTF-8"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.ArrayList, java.net.URLEncoder" %>
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>新規登録 - カクガリ</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../css/style.css">
+
+<c:import url="/common/base.jsp" /> <!-- base.jspをインクルード -->
+
 
 <style>
     body {
@@ -27,7 +37,7 @@
 
 <div class="container">
     <h2 class="text-center mb-4">新規登録</h2>
-    <form action="../main_kakugari/signup" method="post">  
+    <form action="../main_kakugari/signup" method="post">
         <div class="form-group">
             <label for="name">名前:</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="お名前を入力してください" required>
@@ -57,7 +67,7 @@
             <input type="text" class="form-control" id="telephone" name="telephone" placeholder="電話番号を入力してください" required>
         </div>
 
-        <button type="submit" class="btn btn-danger">登録</button> 
+        <button type="submit" class="btn btn-danger">登録</button>
     </form>
 </div>
 
