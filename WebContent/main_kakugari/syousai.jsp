@@ -487,6 +487,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	          <form action="favoriteAddAction" method="post">
 	            <input type="hidden" name="item_id" value="${pro.getItem_id()}">
 	            <button type="submit">♡</button>
+
 	          </form>
 	        </div>
 

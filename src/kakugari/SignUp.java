@@ -40,9 +40,6 @@ public class SignUp extends HttpServlet {
 
 	        if (result > 0) {
 	            request.getRequestDispatcher("signup-success.jsp").forward(request, response);
-	        } else {
-	            System.out.println("登録に失敗しました: result = " + result); // デバッグ用に出力
-	            request.getRequestDispatcher("signup-failed.jsp").forward(request, response);
 	        }
 
 	    } catch (Exception e) {

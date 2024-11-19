@@ -10,7 +10,7 @@ public class SignUpDAO extends DAO {
 
 	public int insertUser(User user) throws Exception {
 	    Connection con = getConnection();
-	  		PreparedStatement st1 = con.prepareStatement("SELECT MAX(User_ID) AS MAX FROM User");
+	  		PreparedStatement st1 = con.prepareStatement("SELECT count(User_ID) AS MAX FROM User");
 	  		ResultSet rs = st1.executeQuery();
 	  		rs.next();
 	  		int maxId = rs.getInt("max");
