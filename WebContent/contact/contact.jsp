@@ -118,7 +118,7 @@
 <div class="form-group">
 <label>
 <input type="checkbox" id="terms" name="terms" required>
-<a href="terms.jsp" target="_blank">利用規約</a>に同意する
+<a href="terms.jsp">利用規約</a>に同意する
 </label>
 </div>
 <input type="submit" value="確認">
