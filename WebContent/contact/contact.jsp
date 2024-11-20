@@ -114,13 +114,6 @@
 </div>
 <!-- よくある質問へのリンク -->
 <p class="link"><a href="faq.jsp" target="_blank">よくある質問</a></p>
-<!-- 利用規約のチェックボックス -->
-<div class="form-group">
-<label>
-<input type="checkbox" id="terms" name="terms" required>
-<a href="terms.jsp">利用規約</a>に同意する
-</label>
-</div>
 <input type="submit" value="確認">
 </form>
 
@@ -128,4 +121,5 @@
 <p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">メインメニューに戻る</a></p>
 </div>
 </html>
+
 <jsp:include page="/footer.html" />

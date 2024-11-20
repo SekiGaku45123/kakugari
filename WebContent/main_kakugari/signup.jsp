@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList, java.net.URLEncoder" %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,6 @@
 <link rel="stylesheet" href="../css/style.css">
 
 <c:import url="/common/base.jsp" /> <!-- base.jspをインクルード -->
-
 
 <style>
     body {
@@ -33,8 +31,13 @@
     button {
         width: 100%;
     }
+    .form-check {
+        margin-top: 20px;
+        text-align: left;
+    }
 </style>
-
+</head>
+<body>
 <div class="container">
     <h2 class="text-center mb-4">新規登録</h2>
     <form action="../main_kakugari/signup" method="post">
@@ -53,21 +56,31 @@
             <input type="text" class="form-control" id="address" name="address" placeholder="住所を入力してください" required>
         </div>
 
+
+        <div class="form-group">
+            <label for="maleaddress">メールアドレス:</label>
+            <input type="email" class="form-control" id="maleaddress" name="maleaddress" placeholder="メールアドレスを入力してください" required>
+        </div>
+
         <div class="form-group">
             <label for="password">パスワード:</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="パスワードを入力してください" required>
         </div>
 
         <div class="form-group">
-            <label for="maleaddress">メールアドレス:</label>
-            <input type="email" class="form-control" id="maleaddress" name="maleaddress" placeholder="メールアドレスを入力してください" required>
-        </div>
-                <div class="form-group">
             <label for="telephone">電話番号:</label>
             <input type="text" class="form-control" id="telephone" name="telephone" placeholder="電話番号を入力してください" required>
         </div>
 
-        <button type="submit" class="btn btn-danger">登録</button>
+        <!-- 利用規約チェックボックス -->
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+            <label class="form-check-label" for="terms">
+                <a href="../contact/terms.jsp" >利用規約</a>に同意する
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-danger mt-4">登録</button>
     </form>
 </div>
 
@@ -76,3 +89,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
