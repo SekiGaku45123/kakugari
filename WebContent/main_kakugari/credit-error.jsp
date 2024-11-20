@@ -9,7 +9,7 @@
 <body>
 <div class="container my-5">
     <h2 class="text-center mb-4">クレジットカードの登録に失敗しました</h2>
-    <p class="text-center">入力内容を再確認して、再度お試しください。</p>
+    <p class="text-center">入力内容を再確認して、再度お試しください。または。すでに登録されているカード情報です。</p>
     <div class="text-center">
         <a href="credit_register.jsp" class="btn btn-danger">再度登録する</a>
     </div>

@@ -49,10 +49,15 @@ public class CreditRegisterAction extends HttpServlet {
             CreditDAO dao = new CreditDAO();
             int result = dao.insertCredit(credit);
 
+            if(result == 10){
+            	response.sendRedirect("../main_kakugari/credit-error.jsp");
+            }else{
+
             if (result > 0) {
                 response.sendRedirect("../main_kakugari/cregit-success.jsp");
             } else {
                 response.sendRedirect("../main_kakugari/credit-error2.jsp");
+            }
             }
         } catch (Exception e) {
             e.printStackTrace();
