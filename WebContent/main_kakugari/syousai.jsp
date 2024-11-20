@@ -228,7 +228,7 @@
  }
 
  .comment_left p{
-	padding: 0 10px 0 0;
+	padding: 0 10px 0 10px;
 	float: left;
 	clear:  both;
 	background: #e8e8e8;
@@ -236,7 +236,7 @@
  }
 
  .comment_light p{
- 	padding: 0 0 0 15px;
+ 	padding: 0 10px 0 15px;
 	float: right;
 	clear:  both;
 	background: #e8e8e8;
@@ -424,7 +424,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
  }
 
  .comment_left p{
-	padding: 0 10px 0 0;
+	padding: 0 10px 0 10px;
 	float: left;
 	clear:  both;
 	background: #e8e8e8;
@@ -432,7 +432,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
  }
 
  .comment_light p{
- padding: 0 0 0 15px;
+ padding: 0 10px 0 15px;
 	float: right;
 	clear:  both;
 	background: #e8e8e8;
