@@ -52,11 +52,11 @@ public class CreditRegisterAction extends HttpServlet {
             if (result > 0) {
                 response.sendRedirect("../main_kakugari/cregit-success.jsp");
             } else {
-                response.sendRedirect("../main_kakugari/credit-error.jsp");
+                response.sendRedirect("../main_kakugari/credit-error2.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("../main_kakugari/credit-error2.jsp");
+            response.sendRedirect("../main_kakugari/credit-error.jsp");
         }
     }
 }

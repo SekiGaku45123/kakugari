@@ -89,7 +89,7 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="クレジットカード" checked onclick="toggleCreditCardInfo()">
                 <label class="form-check-label" for="creditCard">クレジットカード</label>
-                <a href="../kakugari/credit_register.jsp">
+                <a href="${pageContext.request.contextPath}/main_kakugari/credit_register.jsp">
                     <button type="button" class="btn btn-primary w-100">
                         <font color="white">クレジットカード登録へ</font>
                     </button>
