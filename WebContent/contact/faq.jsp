@@ -1,63 +1,71 @@
-<%@page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <html>
 <head>
 <title>よくある質問</title>
 <style>
-       body {
-           font-family: Arial, sans-serif;
-           background-color: #f9f9f9;
-           color: #333;
-           margin: 0;
-           padding: 20px;
-       }
-       h2 {
-           text-align: center;
-           color: #0056b3;
-       }
-       .faq-container {
-           max-width: 800px;
-           margin: 0 auto;
-           background: #fff;
-           border-radius: 8px;
-           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-           padding: 20px;
-       }
-       .faq-item {
-           margin-bottom: 15px;
-           padding: 15px;
-           border: 1px solid #e0e0e0;
-           border-radius: 5px;
-           transition: background 0.3s;
-       }
-       .faq-item:hover {
-           background: #f1f1f1;
-       }
-       .faq-question {
-           font-weight: bold;
-           color: #0056b3;
-       }
-       .faq-answer {
-           margin-top: 5px;
-           line-height: 1.6;
-       }
-       a {
-           display: inline-block;
-           margin-top: 20px;
-           text-decoration: none;
-           color: #0056b3;
-           font-weight: bold;
-           text-align: center;
-           border: 1px solid #0056b3;
-           padding: 10px 15px;
-           border-radius: 5px;
-           transition: background 0.3s, color 0.3s;
-       }
-       a:hover {
-           background: #0056b3;
-           color: white;
-       }
+   body {
+       font-family: Arial, sans-serif;
+       background-color: #f9f9f9;
+       color: #333;
+       margin: 0;
+       padding: 20px;
+   }
+   h2 {
+       text-align: center;
+       color: #0056b3;
+   }
+   .faq-container {
+       max-width: 800px;
+       margin: 0 auto;
+       background: #fff;
+       border-radius: 8px;
+       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+       padding: 20px;
+   }
+   .faq-item {
+       margin-bottom: 15px;
+       padding: 15px;
+       border: 1px solid #e0e0e0;
+       border-radius: 5px;
+       transition: background 0.3s;
+   }
+   .faq-item:hover {
+       background: #f1f1f1;
+   }
+   .faq-question {
+       font-weight: bold;
+       color: #0056b3;
+   }
+   .faq-answer {
+       margin-top: 5px;
+       line-height: 1.6;
+   }
+   a {
+       display: inline-block;
+       margin-top: 20px;
+       text-decoration: none;
+       color: #0056b3;
+       font-weight: bold;
+       text-align: center;
+       border: 1px solid #0056b3;
+       padding: 10px 15px;
+       border-radius: 5px;
+       transition: background 0.3s, color 0.3s;
+   }
+   a:hover {
+       background: #0056b3;
+       color: white;
+   }
 </style>
+<script>
+   function closeTabAndRedirect() {
+       // 現在のタブを閉じる
+       window.close();
+       // 'contact.jsp' に遷移
+       window.location.href = 'contact.jsp';
+   }
+</script>
 </head>
 <body>
 <div class="faq-container">
@@ -90,7 +98,8 @@
 <div class="faq-question">質問 7: 評価はどのように行われますか？</div>
 <div class="faq-answer">取引が完了した後、出品者と購入者の双方が評価を行うことができます。良い取引ができた場合は、ポジティブな評価をお願いします。</div>
 </div>
-<a href="contact.jsp">お問い合わせフォームに戻る</a>
+<!-- ボタン押下でFAQタブを閉じ、contact.jspに遷移 -->
+<a href="javascript:void(0);" onclick="closeTabAndRedirect()">お問い合わせフォームに戻る</a>
 </div>
 </body>
 </html>
