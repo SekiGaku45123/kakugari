@@ -49,14 +49,14 @@
 <h2>お問い合わせ内容確認</h2>
 <div class="confirm-container">
 <%
-           String subject = request.getParameter("subject");
-           String recipient = request.getParameter("recipient");
-           String body = request.getParameter("body");
-           if (body.contains("死")) {
-               request.setAttribute("error", "不適切な言葉が含まれています。");
-               request.getRequestDispatcher("contact.jsp").forward(request, response);
-           } else {
-       %>
+   String subject = request.getParameter("subject");
+   String recipient = request.getParameter("recipient");
+   String body = request.getParameter("body");
+   if (body.contains("死")) {
+       request.setAttribute("error", "不適切な言葉が含まれています。");
+       request.getRequestDispatcher("contact.jsp").forward(request, response);
+   } else {
+%>
 <div class="confirm-details">
 <p><strong>お名前:</strong> <%= subject %></p>
 <p><strong>送信確認用メール:</strong> <%= recipient %></p>
@@ -71,12 +71,15 @@
 </form>
 <!-- 入力しなおすボタン -->
 <form action="contact.jsp" method="get">
+<input type="hidden" name="subject" value="<%= subject %>">
+<input type="hidden" name="recipient" value="<%= recipient %>">
+<input type="hidden" name="body" value="<%= body %>">
 <input type="submit" value="入力内容を変更">
 </form>
 </div>
 <%
-           }
-       %>
+   }
+%>
 </div>
 </body>
 </html>
