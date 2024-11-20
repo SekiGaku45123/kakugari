@@ -77,7 +77,7 @@
     <div class="login-container">
         <h2>ログイン</h2>
         <p class="text-muted">アカウントにサインインしてください</p>
-        <div><font color="#ff9514" size="2">${error}</font></div>
+        <div><font color="#ff9514" size="2">${erro}</font></div>
 
 
 

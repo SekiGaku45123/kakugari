@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>利用規約</title>
+<title>利用規約 - カクガリ</title>
 <style>
        body {
            font-family: Arial, sans-serif;
