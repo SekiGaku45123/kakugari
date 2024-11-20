@@ -34,7 +34,8 @@ public class LoginAction extends HttpServlet {
             session.setAttribute("customer", user);
             request.getRequestDispatcher("../main_kakugari/all").forward(request, response); // ログイン成功時
         } else {
-            request.getRequestDispatcher("login-error.jsp").forward(request, response); // ログイン失敗時
+        	request.setAttribute("erro", "メールアドレスまたはパスワードが間違っています。");
+            request.getRequestDispatcher("login-in.jsp").forward(request, response); // ログイン失敗時
         }
     }
 }

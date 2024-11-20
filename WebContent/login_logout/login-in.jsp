@@ -77,11 +77,14 @@
     <div class="login-container">
         <h2>ログイン</h2>
         <p class="text-muted">アカウントにサインインしてください</p>
+        <div><font color="#ff9514" size="2">${erro }</font></div>
+
 
         <form action="Login.action" method="post" class="login-form" id="login-form">
             <div class="form-group">
                 <label for="email">メールアドレス</label>
-                <input type="text" id="email" name="maleaddress" placeholder="例: kakugari@botton.com" value="${param.email}" required>
+                <input type="text" id="email" name="maleaddress" placeholder="例: kakugari@botton.com" value="${param.maleaddress}" required>
+
             </div>
 
             <div class="form-group">

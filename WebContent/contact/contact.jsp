@@ -118,7 +118,7 @@
 </form>
 
 </body>
-<p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">メインメニューに戻る</a></p>
+<p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">トップページに戻る</a></p>
 </div>
 </html>
 

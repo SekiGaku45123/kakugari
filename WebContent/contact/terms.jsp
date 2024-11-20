@@ -50,6 +50,7 @@
 </style>
 </head>
 <body>
+
 <h2>利用規約</h2>
 <div class="terms-container">
 <p>ここに利用規約の内容を記載します。</p>
@@ -71,8 +72,9 @@
 <p>- お問い合わせ内容に対して当社が回答する義務を負うものではなく、特定の結果を保証するものではありません。</p>
 <p>- ユーザーは、当社が提供する回答や対応によって直接的または間接的に被った損害に対して、当社が一切の責任を負わないことに同意します。</p>
 </div>
-<a href="../main_kakugari/signup.jsp">新規登録に戻る</a>
+<a href="../main_kakugari/signup.jsp" class="back-link" onclick="history.back(); return false;">新規登録に戻る</a>
 </div>
 </div>
+
 </body>
 </html>
