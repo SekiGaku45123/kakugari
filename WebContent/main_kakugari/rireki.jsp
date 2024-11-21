@@ -88,6 +88,46 @@
 	        color: #333;
 	        margin-top: 20px;
         }
+         .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+        }
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .modal-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-confirm {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        .btn-cancel {
+            background-color: #ccc;
+        }
     </style>
 </head>
 
@@ -123,7 +163,7 @@
 									        <input type="hidden" name="itemId" value="${history2.item_Id}" />
 									  </c:forEach>
 									<div class="cancel" style="display: ${history.cancel_not == 'not' ? 'none' : 'block'};">
-									<button type="submit" onclick="return confirm('この履歴を削除しますか？');">キャンセル</button>
+								     <button type="button" onclick="showModal(${history.item_Id})">キャンセル</button>
 									</div>
 									<div class="cancel" style="display: ${history.cancel_not != 'not' ? 'none' : 'block'};">
 									キャンセルできません。
@@ -144,6 +184,32 @@
             <a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a>
         </div>
     </div>
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <p>この履歴をキャンセルしますか？</p>
+            <form id="deleteForm" action="${pageContext.request.contextPath}/deleteHistory" method="post">
+                <input type="hidden" name="itemId" id="modalItemId">
+                <div class="modal-buttons">
+                    <button type="submit" class="btn-confirm">Cancel</button>
+                    <button type="button" class="btn-cancel" onclick="closeModal()">Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        function showModal(itemId) {
+            document.getElementById('modalItemId').value = itemId;
+            document.getElementById('confirmationModal').style.display = 'flex';
+        }
+
+
+        function closeModal() {
+            document.getElementById('confirmationModal').style.display = 'none';
+        }
+    </script>
 
     <!-- フッター -->
     <footer class="site-footer">
