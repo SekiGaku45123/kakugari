@@ -1,5 +1,6 @@
 package history;
 
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -10,27 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.HistoryDAO;
 
-
-@WebServlet("/kakugari3/deleteHistory") // アクセスするURLパターンを設定
+@WebServlet("/deleteHistory")
 public class DeleteHistoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // リクエストパラメータからitemIdを取得
-            String itemIdStr = request.getParameter("itemId");
-            if (itemIdStr != null) {
-                int itemId = Integer.parseInt(itemIdStr);
+            int itemId = Integer.parseInt(request.getParameter("itemId"));
 
-                // HistoryDAOを使って履歴を削除
-                HistoryDAO dao = new HistoryDAO();
-                //dao.deleteHistory(itemId);
+            // DAOを使用して履歴を削除
+            HistoryDAO dao = new HistoryDAO();
+            dao.deleteHistory(itemId);
 
-                // 削除後、購入履歴ページにリダイレクト
-                response.sendRedirect(request.getContextPath() + "/history");
-            } else {
-                // itemIdが存在しない場合はエラーを返す
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "アイテムIDが指定されていません。");
-            }
+            // 削除後、履歴ページにリダイレクト
+            response.sendRedirect(request.getContextPath() + "/history");
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "履歴データの削除中にエラーが発生しました。");
