@@ -259,6 +259,45 @@ public class ItemDAO extends DAO{
 		return list;
 	}
 
+	public int listinginsert(Item item) throws Exception {
+		Connection con=getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"INSERT INTO ITEM VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		st.setString(1, item.getItem_id());
+		st.setString(2, item.getUser_id());
+		st.setInt(3, item.getItem_price());
+		st.setString(4, item.getCategory());
+		st.setString(5, item.getItem_detail());
+		st.setString(6, item.getCondition());
+		st.setString(7, item.getArea());
+		st.setInt(8, item.getShipping_days());
+		st.setString(9, "TRUE");
+		st.setString(10, item.getItem_name());
+		int line=st.executeUpdate();
+
+		st.close();
+		con.close();
+
+		return line;
+	}
+
+	public int getMaxItemId() throws Exception {
+		String sql = "SELECT MAX(CAST(item_id AS INTEGER)) AS max_value FROM item";
+	    int maxItemId = 0;
+
+	    try (Connection conn = getConnection();
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
+	         ResultSet rs = pstmt.executeQuery()) {
+
+	        if (rs.next()) {
+	            maxItemId = rs.getInt("max_value");
+	        }
+	    }
+	    return maxItemId;
+
+
+	}
 
 }
 
