@@ -270,12 +270,12 @@ textarea::-webkit-scrollbar{
 
   <details class="custom-details">
 			<summary>発送までの日数</summary>
-			<input tyoe="number" name="shopping_days" maxlength="2" placeholder="日数">
+			<input type="number" name="shopping_days" maxlength="2" placeholder="日数">
 		</details>
 
 
 	<p>販売価格</p>
-	<input tyoe="number" name="item_price" maxlength="40" placeholder="￥0">
+	<input type="number" name="item_price" maxlength="9" placeholder="￥0">
 
   </div>
 

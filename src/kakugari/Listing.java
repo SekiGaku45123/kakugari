@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Images;
 import bean.Item;
 import bean.User;
+import dao.ImageDAO;
 import dao.ItemDAO;
 import tool.Page;
 
@@ -48,7 +50,7 @@ public class Listing extends HttpServlet {
 		        //String user_id = user.getUser_id();
 		        String user_id = "7";
 		        String photo = request.getParameter("photo");
-	        	String photo1 = request.getParameter("photo3");
+	        	String photo1 = request.getParameter("photo1");
 	        	String photo2 = request.getParameter("photo2");
 
 	        	String item_name = request.getParameter("item_name");
@@ -62,7 +64,13 @@ public class Listing extends HttpServlet {
 
 				ItemDAO dao=new ItemDAO();
 
-				System.out.print(item_price);
+				photo = "../images/"+photo;
+				photo1 = "../images/"+photo1;
+				photo2 = "../images/"+photo2;
+
+				System.out.print(photo);
+				System.out.print(photo1);
+				System.out.print(photo2);
 
 	        	int maxItemId = dao.getMaxItemId();
 	        	maxItemId += 1;
@@ -81,10 +89,20 @@ public class Listing extends HttpServlet {
 
 				int line=dao.listinginsert(p);
 
+				ImageDAO dao1=new ImageDAO();
+
+				Images q =new Images();
+				q.setItem_id(maxItemId1);
+				q.setImage_data(photo);
+				q.setImage_data1(photo1);
+				q.setImage_data2(photo2);
+				q.setUser_id(user_id);
+
+				int list = dao1.imageinsert(q);
+
 				System.out.print(line);
 
-				request.setAttribute("list", "かかかっかあ");
-				request.getRequestDispatcher("../main_kakugari/kakugarilist.jsp")
+				request.getRequestDispatcher("/main_kakugari/all")
 				.forward(request, response);
 
 			}catch (Exception e){

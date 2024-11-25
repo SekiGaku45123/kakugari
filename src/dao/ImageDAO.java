@@ -83,4 +83,22 @@ public class ImageDAO extends DAO {
 
 	}
 
+	public int imageinsert(Images image) throws Exception {
+		Connection con=getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"INSERT INTO IMAGES VALUES(?, ?, ?, ?, ?)");
+		st.setString(1, image.getItem_id());
+		st.setString(2, image.getImage_data());
+		st.setString(3, image.getImage_data1());
+		st.setString(4, image.getImage_data2());
+		st.setString(5, image.getUser_id());
+		int list=st.executeUpdate();
+
+		st.close();
+		con.close();
+
+		return list;
+	}
+
 }

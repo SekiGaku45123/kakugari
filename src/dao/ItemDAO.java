@@ -282,6 +282,7 @@ public class ItemDAO extends DAO{
 		return line;
 	}
 
+
 	public int getMaxItemId() throws Exception {
 		String sql = "SELECT MAX(CAST(item_id AS INTEGER)) AS max_value FROM item";
 	    int maxItemId = 0;
