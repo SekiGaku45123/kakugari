@@ -296,7 +296,6 @@ public class ItemDAO extends DAO{
 	    }
 	    return maxItemId;
 
-
 	}
 
 }
