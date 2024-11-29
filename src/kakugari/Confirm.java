@@ -9,8 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import bean.Credit;
 import bean.Item;
+import bean.User;
+import dao.CreditDAO;
 import dao.ItemDAO;
 import tool.Page;
 
@@ -36,7 +40,13 @@ public class Confirm extends HttpServlet {
 				throws ServletException, IOException {
 			PrintWriter out=response.getWriter();
 			Page.header(out);
+
 			try{
+
+				HttpSession session = request.getSession();
+		        User user = (User) session.getAttribute("customer");
+		        String user_id = user.getUser_id();
+		        System.out.println(user_id);
 
 				String keyword = request.getParameter("item_id");
 
@@ -47,8 +57,18 @@ public class Confirm extends HttpServlet {
 				ItemDAO dao=new ItemDAO();
 				List<Item> list=dao.confirm(keyword);
 
-				System.out.print(list);
+				CreditDAO dao1=new CreditDAO();
+				List<Credit> list1=dao1.getCred(user_id);
 
+
+
+				System.out.println(list);
+				System.out.println(list1);
+				System.out.println("asvga");
+
+				String list2 = "adsfaf";
+
+				request.setAttribute("crad", list1);
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("/main_kakugari/purchase-in.jsp")
 				.forward(request, response);
