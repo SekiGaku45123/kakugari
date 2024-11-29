@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import bean.Credit;
 import bean.User;
 import dao.CreditDAO;
@@ -24,21 +26,22 @@ public class CreditRegisterAction extends HttpServlet {
         String expiryDate = request.getParameter("expiryDate");
         String securityCode = request.getParameter("security_code");
 
-        System.out.println("登録データ: " + cardNumber + ", " + expiryDate + ", " + securityCode);
+        // カード番号をマスクして出力 (最初の12桁をマスク)
+        String maskedCardNumber = cardNumber.replaceAll("^.{12}", "**** **** ****");
+        System.out.println("登録データ: " + maskedCardNumber + ", " + expiryDate + ", " + securityCode);
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("customer");
 
-
-
+        // セッションチェック
         if (user == null) {
             response.sendRedirect("../main_kakugari/login.jsp");
             return;
         }
 
-
         String user_id = user.getUser_id();
 
+        // クレジット情報をセット
         Credit credit = new Credit();
         credit.setCreditNumber(cardNumber);
         credit.setExpiryDate(expiryDate);
@@ -49,16 +52,15 @@ public class CreditRegisterAction extends HttpServlet {
             CreditDAO dao = new CreditDAO();
             int result = dao.insertCredit(credit);
 
-            if(result == 10){
-            	response.sendRedirect("../main_kakugari/credit-error.jsp");
-            }else{
+            System.out.print(result);
 
-            if (result > 0) {
-                response.sendRedirect("../main_kakugari/cregit-success.jsp");
-            } else {
-                response.sendRedirect("../main_kakugari/credit-error2.jsp");
-            }
-            }
+            String list = "登録完了しました。";
+
+            System.out.print(list);
+
+            String json = new Gson().toJson(list);
+            response.getWriter().write(json);
+
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("../main_kakugari/credit-error.jsp");

@@ -106,6 +106,8 @@ public class Purchaseaction extends HttpServlet {
             System.out.println("登録済みカードを使用: " + cardNum);
         }
 
+        
+        
     }
 
 }
