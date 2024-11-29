@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.Credit;
 
@@ -13,12 +15,11 @@ public class CreditDAO extends DAO {
     public Credit getCreditInfo(String userId) throws Exception {
         Credit credit = null;
 
-        // ユーザーIDからクレジットカード情報を取得するSQLクエリ
-        String sql = "SELECT * FROM credit WHERE id = ?";
+        String sql = "SELECT * FROM credit WHERE user_id = ?";
         try (Connection conn = getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, userId);  // user_idを設定
+            ps.setString(1, userId);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     credit = new Credit();
@@ -26,65 +27,77 @@ public class CreditDAO extends DAO {
                     credit.setExpiryDate(rs.getString("expiry_date"));
                     credit.setSecurityCode(rs.getString("security_code"));
                     credit.setUserId(rs.getString("user_id"));
-
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw e;
         }
         return credit;
     }
 
     public int insertCredit(Credit credit) throws Exception {
-        // コネクションを取得
-        Connection con = getConnection();
+        try (Connection con = getConnection()) {
 
-        PreparedStatement st1 = con.prepareStatement("SELECT MAX(ID) AS MAX FROM CREDIT");
-        ResultSet rs = st1.executeQuery();
-        rs.next();
-        int maxId = rs.getInt("MAX");
+            // クレジットカード番号の重複を確認
+            String checkSql = "SELECT COUNT(*) FROM credit WHERE credit_number = ?";
+            try (PreparedStatement checkStmt = con.prepareStatement(checkSql)) {
+                checkStmt.setString(1, credit.getCreditNumber());
+                try (ResultSet rs = checkStmt.executeQuery()) {
+                    if (rs.next() && rs.getInt(1) > 0) {
+                        return 10; // 重複エラーコードを返す
+                    }
+                }
+            }
 
-        String maxText1 = Integer.toString(maxId);
+            // 新しいIDを生成
+            String maxIdSql = "SELECT COALESCE(MAX(ID), 0) + 1 AS new_id FROM credit";
+            int newId;
+            try (PreparedStatement idStmt = con.prepareStatement(maxIdSql);
+                 ResultSet rs = idStmt.executeQuery()) {
+                rs.next();
+                newId = rs.getInt("new_id");
+            }
 
-        String st2 = "SELECT id, credit_number, expiry_date, security_code, user_id from credit where credit_number=? and expiry_date=? and security_code=? and user_id=?";
-        PreparedStatement st3 = con.prepareStatement(st2);
-        st3.setString(1, credit.getCreditNumber());
-        st3.setString(2, credit.getExpiryDate());
-        st3.setString(3, credit.getSecurityCode());
-        st3.setString(4, credit.getUserId());
+            // クレジット情報を挿入
+            String insertSql = "INSERT INTO CREDIT (ID, CREDIT_NUMBER, EXPIRY_DATE, SECURITY_CODE, USER_ID) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement insertStmt = con.prepareStatement(insertSql)) {
+                insertStmt.setInt(1, newId);
+                insertStmt.setString(2, credit.getCreditNumber());
+                insertStmt.setString(3, credit.getExpiryDate());
+                insertStmt.setString(4, credit.getSecurityCode());
+                insertStmt.setString(5, credit.getUserId());
 
-        int line = st3.executeUpdate();
+                return insertStmt.executeUpdate(); // 正常に挿入された場合は1を返す
+            }
 
-        if(line > 0){
-
-        	int result = 10;
-
-        	return result;
-
-        }else{
-	        // 最大のIDを取得するクエリ
-
-	        maxId = maxId + 1;  // 新しいIDを生成
-	        String maxText = Integer.toString(maxId);  // IDを文字列に変換
-
-	        String sql = "INSERT INTO CREDIT (ID, CREDIT_NUMBER, EXPIRY_DATE, SECURITY_CODE, USER_ID) VALUES (?, ?, ?, ?, ?)";
-	        PreparedStatement st = con.prepareStatement(sql);
-
-	        // パラメータを設定
-	        st.setString(1, maxText);
-	        st.setString(2, credit.getCreditNumber());
-	        st.setString(3, credit.getExpiryDate());
-	        st.setString(4, credit.getSecurityCode());
-	        st.setString(5, credit.getUserId());
-
-	        // クエリ実行
-	        int result = st.executeUpdate();
-
-	        // リソースの解放
-	        st.close();
-	        con.close();
-
-	        return result;  // 正常に挿入された場合は1が返る
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
         }
     }
+    public List<Credit> getCred(String userId) throws Exception {
+
+    	List<Credit> list1=new ArrayList<>();
+    	Connection con = getConnection();
+
+    	PreparedStatement st = con.prepareStatement(
+				"SELECT * FROM credit WHERE user_id = ?");
+		st.setString(1, userId);
+		ResultSet rs=st.executeQuery();
+
+		while (rs.next()){
+			Credit p=new Credit();
+			p.setCreditNumber(rs.getString("credit_number"));
+			list1.add(p);
+		}
+
+		st.close();
+		con.close();
+
+		return list1;
+
+    }
+
+
 }
