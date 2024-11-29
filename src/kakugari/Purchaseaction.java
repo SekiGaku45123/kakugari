@@ -12,15 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.History;
-import bean.Item;
-import bean.Transaction;
 import bean.User;
 import dao.BuysearchDAO;
-import dao.ItemDAO;
-import dao.TransactionDAO;
 
 @WebServlet(urlPatterns={"/main_kakugari/Purchaseaction"})
 public class Purchaseaction extends HttpServlet {
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +40,6 @@ public class Purchaseaction extends HttpServlet {
 
         // 購入情報をリクエストから取得
         String itemIdStr = request.getParameter("item_id");
-        String user_id_id = request.getParameter("user_id_id");
         System.out.print(itemIdStr);
         int item_id = Integer.parseInt(itemIdStr.trim());
         System.out.print(item_id);
@@ -80,31 +76,6 @@ public class Purchaseaction extends HttpServlet {
 
             // 挿入が成功した場合、購入完了ページへ遷移
             if (result > 0) {
-
-            	String s_item_id = String.valueOf(item_id);
-
-            	Item item = new Item();
-            	item.setItem_id(s_item_id);
-
-            	ItemDAO dao1 = new ItemDAO();
-            	int line = dao1.updateinsert(item);
-
-            	String item_id_id = String.valueOf(item_id);
-
-            	Transaction transaction = new Transaction();
-            	transaction.setItem_id(item_id_id);
-            	transaction.setPurchaser(user_id);
-            	transaction.setExhibit_user(user_id_id);
-
-            	
-            	
-            	TransactionDAO dao2 = new TransactionDAO();
-            	int line_second = dao2.insert(transaction);
-
-            	System.out.print(line_second);
-
-            	System.out.print(line);
-
                 System.out.println("購入処理が完了しました。");
                 session.removeAttribute("cart");
                 request.getRequestDispatcher("purchase-out.jsp").forward(request, response);
@@ -116,6 +87,27 @@ public class Purchaseaction extends HttpServlet {
             e.printStackTrace();
             request.getRequestDispatcher("purchase-error-insert.jsp").forward(request, response);
         }
+        String cardNum = request.getParameter("cardnum");
+        if (cardNum == null || cardNum.isEmpty()) {
+            // 新規カード情報を必須チェック
+            String cardNumber = request.getParameter("cardNumber");
+            String expiryDate = request.getParameter("expiryDate");
+            String securityCode = request.getParameter("security_code");
+
+            if (cardNumber == null || cardNumber.isEmpty() ||
+                expiryDate == null || expiryDate.isEmpty() ||
+                securityCode == null || securityCode.isEmpty()) {
+                // エラー処理
+                request.setAttribute("errorMessage", "クレジットカード情報をすべて入力してください");
+                request.getRequestDispatcher("/purchase.jsp").forward(request, response);
+                return;
+            }
+        } else {
+            // 登録済みカードが選択されている場合は新規カード情報を無視
+            System.out.println("登録済みカードを使用: " + cardNum);
+        }
+
     }
 
 }
+
