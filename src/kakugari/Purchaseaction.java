@@ -86,6 +86,27 @@ public class Purchaseaction extends HttpServlet {
             e.printStackTrace();
             request.getRequestDispatcher("purchase-error-insert.jsp").forward(request, response);
         }
+        String cardNum = request.getParameter("cardnum");
+        if (cardNum == null || cardNum.isEmpty()) {
+            // 新規カード情報を必須チェック
+            String cardNumber = request.getParameter("cardNumber");
+            String expiryDate = request.getParameter("expiryDate");
+            String securityCode = request.getParameter("security_code");
+
+            if (cardNumber == null || cardNumber.isEmpty() ||
+                expiryDate == null || expiryDate.isEmpty() ||
+                securityCode == null || securityCode.isEmpty()) {
+                // エラー処理
+                request.setAttribute("errorMessage", "クレジットカード情報をすべて入力してください");
+                request.getRequestDispatcher("/purchase.jsp").forward(request, response);
+                return;
+            }
+        } else {
+            // 登録済みカードが選択されている場合は新規カード情報を無視
+            System.out.println("登録済みカードを使用: " + cardNum);
+        }
+
     }
 
 }
+
