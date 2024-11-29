@@ -17,7 +17,7 @@
        HttpSession sessionObj = request.getSession(false);
        boolean isLoggedIn = (session != null && session.getAttribute("customer") != null);
    %>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
        /* headerスタイル */
        header {
@@ -279,7 +279,7 @@
 		    opacity: 1;
 		    background-color: #f5f5f5;
 		    border: 1px solid #000000;
-		    margin: 0 0 0 150px;
+		    margin: 10px 0 0 150px;
 		    width:150px;
 		    height: 80px;
 		    visibility: visible;
@@ -292,6 +292,122 @@
 			background-color:#e8e8e8;
 			padding: 5px 10px;
 		}
+
+
+
+		.hidden1 {
+		    opacity: 0;
+		    visibility: hidden;
+		    pointer-events: none;
+		    position: absolute;
+		}
+		.visible1 {
+			position: absolute;
+			border-radius: 10px;
+		    opacity: 1;
+		    background-color: #f5f5f5;
+		    border: 1px solid #000000;
+		    margin: 10px 0 0 240px;
+		    width:150px;
+		    height: 80px;
+		    visibility: visible;
+		}
+		.visible1 p{
+			margin: 10px 0;
+			text-align: center;
+		}
+		.visible1 p a:hover{
+			background-color:#e8e8e8;
+			padding: 5px 10px;
+		}
+
+		.yarukoto_main{
+		position: absolute;
+		background-color: #ff476f;
+		width:25px;
+		height:25px;
+		top:42px;
+		right:6px;
+		border-radius:50%
+		}
+
+		.count{
+		color:white;
+		margin:0 0 0;
+		text-align: center;
+		font-family: cursive;
+		}
+
+		#notification{
+			position: absolute;
+			background-color: #ff476f;
+			width:10px;
+			height:10px;
+			top:10px;
+			right:30px;
+			border-radius:50%;
+		}
+
+		.order_list_main{
+		border: 2px solid #000000;
+		position: absolute;
+		background-color: white;
+		max-width: 500px;
+		width:50vw;
+		height:650px;
+		top: 30px;
+    	left: 50%;
+    	transform: translateX(-50%);
+    	-webkit-transform: translateX(-50%);
+    	-ms-transform: translateX(-50%);
+    	border-radius:2%;
+		}
+		.p_gen{
+			text-align: center;
+			font-size: 25px;
+			border-bottom: 1px solid #000;
+			margin:5px 10px 0 10px;
+		}
+
+		.order_list{
+		margin: 10px;
+		height:85px;
+		display: grid;
+		grid-template-columns: 30% 70%;
+		}
+
+		.order_img{
+		margin: 0 auto;
+		background-color: black;
+		width: 85px;
+		height: 85px;
+		}
+
+		.order_img img{
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+
+		}
+
+		.order_comment p{
+
+		font-size: 15px;
+		padding: 5px 0;
+		}
+
+		.margin_order{
+		border-bottom: 1px solid #cccccc;
+		margin:5px 10px 0 10px;
+		}
+
+		.atagu{
+		margin: 0; /* 外側の余白を消す */
+	  padding: 0; /* 内側の余白を消す */
+	  display: inline-block; /* 必要に応じて指定 */
+	  text-decoration: none; /* 下線を消す（必要なら） */
+		}
+
 </style>
 </head>
 <body>
@@ -351,9 +467,29 @@
 		        <a href="${pageContext.request.contextPath}/kakugari/favoritesearch"><img src="../kakugari_image/8760.png" class="images1"></a>
 		        <a href="${pageContext.request.contextPath}/history"><img src="../kakugari_image/9654.png" class="images2"></a>
 		        <a href="../contact/contact.jsp"><img src="../kakugari_image/10894.png" class="images3"></a>
-		        <a href="../login_logout/logout"><img src="../kakugari_image/888.png" class="images4"></a>
-		</div>
-    </div>
+		        <a href="#" id="fadeLink1"><img src="../kakugari_image/888.png" class="images4"></a>
+
+		        <div id="notification"></div>
+
+		        <div id="fadeElement1" class="hidden1">
+		        	<p><a href="../login_logout/logout">ログアウト</a></p>
+		        	<p><a href="#" id="showOrderList">発送リスト</a></p>
+		        	<div class="yarukoto_main">
+			        	<div id="yarukoto">
+			        </div>
+		        </div>
+			    </div>
+
+			    <div class="order_list_main" style="display: none;">
+				    <p class="p_gen">発注リスト</p>
+					    <div id="order_all"></div>
+			    </div>
+
+    		</div>
+
+
+
+
 <script type="text/javascript">
        const links = document.querySelectorAll(".header-nav__item > a");
        links.forEach(function (link) {
@@ -393,6 +529,17 @@
 		    } else {
 		        element.classList.remove("visible");
 		        element.classList.add("hidden");
+		    }
+		});
+    	document.getElementById("fadeLink1").addEventListener("click", function (event) {
+		    event.preventDefault(); // デフォルトのリンク動作を無効化
+		    const element = document.getElementById("fadeElement1");
+		    if (element.classList.contains("hidden1")) {
+		        element.classList.remove("hidden1");
+		        element.classList.add("visible1");
+		    } else {
+		        element.classList.remove("visible1");
+		        element.classList.add("hidden1");
 		    }
 		});
 
@@ -485,6 +632,134 @@
                     console.error('Error:', error);
                 });
         }
+
+    	//${pageContext.request.contextPath}/kakugari/orderlist
+
+		if (<%= isLoggedIn %>) {
+    console.log($);
+    $.ajax({
+        url: '../orderlist',
+        type: 'POST',
+        success: function(response) {
+            try {
+                // JSONパースが必要な場合
+                if (typeof response === 'string') {
+                    response = JSON.parse(response);
+                }
+
+                console.log('成功:', response);
+
+                // レスポンスが配列かどうか確認
+                if (Array.isArray(response) && response.length > 0) {
+                    var yarukoto = document.getElementById('yarukoto');
+                    yarukoto.innerHTML = '';
+
+                    var count = response.length;
+                    console.log('カウント:', count);
+
+                    var count_list = document.createElement('div');
+                    count_list.textContent = count;
+                    count_list.className = 'count';
+
+                    yarukoto.appendChild(count_list);
+
+                    document.querySelectorAll('#notification').forEach(function(element) {
+                        element.style.display = 'block';
+                    });
+
+                    document.querySelectorAll('.yarukoto_main').forEach(function(element) {
+                        element.style.display = 'block';
+                    });
+
+
+                    var order_all = document.getElementById('order_all');
+                    order_all.innerHTML = '';
+                    for(var i = 0; i < response.length; i++){
+                    	var order_list_cla_a = document.createElement('a');
+                    	var order_list_cla = document.createElement('div');
+                    	var order_list_img = document.createElement('div');
+                    	var order_list_imgimg = document.createElement('img');
+
+                    	var order_comment_p = document.createElement('div');
+                    	var order_comment_p_p = document.createElement('p');
+
+                    	var margin_order_yo = document.createElement('div');
+
+
+                    	order_list_imgimg.src = response[i].image_data;
+                    	order_list_imgimg.alt = response[i].item_name;
+
+                    	order_comment_p_p.textContent = response[i].user_name + "　さんが「" + response[i].item_name + "」を購入しました。内容を確認の上、発送をお願いします。";
+
+
+                    	order_list_cla_a.className = 'atagu'
+
+                    		console.log('カウント:', response[i].item_id);
+
+                    	//var item_id = response[i].item_id;
+                    	var user_name_name = response[i].user_name;
+
+
+                    	order_list_cla_a.href = "../main_kakugari/order.jsp?item_id="+response[i].item_id +"&user_name=" +response[i].user_name ;
+
+                    	order_list_img.className = 'order_img';
+                    	order_comment_p.className = 'order_comment';
+                    	order_list_cla.className = 'order_list';
+                    	margin_order_yo.className = 'margin_order';
+
+
+
+                    	order_list_img.appendChild(order_list_imgimg);
+                    	order_comment_p.appendChild(order_comment_p_p);
+
+                    	order_list_cla.appendChild(order_list_img);
+                    	order_list_cla.appendChild(order_comment_p);
+
+                    	order_list_cla_a.appendChild(order_list_cla);
+
+
+
+                    	order_all.appendChild(order_list_cla_a);
+                    	order_all.appendChild(margin_order_yo);
+
+
+                    }
+
+
+
+
+                } else {
+                    document.querySelectorAll('#notification').forEach(function(element) {
+                        element.style.display = 'none';
+                    });
+
+                    document.querySelectorAll('.yarukoto_main').forEach(function(element) {
+                        element.style.display = 'none';
+                    });
+                }
+            } catch (e) {
+                console.error('JSONパースエラー:', e.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('エラー:', status, error);
+            console.log('レスポンス内容:', xhr.responseText);
+        }
+    });
+}
+
+		document.getElementById("showOrderList").addEventListener("click", function(event) {
+		    event.preventDefault(); // aタグのデフォルトの動作を無効化
+		    const orderList = document.querySelector(".order_list_main");
+		    if (orderList.style.display === "none" || orderList.style.display === "") {
+		        orderList.style.display = "block"; // 表示
+		    } else {
+		        orderList.style.display = "none"; // 非表示
+		    }
+		});
+
+
+
 </script>
 </header>
 <!-- 各ページのコンテンツが入る部分 -->

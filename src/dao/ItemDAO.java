@@ -283,6 +283,10 @@ public class ItemDAO extends DAO{
 	}
 
 
+
+
+
+
 	public int getMaxItemId() throws Exception {
 		String sql = "SELECT MAX(CAST(item_id AS INTEGER)) AS max_value FROM item";
 	    int maxItemId = 0;
@@ -298,6 +302,46 @@ public class ItemDAO extends DAO{
 	    return maxItemId;
 
 	}
+
+	public int updateinsert(Item item) throws Exception {
+		Connection con=getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"UPDATE ITEM SET flag = FALSE where item_id = ?");
+		st.setString(1, item.getItem_id());
+		int line=st.executeUpdate();
+
+		st.close();
+		con.close();
+
+		return line;
+	}
+
+	public List<Item> getbuy(String item) throws Exception {
+
+		List<Item> list = new ArrayList<>();
+
+		Connection con=getConnection();
+
+		String sql = "SELECT item_id from Item where user_id = ? and flag = FALSE";
+
+	         PreparedStatement pstmt = con.prepareStatement(sql);
+	    	 pstmt.setString(1, item);
+	         ResultSet rs = pstmt.executeQuery();
+
+	    	while (rs.next()) {
+	        	Item p=new Item();
+	        	System.out.println(rs.getString("item_id"));
+				p.setItem_id(rs.getString("item_id"));
+
+				list.add(p);
+	        }
+	    return list;
+
+	}
+
+	
+
 
 }
 

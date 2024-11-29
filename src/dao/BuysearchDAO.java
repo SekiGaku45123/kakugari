@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.History;
+import bean.Item;
 import bean.User;
 
 public class BuysearchDAO extends DAO {
@@ -112,5 +113,45 @@ public class BuysearchDAO extends DAO {
 
         return historyList;
     }
+
+    public List<History> client(List<Item> items) throws Exception {
+
+        List<History> list2 = new ArrayList<>();
+
+        Connection con = getConnection();
+
+        String sql = "SELECT user_id, item_id FROM HISTORY WHERE item_id = ?";
+
+        // PreparedStatementをループの外で1回だけ作成
+        PreparedStatement st = con.prepareStatement(sql);
+
+        try {
+            for (Item item : items) {
+
+            	int id = Integer.parseInt(item.getItem_id());
+
+                st.setInt(1, id);
+                ResultSet rs = st.executeQuery();
+
+                // もし結果があれば、Historyオブジェクトを作成してリストに追加
+                if (rs.next()) {
+                    History history = new History();
+
+                    history.setUser_Id(rs.getString("user_id"));
+                    history.setItem_Id(rs.getInt("item_Id"));// user_idのみ設定
+
+                    list2.add(history);
+                }
+                rs.close(); // ResultSetはループごとに閉じる
+            }
+        } finally {
+            st.close(); // PreparedStatementをクローズ
+            con.close(); // Connectionをクローズ
+        }
+
+        return list2;
+    }
+
+
 
 }

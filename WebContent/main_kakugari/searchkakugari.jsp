@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList, java.net.URLEncoder"%>
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <c:import url="/common/base.jsp">
 </c:import>
 

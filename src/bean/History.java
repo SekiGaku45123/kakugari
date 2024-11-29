@@ -2,16 +2,13 @@ package bean;
 
 import java.sql.Timestamp;
 
-public class History {
-    private int item_Id;          // 商品ID
-    private boolean flag;         // 購入完了フラグ
-    private String image_Data;    // 画像パス
-    private String user_id;       // ユーザーID
-    private Timestamp purchase_Date; // 購入日時
+public class History implements java.io.Serializable {
+    private int item_Id;
+    private boolean flag;
+    private String image_Data;
+    private String user_id;
+    private Timestamp purchase_Date;
     private String cancel_not;
-
-    // コンストラクタ
-    public History() {}
 
     public String getCancel_not() {
         return cancel_not;
@@ -66,15 +63,5 @@ public class History {
         this.purchase_Date = purchase_Date;
     }
 
-    // オブジェクトの文字列表現
-    @Override
-    public String toString() {
-        return "History{" +
-                "item_Id=" + item_Id +
-                ", flag=" + flag +
-                ", image_Data='" + image_Data + '\'' +
-                ", user_id='" + user_id + '\'' +
-                ", purchase_Date=" + purchase_Date +
-                '}';
-    }
+
 }
