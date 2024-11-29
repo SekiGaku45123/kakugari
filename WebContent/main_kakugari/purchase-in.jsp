@@ -171,10 +171,12 @@ function submitCreditCardData(event) {
             security_code: securityCode
         },
         success: function (response) {
-            if (response.success) {
+        	console.log(response);
+            if (response) {
+
                 alert("クレジットカード登録が完了しました");
                 // 成功した場合のみフォームを送信
-                document.querySelector("form").submit();
+
             } else {
                 alert("クレジットカード登録に失敗しました");
             }
