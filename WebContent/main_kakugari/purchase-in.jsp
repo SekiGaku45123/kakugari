@@ -106,7 +106,9 @@
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
 	<select name="cardnum">
+		<option name=""  value="">登録カード</option>
 		<c:forEach var="pro" items="${crad}">
+
 			<option  name="" value="${pro.getCreditNumber() }">${pro.getCreditNumber() }</option>
 		</c:forEach>
 	</select>
