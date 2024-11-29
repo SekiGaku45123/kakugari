@@ -14,50 +14,57 @@ import javax.servlet.http.HttpSession;
 import bean.Favorite;
 import bean.User;
 import dao.FavoriteDAO;
-@WebServlet(urlPatterns={"/kakugari/favoriteAddAction"})
+
+@WebServlet(urlPatterns = { "/kakugari/favoriteAddAction" })
 public class FavoriteAddAction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    	System.out.print("実行");
-    	PrintWriter out=response.getWriter();
-    	HttpSession session = request.getSession();
+        System.out.println("実行");
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
 
         try {
+            // セッションからログイン情報を取得
+            User customer = (User) session.getAttribute("customer");
 
-        	String item_id=request.getParameter("item_id");
-        	User customer = (User) session.getAttribute("customer");
+            // ユーザーがログインしていない場合
+            if (customer == null) {
+                System.out.println("ログインしていません");
+                response.sendRedirect("../login_logout/login-in.jsp"); // エラーページにリダイレクト
+                return; // ここで処理を終了
+            }
 
-        	// Userクラス内にuser_idフィールドがあると仮定
-        	String user_id = customer.getUser_id();
+            // ログインしている場合
+            String item_id = request.getParameter("item_id");
+            String user_id = customer.getUser_id(); // ユーザーIDを取得
 
-        	Favorite p=new Favorite();
-        	p.setItem_id(item_id);
-        	p.setUser_id(user_id);
+            // Favoriteオブジェクトに値を設定
+            Favorite favorite = new Favorite();
+            favorite.setItem_id(item_id);
+            favorite.setUser_id(user_id);
 
-        	FavoriteDAO dao=new FavoriteDAO();
-        	int line=dao.insert(p);
+            // DAOを使用してお気に入りに追加
+            FavoriteDAO dao = new FavoriteDAO();
+            int line = dao.insert(favorite);
 
-        	if(line == 001){
-        		System.out.print("すでに登録されてるって！！厳しいって！！");
-        		response.sendRedirect("../kakugari/product?item_id=" + URLEncoder.encode(item_id, "UTF-8"));
-        	}
-
-        	if (line>0) {
-        		System.out.print("完成");
-
-        		response.sendRedirect("../kakugari/product?item_id=" + URLEncoder.encode(item_id, "UTF-8"));
-
-        	}
-
-
-
+            if (line == 0) {
+                // すでに登録されている場合
+                System.out.println("すでに登録されているアイテムです");
+                response.sendRedirect("../kakugari/product?item_id=" + URLEncoder.encode(item_id, "UTF-8"));
+            } else if (line > 0) {
+                // 正常に登録できた場合
+                System.out.println("お気に入りに登録完了");
+                response.sendRedirect("../kakugari/product?item_id=" + URLEncoder.encode(item_id, "UTF-8"));
+            } else {
+                // その他エラーの場合
+                System.out.println("お気に入りの登録に失敗しました");
+                response.sendRedirect("../error.jsp"); // エラーページにリダイレクト
+            }
         } catch (Exception e) {
-        	e.printStackTrace(out);
-
+            e.printStackTrace(out);
+            // 例外が発生した場合はエラーページへ
+            response.sendRedirect("../error.jsp");
         }
     }
-
-
-
 }
