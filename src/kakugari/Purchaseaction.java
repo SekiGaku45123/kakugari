@@ -68,8 +68,16 @@ public class Purchaseaction extends HttpServlet {
         }
 
         try {
+        	String s_item_id = String.valueOf(item_id);
+
+        	Item item = new Item();
+        	item.setItem_id(s_item_id);
+
+        	ItemDAO dao1 = new ItemDAO();
+        	int line = dao1.updateinsert(item);
+
             // 購入情報をセット
-            History purchase = new History();
+        	History purchase = new History();
             purchase.setUser_Id(user_id);
             purchase.setItem_Id(item_id);
             purchase.setFlag(isAttend);
@@ -80,16 +88,9 @@ public class Purchaseaction extends HttpServlet {
             BuysearchDAO dao = new BuysearchDAO();
             int result = dao.insert(purchase);
 
+
             // 挿入が成功した場合、購入完了ページへ遷移
             if (result > 0) {
-            	String s_item_id = String.valueOf(item_id);
-
-            	Item item = new Item();
-            	item.setItem_id(s_item_id);
-
-            	ItemDAO dao1 = new ItemDAO();
-            	int line = dao1.updateinsert(item);
-
             	String item_id_id = String.valueOf(item_id);
 
             	Transaction transaction = new Transaction();
