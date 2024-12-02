@@ -15,13 +15,14 @@ public class TransactionDAO extends DAO {
 		Connection con=getConnection();
 
 		PreparedStatement st = con.prepareStatement(
-				"INSERT INTO transaction VALUES(?, ?, null, ?, null, ?)");
+				"INSERT INTO transaction VALUES(?, ?, null, ?, null, ?, ?)");
 		st.setString(1, p.getItem_id());
 		st.setString(2, p.getPurchaser());
 		//st.setString(3, p.getPurchaser());
 		st.setString(3, p.getExhibit_user());
 		//st.setString(5, p.getPurchaser());
 		st.setString(4, "TRUE");
+		st.setString(5, "FALSE");
 		int line=st.executeUpdate();
 
 		st.close();
