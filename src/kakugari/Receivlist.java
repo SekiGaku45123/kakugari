@@ -1,9 +1,7 @@
 package kakugari;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +16,8 @@ import bean.Transaction;
 import bean.User;
 import dao.TransactionDAO;
 
-@WebServlet(urlPatterns={"/orderlist"})
-public class Orderlist extends HttpServlet {
+@WebServlet(urlPatterns={"/receivlist"})
+public class Receivlist extends HttpServlet {
 
 
 	public void doGet (
@@ -53,21 +51,12 @@ public class Orderlist extends HttpServlet {
 		        System.out.println(i);
 
 		        TransactionDAO dao=new TransactionDAO();
-				List<Transaction> list=dao.search(i);
-
-				List<Transaction> list2=dao.search_tuti(i);
-
-				List<Transaction> list3=dao.search_purchaser_tuti(i);
+				List<Transaction> list=dao.search_tuti(i);
 
 				System.out.println("dijhgfggih");
 				System.out.println(list);
 
-				Map<String, Object> data = new HashMap<>();
-				data.put("response", list); // Listデータ
-				data.put("list", list2);
-				data.put("list2", list3);
-
-				String json = new Gson().toJson(data);
+				String json = new Gson().toJson(list);
                 response.getWriter().write(json);
 		} catch (Exception e) {
             e.printStackTrace(response.getWriter());

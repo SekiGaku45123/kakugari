@@ -47,8 +47,7 @@ public class Listing extends HttpServlet {
 		        User user = (User) session.getAttribute("customer");
 
 
-		        //String user_id = user.getUser_id();
-		        String user_id = "7";
+		        String user_id = user.getUser_id();
 		        String photo = request.getParameter("photo");
 	        	String photo1 = request.getParameter("photo1");
 	        	String photo2 = request.getParameter("photo2");

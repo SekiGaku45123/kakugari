@@ -361,6 +361,7 @@
     	-webkit-transform: translateX(-50%);
     	-ms-transform: translateX(-50%);
     	border-radius:2%;
+    	overflow: auto;
 		}
 		.p_gen{
 			text-align: center;
@@ -640,7 +641,10 @@
     $.ajax({
         url: '../orderlist',
         type: 'POST',
-        success: function(response) {
+        success: function(data) {
+
+        	const { response, list, list2 } = data;
+
             try {
                 // JSONパースが必要な場合
                 if (typeof response === 'string') {
@@ -649,19 +653,18 @@
 
                 console.log('成功:', response);
 
+                var count = 0;
+
+                var order_all = document.getElementById('order_all');
+                order_all.innerHTML = '';
+
                 // レスポンスが配列かどうか確認
                 if (Array.isArray(response) && response.length > 0) {
                     var yarukoto = document.getElementById('yarukoto');
                     yarukoto.innerHTML = '';
 
-                    var count = response.length;
-                    console.log('カウント:', count);
+                    count = response.length;
 
-                    var count_list = document.createElement('div');
-                    count_list.textContent = count;
-                    count_list.className = 'count';
-
-                    yarukoto.appendChild(count_list);
 
                     document.querySelectorAll('#notification').forEach(function(element) {
                         element.style.display = 'block';
@@ -672,9 +675,8 @@
                     });
 
 
-                    var order_all = document.getElementById('order_all');
-                    order_all.innerHTML = '';
-                    for(var i = 0; i < response.length; i++){
+
+                    for (var i = response.length - 1; i >= 0; i--){
                     	var order_list_cla_a = document.createElement('a');
                     	var order_list_cla = document.createElement('div');
                     	var order_list_img = document.createElement('div');
@@ -700,7 +702,7 @@
                     	var user_name_name = response[i].user_name;
 
 
-                    	order_list_cla_a.href = "../main_kakugari/order.jsp?item_id="+response[i].item_id +"&user_name=" +response[i].user_name ;
+                    	order_list_cla_a.href = "../main_kakugari/order.jsp?item_id="+response[i].item_id +"&user_name=" +response[i].user_id ;
 
                     	order_list_img.className = 'order_img';
                     	order_comment_p.className = 'order_comment';
@@ -728,7 +730,178 @@
 
 
 
-                } else {
+
+
+                }
+                var count_one = 0
+
+                if (Array.isArray(list) && list.length > 0) {
+                    var yarukoto = document.getElementById('yarukoto');
+                    yarukoto.innerHTML = '';
+
+                    count_one = list.length;
+
+
+                    document.querySelectorAll('#notification').forEach(function(element) {
+                        element.style.display = 'block';
+                    });
+
+                    document.querySelectorAll('.yarukoto_main').forEach(function(element) {
+                        element.style.display = 'block';
+                    });
+
+
+                    for (var i = list.length - 1; i >= 0; i--){
+                    	var order_list_cla_a = document.createElement('a');
+                    	var order_list_cla = document.createElement('div');
+                    	var order_list_img = document.createElement('div');
+                    	var order_list_imgimg = document.createElement('img');
+
+                    	var order_comment_p = document.createElement('div');
+                    	var order_comment_p_p = document.createElement('p');
+
+                    	var margin_order_yo = document.createElement('div');
+
+
+                    	order_list_imgimg.src = list[i].image_data;
+                    	order_list_imgimg.alt = list[i].item_name;
+
+                    	order_comment_p_p.textContent = list[i].user_name + "　さんが「" + list[i].item_name + "」を発送しました。商品が届いたら、受取評価をしてください。";
+
+
+                    	order_list_cla_a.className = 'atagu'
+
+                    		console.log('カウント:', list[i].item_id);
+
+                    	//var item_id = response[i].item_id;
+                    	var user_name_name = list[i].user_name;
+
+
+                    	//order_list_cla_a.href = "../kakugari/tesuto?item_id="+list[i].item_id +"&user_name=" +list[i].user_id ;
+                    	order_list_cla_a.href = "../judge/judge.jsp?item_id="+list[i].item_id;
+
+                    	order_list_img.className = 'order_img';
+                    	order_comment_p.className = 'order_comment';
+                    	order_list_cla.className = 'order_list';
+                    	margin_order_yo.className = 'margin_order';
+
+
+
+                    	order_list_img.appendChild(order_list_imgimg);
+                    	order_comment_p.appendChild(order_comment_p_p);
+
+                    	order_list_cla.appendChild(order_list_img);
+                    	order_list_cla.appendChild(order_comment_p);
+
+                    	order_list_cla_a.appendChild(order_list_cla);
+
+
+
+                    	order_all.appendChild(order_list_cla_a);
+                    	order_all.appendChild(margin_order_yo);
+
+
+                    }
+
+
+
+
+
+
+
+                }
+
+
+                var count_two = 0
+
+                if (Array.isArray(list2) && list2.length > 0) {
+                    var yarukoto = document.getElementById('yarukoto');
+                    yarukoto.innerHTML = '';
+
+                    count_one = list2.length;
+
+
+                    document.querySelectorAll('#notification').forEach(function(element) {
+                        element.style.display = 'block';
+                    });
+
+                    document.querySelectorAll('.yarukoto_main').forEach(function(element) {
+                        element.style.display = 'block';
+                    });
+
+
+                    for (var i = list2.length - 1; i >= 0; i--){
+                    	var order_list_cla_a = document.createElement('a');
+                    	var order_list_cla = document.createElement('div');
+                    	var order_list_img = document.createElement('div');
+                    	var order_list_imgimg = document.createElement('img');
+
+                    	var order_comment_p = document.createElement('div');
+                    	var order_comment_p_p = document.createElement('p');
+
+                    	var margin_order_yo = document.createElement('div');
+
+
+                    	order_list_imgimg.src = list2[i].image_data;
+                    	order_list_imgimg.alt = list2[i].item_name;
+
+                    	order_comment_p_p.textContent = list2[i].user_name + "　さんが「" + list2[i].item_name + "」の受取評価しました。";
+
+
+                    	order_list_cla_a.className = 'atagu'
+
+                    		console.log('カウント:', list2[i].item_id);
+
+                    	//var item_id = response[i].item_id;
+                    	var user_name_name = list2[i].user_name;
+
+
+                    	//order_list_cla_a.href = "../kakugari/tesuto?item_id="+list[i].item_id +"&user_name=" +list[i].user_id ;
+                    	order_list_cla_a.href = "../judge/judge.jsp?item_id="+list2[i].item_id;
+
+                    	order_list_img.className = 'order_img';
+                    	order_comment_p.className = 'order_comment';
+                    	order_list_cla.className = 'order_list';
+                    	margin_order_yo.className = 'margin_order';
+
+
+
+                    	order_list_img.appendChild(order_list_imgimg);
+                    	order_comment_p.appendChild(order_comment_p_p);
+
+                    	order_list_cla.appendChild(order_list_img);
+                    	order_list_cla.appendChild(order_comment_p);
+
+                    	order_list_cla_a.appendChild(order_list_cla);
+
+
+
+                    	order_all.appendChild(order_list_cla_a);
+                    	order_all.appendChild(margin_order_yo);
+
+
+                    }
+
+
+
+
+
+
+
+                }
+
+                console.log('カウント:', count);
+                console.log('カウント:', count_one);
+
+                var count_new = count + count_one;
+
+                var count_list = document.createElement('div');
+                count_list.textContent = count_new;
+                count_list.className = 'count';
+
+                yarukoto.appendChild(count_list);
+
+                if (list.length <= 0 && list.length <= 0 && response.length <= 0) {
                     document.querySelectorAll('#notification').forEach(function(element) {
                         element.style.display = 'none';
                     });

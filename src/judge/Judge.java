@@ -4,6 +4,7 @@ public class Judge {
    private String userId;
    private String comment;
    private boolean evaluate;
+   private boolean notifi;
    public String getItemId() {
        return itemId;
    }
@@ -27,5 +28,11 @@ public class Judge {
    }
    public void setEvaluate(boolean evaluate) {
        this.evaluate = evaluate;
+   }
+   public boolean getNotifi() {
+       return notifi;
+   }
+   public void setNotifi(boolean notifi) {
+       this.notifi = notifi;
    }
 }

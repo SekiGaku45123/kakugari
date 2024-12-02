@@ -56,28 +56,58 @@
 
 <p>発送場所の選択</p>
 <label class="custom-checkbox">
-  <input type="checkbox" id="checkbox1">
+  <input type="checkbox" class="check" id="checkbox1">
   <span class="checkmark">郵便ポストに発送</span>
 </label>
 <label class="custom-checkbox">
-  <input type="checkbox" id="checkbox1">
+  <input type="checkbox" class="check" id="checkbox2">
   <span class="checkmark">郵便局へ持ち込みで発送</span>
 </label>
 <label class="custom-checkbox">
-  <input type="checkbox" id="checkbox1">
+  <input type="checkbox" class="check" id="checkbox3">
   <span class="checkmark">コンビニから発送</span>
 </label>
 
+<%String Year=request.getParameter("item_id"); %>
+<%String Year1=request.getParameter("user_name"); %>
 
+
+<p>発注通知</p>
 <div id="hayu_button" style="display: none;">
+  <!-- ボタンやコンテンツ -->
+  <form action="${pageContext.request.contextPath}/kakugari/order_comp" method="POST">
+    <input type="hidden" name="item_id" value=<%=Year %>>
+    <input type="hidden" name="exhibit_user" value=<%=Year1 %>>
+    <button type="submit">郵便ポストに発送通知</button>
+  </form>
 </div>
+
+<div id="hayu_button_2" style="display: none;">
+  <!-- ボタンやコンテンツ -->
+  <form action="${pageContext.request.contextPath}/kakugari/order_comp" method="POST">
+    <input type="hidden" name="item_id" value=<%=Year %>>
+    <input type="hidden" name="exhibit_user" value=<%=Year1 %>>
+    <button type="submit">郵便局へ持ち込みで発送通知</button>
+  </form>
+</div>
+
+<div id="hayu_button_3" style="display: none;">
+  <!-- ボタンやコンテンツ -->
+  <form action="${pageContext.request.contextPath}/kakugari/order_comp" method="POST">
+    <input type="hidden" name="item_id" value=<%=Year %>>
+    <input type="hidden" name="exhibit_user" value=<%=Year1 %>>
+    <button type="submit">コンビニから発送通知</button>
+  </form>
+</div>
+
+
+<br>
 
 
 
 <p>購入者情報</p>
 
-<%String Year=request.getParameter("item_id"); %><%=Year %>
-<%String Year1=request.getParameter("user_name"); %><%=Year1 %>
+
 
 
 
@@ -87,20 +117,44 @@
 </textarea>
 <button class="ordermessage" type="button">取引メッセージを送る</button>
 
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script type="text/javascript">
 
-const checkbox = document.getElementById("checkbox1");
-const content = document.getElementById("content");
+$(function() {
+    // チェックボックスがクリックされたときの処理
+    $('.check').on('click', function() {
+        if ($(this).prop('checked')) {
+            // 一旦全てをクリアして再チェックする
+            $('.check').prop('checked', false); // 全てのチェックを外す
+            $(this).prop('checked', true); // クリックしたチェックボックスを再チェック
+        }
 
-checkbox.addEventListener("change", function() {
-  if (checkbox.checked) {
-    content.style.display = "block";  // チェックされている時に表示
-  } else {
-    content.style.display = "none";   // チェック外されたら非表示
-  }
+        // チェックボックスがチェックされている場合、関連するコンテンツを表示
+        const content = $('#hayu_button');
+        if ($('#checkbox1').prop('checked')) {
+            content.show(); // チェックされていれば表示
+        } else {
+            content.hide(); // チェックが外れたら非表示
+        }
+
+        const content1 = $('#hayu_button_2');
+        if ($('#checkbox2').prop('checked')) {
+            content1.show(); // チェックされていれば表示
+        } else {
+            content1.hide(); // チェックが外れたら非表示
+        }
+
+        const content2 = $('#hayu_button_3');
+        if ($('#checkbox3').prop('checked')) {
+            content2.show(); // チェックされていれば表示
+        } else {
+            content2.hide(); // チェックが外れたら非表示
+        }
+    });
 });
-
-
-
 
 </script>

@@ -102,6 +102,8 @@
 <div class="container">
 <h1>取引評価</h1>
 <form action="${pageContext.request.contextPath}/JudgeServlet" method="post">
+<%String item_id=request.getParameter("item_id"); %>
+<input type="hidden" name="item_id" value=<%=item_id %>>
 <!-- itemIdを隠しフィールドとして送信 -->
 <input type="hidden" name="itemId" value="${param.itemId}" />
 <!-- 評価選択 -->

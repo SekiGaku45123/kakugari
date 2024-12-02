@@ -1,9 +1,7 @@
 package kakugari;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,15 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
-import bean.Transaction;
+import bean.Receiving;
 import bean.User;
 import dao.TransactionDAO;
+import tool.Page;
 
-@WebServlet(urlPatterns={"/orderlist"})
-public class Orderlist extends HttpServlet {
 
+@WebServlet(urlPatterns={"/kakugari/order_comp"})
+public class Order_comp extends HttpServlet {
 
 	public void doGet (
 	        HttpServletRequest request, HttpServletResponse response
@@ -38,8 +35,8 @@ public class Orderlist extends HttpServlet {
 				HttpServletRequest request, HttpServletResponse response
 		)
 				throws ServletException, IOException {
-			response.setContentType("application/json");
-	        response.setCharacterEncoding("UTF-8");
+			PrintWriter out=response.getWriter();
+			Page.header(out);
 			try{
 
 				HttpSession session = request.getSession();
@@ -48,29 +45,33 @@ public class Orderlist extends HttpServlet {
 		        String user_id = user.getUser_id();
 
 
-		        int i = Integer.parseInt(user_id);
+				String item_id = request.getParameter("item_id");
 
-		        System.out.println(i);
+		        String exhibit_user = request.getParameter("exhibit_user");
 
-		        TransactionDAO dao=new TransactionDAO();
-				List<Transaction> list=dao.search(i);
+				System.out.print(item_id);
 
-				List<Transaction> list2=dao.search_tuti(i);
+				TransactionDAO dao=new TransactionDAO();
+				int line=dao.updateinsert(item_id);
 
-				List<Transaction> list3=dao.search_purchaser_tuti(i);
+				Receiving receiving = new Receiving();
+				receiving.setItem_id(item_id);
+				receiving.setUser_id(user_id);
+				receiving.setExhibit_user(exhibit_user);
 
-				System.out.println("dijhgfggih");
-				System.out.println(list);
+				int line2=dao.insert_tuti(receiving);
 
-				Map<String, Object> data = new HashMap<>();
-				data.put("response", list); // Listデータ
-				data.put("list", list2);
-				data.put("list2", list3);
+				System.out.print(line2);
 
-				String json = new Gson().toJson(data);
-                response.getWriter().write(json);
-		} catch (Exception e) {
-            e.printStackTrace(response.getWriter());
-        }
-	}
+				if (line>0) {
+					System.out.print("やっている？");
+					request.getRequestDispatcher("../main_kakugari/order_comp.jsp")
+					.forward(request, response);
+				}
+			}catch (Exception e){
+				e.printStackTrace(out);
+			}
+
+			Page.footer(out);
+		}
 }
