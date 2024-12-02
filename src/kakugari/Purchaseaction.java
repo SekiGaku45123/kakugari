@@ -66,7 +66,7 @@ public class Purchaseaction extends HttpServlet {
             request.getRequestDispatcher("purchase-error-empty.jsp").forward(request, response);
             return;
         }
-
+ 
         try {
         	String s_item_id = String.valueOf(item_id);
 
