@@ -665,6 +665,8 @@
 
                     count = response.length;
 
+                    console.log("実行してる？");
+
 
                     document.querySelectorAll('#notification').forEach(function(element) {
                         element.style.display = 'block';
@@ -740,6 +742,8 @@
                     yarukoto.innerHTML = '';
 
                     count_one = list.length;
+
+                    console.log("実行してる？1");
 
 
                     document.querySelectorAll('#notification').forEach(function(element) {
@@ -818,7 +822,9 @@
                     var yarukoto = document.getElementById('yarukoto');
                     yarukoto.innerHTML = '';
 
-                    count_one = list2.length;
+                    count_two = list2.length;
+
+                    console.log("実行してる？2");
 
 
                     document.querySelectorAll('#notification').forEach(function(element) {
@@ -893,15 +899,26 @@
                 console.log('カウント:', count);
                 console.log('カウント:', count_one);
 
-                var count_new = count + count_one;
+
+
+                var count_new = count + count_one + count_two;
+
+                console.log('カウント:', count_new);
 
                 var count_list = document.createElement('div');
                 count_list.textContent = count_new;
                 count_list.className = 'count';
 
-                yarukoto.appendChild(count_list);
+                if (yarukoto) {
+                    yarukoto.appendChild(count_list);
+                } else {
+                    console.error("yarukotoが見つかりません");
+                }
 
-                if (list.length <= 0 && list.length <= 0 && response.length <= 0) {
+                if (count_new === 0) {
+
+                	console.log("実行してる？3");
+
                     document.querySelectorAll('#notification').forEach(function(element) {
                         element.style.display = 'none';
                     });
