@@ -141,7 +141,6 @@ public class TransactionDAO extends DAO {
 
 		while (rs.next()){
 			Transaction p = new Transaction();
-
 			System.out.println("なになになに");
 			p.setItem_id(rs.getString("item_id"));
 			p.setUser_id(rs.getString("user_id"));

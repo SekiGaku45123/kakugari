@@ -158,12 +158,19 @@ margin: 0 auto;
   position: relative;
 }
 
-.card_img img {
+.card_img .syou {
   object-fit: contain;
   width:250px;
   height: 250px;
   background:#f5f5f5;
 }
+
+ .sold{
+ position: absolute;
+ width:250px;
+ right:5px;
+
+ }
 
 .price{
   position: absolute;/*重ねたい子要素にabsolute*/
@@ -278,9 +285,10 @@ margin: 0 auto;
 <div class="cardchildren">
 <!-- カードの数に応じてこの .col を5つ繰り返してください -->
 <c:forEach var="p" items="${all}">
+<c:set var="flag" value="${p.getFlag() }"/>
 <div class="card_img">
 <div class="crad_size">
-<a href="../kakugari/product?item_id=${p.getItem_id()}"><img src="${p.getImage_data()}"  alt="商品画像"></a>
+<a href="../kakugari/product?item_id=${p.getItem_id()}"><img class="syou" src="${p.getImage_data()}"  alt="商品画像"><c:if test="${flag == false }"><img class="sold" src="../kakugari_image/SOLD.png" alt="SOLD OUT"></c:if></a>
 </div>
 <div class="card-body">
 <p class="price">¥${p.getItem_price()}</p>
