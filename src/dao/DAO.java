@@ -11,7 +11,7 @@ public class DAO {
 	public Connection getConnection() throws Exception {
 		if(ds==null){
 			InitialContext ic = new InitialContext();
-			ds=(DataSource)ic.lookup("java:/comp/env/jdbc/merukari");
+			ds=(DataSource)ic.lookup("java:/comp/env/jdbc/kakugari");
 		}
 		return ds.getConnection();
 	}

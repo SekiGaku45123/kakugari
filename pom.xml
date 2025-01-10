@@ -23,6 +23,12 @@
 		    <version>2.1.214</version>
 		</dependency>
 
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.2.23</version> <!-- 必要に応じてバージョンを変更 -->
+		</dependency>
+
         <!-- 他の依存関係がある場合はここに追加 -->
     </dependencies>
   <packaging>war</packaging>

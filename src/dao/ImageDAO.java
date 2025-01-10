@@ -32,7 +32,7 @@ public class ImageDAO extends DAO {
 		Connection con=getConnection();
 
 		PreparedStatement st = con.prepareStatement(
-				"select * from images join item on images.item_id = item.item_id");
+				"SELECT * FROM images JOIN item ON images.item_id = CAST(item.item_id AS INTEGER);");
 		ResultSet rs=st.executeQuery();
 
 
