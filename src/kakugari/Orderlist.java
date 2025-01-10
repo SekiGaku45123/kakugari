@@ -53,11 +53,11 @@ public class Orderlist extends HttpServlet {
 		        System.out.println(i);
 
 		        TransactionDAO dao=new TransactionDAO();
-				List<Transaction> list=dao.search(i);
+				List<Transaction> list=dao.search(user_id);
 
-				List<Transaction> list2=dao.search_tuti(i);
+				List<Transaction> list2=dao.search_tuti(user_id);
 
-				List<Transaction> list3=dao.search_purchaser_tuti(i);
+				List<Transaction> list3=dao.search_purchaser_tuti(user_id);
 
 				System.out.println("dijhgfggih");
 				System.out.println(list);

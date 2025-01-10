@@ -934,6 +934,13 @@
         error: function(xhr, status, error) {
             console.error('エラー:', status, error);
             console.log('レスポンス内容:', xhr.responseText);
+            document.querySelectorAll('#notification').forEach(function(element) {
+                element.style.display = 'none';
+            });
+
+            document.querySelectorAll('.yarukoto_main').forEach(function(element) {
+                element.style.display = 'none';
+            });
         }
     });
 }

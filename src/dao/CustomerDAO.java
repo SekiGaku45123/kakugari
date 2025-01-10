@@ -16,7 +16,7 @@ public class CustomerDAO extends DAO {
 
 		PreparedStatement st = con.prepareStatement(
 
-				"select * from user where maleaddress=? and password=?");
+				"select * from user1 where maleaddress=? and password=?");
 
 		st.setString(1,maleaddress);
 

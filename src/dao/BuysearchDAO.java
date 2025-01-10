@@ -24,7 +24,7 @@ public class BuysearchDAO extends DAO {
 
         try {
             con = getConnection();
-            String sql = "SELECT * FROM user WHERE user_name = ? AND user_address = ?";
+            String sql = "SELECT * FROM user1 WHERE user_name = ? AND user_address = ?";
             st = con.prepareStatement(sql);
             st.setString(1, name);
             st.setString(2, address);

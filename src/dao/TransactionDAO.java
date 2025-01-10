@@ -32,7 +32,7 @@ public class TransactionDAO extends DAO {
 
 	}
 
-	public List<Transaction> search(int keyword) throws Exception{
+	public List<Transaction> search(String keyword) throws Exception{
 
 		List<Transaction> list = new ArrayList<>();
 
@@ -41,8 +41,8 @@ public class TransactionDAO extends DAO {
 		System.out.println(keyword);
 
 		PreparedStatement st = con.prepareStatement(
-				"select t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user as u on t.purchaser = u.user_id where t.exhibit_user = ?");
-		st.setInt(1, keyword);
+				"select t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.purchaser = u.user_id where t.exhibit_user = ?");
+		st.setString(1, keyword);
 		ResultSet rs=st.executeQuery();
 
 		while (rs.next()){
@@ -94,7 +94,7 @@ public class TransactionDAO extends DAO {
 		return line;
 	}
 
-	public List<Transaction> search_tuti(int keyword)throws Exception{
+	public List<Transaction> search_tuti(String keyword)throws Exception{
 
 		List<Transaction> list = new ArrayList<>();
 
@@ -103,8 +103,8 @@ public class TransactionDAO extends DAO {
 		System.out.println(keyword);
 
 		PreparedStatement st = con.prepareStatement(
-				"select t.item_id, m.item_name, i.image_data, u.user_id, u.user_name from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user as u on t.exhibit_user = u.user_id join receiving as r on r.item_id = t.item_id where t.purchaser = ? and order_comp = TRUE;");
-		st.setInt(1, keyword);
+				"select t.item_id, m.item_name, i.image_data, u.user_id, u.user_name from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.exhibit_user = u.user_id join receiving as r on r.item_id = t.item_id where t.purchaser = ? and order_comp = TRUE;");
+		st.setString(1, keyword);
 		ResultSet rs=st.executeQuery();
 
 		while (rs.next()){
@@ -126,7 +126,7 @@ public class TransactionDAO extends DAO {
 		return list;
 	}
 
-	public List<Transaction> search_purchaser_tuti(int keyword) throws Exception{
+	public List<Transaction> search_purchaser_tuti(String keyword) throws Exception{
 
 		List<Transaction> list = new ArrayList<>();
 
@@ -135,8 +135,8 @@ public class TransactionDAO extends DAO {
 		System.out.println(keyword);
 
 		PreparedStatement st = con.prepareStatement(
-				"select t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user as u on t.purchaser = u.user_id join judge as tes on tes.item_id = t.item_id where t.exhibit_user = ? and tes.notification = TRUE");
-		st.setInt(1, keyword);
+				"select t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.purchaser = u.user_id join judge as tes on tes.item_id = t.item_id where t.exhibit_user = ? and tes.notification = TRUE");
+		st.setString(1, keyword);
 		ResultSet rs=st.executeQuery();
 
 		while (rs.next()){
