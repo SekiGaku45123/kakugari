@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Credit;
+import bean.Images;
 import bean.Item;
 import bean.User;
 import dao.CreditDAO;
+import dao.ImageDAO;
 import dao.ItemDAO;
 import tool.Page;
 
@@ -75,6 +77,33 @@ public class Confirm extends HttpServlet {
 
 			}catch (Exception e){
 				e.printStackTrace(out);
+
+				HttpSession session = request.getSession();
+		        session.setAttribute("alertMessage", "エラーが発生しました。ログインをしているか確認してから再度購入ボタンを押してください。");
+
+				String referer = request.getHeader("Referer");
+		        if (referer != null) {
+		            response.sendRedirect(referer);
+		        } else {
+		        	try {
+		            // Referer ヘッダーがない場合のデフォルト処理
+		        	ImageDAO dao=new ImageDAO();
+					List<Images> list;
+
+						list = dao.all();
+
+
+					System.out.print(list);
+
+					request.setAttribute("all", list);
+					request.getRequestDispatcher("../main_kakugari/kakugarilist.jsp")
+					.forward(request, response);
+		        	} catch (Exception e1) {
+						// TODO 自動生成された catch ブロック
+						e1.printStackTrace();
+					}
+		        }
+
 			}
 
 			Page.footer(out);

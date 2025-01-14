@@ -495,6 +495,8 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
   </style>
 
 
+
+
 <c:set var="user_id" value="${user_data.getUser_id()}" />
 
 <c:set var="item_idid" value="${pro[0].getItem_id()}"/>
@@ -602,6 +604,12 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
       </div>
   </div>
 </c:forEach>
+<c:if test="${not empty sessionScope.alertMessage}">
+    <script>
+        alert("${sessionScope.alertMessage}");
+    </script>
+    <c:remove var="alertMessage" scope="session"/>
+</c:if>
 
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
