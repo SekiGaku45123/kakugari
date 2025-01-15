@@ -42,7 +42,7 @@
                                     <input type="hidden" name="item_id" value="${item.item_id}">
                                     <input type="hidden" name="flag" value="${item.getFlag()}">
                                     <input type="hidden" name="image_data" value="${item.getImage_data()}">
-                                    <button type="submit" class="btn btn-primary btn-sm">購入</button>
+
                                 </form>
                                 <a href="${pageContext.request.contextPath}/kakugari/favoriteremove?id=${item.item_id}" class="btn btn-outline-danger btn-sm">削除</a>
 
