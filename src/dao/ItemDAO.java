@@ -272,7 +272,7 @@ public class ItemDAO extends DAO{
 		st.setString(6, item.getCondition());
 		st.setString(7, item.getArea());
 		st.setInt(8, item.getShipping_days());
-		st.setString(9, "TRUE");
+		st.setBoolean(9, true);
 		st.setString(10, item.getItem_name());
 		int line=st.executeUpdate();
 
@@ -340,7 +340,7 @@ public class ItemDAO extends DAO{
 
 	}
 
-	
+
 
 
 }
