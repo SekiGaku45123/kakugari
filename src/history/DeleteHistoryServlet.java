@@ -17,7 +17,7 @@ public class DeleteHistoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // リクエストパラメータからitemIdを取得
-            int itemId = Integer.parseInt(request.getParameter("itemId"));
+            String itemId = request.getParameter("itemId");
 
             // DAOを使用して履歴を削除
             HistoryDAO dao = new HistoryDAO();
