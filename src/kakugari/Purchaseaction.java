@@ -50,8 +50,9 @@ public class Purchaseaction extends HttpServlet {
         int item_id = Integer.parseInt(itemIdStr.trim());
         System.out.print(item_id);
         String flag = request.getParameter("flag");
+        System.out.println(flag+"ぺぺぺ");
         boolean isAttend;
-        if (flag == "true"){
+        if (flag.equals("true")){
         	isAttend = true;
         }else {
         	isAttend = false;
