@@ -32,6 +32,7 @@
                                         <img src="${item.getImage_data()}" width="80" height="80" alt="${item.item_name}" style="object-fit: cover;">
                                     </a>
                                 </div>
+
                                 <div class="flex-grow-1">
                                     <h5 class="mb-1">${item.item_name}</h5>
                                     <p class="text-muted mb-1">￥${item.item_price}</p>
