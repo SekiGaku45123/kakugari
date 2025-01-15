@@ -21,8 +21,8 @@ public class TransactionDAO extends DAO {
 		//st.setString(3, p.getPurchaser());
 		st.setString(3, p.getExhibit_user());
 		//st.setString(5, p.getPurchaser());
-		st.setString(4, "TRUE");
-		st.setString(5, "FALSE");
+		st.setBoolean(4, true);
+		st.setBoolean(5, false);
 		int line=st.executeUpdate();
 
 		st.close();

@@ -50,7 +50,13 @@ public class Purchaseaction extends HttpServlet {
         int item_id = Integer.parseInt(itemIdStr.trim());
         System.out.print(item_id);
         String flag = request.getParameter("flag");
-        boolean isAttend = Boolean.parseBoolean(flag);
+        boolean isAttend;
+        if (flag == "true"){
+        	isAttend = true;
+        }else {
+        	isAttend = false;
+        }
+        System.out.print(isAttend);
         String image_data = request.getParameter("image_data");
 
         if (!image_data.startsWith("..")) {
@@ -66,7 +72,7 @@ public class Purchaseaction extends HttpServlet {
             request.getRequestDispatcher("purchase-error-empty.jsp").forward(request, response);
             return;
         }
- 
+
         try {
         	String s_item_id = String.valueOf(item_id);
 
@@ -111,9 +117,11 @@ public class Purchaseaction extends HttpServlet {
             } else {
                 // データ挿入が失敗した場合の処理
                 request.getRequestDispatcher("purchase-error-insert.jsp").forward(request, response);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("購入処理が完了しましたkognvoabigvara");
             request.getRequestDispatcher("purchase-error-insert.jsp").forward(request, response);
         }
         String cardNum = request.getParameter("cardnum");
