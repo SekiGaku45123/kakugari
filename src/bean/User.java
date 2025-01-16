@@ -8,7 +8,12 @@ public class User implements java.io.Serializable{
 	private	 String user_hurigana;
 	private String user_address;
 	private String telephone;
+	private String postnum;
 
+
+	public String getPostnum(){
+		return postnum;
+	}
 
 	public String getUser_id(){
 		return user_id;
@@ -38,6 +43,10 @@ public class User implements java.io.Serializable{
 		return telephone;
 	}
 
+
+	public void setPostnum(String postnum) {
+		this.postnum=postnum;
+	}
 
 	public void setUser_id(String user_id) {
 		this.user_id=user_id;

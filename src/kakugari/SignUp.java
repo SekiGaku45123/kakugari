@@ -22,6 +22,8 @@ public class SignUp extends HttpServlet {
 	    String password = request.getParameter("password");
 	    String maleAddress = request.getParameter("maleaddress");
 	    String telephone = request.getParameter("telephone");
+	    String postnum = request.getParameter("postalCode");
+	    System.out.print(postnum);
 
 	    System.out.println("登録データ: " + name + ", " + hurigana + ", " + address + ", " + password + ", " + maleAddress);
 	    System.out.print(telephone);
@@ -33,6 +35,7 @@ public class SignUp extends HttpServlet {
 	    user.setpassword(password);
 	    user.setMaleaddress(maleAddress);
 	    user.setTelephone(telephone);
+	    user.setPostnum(postnum);
 
 	    try {
 	        SignUpDAO dao = new SignUpDAO();

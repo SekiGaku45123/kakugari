@@ -19,7 +19,7 @@ public class SignUpDAO extends DAO {
 
 	  		String maxText = maxId + "";
 
-	    String sql = "INSERT INTO USER1 VALUES (?, ?, ?, ?, ?, ?, ?)";
+	    String sql = "INSERT INTO USER1 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	    PreparedStatement st = con.prepareStatement(sql);
 
 	    st.setString(1, maxText);
@@ -29,6 +29,7 @@ public class SignUpDAO extends DAO {
 	    st.setString(3, user.getPassword());
 	    st.setString(2, user.getMaleaddress());
 	    st.setString(7, user.getTelephone());
+	    st.setString(8, user.getPostnum());
 
 	    int result = st.executeUpdate();
 

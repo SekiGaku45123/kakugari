@@ -52,10 +52,19 @@
         </div>
 
         <div class="form-group">
+            <label for="postalCode">郵便番号:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="例：123-4567" required>
+                <div class="input-group-append">
+                    <button type="button" id="searchButton" class="btn btn-primary">住所検索</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label for="address">住所:</label>
             <input type="text" class="form-control" id="address" name="address" placeholder="住所を入力してください" required>
         </div>
-
 
         <div class="form-group">
             <label for="maleaddress">メールアドレス:</label>
@@ -69,14 +78,14 @@
 
         <div class="form-group">
             <label for="telephone">電話番号:</label>
-            <input type="text" class="form-control" id="telephone" name="telephone" placeholder="電話番号を入力してください" required>
+            <input type="text" maxlength = "11" class="form-control" id="telephone" name="telephone" placeholder="ハイフンなしで記入してください" required>
         </div>
 
         <!-- 利用規約チェックボックス -->
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
             <label class="form-check-label" for="terms">
-                <a href="../contact/terms.jsp" >利用規約</a>に同意する
+                <a href="../contact/terms.jsp">利用規約</a>に同意する
             </label>
         </div>
 
@@ -84,10 +93,53 @@
     </form>
 </div>
 
+
 <jsp:include page="/footer.html" />
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function searchAddress() {
+    const postalCode = document.getElementById("postalCode").value;
+
+    if (!postalCode.match(/^\d{3}-?\d{4}$/)) {
+    	alert("正しい郵便番号を入力してください (例: 123-4567)");
+        return;
+    }
+
+    // AJAXでサーブレットにリクエスト送信
+    const contextPath = "<%= request.getContextPath() %>";
+    fetch("../AddressSearchServlet", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: "zipcode=" + encodeURIComponent(postalCode)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        if (data.status === 200 && data.results) {
+            console.log("取得したデータ:");
+            const address = data.results[0];
+            console.log(address);
+            const outputBox = document.getElementById("address");
+            const resultField1 = address.address1 + address.address2 + address.address3;
+            outputBox.value = resultField1;
+        } else {
+        	alert("住所が見つかりませんでした。");
+        }
+    })
+    .catch(error => {
+        console.error("エラー:", error);
+        alert("エラーが発生しました。再度お試しください。");
+    });
+}
+
+document.getElementById('searchButton').addEventListener('click', function() {
+    searchAddress();
+});
+</script>
 </body>
 </html>
