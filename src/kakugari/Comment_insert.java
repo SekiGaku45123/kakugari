@@ -34,21 +34,26 @@ public class Comment_insert extends HttpServlet {
         	String comment = request.getParameter("comment");
         	String user_id = request.getParameter("user_id");
         	String item_id = request.getParameter("item_id");
+        	String user_name = request.getParameter("user_name");
 
         	System.out.print(comment);
         	System.out.print(user_id);
         	System.out.print(item_id);
+        	System.out.println(user_name);
 
         	if(comment != null && !comment.isEmpty()){
+        		System.out.println(user_name);
 	        	Comment p = new Comment();
 	        	p.setItem_id(item_id);
 	        	p.setUser_id(user_id);
 	        	p.setComment(comment);
+	        	p.setUser_name(user_name);
 
 
 
             CommentDAO dao = new CommentDAO();
             int line = dao.commentinsert(p);
+            System.out.println(user_name+11);
 
             if (line > 0){
             	System.out.print("完・精子ました！！");

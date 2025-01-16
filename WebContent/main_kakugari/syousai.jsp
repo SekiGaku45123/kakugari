@@ -495,7 +495,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
   </style>
 
 
-
+<c:set var="user_name" value="${user_data.getUser_name()}" />
 
 <c:set var="user_id" value="${user_data.getUser_id()}" />
 
@@ -629,6 +629,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 
 	var user_id = "${user_id }";
 	var item_idid="${item_idid}";
+	var user_name = "${user_name }";
 
 	function fetchComments(isInitialLoad = false) {
 		const commentValue = isInitialLoad ? '' : document.getElementById("comment_input").value.trim();
@@ -638,7 +639,8 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	        data: {
 	            comment: commentValue,
 	            user_id: user_id,
-	            item_id: item_idid
+	            item_id: item_idid,
+	            user_name: user_name
 	        },
 	        success: function (cocomment) {
 	            console.log(cocomment);
@@ -647,21 +649,56 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	            if (dorihu) {  // dorihu が存在するか確認
 	                dorihu.innerHTML = '';
 
+
 	                for (var i = 0; i < cocomment.length; i++) {
 	                    console.log(user_id, cocomment[i].user_id + "一致");
 
+	                    var br = document.createElement('br');
+	                    var br2 = document.createElement('br');
 	                    if (user_id == cocomment[i].user_id) {
 	                        var commentlight = document.createElement('div');
 	                        var commentp = document.createElement('p');
+	                        var commenttime = document.createElement("span");
+
 	                        commentlight.className = 'comment_light';
 	                        commentp.textContent = cocomment[i].comment;
+	                        commentp.appendChild(br);
+
+
+	                        commenttime.textContent = cocomment[i].posted_day;
+	                        commenttime.style.fontSize = "15px";
+	                        commenttime.style.color = "#54171f";
+	                        commentp.appendChild(commenttime);
+
 	                        commentlight.appendChild(commentp);
+
 	                        dorihu.appendChild(commentlight);
 	                    } else {
 	                        var commentleft = document.createElement('div');
 	                        var commentpp = document.createElement('p');
+	                        var commenttime = document.createElement("span");
+	                        var username = document.createElement("span");
+	                        var keigo = document.createElement("span");
+
 	                        commentleft.className = 'comment_left';  // commentleft を使う
 	                        commentpp.textContent = cocomment[i].comment;
+	                        commentpp.appendChild(br);
+
+	                        commenttime.textContent = cocomment[i].posted_day;
+	                        commenttime.style.fontSize = "15px";
+	                        commenttime.style.color = "#54171f";
+	                        commentpp.appendChild(commenttime);
+
+	                        username.textContent = "   "+cocomment[i].user_name;
+	                        username.style.fontSize = "19px";
+	                        username.style.color = "#542e17";
+	                        commentpp.appendChild(username)
+
+	                        keigo.textContent = "さん";
+	                        keigo.style.fontSize = "17px";
+	                        keigo.style.color = "#542e17";
+	                        commentpp.appendChild(keigo)
+
 	                        commentleft.appendChild(commentpp);  // commentleft に追加
 	                        dorihu.appendChild(commentleft);  // commentleft を dorihu に追加
 	                    }

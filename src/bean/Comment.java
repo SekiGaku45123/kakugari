@@ -6,6 +6,15 @@ public class Comment implements java.io.Serializable{
 	private String user_id;
 	private String comment;
 	private String posted_day;
+	private String user_name;
+
+	public String getUser_name() {
+        return user_name;
+    }
+
+	public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
 
 	public String getItem_id() {
         return item_id;
