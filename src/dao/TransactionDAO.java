@@ -135,7 +135,7 @@ public class TransactionDAO extends DAO {
 		System.out.println(keyword);
 
 		PreparedStatement st = con.prepareStatement(
-				"select t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.purchaser = u.user_id join judge as tes on tes.item_id = t.item_id where t.exhibit_user = ? and tes.notification = TRUE");
+				"select DISTINCT t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.purchaser = u.user_id join judge as tes on tes.item_id = t.item_id where t.exhibit_user = ? and tes.notification = TRUE");
 		st.setString(1, keyword);
 		ResultSet rs=st.executeQuery();
 

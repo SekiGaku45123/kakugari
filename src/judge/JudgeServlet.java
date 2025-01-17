@@ -43,12 +43,19 @@ public class JudgeServlet extends HttpServlet {
        String comment = request.getParameter("comment");
        String itemId = request.getParameter("item_id");
        System.out.print(comment);
-       boolean evaluate = "true".equals(request.getParameter("evaluate"));
+       String evaluate_kai = request.getParameter("evaluate");
+       boolean evaluate;
+       if (evaluate_kai.equals("true")){
+    	   evaluate = true;
+       }else {
+    	   evaluate = false;
+       }
        try {
            if (itemId == null || itemId.isEmpty() || comment == null || comment.isEmpty()) {
         	   System.out.print(3);
                response.sendRedirect("judge/error.jsp");
            }
+           System.out.print("ここは？");
            Judge judge = new Judge();
            judge.setItemId(itemId);
            judge.setUserId(userId);

@@ -16,7 +16,7 @@ public class JudgeDAO extends DAO{
            stmt.setString(2, judge.getUserId());
            stmt.setString(3, judge.getComment());
            stmt.setBoolean(4, judge.isEvaluate());
-           stmt.setString(5, "TRUE");
+           stmt.setBoolean(5, true);
            int line = stmt.executeUpdate();
 
            stmt.close();
