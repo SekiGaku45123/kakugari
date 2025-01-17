@@ -5,11 +5,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>購入履歴 - 過去の取引 - カクガリ</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<meta charset="UTF-8">
+<title>購入履歴 - 過去の取引 - カクガリ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 
     <style>
         html, body {
@@ -128,75 +128,75 @@
         .btn-cancel {
             background-color: #ccc;
         }
-    </style>
+</style>
 </head>
 
 <body>
-    <!-- ヘッダーをインクルード -->
+<!-- ヘッダーをインクルード -->
 
     <!-- メインコンテンツエリア -->
-    <div class="container">
-        <h1>購入履歴</h1>
-        <div class="history">
-            <c:choose>
-                <c:when test="${empty historyList}">
-                    <p style="font-size: 30px; color: #333;">履歴がありません。</p>
-                </c:when>
-                <c:otherwise>
-                    <table>
-                        <tbody>
-                            <c:forEach var="history" items="${historyList}">
-                                <c:if test="${history.flag}">
-                                    <tr>
-                                        <td>
-                                            <a href="${pageContext.request.contextPath}/kakugari/product?item_id=${history.item_Id}">
-                                                <img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80">
-                                            </a>
-                                        </td>
-                                        <td class="completed">購入が完了しました。</td>
-                                        <td class="purchase-date">
-                                            <fmt:formatDate value="${history.purchase_Date}" pattern="yyyy-MM-dd HH:mm" />
-                                        </td>
-                                        <td>
-                                      <c:forEach var="history2" items="${historyList}">
-									    <form action="${pageContext.request.contextPath}/deleteHistory" method="post" style="display:inline;">
-									        <input type="hidden" name="itemId" value="${history2.item_Id}" />
-									  </c:forEach>
-									<div class="cancel" style="display: ${history.cancel_not == 'not' ? 'none' : 'block'};">
-								     <button type="button" onclick="showModal(${history.item_Id})">キャンセル</button>
-									</div>
-									<div class="cancel" style="display: ${history.cancel_not != 'not' ? 'none' : 'block'};">
+<div class="container">
+<h1>購入履歴</h1>
+<div class="history">
+<c:choose>
+<c:when test="${empty historyList}">
+<p style="font-size: 30px; color: #333;">履歴がありません。</p>
+</c:when>
+<c:otherwise>
+<table>
+<tbody>
+<c:forEach var="history" items="${historyList}">
+<c:if test="${history.flag}">
+<tr>
+<td>
+<a href="${pageContext.request.contextPath}/judge/judge.jsp?item_id=${history.item_Id}">
+<img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80">
+</a>
+</td>
+<td class="completed">購入が完了しました。</td>
+<td class="purchase-date">
+<fmt:formatDate value="${history.purchase_Date}" pattern="yyyy-MM-dd HH:mm" />
+</td>
+<td>
+<c:forEach var="history2" items="${historyList}">
+<form action="${pageContext.request.contextPath}/deleteHistory" method="post" style="display:inline;">
+<input type="hidden" name="itemId" value="${history2.item_Id}" />
+</c:forEach>
+<div class="cancel" style="display: ${history.cancel_not == 'not' ? 'none' : 'block'};">
+<button type="button" onclick="showModal(${history.item_Id})">キャンセル</button>
+</div>
+<div class="cancel" style="display: ${history.cancel_not != 'not' ? 'none' : 'block'};">
 									キャンセルできません。
-									</div>
-									</form>
+</div>
+</form>
 
 									</td>
-                                    </tr>
-                                </c:if>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </c:otherwise>
-            </c:choose>
-        </div>
+</tr>
+</c:if>
+</c:forEach>
+</tbody>
+</table>
+</c:otherwise>
+</c:choose>
+</div>
 
         <div class="button-container">
-            <a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a>
-        </div>
-    </div>
+<a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">← メインメニューに戻る</a>
+</div>
+</div>
 
     <div id="confirmationModal" class="modal">
-        <div class="modal-content">
-            <p>この履歴をキャンセルしますか？</p>
-            <form id="deleteForm" action="${pageContext.request.contextPath}/deleteHistory" method="post">
-                <input type="hidden" name="itemId" id="modalItemId">
-                <div class="modal-buttons">
-                    <button type="submit" class="btn-confirm">Cancel</button>
-                    <button type="button" class="btn-cancel" onclick="closeModal()">Back</button>
-                </div>
-            </form>
-        </div>
-    </div>
+<div class="modal-content">
+<p>この履歴をキャンセルしますか？</p>
+<form id="deleteForm" action="${pageContext.request.contextPath}/deleteHistory" method="post">
+<input type="hidden" name="itemId" id="modalItemId">
+<div class="modal-buttons">
+<button type="submit" class="btn-confirm">Cancel</button>
+<button type="button" class="btn-cancel" onclick="closeModal()">Back</button>
+</div>
+</form>
+</div>
+</div>
 
 
     <script>
@@ -209,17 +209,17 @@
         function closeModal() {
             document.getElementById('confirmationModal').style.display = 'none';
         }
-    </script>
+</script>
 
     <!-- フッター -->
-    <footer class="site-footer">
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/guide/promise.jsp">カクガリ利用規約</a></li>
-            <li><a href="${pageContext.request.contextPath}/contact/guidelines.jsp">ガイドライン</a></li>
-            <li><a href="${pageContext.request.contextPath}/guide/selling_guide.jsp">出品ガイド</a></li>
-            <li><a href="${pageContext.request.contextPath}/guide/privacy_policy.jsp">プライバシーポリシー</a></li>
-        </ul>
-        <p>© 2024 TIC<br>カクガリ学園</p>
-    </footer>
+<footer class="site-footer">
+<ul>
+<li><a href="${pageContext.request.contextPath}/guide/promise.jsp">カクガリ利用規約</a></li>
+<li><a href="${pageContext.request.contextPath}/contact/guidelines.jsp">ガイドライン</a></li>
+<li><a href="${pageContext.request.contextPath}/guide/selling_guide.jsp">出品ガイド</a></li>
+<li><a href="${pageContext.request.contextPath}/guide/privacy_policy.jsp">プライバシーポリシー</a></li>
+</ul>
+<p>© 2024 TIC<br>カクガリ学園</p>
+</footer>
 </body>
 </html>

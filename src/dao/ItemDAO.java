@@ -319,6 +319,7 @@ public class ItemDAO extends DAO{
 
 	public List<Item> getbuy(String item) throws Exception {
 
+
 		List<Item> list = new ArrayList<>();
 
 		Connection con=getConnection();
@@ -337,6 +338,7 @@ public class ItemDAO extends DAO{
 				list.add(p);
 	        }
 	    return list;
+
 
 	}
 

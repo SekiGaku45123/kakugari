@@ -101,8 +101,13 @@ public class Listing extends HttpServlet {
 
 				System.out.print(line);
 
-				request.getRequestDispatcher("/main_kakugari/all")
-				.forward(request, response);
+				if (line>0){
+
+					request.getRequestDispatcher("/main_kakugari/all")
+					.forward(request, response);
+				}
+
+
 
 			}catch (Exception e){
 				e.printStackTrace(out);
