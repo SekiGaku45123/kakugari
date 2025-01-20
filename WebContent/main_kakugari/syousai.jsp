@@ -642,14 +642,24 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	            item_id: item_idid,
 	            user_name: user_name
 	        },
-	        success: function (cocomment) {
-	            console.log(cocomment);
+	        success: function (data) {
+
+	        	const { cocomment, list } = data;
+
+	            console.log(list);
 	            var dorihu = document.getElementById('dorihu');
 
 	            if (dorihu) {  // dorihu が存在するか確認
 	                dorihu.innerHTML = '';
 
+	                    if (list.includes("NG")) {
+	                        // 特定の値が含まれている場合の処理
+	                    	alert(list);
+	                    }else {
+	                    	console.log("someProperty は undefined または空です。");
+	                	}
 
+	                console.log(cocomment+121);
 	                for (var i = 0; i < cocomment.length; i++) {
 	                    console.log(user_id, cocomment[i].user_id + "一致");
 

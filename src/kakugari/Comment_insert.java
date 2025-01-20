@@ -1,7 +1,9 @@
 package kakugari;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,6 +43,44 @@ public class Comment_insert extends HttpServlet {
         	System.out.print(item_id);
         	System.out.println(user_name);
 
+        	String[] keywords = {"殺す", "死ね", "暴力", "死ぬ",
+        			"詐欺", "無料で稼げる",
+        			"覚醒剤", "暴力団", "大麻",
+        			"ヤクザ", "ヘイトスピーチ",
+        			"馬鹿", "嘘つき", "アル中",
+        			"うんこ", "片足", "片親", "片目",
+        			"片端", "皮被り", "乞食","マンコ","ちんこ"};
+
+
+        	String key = "";
+
+        	for (String keyword : keywords) {
+                if (comment.contains(keyword)) {
+                    System.out.println("文字列に '" + keyword + "' が含まれています！");
+                    // キーワードに応じた処理
+
+                    key =  keyword ;
+                    break; // 必要に応じてループを終了
+                }
+            }
+
+        	String Word = "";
+
+        	if (key != null && !key.isEmpty()){
+        		System.out.print("wuibrveohagnvesrdioh");
+
+
+        		Word = "NGワードが含まれています";
+
+
+
+        		comment = null;
+
+        	}
+
+
+
+
         	if(comment != null && !comment.isEmpty()){
         		System.out.println(user_name);
 	        	Comment p = new Comment();
@@ -62,7 +102,12 @@ public class Comment_insert extends HttpServlet {
 
             	System.out.print(list);
 
-            	String json = new Gson().toJson(list);
+            	Map<String, Object> data = new HashMap<>();
+
+            	data.put("cocomment", list);
+            	data.put("list", Word);
+
+            	String json = new Gson().toJson(data);
                 response.getWriter().write(json);
             }
         	}else{
@@ -72,10 +117,17 @@ public class Comment_insert extends HttpServlet {
 
             	System.out.print(list);
 
-            	String json = new Gson().toJson(list);
+
+            	Map<String, Object> data = new HashMap<>();
+
+            	data.put("cocomment", list);
+            	data.put("list", Word);
+
+            	String json = new Gson().toJson(data);
                 response.getWriter().write(json);
 
         	}
+
 
 
 
