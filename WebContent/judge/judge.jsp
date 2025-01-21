@@ -96,6 +96,9 @@
 </head>
 <body>
 <!-- ヘッダー -->
+
+
+
 <jsp:include page="/common/base.jsp" />
 <!-- メインコンテンツ -->
 <div class="content">
@@ -122,6 +125,18 @@
 </form>
 </div>
 </div>
+<%
+    String errorMessage = (String) session.getAttribute("errorMessage");
+    if (errorMessage != null) {
+%>
+    <script>
+        alert("${errorMessage}");
+    </script>
+<%
+        // 表示後、セッションから削除
+        session.removeAttribute("errorMessage");
+    }
+%>
 <!-- フッター -->
 <jsp:include page="/footer.html" />
 </body>

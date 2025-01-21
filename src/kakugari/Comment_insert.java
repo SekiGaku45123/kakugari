@@ -43,13 +43,13 @@ public class Comment_insert extends HttpServlet {
         	System.out.print(item_id);
         	System.out.println(user_name);
 
-        	String[] keywords = {"殺す", "死ね", "暴力", "死ぬ",
+        	String[] keywords = {"殺す", "死ね", "暴力", "死ぬ","しね","しぬ",
         			"詐欺", "無料で稼げる",
         			"覚醒剤", "暴力団", "大麻",
         			"ヤクザ", "ヘイトスピーチ",
         			"馬鹿", "嘘つき", "アル中",
         			"うんこ", "片足", "片親", "片目",
-        			"片端", "皮被り", "乞食","マンコ","ちんこ"};
+        			"片端", "皮被り", "乞食"};
 
 
         	String key = "";

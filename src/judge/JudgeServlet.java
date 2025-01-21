@@ -61,6 +61,41 @@ public class JudgeServlet extends HttpServlet {
            judge.setUserId(userId);
            judge.setComment(comment);
            judge.setEvaluate(evaluate);
+
+           String key = "";
+
+           String[] keywords = {"殺す", "死ね", "暴力", "死ぬ","しね","しぬ",
+       			"詐欺", "無料で稼げる",
+       			"覚醒剤", "暴力団", "大麻",
+       			"ヤクザ", "ヘイトスピーチ",
+       			"馬鹿", "嘘つき", "アル中",
+       			"うんこ", "片足", "片親", "片目",
+       			"片端", "皮被り", "乞食"};
+
+           for (String keyword : keywords) {
+               if (comment.contains(keyword)) {
+                   System.out.println("文字列に '" + keyword + "' が含まれています！");
+                   // キーワードに応じた処理
+
+                   key =  keyword ;
+                   break; // 必要に応じてループを終了
+               }
+           }
+
+           if (key != null && !key.isEmpty()){
+       		System.out.print("wuibrveohagnvesrdioh");
+
+
+       		String message = "NGワードが含まれています。再度見直して入力してください";
+       		request.getSession().setAttribute("errorMessage", message);
+
+       	    // 前のページへリダイレクト
+       	    response.sendRedirect(request.getHeader("referer"));
+			return;
+
+
+       	}
+
            JudgeDAO dao = new JudgeDAO();
            int line = dao.saveJudge(judge);
            if(line>0){
