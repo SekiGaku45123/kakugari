@@ -139,7 +139,7 @@
   margin-top: 20px;
 }
 
-.kounyu button {
+.kounyu .kara {
   display: block;
   color: white;
   font-weight: 900;
@@ -150,6 +150,18 @@
   padding: 10px 20px;
 
   /*cursor: pointer;*/
+}
+
+.kounyu .kara2{
+  display: block;
+  color: white;
+  font-weight: 900;
+  width: 20vw;
+  border-radius: 5px;
+  background: blue;
+  border: none;
+  padding: 10px 20px;
+
 }
 
 .okini{
@@ -337,7 +349,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 
 }
 
-.kounyu button {
+.kounyu .kara {
   color: white;
   font-weight: 900;
   width: 100%;
@@ -348,6 +360,17 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
   cursor: pointer;
 }
 
+.kounyu .kara2{
+  color: white;
+  font-weight: 900;
+  width: 100%;
+  border-radius: 5px;
+  background:blue;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+
+}
 
 .okini{
   display: flex;
@@ -501,6 +524,8 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 
 <c:set var="item_idid" value="${pro[0].getItem_id()}"/>
 
+<c:set var="user_idid" value="${pro[0].getUser_id()}"/>
+
 <c:forEach var="pro" items="${pro}">
   <div class="oya">
       <!-- 左側：商品画像 -->
@@ -524,8 +549,10 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	    	  <input type="hidden" name="flag" value="${pro.getFlag()}">
 
 	    	  <input type="hidden" name="image_data" value="${pro.getImage_data()}">
-	    	  <button type="submit">購入手続きへ</button>
+	    	  <c:if test="${user_id != user_idid}"><button class="kara" type="submit">購入手続きへ</button></c:if>
+			  <c:if test="${user_id == user_idid}"><button class="kara2" type="submit" disabled>自身の出品商品</button></c:if>
 		     </form>
+
 	        </div>
 
 	        <div class="okini">
