@@ -2,6 +2,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList, java.net.URLEncoder" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,4 +123,3 @@
 <p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">トップページに戻る</a></p>
 </div>
 <jsp:include page="/footer.html" />
-</html>

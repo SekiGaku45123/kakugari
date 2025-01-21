@@ -1,6 +1,8 @@
-<%@page contentType="text/html; charset=UTF-8" %>
-<% request.setCharacterEncoding("UTF-8"); %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%
+   request.setCharacterEncoding("UTF-8");
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <title>お問い合わせ内容確認</title>
@@ -43,20 +45,41 @@
        input[type="submit"]:hover {
            background-color: #004494;
        }
+       .error-message {
+           color: red;
+           text-align: center;
+       }
 </style>
 </head>
 <body>
 <h2>お問い合わせ内容確認</h2>
 <div class="confirm-container">
 <%
-   String subject = request.getParameter("subject");
-   String recipient = request.getParameter("recipient");
-   String body = request.getParameter("body");
-   if (body.contains("死")) {
-       request.setAttribute("error", "不適切な言葉が含まれています。");
-       request.getRequestDispatcher("contact.jsp").forward(request, response);
-   } else {
-%>
+           String subject = request.getParameter("subject");
+           String recipient = request.getParameter("recipient");
+           String body = request.getParameter("body");
+           String[] ngWords = {"ばか", "あほ", "しね", "ころす", "きえろ","きもい","殺","死"};
+           boolean hasNgWord = false;
+           // 不適切ワードのチェック
+           for (String word : ngWords) {
+               if ((subject != null && subject.contains(word)) ||
+                   (body != null && body.contains(word))) {
+                   hasNgWord = true;
+                   break;
+               }
+           }
+           if (hasNgWord) {
+       %>
+<p class="error-message">不適切な言葉が含まれています。再度ご入力ください。</p>
+<form action="contact.jsp" method="get">
+<input type="hidden" name="subject" value="<%= subject %>">
+<input type="hidden" name="recipient" value="<%= recipient %>">
+<input type="hidden" name="body" value="<%= body %>">
+<input type="submit" value="戻る">
+</form>
+<%
+           } else {
+       %>
 <div class="confirm-details">
 <p><strong>お名前:</strong> <%= subject %></p>
 <p><strong>送信確認用メール:</strong> <%= recipient %></p>
@@ -69,7 +92,6 @@
 <input type="hidden" name="body" value="<%= body %>">
 <input type="submit" value="確認完了">
 </form>
-<!-- 入力しなおすボタン -->
 <form action="contact.jsp" method="get">
 <input type="hidden" name="subject" value="<%= subject %>">
 <input type="hidden" name="recipient" value="<%= recipient %>">
@@ -78,8 +100,8 @@
 </form>
 </div>
 <%
-   }
-%>
+           }
+       %>
 </div>
 </body>
 </html>
