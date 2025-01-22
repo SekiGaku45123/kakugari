@@ -28,6 +28,11 @@
 		    <artifactId>postgresql</artifactId>
 		    <version>42.2.23</version> <!-- 必要に応じてバージョンを変更 -->
 		</dependency>
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
 
         <!-- 他の依存関係がある場合はここに追加 -->
     </dependencies>

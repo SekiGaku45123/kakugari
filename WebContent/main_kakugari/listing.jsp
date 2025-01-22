@@ -142,7 +142,7 @@ textarea::-webkit-scrollbar{
 
 
 </style>
-<form action="${pageContext.request.contextPath}/kakugari/listing" method="post">
+<form action="${pageContext.request.contextPath}/kakugari/listing" method="post" enctype="multipart/form-data">
 <div class="main_listing">
 
   <div class="gazu_main">

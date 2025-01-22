@@ -1,14 +1,18 @@
 package kakugari;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import bean.Images;
 import bean.Item;
@@ -18,7 +22,10 @@ import dao.ItemDAO;
 import tool.Page;
 
 @WebServlet(urlPatterns={"/kakugari/listing"})
+@MultipartConfig
 public class Listing extends HttpServlet {
+
+
 
 
 	public void doGet (
@@ -40,7 +47,12 @@ public class Listing extends HttpServlet {
 			PrintWriter out=response.getWriter();
 			Page.header(out);
 
+
+
+
+
 			try{
+
 
 				HttpSession session = request.getSession();
 
@@ -60,6 +72,26 @@ public class Listing extends HttpServlet {
 	        	String region = request.getParameter("region");
 	        	int shopping_days = Integer.parseInt(request.getParameter("shopping_days"));
 	        	int item_price =  Integer.parseInt(request.getParameter("item_price"));
+
+
+
+
+	        	Part part=request.getPart("photo");
+	    		//ファイル名を取得
+	    		//String filename=part.getSubmittedFileName();//ie対応が不要な場合
+	    		String filename=Paths.get(part.getSubmittedFileName()).getFileName().toString();
+	    		//アップロードするフォルダ
+	    		String path=getServletContext().getRealPath("/images1");
+	    		//実際にファイルが保存されるパス確認
+	    		System.out.println(path);
+	    		//書き込み
+	    		part.write(path+File.separator+filename);
+
+
+
+
+
+
 
 				ItemDAO dao=new ItemDAO();
 
