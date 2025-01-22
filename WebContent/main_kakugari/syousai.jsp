@@ -106,12 +106,22 @@
     border-radius: 10px;
 }
 
-  .product-image img {
+.product-image img:not(.sold) {
    width: 37vw;
    height: 37vw;
    background: #f5f5f5;
    object-fit: contain;
-  }
+   position: relative;
+}
+
+.sold {
+   position: absolute;
+   width: 37vw;
+   height: 37vw;
+   left: 0;
+   background: none; /* 明示的に背景をリセットする */
+}
+
 
   .tkst {
     /*border:2px dotted green;*/
@@ -334,13 +344,23 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
      position: relative;
   }
 
-  .product-image img{
+  .product-image img:not(.sold){
   width: 98.2vw;
   height: 98.2vw;
   background: #f5f5f5;
   object-fit: contain;
+  position: relative;
+
   }
 
+.sold {
+   position: absolute;
+   width: 98.2vw;
+   height: 98.2vw;
+   right: 0;
+   top: 0;
+   background: none; /* 明示的に背景をリセットする */
+}
 
   .tkst {
     /*border:2px dotted blue;*/
@@ -559,7 +579,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
       <div class="product-image">
         <!-- 商品の画像を表示 (item.item_detail に画像URLまたはデータが格納される) -->
 
-        <img src="${pro.getImage_data()}" width="700" height="700" alt="商品画像" >
+        <img src="${pro.getImage_data()}" width="700" height="700" alt="商品画像" ><c:if test="${flag == false }"><img class="sold" src="../kakugari_image/SOLD.png" width="700" height="700" alt="SOLD OUT"></c:if>
       </div>
 
       <!-- 右側：商品詳細 -->
