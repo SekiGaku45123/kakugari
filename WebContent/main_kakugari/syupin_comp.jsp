@@ -30,8 +30,8 @@
         <h1>出品が完了しました！</h1>
         <p>ご出品いただきありがとうございます。</p>
         <p>商品ページを確認するには、以下のボタンをクリックしてください。</p>
-        <a href="/kakugari/itemDetails" class="btn btn-custom btn-lg">商品ページを見る</a>
-        <p class="mt-4">他の商品を出品する場合は、<a href="/kakugari/sell">こちら</a>をクリックしてください。</p>
+        <a href="../kakugari/product?item_id=${ItemId}" class="btn btn-custom btn-lg">商品ページを見る</a>
+        <p class="mt-4">他の商品を出品する場合は、<a href="../main_kakugari/all">こちら</a>をクリックしてください。</p>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

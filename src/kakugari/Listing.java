@@ -103,7 +103,8 @@ public class Listing extends HttpServlet {
 
 				if (line>0){
 
-					request.getRequestDispatcher("/main_kakugari/all")
+					request.setAttribute("ItemId", maxItemId1);
+					request.getRequestDispatcher("/main_kakugari/syupin_comp.jsp")
 					.forward(request, response);
 				}
 

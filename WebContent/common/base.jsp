@@ -408,13 +408,24 @@
 	  display: inline-block; /* 必要に応じて指定 */
 	  text-decoration: none; /* 下線を消す（必要なら） */
 		}
+		.syupin{
+		cursor:pointer;
+		position: relative;
+		border-radius:5px;
+		background: black;
+		/*border: 2px solid #bababa;*/
+		color: white;
+		/*font-weight:bold;*/
+		font-family: "HGP創英角ｺﾞｼｯｸUB";
+		top:2px;
+		}
 
 </style>
 </head>
 <body>
 <header>
 
-	<h2><a href="../main_kakugari/all"><img src="../images/読書のアイコン.png" width="66" height="46"><span class="kakuspa"> カクガリ</span></a></h2>
+	<h2><a href="../main_kakugari/all"><img src="../images/読書のアイコン.png" width="66" height="46"><span class="kakuspa"> カクガリ</span></a>　<button class="syupin" onclick="location.href='../main_kakugari/listing.jsp'">出品　</button></h2>
 
 		<div class="logout-content">
 		    <div class="login_in" style="<%= isLoggedIn ? "display: none;" : "" %>">
