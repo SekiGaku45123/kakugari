@@ -288,7 +288,7 @@ margin: 0 auto;
 <c:set var="flag" value="${p.getFlag() }"/>
 <div class="card_img">
 <div class="crad_size">
-<c:if test="${flag != false }"><a href="../kakugari/product?item_id=${p.getItem_id()}"></c:if><c:if test="${flag == false }"><a href="#" onclick="msgdsp()"></c:if><img class="syou" src="${p.getImage_data()}"  alt="商品画像"><c:if test="${flag == false }"><img class="sold" src="../kakugari_image/SOLD.png" alt="SOLD OUT"></c:if></a>
+<a href="../kakugari/product?item_id=${p.getItem_id()}"><img class="syou" src="${p.getImage_data()}"  alt="商品画像"><c:if test="${flag == false }"><img class="sold" src="../kakugari_image/SOLD.png" alt="SOLD OUT"></c:if></a>
 </div>
 <div class="card-body">
 <p class="price">¥${p.getItem_price()}</p>
@@ -301,14 +301,3 @@ margin: 0 auto;
 
 <!-- footerの読み込み -->
 <jsp:include page="/footer.html" />
-
-
-<script type="text/javascript">
-
-function msgdsp() {
-    alert("購入できません");
-}
-
-
-
-</script>

@@ -164,6 +164,19 @@
 
 }
 
+.kounyu .kara3{
+  display: block;
+  color: #595959;
+  font-weight: 900;
+  width: 20vw;
+  border-radius: 5px;
+  background: #dbdbdb;
+  border: none;
+  padding: 10px 20px;
+
+}
+
+
 .okini{
   display: flex;
   justify-content: center;
@@ -372,6 +385,18 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 
 }
 
+.kounyu .kara3{
+  color: #595959;
+  font-weight: 900;
+  width: 100%;
+  border-radius: 5px;
+  background: #dbdbdb;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+
+}
+
 .okini{
   display: flex;
   float: right;
@@ -526,6 +551,8 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 
 <c:set var="user_idid" value="${pro[0].getUser_id()}"/>
 
+<c:set var="flag" value="${pro[0].getFlag()}"/>
+
 <c:forEach var="pro" items="${pro}">
   <div class="oya">
       <!-- 左側：商品画像 -->
@@ -547,10 +574,13 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	  		 <form action="${pageContext.request.contextPath}/confirm" method="post">
 	    	  <input type="hidden" name="item_id" value="${pro.getItem_id()}">
 	    	  <input type="hidden" name="flag" value="${pro.getFlag()}">
-
 	    	  <input type="hidden" name="image_data" value="${pro.getImage_data()}">
-	    	  <c:if test="${user_id != user_idid}"><button class="kara" type="submit">購入手続きへ</button></c:if>
-			  <c:if test="${user_id == user_idid}"><button class="kara2" type="submit" disabled>自身の出品商品</button></c:if>
+
+			  <c:choose>
+				  <c:when test="${user_id == user_idid}"><button class="kara2" type="submit" disabled>自身の出品商品</button></c:when>
+			  	  <c:when test="${flag == false }"><button class="kara3" type="submit" disabled>売り切れました</button></c:when>
+			  	  <c:otherwise><button class="kara" type="submit">購入手続きへ</button></c:otherwise>
+			  </c:choose>
 		     </form>
 
 	        </div>
@@ -616,10 +646,15 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	        	<div id="dorihu"></div>
 	        	<br>
 	        </div>
+	        <c:if test="${flag != false }">
 	        <div class="comment_input">
 	        	<textarea id="comment_input" name="comment_input"></textarea>
 	        	<button id="send_button"><img src="../kakugari_image/19610.png" alt="送信"/></button>
 	        </div>
+	        </c:if>
+	        <c:if test="${flag == false }">
+				<p>※売り切れのためコメントできません</p>
+	        </c:if>
 
 
     	</div>
