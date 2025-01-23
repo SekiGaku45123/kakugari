@@ -60,9 +60,6 @@ public class Listing extends HttpServlet {
 
 
 		        String user_id = user.getUser_id();
-		        String photo = request.getParameter("photo");
-	        	String photo1 = request.getParameter("photo1");
-	        	String photo2 = request.getParameter("photo2");
 
 	        	String item_name = request.getParameter("item_name");
 
@@ -77,15 +74,34 @@ public class Listing extends HttpServlet {
 
 
 	        	Part part=request.getPart("photo");
-	    		//ファイル名を取得
-	    		//String filename=part.getSubmittedFileName();//ie対応が不要な場合
+	        	Part part1=request.getPart("photo1");
+	        	Part part2=request.getPart("photo2");
+
+	        	String photo = part.getSubmittedFileName();
+	        	String photo1 = part1.getSubmittedFileName();
+	        	String photo2 = part2.getSubmittedFileName();
+
+	        	String hantei ="\\kakugari";
 	    		String filename=Paths.get(part.getSubmittedFileName()).getFileName().toString();
-	    		//アップロードするフォルダ
-	    		String path=getServletContext().getRealPath("/images1");
-	    		//実際にファイルが保存されるパス確認
+	    		String filename1=Paths.get(part1.getSubmittedFileName()).getFileName().toString();
+	    		String filename2=Paths.get(part2.getSubmittedFileName()).getFileName().toString();
+	    		String path=getServletContext().getRealPath("images");
+
 	    		System.out.println(path);
-	    		//書き込み
+
+	    		if (path.contains(hantei)) {
+
+	    			System.out.println("実行🅂");
+
+	                int index = path.indexOf(hantei);
+	                path = path.substring(0, index + hantei.length());
+	                path = path + "\\kakugari3\\WebContent\\images";
+	            }
+
+	            System.out.println("結果: " + path);
 	    		part.write(path+File.separator+filename);
+	    		part1.write(path+File.separator+filename1);
+	    		part2.write(path+File.separator+filename2);
 
 
 
