@@ -109,6 +109,7 @@ public class Listing extends HttpServlet {
 
 
 
+
 				ItemDAO dao=new ItemDAO();
 
 				photo = "../images/"+photo;
