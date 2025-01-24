@@ -9,9 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Images;
+import bean.Item;
 import dao.ImageDAO;
+import dao.ItemDAO;
 import tool.Page;
 
 @WebServlet(urlPatterns={"/main_kakugari/all", "/servlet/kakugari.All"})
@@ -37,6 +40,16 @@ public class All extends HttpServlet {
 			PrintWriter out=response.getWriter();
 			Page.header(out);
 			try{
+
+				HttpSession session = request.getSession();
+				List<String> browselist = (List<String>) session.getAttribute("browse");
+		        if (browselist != null && !browselist.isEmpty()) {
+		            ItemDAO dao1 = new ItemDAO();
+		            List<Item> list1 = dao1.buy(browselist);
+		            request.setAttribute("browselili", list1);
+		        }
+
+
 
 				ImageDAO dao=new ImageDAO();
 				List<Images> list=dao.all();

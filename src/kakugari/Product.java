@@ -2,6 +2,7 @@ package kakugari;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -36,8 +37,21 @@ public class Product extends HttpServlet {
 		)
 				throws ServletException, IOException {
 			PrintWriter out=response.getWriter();
+			HttpSession session = request.getSession();
 
 			String item_id = request.getParameter("item_id");
+
+
+			List<String> browselist = (List<String>) session.getAttribute("browse");
+
+		    // セッションにリストが存在しない場合、新たに作成
+		    if (browselist == null) {
+		        browselist = new ArrayList<>();
+		    }
+
+		    if (!browselist.contains(item_id)) {
+		        browselist.add(item_id); // 重複していない場合のみ追加
+		    }
 
 			System.out.print(item_id);
 			System.out.print("kasnfja");
@@ -45,14 +59,16 @@ public class Product extends HttpServlet {
 			Page.header(out);
 			try{
 
-				HttpSession session = request.getSession();
 		        User user = (User) session.getAttribute("customer");
+
 
 				ItemDAO dao=new ItemDAO();
 				List<Item> list=dao.buy(item_id);
 
 				System.out.print(list);
 
+
+				session.setAttribute("browse",browselist);
 				request.setAttribute("pro", list);
 				request.setAttribute("user_data", user);
 				request.getRequestDispatcher("/main_kakugari/syousai.jsp")

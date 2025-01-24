@@ -2,6 +2,18 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList, java.net.URLEncoder"%>
+<%@ page import="java.util.List" %>
+
+
+
+<%
+
+List<String> browselist = (List<String>) session.getAttribute("browse");
+
+%>
+
+
+
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 
 <c:import url="/common/base.jsp">
@@ -187,10 +199,14 @@ margin: 0 auto;
 
 
 </style>
+
+<c:set var="browselist" value="${sessionScope.browse}" />
+
+
 <div class="img_logo">
 
 	<img src="../kakugari_image/image_logo.jpg">
-	<p>フリマサイト<br>―FREE MARKET―</p>
+	<p>フリマサイト<br>―FREE MARKET―${browselist }</p>
 
 </div>
 
@@ -245,8 +261,25 @@ margin: 0 auto;
 
 <br><div class="pq"></div><br>
 
+<c:if test="${browselili.size() <= 4 }">
+
+	<c:forEach var="item" items="${browselili}">
+        <div class="toire">
+			<div class="imgagess mese">
+				<a href="../kakugari/product?item_id=${item.getItem_id()}">
+				<img src="${item.getImage_data()}"  class="sasa">
+				<div class="price-overlay">￥${item.getItem_price()}</div>
+				</a>
+			</div>
+			<p>${item.getItem_name()}</p>
+		</div>
+    </c:forEach>
+
+</c:if>
+
+<c:if test="${browselili.size() > 4 }">
 <div class="font_title">
-<h2><font color="#4f4f4f">ALL</font></h2>
+<h2><font color="#4f4f4f">閲覧履歴</font></h2>
 </div>
 <div class="scroll-container">
 <div class="scroll-content">
@@ -279,11 +312,13 @@ margin: 0 auto;
 </div>
 </div>
 
+</c:if>
+
 <br><div class="pq"></div><br>
 
 <div class="cardall">
 <div class="cardchildren">
-<!-- カードの数に応じてこの .col を5つ繰り返してください -->
+<!-- カードの数に応じてこの .col を5つ繰り返す -->
 <c:forEach var="p" items="${all}">
 <c:set var="flag" value="${p.getFlag() }"/>
 <div class="card_img">
@@ -298,6 +333,27 @@ margin: 0 auto;
 </c:forEach>
 </div>
 </div>
-
+<br><br><br>
 <!-- footerの読み込み -->
 <jsp:include page="/footer.html" />
+
+
+
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
