@@ -16,6 +16,12 @@
 
 <!-- base.jspのheaderはインクルードされているので、この時点でheaderが表示される -->
 
+<style>
+
+
+
+</style>
+
 <div id="content"> <!-- content IDで内容を囲む -->
     <h2 style="text-align: center; margin-top: 20px;">いいね！一覧</h2>
 
@@ -25,11 +31,12 @@
             <div class="container">
                 <div class="row">
                     <c:forEach var="item" items="${favoriteItems}">
+                    <c:set var="flag" value="${item.getFlag() }"/>
                         <div class="col-12 mb-3 p-3" style="border-bottom: 1px solid #eee;">
                             <div class="d-flex align-items-start">
                                 <div class="me-3">
                                     <a href="../kakugari/product?item_id=${item.getItem_id()}">
-                                        <img src="${item.getImage_data()}" width="80" height="80" alt="${item.item_name}" style="object-fit: cover;">
+                                        <img src="${item.getImage_data()}" width="80" height="80" alt="${item.item_name}" style="object-fit: cover; position: relative;"><c:if test="${flag == false }"><img class="sold1" width="80" height="80" src="../kakugari_image/SOLD.png" alt="SOLD OUT" style="position: absolute; left:16px;"></c:if></a>
                                     </a>
                                 </div>
 
