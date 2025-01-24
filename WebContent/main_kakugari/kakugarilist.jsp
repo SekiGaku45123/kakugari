@@ -206,7 +206,7 @@ margin: 0 auto;
 <div class="img_logo">
 
 	<img src="../kakugari_image/image_logo.jpg">
-	<p>フリマサイト<br>―FREE MARKET―${browselist }</p>
+	<p>フリマサイト<br>―FREE MARKET―</p>
 
 </div>
 
