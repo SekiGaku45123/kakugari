@@ -89,19 +89,63 @@ public class Listing extends HttpServlet {
 
 	    		System.out.println(path);
 
-	    		if (path.contains(hantei)) {
+	    		try{
+	    			if (path.contains(hantei)) {
 
-	    			System.out.println("実行🅂");
 
-	                int index = path.indexOf(hantei);
-	                path = path.substring(0, index + hantei.length());
-	                path = path + "\\kakugari3\\WebContent\\images";
-	            }
+		    			System.out.println("実行全");
 
-	            System.out.println("結果: " + path);
-	    		part.write(path+File.separator+filename);
-	    		part1.write(path+File.separator+filename1);
-	    		part2.write(path+File.separator+filename2);
+		                int index = path.indexOf(hantei);
+		                path = path.substring(0, index + hantei.length());
+		                path = path + "\\kakugari3\\WebContent\\images";
+
+		                System.out.println("結果: " + path);
+			    		part.write(path+File.separator+filename);
+			    		if (photo1 != null && !photo1.isEmpty()){
+			    		part1.write(path+File.separator+filename1);
+			    		}if(photo2 != null && !photo2.isEmpty()){
+			    		part2.write(path+File.separator+filename2);
+			    		}
+		            }
+
+
+	    		}catch(Exception e){
+	    			System.out.println("error");
+	    			try{
+		    			System.out.println("実行清水");
+
+		                path = "C:\\Users\\s_shimizu\\git\\kakugari\\WebContent\\images";
+
+		                System.out.println("結果: " + path);
+			    		part.write(path+File.separator+filename);
+			    		if (photo1 != null && !photo1.isEmpty()){
+				    	part1.write(path+File.separator+filename1);
+				    	}if(photo2 != null && !photo2.isEmpty()){
+				    	part2.write(path+File.separator+filename2);
+				    	}
+
+		    		}catch(Exception e1){
+		    			System.out.println("error");
+		    			try{
+			    			System.out.println("実行麻見");
+
+			                int index = path.indexOf(hantei);
+			                path = path.substring(0, index + hantei.length());
+			                path = "C:\\Users\\o_oohara\\git\\kakugari3\\WebContent\\images";
+
+			                System.out.println("結果: " + path);
+				    		part.write(path+File.separator+filename);
+				    		if (photo1 != null && !photo1.isEmpty()){
+					    	part1.write(path+File.separator+filename1);
+					    	}if(photo2 != null && !photo2.isEmpty()){
+					    	part2.write(path+File.separator+filename2);
+					    	}
+
+			    		}catch(Exception e11){
+			    			System.out.println("error");
+			    		}
+		    		}
+	    		}
 
 
 
