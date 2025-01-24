@@ -302,9 +302,22 @@ var category1 = "${category1}";
 	                        for (var i = 0; i < response.length; i++) {
 	                            // 新しい要素を作成して追加
 	                            var imggmi = document.createElement('div');
+	                            var itemAtab = document.createElement('a');
 	                            var itemImage = document.createElement('img');
 	                            var itemprice = document.createElement('p');
 	                            var itemname = document.createElement('p');
+
+	                            itemAtab.href = "../kakugari/product?item_id="+response[i].item_id;
+
+	                            console.log("flag"+response[i].flag);
+
+	                            if(response[i].flag === false){
+
+	                            	var soldImage = document.createElement('img');
+	                            	soldImage.className = 'sold1';
+	                            	soldImage.src = '../kakugari_image/SOLD.png';
+
+	                            }
 
 	                            itemImage.src = response[i].image_data;
 	                            itemImage.alt = response[i].item_name;
@@ -318,8 +331,15 @@ var category1 = "${category1}";
 
 	                            imggmi.className = 'imggmi';
 
-	                            imggmi.appendChild(itemImage);
-	                            imggmi.appendChild(itemprice);
+	                            itemAtab.appendChild(itemImage);
+
+	                            if(response[i].flag === false){
+	                            	itemAtab.appendChild(soldImage);
+	                            }
+
+	                            itemAtab.appendChild(itemprice);
+
+	                            imggmi.appendChild(itemAtab);
 	                            imggmi.appendChild(itemname);
 
 	                            result.appendChild(imggmi);
