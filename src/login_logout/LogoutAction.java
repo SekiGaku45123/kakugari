@@ -31,6 +31,7 @@ public class LogoutAction extends HttpServlet {
             // セッションからcustomer情報を削除
             if (session.getAttribute("customer") != null) {
                 session.removeAttribute("customer");
+                session.removeAttribute("browse");
             }
 
             // ログアウト完了画面にリダイレクト

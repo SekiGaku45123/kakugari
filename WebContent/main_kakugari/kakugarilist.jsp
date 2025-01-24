@@ -51,12 +51,19 @@ animation: scroll 30s linear infinite;
   position: relative;
 }
 
-.imgagess img {
+.imgagess img:not(.sold1) {
   object-fit: contain;
   width: 300px;
   height: 300px;
   background: #f5f5f5;
 }
+
+  .sold1{
+ position: absolute;
+ width:250px;
+ left:50px;
+background: none;
+ }
 
 .price-overlay {
   position: absolute;
@@ -184,6 +191,13 @@ margin: 0 auto;
 
  }
 
+  .sold1{
+ position: absolute;
+ width:250px;
+ right:5px;
+
+ }
+
 .price{
   position: absolute;/*重ねたい子要素にabsolute*/
   top:50%;
@@ -264,10 +278,11 @@ margin: 0 auto;
 <c:if test="${browselili.size() <= 4 }">
 
 	<c:forEach var="item" items="${browselili}">
+	<c:set var="flag" value="${item.getFlag() }"/>
         <div class="toire">
 			<div class="imgagess mese">
 				<a href="../kakugari/product?item_id=${item.getItem_id()}">
-				<img src="${item.getImage_data()}"  class="sasa">
+				<img src="${item.getImage_data()}"  class="sasa"><c:if test="${flag == false }"><img class="sold1" src="../kakugari_image/SOLD.png" alt="SOLD OUT"></c:if>
 				<div class="price-overlay">￥${item.getItem_price()}</div>
 				</a>
 			</div>
@@ -283,26 +298,28 @@ margin: 0 auto;
 </div>
 <div class="scroll-container">
 <div class="scroll-content">
-<c:forEach var="p" items="${all}">
+<c:forEach var="item" items="${browselili}">
+<c:set var="flag" value="${item.getFlag() }"/>
 <div class="toire">
 <div class="imgagess mese">
-<a href="../kakugari/product?item_id=${p.getItem_id()}">
-<img src="${p.getImage_data()}"  class="sasa">
-<div class="price-overlay">￥${p.getItem_price()}</div>
+<a href="../kakugari/product?item_id=${item.getItem_id()}">
+<img src="${item.getImage_data()}"  class="sasa"><c:if test="${flag == false }"><img class="sold1" src="../kakugari_image/SOLD.png" alt="SOLD OUT"></c:if></a>
+<div class="price-overlay">￥${item.getItem_price()}</div>
 </a>
 </div>
-<p>${p.getItem_name()}</p>
+<p>${item.getItem_name()}</p>
 </div>
 </c:forEach>
 </div>
 <div class="scroll-content1">
 
 
-    <c:forEach var="p" items="${all}">
+<c:forEach var="p" items="${browselili}">
+<c:set var="flag" value="${p.getFlag() }"/>
 <div class="toire">
 <div class="imgagess mese">
 <a href="../kakugari/product?item_id=${p.getItem_id()}">
-<img src="${p.getImage_data()}"  class="sasa">
+<img src="${p.getImage_data()}"  class="sasa"><c:if test="${flag == false }"><img class="sold1" src="../kakugari_image/SOLD.png" alt="SOLD OUT"></c:if></a>
 <div class="price-overlay">￥${p.getItem_price()}</div>
 </a>
 </div>
@@ -336,24 +353,5 @@ margin: 0 auto;
 <br><br><br>
 <!-- footerの読み込み -->
 <jsp:include page="/footer.html" />
-
-
-
-<script>
-
-
-
-
-
-
-
-
-
-
-
-
-</script>
-
-
 
 

@@ -46,13 +46,21 @@
 	height: 12vw;
 }
 
-.imggmi img{
+.imggmi img:not(.sold1){
 	border-radius: 5px 5px 5px 5px;
 	object-fit: cover;
 	width:100%;
 	height: 100%;
 	background:Yellow;
 }
+
+  .sold1{
+  border-radius: 0 5px 0 0;
+ position: absolute;
+width:100%;
+left:0;
+background: none;
+ }
 
 .imggmi p {
   collar:#8f8d8d;
@@ -225,9 +233,10 @@ input[type="number"] {
 
 			<div class="kakaka" id="hantei">
 			<c:forEach var="p" items="${search}">
+			<c:set var="flag" value="${p.getFlag() }"/>
 				<div class="imggmi">
-						<img src="${p.getImage_data()}">
-						<p class="price_im">￥${p.getItem_price()}</p>
+						<a href="../kakugari/product?item_id=${p.getItem_id()}"><img src="${p.getImage_data()}"><c:if test="${flag == false }"><img class="sold1" src="../kakugari_image/SOLD.png" alt="SOLD OUT"></c:if>
+						<p class="price_im">￥${p.getItem_price()}</p></a>
 						<p>${p.getItem_name()}</p>
 				</div>
 			</c:forEach>
