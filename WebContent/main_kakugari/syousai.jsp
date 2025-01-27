@@ -142,7 +142,7 @@
       cursor: pointer;
 
       position: relative;
-
+	  top:10px;
   	  left: 4vw;
   	  border-radius: 10%;
     }
@@ -168,7 +168,7 @@
       cursor: pointer;
 
       position: relative;
-
+	  top:10px;
   	  left: 6vw;
   	  border-radius: 10%;
     }
@@ -194,6 +194,7 @@
       cursor: pointer;
 
       position: relative;
+      top:10px;
   	  left: 8vw;
   	  border-radius: 10%;
     }
