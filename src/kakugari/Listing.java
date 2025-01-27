@@ -143,6 +143,24 @@ public class Listing extends HttpServlet {
 
 			    		}catch(Exception e11){
 			    			System.out.println("error");
+			    			try{
+				    			System.out.println("実行かい");
+
+				                int index = path.indexOf(hantei);
+				                path = path.substring(0, index + hantei.length());
+				                path = "C:\\Users\\柳澤開\\git\\kakugari\\WebContent\\images";
+
+				                System.out.println("結果: " + path);
+					    		part.write(path+File.separator+filename);
+					    		if (photo1 != null && !photo1.isEmpty()){
+						    	part1.write(path+File.separator+filename1);
+						    	}if(photo2 != null && !photo2.isEmpty()){
+						    	part2.write(path+File.separator+filename2);
+						    	}
+
+				    		}catch(Exception e111){
+				    			System.out.println("error");
+				    		}
 			    		}
 		    		}
 	    		}
