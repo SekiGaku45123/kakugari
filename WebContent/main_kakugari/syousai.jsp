@@ -136,13 +136,13 @@
     .custom-label {
       display: inline-block;
       width: 8vw;
-      height: 8vw;
+      height: 5vw;
       background: url('${img}') no-repeat center center;
       background-size: cover;
       cursor: pointer;
 
       position: relative;
-      top:-15px;
+
   	  left: 4vw;
   	  border-radius: 10%;
     }
@@ -162,13 +162,13 @@
     .custom-label1 {
       display: inline-block;
       width: 8vw;
-      height: 8vw;
+      height: 5vw;
       background: url('${img1}') no-repeat center center;
       background-size: cover;
       cursor: pointer;
 
       position: relative;
-      top:-15px;
+
   	  left: 6vw;
   	  border-radius: 10%;
     }
@@ -188,13 +188,12 @@
     .custom-label2 {
       display: inline-block;
       width: 8vw;
-      height: 8vw;
+      height: 5vw;
       background: url('${img2}') no-repeat center center;
       background-size: cover;
       cursor: pointer;
 
       position: relative;
-      top:-15px;
   	  left: 8vw;
   	  border-radius: 10%;
     }
