@@ -14,6 +14,11 @@
   <title>商品詳細 - カクガリ</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <c:import url="/common/base.jsp"></c:import>
+
+  <c:set var="img" value="${pro[0].getImage_data()}"/>
+  <c:set var="img1" value="${pro[0].getImage_data1()}"/>
+  <c:set var="img2" value="${pro[0].getImage_data2()}"/>
+
   <style>
 
 
@@ -120,6 +125,86 @@
    left: 0;
    background: none; /* 明示的に背景をリセットする */
 }
+
+
+
+.custom-checkbox {
+      display: none;
+    }
+
+    /* ラベルを画像に変更 */
+    .custom-label {
+      display: inline-block;
+      width: 8vw;
+      height: 8vw;
+      background: url('${img}') no-repeat center center;
+      background-size: cover;
+      cursor: pointer;
+
+      position: relative;
+      top:-15px;
+  	  left: 4vw;
+  	  border-radius: 10%;
+    }
+
+    /* チェック状態の画像 */
+    .custom-checkbox:checked + .custom-label {
+      background-image: url('${img}');
+      border: 2px solid #ff476f;
+    }
+
+
+.custom-checkbox1 {
+      display: none;
+    }
+
+    /* ラベルを画像に変更 */
+    .custom-label1 {
+      display: inline-block;
+      width: 8vw;
+      height: 8vw;
+      background: url('${img1}') no-repeat center center;
+      background-size: cover;
+      cursor: pointer;
+
+      position: relative;
+      top:-15px;
+  	  left: 6vw;
+  	  border-radius: 10%;
+    }
+
+    /* チェック状態の画像 */
+    .custom-checkbox1:checked + .custom-label1 {
+      background-image: url('${img1}');
+      border: 2px solid #ff476f;
+    }
+
+
+.custom-checkbox2 {
+      display: none;
+    }
+
+    /* ラベルを画像に変更 */
+    .custom-label2 {
+      display: inline-block;
+      width: 8vw;
+      height: 8vw;
+      background: url('${img2}') no-repeat center center;
+      background-size: cover;
+      cursor: pointer;
+
+      position: relative;
+      top:-15px;
+  	  left: 8vw;
+  	  border-radius: 10%;
+    }
+
+    /* チェック状態の画像 */
+    .custom-checkbox2:checked + .custom-label2 {
+      background-image: url('${img2}');
+      border: 2px solid #ff476f;
+    }
+
 
 
   .tkst {
@@ -558,6 +643,9 @@ height: 100%;
 filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-rotate(198deg) brightness(99%) contrast(103%);
 }
 
+
+
+
 }
   </style>
 
@@ -578,7 +666,17 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
       <div class="product-image">
         <!-- 商品の画像を表示 (item.item_detail に画像URLまたはデータが格納される) -->
 
-        <img src="${pro.getImage_data()}" width="700" height="700" alt="商品画像" ><c:if test="${flag == false }"><img class="sold" src="../kakugari_image/SOLD.png" width="700" height="700" alt="SOLD OUT"></c:if>
+        <div id="productImage"><img id="productImg" src="" width="700" height="700" alt="商品画像" ></div><c:if test="${flag == false }"><img class="sold" src="../kakugari_image/SOLD.png" width="700" height="700" alt="SOLD OUT"></c:if>
+
+      	<br>
+      	<input type="checkbox" id="myCheckbox" class="custom-checkbox" checked>
+		<label for="myCheckbox" class="custom-label"></label>
+
+		<input type="checkbox" id="myCheckbox1" class="custom-checkbox1">
+		<label for="myCheckbox1" class="custom-label1"></label>
+
+		<input type="checkbox" id="myCheckbox2" class="custom-checkbox2">
+		<label for="myCheckbox2" class="custom-label2"></label>
       </div>
 
       <!-- 右側：商品詳細 -->
@@ -594,6 +692,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	    	  <input type="hidden" name="item_id" value="${pro.getItem_id()}">
 	    	  <input type="hidden" name="flag" value="${pro.getFlag()}">
 	    	  <input type="hidden" name="image_data" value="${pro.getImage_data()}">
+
 
 			  <c:choose>
 				  <c:when test="${user_id == user_idid}"><button class="kara2" type="submit" disabled>自身の出品商品</button></c:when>
@@ -712,6 +811,10 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	var item_idid="${item_idid}";
 	var user_name = "${user_name }";
 
+	var imd="${img}";
+	var imd1="${img1}";
+	var imd2="${img2}";
+
 	function fetchComments(isInitialLoad = false) {
 		const commentValue = isInitialLoad ? '' : document.getElementById("comment_input").value.trim();
 	    $.ajax({
@@ -817,6 +920,55 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	        console.log("コメントが空です。");
 	    }
 	});
+
+
+	// チェックボックスをグループ化する
+	const checkboxes = document.querySelectorAll('.custom-checkbox, .custom-checkbox1, .custom-checkbox2');
+    const productImageDiv = document.getElementById('productImage');
+    const productImg = document.getElementById('productImg');
+
+    // チェックボックスが変更されたときに他のチェックボックスを解除する
+    checkboxes.forEach(checkbox => {
+      // 初期状態で最初のチェックボックスを無効にする
+      if (checkbox.checked) {
+        checkbox.disabled = true;
+        productImg.src = imd;
+      }
+
+      checkbox.addEventListener('change', function() {
+        if (this.checked) {
+          // 他のチェックボックスをすべて外す
+          checkboxes.forEach(otherCheckbox => {
+            if (otherCheckbox !== this) {
+              otherCheckbox.checked = false;
+              otherCheckbox.disabled = false;  // 他のチェックボックスを再び有効にする
+            }
+          });
+          // 現在選択されているチェックボックスは再度クリックできないようにする
+          this.disabled = true;
+
+          console.log(imd);
+
+          // 商品画像を表示
+          productImageDiv.style.display = 'block';
+          // 商品画像のsrcを動的に設定
+          if (this.id === 'myCheckbox') {
+        	  console.log(imd+"kakaka");
+            productImg.src = imd; // チェックボックス1に対応する画像
+          } else if (this.id === 'myCheckbox1') {
+        	  console.log(imd1+"kaka");
+            productImg.src = imd1; // チェックボックス2に対応する画像
+          } else if (this.id === 'myCheckbox2') {
+        	  console.log(imd2+"ka");
+            productImg.src = imd2; // チェックボックス3に対応する画像
+          }
+        } else {
+          // チェックが外れた場合は画像を非表示
+          productImageDiv.style.display = 'none';
+        }
+      });
+    });
+
 
 
 </script>

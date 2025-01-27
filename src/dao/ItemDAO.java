@@ -69,6 +69,8 @@ public class ItemDAO extends DAO{
 			Item p=new Item();
 			p.setItem_id(rs.getString("item_id"));
 			p.setImage_data(rs.getString("image_data"));
+			p.setImage_data1(rs.getString("image_data1"));
+			p.setImage_data2(rs.getString("image_data2"));
 			p.setItem_name(rs.getString("item_name"));
 			p.setUser_id(rs.getString("user_id"));
 			p.setItem_price(rs.getInt("item_price"));
