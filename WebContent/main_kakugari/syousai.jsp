@@ -756,13 +756,13 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
       <div class="product-image">
         <!-- 商品の画像を表示 (item.item_detail に画像URLまたはデータが格納される) -->
 
-        <div id="productImage"><img id="productImg" src="" width="700" height="700" alt="商品画像" ></div><c:if test="${flag == false }"><img class="sold" src="../kakugari_image/SOLD.png" width="700" height="700" alt="SOLD OUT"></c:if>
+        <div id="productImage"><c:if test="${fn:length(img1_co) >= 11}"><img id="productImg" src="" width="700" height="700" alt="商品画像" ></c:if><c:if test="${fn:length(img1_co) <= 10 }"><img src="${img }" width="700" height="700" alt="商品画像" ></c:if></div><c:if test="${flag == false }"><img class="sold" src="../kakugari_image/SOLD.png" width="700" height="700" alt="SOLD OUT"></c:if>
 
       	<br>
       	<div class="hyouzi">
-      	<input type="checkbox" id="myCheckbox" class="custom-checkbox" checked>
-		<label for="myCheckbox" class="custom-label"></label>
 		<c:if test="${fn:length(img1_co) >= 11}">
+			<input type="checkbox" id="myCheckbox" class="custom-checkbox" checked>
+			<label for="myCheckbox" class="custom-label"></label>
 			<input type="checkbox" id="myCheckbox1" class="custom-checkbox1">
 			<label for="myCheckbox1" class="custom-label1"></label>
 			<c:if test="${fn:length(img2_co) >= 11}">
