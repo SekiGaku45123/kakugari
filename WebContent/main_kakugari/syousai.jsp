@@ -2,6 +2,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
     // セッションからログイン情報を取得
     HttpSession sessions = request.getSession(false);
@@ -17,7 +18,9 @@
 
   <c:set var="img" value="${pro[0].getImage_data()}"/>
   <c:set var="img1" value="${pro[0].getImage_data1()}"/>
+  <c:set var="img1_co" value="${pro[0].getImage_data1()}"/>
   <c:set var="img2" value="${pro[0].getImage_data2()}"/>
+  <c:set var="img2_co" value="${pro[0].getImage_data2()}"/>
 
   <style>
 
@@ -123,6 +126,7 @@
    width: 37vw;
    height: 37vw;
    left: 0;
+   top: 0;
    background: none; /* 明示的に背景をリセットする */
 }
 
@@ -142,7 +146,7 @@
       cursor: pointer;
 
       position: relative;
-	  top:10px;
+	  top:7px;
   	  left: 4vw;
   	  border-radius: 10%;
     }
@@ -168,7 +172,7 @@
       cursor: pointer;
 
       position: relative;
-	  top:10px;
+	  top:7px;
   	  left: 6vw;
   	  border-radius: 10%;
     }
@@ -194,7 +198,7 @@
       cursor: pointer;
 
       position: relative;
-      top:10px;
+      top:7px;
   	  left: 8vw;
   	  border-radius: 10%;
     }
@@ -645,6 +649,92 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 
 
 
+.custom-checkbox {
+      display: none;
+    }
+
+    /* ラベルを画像に変更 */
+    .custom-label {
+      display: inline-block;
+      width: 8vw;
+      height: 5vw;
+      background: url('${img}') no-repeat center center;
+      background-size: cover;
+      cursor: pointer;
+
+      position: relative;
+	  top:7px;
+  	  left: 4vw;
+  	  border-radius: 10%;
+    }
+
+    /* チェック状態の画像 */
+    .custom-checkbox:checked + .custom-label {
+    display:none;
+      background-image: url('${img}');
+      border: 2px solid #ff476f;
+    }
+
+
+.custom-checkbox1 {
+      display: none;
+    }
+
+    /* ラベルを画像に変更 */
+    .custom-label1 {
+      display: inline-block;
+      width: 8vw;
+      height: 5vw;
+      background: url('${img1}') no-repeat center center;
+      background-size: cover;
+      cursor: pointer;
+
+      position: relative;
+	  top:7px;
+  	  left: 6vw;
+  	  border-radius: 10%;
+    }
+
+    /* チェック状態の画像 */
+    .custom-checkbox1:checked + .custom-label1 {
+      display:none;
+      background-image: url('${img1}');
+      border: 2px solid #ff476f;
+    }
+
+
+.custom-checkbox2 {
+      display: none;
+    }
+
+    /* ラベルを画像に変更 */
+    .custom-label2 {
+      display: inline-block;
+      width: 8vw;
+      height: 5vw;
+      background: url('${img2}') no-repeat center center;
+      background-size: cover;
+      cursor: pointer;
+
+      position: relative;
+      top:7px;
+  	  left: 8vw;
+  	  border-radius: 10%;
+    }
+
+    /* チェック状態の画像 */
+    .custom-checkbox2:checked + .custom-label2 {
+      display:none;
+      background-image: url('${img2}');
+      border: 2px solid #ff476f;
+    }
+
+
+
+
+
+
+
 
 }
   </style>
@@ -669,14 +759,18 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
         <div id="productImage"><img id="productImg" src="" width="700" height="700" alt="商品画像" ></div><c:if test="${flag == false }"><img class="sold" src="../kakugari_image/SOLD.png" width="700" height="700" alt="SOLD OUT"></c:if>
 
       	<br>
+      	<div class="hyouzi">
       	<input type="checkbox" id="myCheckbox" class="custom-checkbox" checked>
 		<label for="myCheckbox" class="custom-label"></label>
-
-		<input type="checkbox" id="myCheckbox1" class="custom-checkbox1">
-		<label for="myCheckbox1" class="custom-label1"></label>
-
-		<input type="checkbox" id="myCheckbox2" class="custom-checkbox2">
-		<label for="myCheckbox2" class="custom-label2"></label>
+		<c:if test="${fn:length(img1_co) >= 11}">
+			<input type="checkbox" id="myCheckbox1" class="custom-checkbox1">
+			<label for="myCheckbox1" class="custom-label1"></label>
+			<c:if test="${fn:length(img2_co) >= 11}">
+			<input type="checkbox" id="myCheckbox2" class="custom-checkbox2">
+			<label for="myCheckbox2" class="custom-label2"></label>
+			</c:if>
+		</c:if>
+		</div>
       </div>
 
       <!-- 右側：商品詳細 -->
@@ -815,6 +909,8 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	var imd1="${img1}";
 	var imd2="${img2}";
 
+	var imd_stu=1;
+
 	function fetchComments(isInitialLoad = false) {
 		const commentValue = isInitialLoad ? '' : document.getElementById("comment_input").value.trim();
 	    $.ajax({
@@ -910,17 +1006,28 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	};
 
 	// ボタンがクリックされたときにも実行
-	document.getElementById("send_button").addEventListener("click", function (event) {
-	    event.preventDefault(); // フォーム送信を防止
-	    const commentValue = document.getElementById("comment_input").value.trim();
-	    if (commentValue) {
-	        console.log("入力されたコメント:", commentValue);
-	        fetchComments(); // コメントを取得する関数を呼び出す
-	    } else {
-	        console.log("コメントが空です。");
-	    }
-	});
+	document.addEventListener("DOMContentLoaded", function () {
+    const sendButton = document.getElementById("send_button");
 
+    // ボタンが存在するか確認
+    if (sendButton) {
+        sendButton.addEventListener("click", function (event) {
+            event.preventDefault(); // フォーム送信を防止
+            const commentValue = document.getElementById("comment_input").value.trim();
+            if (commentValue) {
+                console.log("入力されたコメント:", commentValue);
+                fetchComments(); // コメントを取得する関数を呼び出す
+            } else {
+                console.log("コメントが空です。");
+            }
+        });
+    } else {
+        console.error("送信ボタン (#send_button) が見つかりませんでした。");
+    }
+});
+
+	var img_co1 = "${img1_co}"
+	var img_co2 = "${img2_co}"
 
 	// チェックボックスをグループ化する
 	const checkboxes = document.querySelectorAll('.custom-checkbox, .custom-checkbox1, .custom-checkbox2');
@@ -954,13 +1061,77 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
           // 商品画像のsrcを動的に設定
           if (this.id === 'myCheckbox') {
         	  console.log(imd+"kakaka");
-            productImg.src = imd; // チェックボックス1に対応する画像
-          } else if (this.id === 'myCheckbox1') {
+            productImg.src = imd;
+            imd_stu=1;
+            if (window.innerWidth < 960) {
+            	if(img_co1.length > 10){
+            	document.querySelector('.custom-label1').style.backgroundImage = "url('../icon_image/1189 - コピー.png')";
+            	document.querySelector('.custom-label').style.display = 'none';
+            	if(img_co2.length > 10){
+            	document.querySelector('.custom-label2').style.display = 'none';
+            	}
+            	document.querySelector('.custom-label1').style.display = 'inline-block';
+
+
+            	document.querySelector('.custom-label1').style.top = '-60vw';
+   	    	    document.querySelector('.custom-label1').style.left = '85vw';
+            	}
+
+
+
+            } else {
+                document.querySelector('.custom-label1').style.backgroundImage = `url('${img1}')`; // 元の画像に戻す
+            }
+
+
+          } else if (this.id === 'myCheckbox1' && img_co1.length > 10) {
         	  console.log(imd1+"kaka");
             productImg.src = imd1; // チェックボックス2に対応する画像
-          } else if (this.id === 'myCheckbox2') {
+            imd_stu=2;
+            if (window.innerWidth < 960) {
+            	document.querySelector('.custom-label1').style.display = 'none';
+            	document.querySelector('.custom-label').style.backgroundImage = "url('../icon_image/1189.png')";
+            	document.querySelector('.custom-label').style.display = 'inline-block';
+            	document.querySelector('.custom-label').style.top = '-60vw';
+   	    	    document.querySelector('.custom-label').style.left = '5vw';
+
+	   	    	 if(img_co2.length > 10){
+	            	document.querySelector('.custom-label2').style.backgroundImage = "url('../icon_image/1189 - コピー.png')";
+	            	document.querySelector('.custom-label2').style.display = 'inline-block';
+	            	document.querySelector('.custom-label2').style.top = '-60vw';
+	   	    	    document.querySelector('.custom-label2').style.left = '76.4vw';
+	   	    	 }
+
+            } else {
+                document.querySelector('.custom-label').style.backgroundImage = `url('${img}')`; // 元の画像に戻す
+                if(img_co2.length > 10){
+                document.querySelector('.custom-label2').style.backgroundImage = `url('${img2}')`; // 元の画像に戻す
+                }
+            }
+
+
+          } else if (this.id === 'myCheckbox2' && img_co2.length > 10) {
         	  console.log(imd2+"ka");
             productImg.src = imd2; // チェックボックス3に対応する画像
+            imd_stu=3;
+
+            if (window.innerWidth < 960) {
+            	document.querySelector('.custom-label1').style.backgroundImage = "url('../icon_image/1189.png')";
+            	document.querySelector('.custom-label').style.display = 'none';
+            	document.querySelector('.custom-label2').style.display = 'none';
+
+            	document.querySelector('.custom-label1').style.display = 'inline-block';
+
+            	document.querySelector('.custom-label1').style.top = '-60vw';
+   	    	    document.querySelector('.custom-label1').style.left = '5vw';
+
+
+            } else {
+                document.querySelector('.custom-label1').style.backgroundImage = `url('${img1}')`; // 元の画像に戻す
+            }
+
+
+
           }
         } else {
           // チェックが外れた場合は画像を非表示
@@ -968,6 +1139,86 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
         }
       });
     });
+
+
+
+
+
+
+
+    const mediaQuery = window.matchMedia('(max-width: 959px)');
+
+
+    let checkbox1 = document.getElementById('myCheckbox');
+
+	let checkbox2 = document.getElementById('myCheckbox1');
+
+	let checkbox3 = document.getElementById('myCheckbox2');
+	 // 条件が変わったときに実行する関数
+	 function handleScreenChange(event) {
+	   if (event.matches) {
+	     console.log('画面幅が600px以下になりました');
+	     if(checkbox1.checked){
+	    	 console.log(img_co2.length);
+	    	 console.log(img_co1);
+	    	 if (img_co1.length > 10){
+	    	 	document.querySelector('.custom-label1').style.backgroundImage = "url('../icon_image/1189 - コピー.png')";
+	    	 	document.querySelector('.custom-label').style.display = 'none';
+	    	 if(img_co2.length > 10){
+	    	 	document.querySelector('.custom-label2').style.display = 'none';
+	    	 }
+	    	 	document.querySelector('.custom-label1').style.top = '-60vw';
+	    	 	document.querySelector('.custom-label1').style.left = '85vw';
+	    	 }
+	     }else if (checkbox2.checked && img_co1.length > 10){
+	    	 document.querySelector('.custom-label').style.backgroundImage = "url('../icon_image/1189.png')";
+
+	    	 if(img_co2.length > 10){
+	    	 document.querySelector('.custom-label2').style.backgroundImage = "url('../icon_image/1189 - コピー.png')";
+
+
+	    	 document.querySelector('.custom-label2').style.top = '-60vw';
+	    	 document.querySelector('.custom-label2').style.left = '85vw';
+	    	 }
+
+	     }else if (checkbox3.checked && img_co2.length > 10){
+	    	 document.querySelector('.custom-label1').style.backgroundImage = "url('../icon_image/1189.png')";
+	    	 document.querySelector('.custom-label').style.display = 'none';
+	    	 document.querySelector('.custom-label2').style.display = 'none';
+
+	    	 document.querySelector('.custom-label1').style.top = '-60vw';
+	    	    document.querySelector('.custom-label1').style.left = '5vw';
+	     }
+	     // 600px以下の場合の処理
+	   } else {
+	     console.log('画面幅が600pxを超えました');
+	     // 600pxを超えた場合の処理
+	     document.querySelector('.custom-label').style.backgroundImage = `url('${img}')`; // 元の画像に戻
+	     document.querySelector('.custom-label').style.display = 'inline-block';
+	     document.querySelector('.custom-label').style.top = '';
+	   	 document.querySelector('.custom-label').style.left = '';
+
+	   	 if(img_co1.length > 10){
+		     document.querySelector('.custom-label1').style.backgroundImage = `url('${img1}')`; // 元の画像に戻す
+		     document.querySelector('.custom-label1').style.display = 'inline-block';
+		     document.querySelector('.custom-label1').style.top = '';
+			 document.querySelector('.custom-label1').style.left = '';
+			if(img_co2.length > 10){
+			     document.querySelector('.custom-label2').style.backgroundImage = `url('${img2}')`; // 元の画像に戻す
+		     	 document.querySelector('.custom-label2').style.display = 'inline-block';
+		     	 document.querySelector('.custom-label2').style.top = '';
+		   	     document.querySelector('.custom-label2').style.left = '';
+			}
+	   	 }
+	   }
+	 }
+
+	 // 初期チェック
+	 handleScreenChange(mediaQuery);
+
+	 // リスナーを追加
+	 mediaQuery.addEventListener('change', handleScreenChange);
+
 
 
 
