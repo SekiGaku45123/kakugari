@@ -77,6 +77,47 @@ public class TransactionDAO extends DAO {
 		return line;
 	}
 
+	public int updateinsert_come(String p, String pp, String ppp) throws Exception{
+
+
+		Connection con=getConnection();
+		PreparedStatement st=con.prepareStatement(
+				"UPDATE transaction SET exhibit_come = ? where exhibit_user = ? and item_id = ?");
+		st.setString(1, p);
+		st.setString(2, pp);
+		st.setString(3, ppp);
+		int line=st.executeUpdate();
+		st.close();
+		con.close();
+
+		return line;
+	}
+
+	public List<Transaction> sach(String p, String pp) throws Exception{
+		List<Transaction> list = new ArrayList<>();
+
+		Connection con=getConnection();
+		PreparedStatement st=con.prepareStatement(
+				"select * from transaction where exhibit_user = ? and item_id = ?");
+		st.setString(1, p);
+		st.setString(2, pp);
+		ResultSet rs=st.executeQuery();
+
+		if (rs.next()){
+			Transaction p1 = new Transaction();
+
+			p1.setExhibit_come(rs.getString("exhibit_come"));
+			System.out.print(rs.getString("exhibit_come"));
+			list.add(p1);
+
+		}
+		st.close();
+		con.close();
+
+		return list;
+
+	}
+
 	public int insert_tuti(Receiving p) throws Exception{
 
 		Connection con=getConnection();

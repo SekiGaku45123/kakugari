@@ -10,15 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Receiving;
 import bean.User;
 import dao.TransactionDAO;
 import tool.Page;
 
-
-@WebServlet(urlPatterns={"/kakugari/order_comp"})
-public class Order_comp extends HttpServlet {
-
+@WebServlet(urlPatterns={"/kakugari/Hatyu_come"})
+public class Hatyu_come extends HttpServlet{
 	public void doGet (
 	        HttpServletRequest request, HttpServletResponse response
 	    ) throws ServletException, IOException {
@@ -44,36 +41,24 @@ public class Order_comp extends HttpServlet {
 
 		        String user_id = user.getUser_id();
 
+		        String story = request.getParameter("id");
+		        String item = request.getParameter("item_id");
 
-				String item_id = request.getParameter("item_id");
-
-		        String exhibit_user = request.getParameter("exhibit_user");
-
-
-
-
-				System.out.print(item_id);
-
-				TransactionDAO dao=new TransactionDAO();
-				int line=dao.updateinsert(item_id);
-
-				Receiving receiving = new Receiving();
-				receiving.setItem_id(item_id);
-				receiving.setUser_id(user_id);
-				receiving.setExhibit_user(exhibit_user);
-				int line2=dao.insert_tuti(receiving);
-
-				System.out.print(line2);
+		        TransactionDAO dao=new TransactionDAO();
+				int line=dao.updateinsert_come(story,user_id,item);
 
 				if (line>0) {
 					System.out.print("やっている？");
-					request.getRequestDispatcher("../main_kakugari/order_comp.jsp")
-					.forward(request, response);
 				}
+
 			}catch (Exception e){
 				e.printStackTrace(out);
 			}
 
 			Page.footer(out);
+
+
+
 		}
+
 }

@@ -750,6 +750,16 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 
 <c:set var="flag" value="${pro[0].getFlag()}"/>
 
+
+
+<c:forEach var="list12" items="${favo}">
+    	<c:if test="${item_idid eq list12.getItem_id()}">
+        	<c:set var="match" value="true" />
+        </c:if>
+</c:forEach>
+
+
+
 <c:forEach var="pro" items="${pro}">
   <div class="oya">
       <!-- 左側：商品画像 -->
@@ -801,9 +811,12 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	          <!-- 商品IDを送信するフォーム -->
 	          <form action="favoriteAddAction" method="post">
 	            <input type="hidden" name="item_id" value="${pro.getItem_id()}">
-	            <button type="submit">♡</button>
+	            <c:if test="${not match}"><button type="submit">♡</button></c:if>
+	            <c:if test="${match}"><button type="button" id="favo_id" style="color: #ff476f; border: 1px solid #ff476f;">♡</button></c:if>
+	            <div id="button_div"></div>
 
 	          </form>
+
 	        </div>
 
 	     </div>
@@ -888,6 +901,49 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+
+var user_id = "${user_id }";
+var item_idid="${item_idid}";
+var user_name = "${user_name }";
+
+var imd="${img}";
+var imd1="${img1}";
+var imd2="${img2}";
+
+var imd_stu=1;
+
+const favoButton = document.getElementById("favo_id");
+
+if (favoButton) { // ボタンが存在する場合のみ処理を実行
+    favoButton.addEventListener("click", function() {
+        $.ajax({
+            url: '../kakugari/favoriteremove', // サーバーのURL
+            type: 'POST',
+            data: { id: item_idid },
+            success: function(response) {
+            	var button_div = document.getElementById('button_div');
+                alert("お気に入り解除しました！");
+                var button_favo = document.createElement('button');
+                button_favo.type = "submit";  // type="submit" を設定
+                button_favo.textContent = "♡";
+
+                button_div.appendChild(button_favo);
+
+                var favoButt = document.getElementById("favo_id");
+                favoButt.style.display = "none";
+            },
+            error: function() {
+                alert("エラーが発生しました！");
+            }
+        });
+    });
+} else {
+    console.warn("favo_id が見つかりませんでした！");
+}
+
+
+
+
 	const targets = document.querySelectorAll(".tkst");
 
 	document.addEventListener("wheel", function(e){
@@ -901,15 +957,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	});
 
 
-	var user_id = "${user_id }";
-	var item_idid="${item_idid}";
-	var user_name = "${user_name }";
 
-	var imd="${img}";
-	var imd1="${img1}";
-	var imd2="${img2}";
-
-	var imd_stu=1;
 
 	function fetchComments(isInitialLoad = false) {
 		const commentValue = isInitialLoad ? '' : document.getElementById("comment_input").value.trim();
@@ -1026,8 +1074,8 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
     }
 });
 
-	var img_co1 = "${img1_co}"
-	var img_co2 = "${img2_co}"
+	var img_co1 = "${img1_co}";
+	var img_co2 = "${img2_co}";
 
 	// チェックボックスをグループ化する
 	const checkboxes = document.querySelectorAll('.custom-checkbox, .custom-checkbox1, .custom-checkbox2');
@@ -1218,6 +1266,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 
 	 // リスナーを追加
 	 mediaQuery.addEventListener('change', handleScreenChange);
+
 
 
 

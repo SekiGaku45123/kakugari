@@ -1,7 +1,7 @@
 package kakugari;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,15 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Receiving;
+import com.google.gson.Gson;
+
+import bean.Transaction;
 import bean.User;
 import dao.TransactionDAO;
-import tool.Page;
 
-
-@WebServlet(urlPatterns={"/kakugari/order_comp"})
-public class Order_comp extends HttpServlet {
-
+@WebServlet(urlPatterns={"/kakugari/Hatyu_sach"})
+public class Hatyu_sach extends HttpServlet{
 	public void doGet (
 	        HttpServletRequest request, HttpServletResponse response
 	    ) throws ServletException, IOException {
@@ -35,8 +34,8 @@ public class Order_comp extends HttpServlet {
 				HttpServletRequest request, HttpServletResponse response
 		)
 				throws ServletException, IOException {
-			PrintWriter out=response.getWriter();
-			Page.header(out);
+			response.setContentType("application/json");
+	        response.setCharacterEncoding("UTF-8");
 			try{
 
 				HttpSession session = request.getSession();
@@ -44,36 +43,26 @@ public class Order_comp extends HttpServlet {
 
 		        String user_id = user.getUser_id();
 
-
-				String item_id = request.getParameter("item_id");
-
-		        String exhibit_user = request.getParameter("exhibit_user");
+		        String story = request.getParameter("id");
 
 
+		        String item = request.getParameter("item_id");
 
+		        	TransactionDAO dao=new TransactionDAO();
+		        	List<Transaction> list = dao.sach(user_id,item);
 
-				System.out.print(item_id);
+		        	String json = new Gson().toJson(list);
+	                response.getWriter().write(json);
+		        }
 
-				TransactionDAO dao=new TransactionDAO();
-				int line=dao.updateinsert(item_id);
-
-				Receiving receiving = new Receiving();
-				receiving.setItem_id(item_id);
-				receiving.setUser_id(user_id);
-				receiving.setExhibit_user(exhibit_user);
-				int line2=dao.insert_tuti(receiving);
-
-				System.out.print(line2);
-
-				if (line>0) {
-					System.out.print("やっている？");
-					request.getRequestDispatcher("../main_kakugari/order_comp.jsp")
-					.forward(request, response);
-				}
-			}catch (Exception e){
-				e.printStackTrace(out);
+			catch (Exception e){
+				e.printStackTrace(response.getWriter());
 			}
 
-			Page.footer(out);
+
+
+
 		}
+
 }
+

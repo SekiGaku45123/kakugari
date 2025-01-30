@@ -15,15 +15,30 @@ import bean.User;
 import dao.FavoriteDAO;
 @WebServlet(urlPatterns={"/kakugari/favoriteremove"})
 public class FavoriteRemova extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	public void doGet (
+	        HttpServletRequest request, HttpServletResponse response
+	    ) throws ServletException, IOException {
+	        processRequest(request, response);
+	    }
+
+	    public void doPost (
+	        HttpServletRequest request, HttpServletResponse response
+	    ) throws ServletException, IOException {
+	        processRequest(request, response);
+	    }
+
+	    public void processRequest(
+				HttpServletRequest request, HttpServletResponse response
+		)
             throws ServletException, IOException {
 
-    	System.out.print("実行");
+    	System.out.println("実行asdfadsfa");
     	PrintWriter out=response.getWriter();
     	HttpSession session = request.getSession();
 
         try {
 
+        	System.out.print("あはあは");
         	String item_id=request.getParameter("id");
         	User customer = (User) session.getAttribute("customer");
 

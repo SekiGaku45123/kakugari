@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Favorite;
 import bean.Item;
 import bean.User;
+import dao.FavoriteDAO;
 import dao.ItemDAO;
 import tool.Page;
 
@@ -67,10 +69,17 @@ public class Product extends HttpServlet {
 
 				System.out.print(list);
 
+				String key = user.getUser_id();
+	            System.out.println("ユーザーID: " + key);
+
+	            FavoriteDAO dao1 = new FavoriteDAO();
+	            List<Favorite> list1 = dao1.search(key);
+
 
 				session.setAttribute("browse",browselist);
 				request.setAttribute("pro", list);
 				request.setAttribute("user_data", user);
+				request.setAttribute("favo", list1);
 				request.getRequestDispatcher("/main_kakugari/syousai.jsp")
 				.forward(request, response);
 			}catch (Exception e){

@@ -96,7 +96,7 @@
   <p><font size="5"><b><%=Year2 %></b>さん</font></p>
   <label for="story">購入者へのメッセージを入力してください。</label>
   <textarea id="story" name="story" rows="5" class="form-control mt-2" placeholder="このたびはご購入ありがとうございます。商品の発送までお待ちください。"></textarea>
-  <button class="btn btn-success mt-3">取引メッセージを送る</button>
+  <button class="btn btn-success mt-3" id="coco">取引メッセージを送る</button>
 </div>
 <br>
 <br>
@@ -131,8 +131,52 @@
       });
     });
 
+    const cocoBu = document.getElementById("coco");
+
+    var item = <%=Year %>;
+
+    if (cocoBu) { // ボタンが存在する場合のみ処理を実行
+    	cocoBu.addEventListener("click", function() {
+    		var storyValue = document.getElementById("story").value;
+            $.ajax({
+                url: '${pageContext.request.contextPath}/kakugari/Hatyu_come', // サーバーのURL
+                type: 'POST',
+                data: { id: storyValue,
+                	item_id: item},
+                success: function(response) {
+                    alert("送信ができました。");
+                    document.getElementById("coco").disabled = true;
+
+                },
+                error: function() {
+                    alert("エラーが発生しました！");
+                }
+            });
+        });
+    } else {
+        console.warn("favo_id が見つかりませんでした！");
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+    	$.ajax({
+            url: '${pageContext.request.contextPath}/kakugari/Hatyu_come', // サーバーのURL
+            type: 'POST',
+            data: {item_id: item },
+            success: function(response) {
+            	if (response[0].exhibit_come == null) {
+            	    // リストに値が入っている場合の処理
+            		document.getElementById("coco").disabled = true;
+            	} else {
+            	    // リストが空の場合の処理
+            	    console.log("リストは空です。");
+            	}
 
 
-
+            },
+            error: function() {
+                alert("エラーが発生しました！");
+            }
+        });
+    });
 
   </script>
