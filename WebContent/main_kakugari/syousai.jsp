@@ -418,6 +418,12 @@ height: 100%;
 filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-rotate(198deg) brightness(99%) contrast(103%);
 }
 
+.price_inp::-webkit-inner-spin-button,
+	.price_inp::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance:textfield;
+}
+
 
 }
 
@@ -729,6 +735,12 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
       border: 2px solid #ff476f;
     }
 
+    .price_inp::-webkit-inner-spin-button,
+	.price_inp::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance:textfield;
+}
+
 
 
 
@@ -790,7 +802,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
         <h2>${pro.getItem_name()}</h2>
         <c:choose>
         <c:when test="${user_id != user_idid}"><p class="pq">￥<span class="mozi">${pro.getItem_price()}</span>（税込・送料込み）</p></c:when>
-        <c:when test="${user_id == user_idid}"><p class="pq">￥<span class="mozi"><input id="price_inp" type="number" value="${pro.getItem_price()}" min="0" style="width:160px; border-radius: 5%;"></span>（税込・送料込み）</p></c:when>
+        <c:when test="${user_id == user_idid}"><p class="pq">￥<span class="mozi"><input id="price_inp" class="price_inp" type="number" value="${pro.getItem_price()}" min="0" style="width:160px; border-radius: 5%;"></span>（税込・送料込み）</p></c:when>
 		<c:otherwise><p class="pq">￥<span class="mozi">${pro.getItem_price()}</span>（税込・送料込み）</p></c:otherwise>
 		</c:choose>
 
