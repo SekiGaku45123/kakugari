@@ -232,6 +232,10 @@ input[type="number"] {
 	<div class="search_list">
 
 			<div class="kakaka" id="hantei">
+			<c:if test="${empty search }">
+			${erro }
+			</c:if>
+			<c:if test="${!empty search }">
 			<c:forEach var="p" items="${search}">
 			<c:set var="flag" value="${p.getFlag() }"/>
 				<div class="imggmi">
@@ -240,7 +244,7 @@ input[type="number"] {
 						<p>${p.getItem_name()}</p>
 				</div>
 			</c:forEach>
-
+			</c:if>
 			</div>
 			<div class="kakaka" id="result">
 			</div>

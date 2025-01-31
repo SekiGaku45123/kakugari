@@ -828,8 +828,10 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	          <form action="favoriteAddAction" method="post">
 	            <input type="hidden" name="item_id" value="${pro.getItem_id()}">
 	            <c:choose>
+	            <c:when test="${flag == false }"><button type="button">なし</button></c:when>
+
 	            <c:when test="${user_id == user_idid}"><button id="delete_syou" type="button">商品削除</button></c:when>
-	            <c:when test="${flag == false }"><button id="delete_syou" type="button">なし</button></c:when>
+
 	            <c:when test="${not match}"><button type="submit">♡</button></c:when>
 	            <c:when test="${match}"><button type="button" id="favo_id" style="color: #ff476f; border: 1px solid #ff476f;">♡</button></c:when>
 	            </c:choose>
@@ -932,7 +934,7 @@ var imd2="${img2}";
 
 var imd_stu=1;
 
-
+if (document.getElementById('my-id')) {
 document.getElementById("delete_syou").addEventListener("click", function() {
 	var result = confirm('削除してもよろしいでしょうか？');
 
@@ -954,8 +956,7 @@ document.getElementById("delete_syou").addEventListener("click", function() {
 	}
 
 });
-
-
+}
 const favoButton = document.getElementById("favo_id");
 
 if (favoButton) { // ボタンが存在する場合のみ処理を実行

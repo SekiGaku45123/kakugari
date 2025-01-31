@@ -104,6 +104,7 @@ public class ItemDAO extends DAO{
 			System.out.print(keyword);
 		}else{
 			catego = "select * from item join images on images.item_id = item.item_id WHERE item.item_name LIKE ? OR item.item_name LIKE ?";
+			System.out.print("おぺおぺ");
 		}
 
 		PreparedStatement st = con.prepareStatement(

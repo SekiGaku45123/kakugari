@@ -56,13 +56,24 @@ public class Productsearch extends HttpServlet {
 				List<Item> list1=dao1.categoryall();
 
 				System.out.print(list);
+				if (list == null || list.isEmpty()){
 
+					request.setAttribute("erro", "該当する商品が見つかりません。");
 				request.setAttribute("search", list);
 				request.setAttribute("categoryy", keyword);
 				request.setAttribute("searchtin", category);
 				request.setAttribute("searchcategory", list1);
 				request.getRequestDispatcher("../main_kakugari/searchkakugari.jsp")
 				.forward(request, response);
+				}else{
+
+					request.setAttribute("search", list);
+					request.setAttribute("categoryy", keyword);
+					request.setAttribute("searchtin", category);
+					request.setAttribute("searchcategory", list1);
+					request.getRequestDispatcher("../main_kakugari/searchkakugari.jsp")
+					.forward(request, response);
+				}
 			}catch (Exception e){
 				e.printStackTrace(out);
 			}
