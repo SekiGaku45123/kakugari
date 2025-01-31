@@ -788,7 +788,11 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
         <!-- 商品IDや名前などの情報 -->
 
         <h2>${pro.getItem_name()}</h2>
-        <p class="pq">￥<span class="mozi">${pro.getItem_price()}</span>（税込・送料込み）</p>
+        <c:choose>
+        <c:when test="${user_id != user_idid}"><p class="pq">￥<span class="mozi">${pro.getItem_price()}</span>（税込・送料込み）</p></c:when>
+        <c:when test="${user_id == user_idid}"><p class="pq">￥<span class="mozi"><input id="price_inp" type="number" value="${pro.getItem_price()}" min="0" style="width:160px; border-radius: 5%;"></span>（税込・送料込み）</p></c:when>
+		<c:otherwise><p class="pq">￥<span class="mozi">${pro.getItem_price()}</span>（税込・送料込み）</p></c:otherwise>
+		</c:choose>
 
 		<div class="botan_mein">
 	        <div class="kounyu">
@@ -1203,6 +1207,7 @@ if (favoButton) { // ボタンが存在する場合のみ処理を実行
 
 	let checkbox3 = document.getElementById('myCheckbox2');
 	 // 条件が変わったときに実行する関数
+	 if (img_co1.length > 10){
 	 function handleScreenChange(event) {
 	   if (event.matches) {
 	     console.log('画面幅が600px以下になりました');
@@ -1261,14 +1266,31 @@ if (favoButton) { // ボタンが存在する場合のみ処理を実行
 	   }
 	 }
 
+
 	 // 初期チェック
 	 handleScreenChange(mediaQuery);
 
 	 // リスナーを追加
 	 mediaQuery.addEventListener('change', handleScreenChange);
 
+	 }
 
 
+	 document.getElementById("price_inp").addEventListener("change", function() {
+		    console.log("変更確定: " + this.value);
+		    var coment = this.value;
+		    $.ajax({
+		        url: '../kakugari/Price_inp', // サーバーのURL
+		        type: 'POST',
+		        data: {
+		            price: coment,
+		            item: item_idid
+		        },
+		        success: function (data) {
+		        	alert("変更ができました。");
+		        }
+		     });
+		});
 
 
 </script>

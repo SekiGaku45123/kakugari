@@ -41,6 +41,7 @@
 <div class="container">
     <h2 class="text-center mb-4">新規登録</h2>
     <form action="../main_kakugari/signup" method="post">
+    <font color="red">${errorMessage }</font>
         <div class="form-group">
             <label for="name">名前:</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="お名前を入力してください" required>

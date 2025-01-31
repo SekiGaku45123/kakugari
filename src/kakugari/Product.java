@@ -69,17 +69,21 @@ public class Product extends HttpServlet {
 
 				System.out.print(list);
 
+				if(user != null){
+
 				String key = user.getUser_id();
 	            System.out.println("ユーザーID: " + key);
 
 	            FavoriteDAO dao1 = new FavoriteDAO();
 	            List<Favorite> list1 = dao1.search(key);
+	            request.setAttribute("favo", list1);
+				}
 
 
 				session.setAttribute("browse",browselist);
 				request.setAttribute("pro", list);
 				request.setAttribute("user_data", user);
-				request.setAttribute("favo", list1);
+
 				request.getRequestDispatcher("/main_kakugari/syousai.jsp")
 				.forward(request, response);
 			}catch (Exception e){

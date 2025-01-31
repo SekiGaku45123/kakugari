@@ -387,6 +387,21 @@ public class ItemDAO extends DAO{
 
 	}
 
+	public int price_in(int pri, String pp) throws Exception {
+		Connection con=getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"UPDATE item SET item_price = ? where item_id = ?");
+		st.setInt(1, pri);
+		st.setString(2, pp);
+		int line=st.executeUpdate();
+
+		st.close();
+		con.close();
+		System.out.println("実行してますか？");
+
+		return line;
+	}
 
 
 

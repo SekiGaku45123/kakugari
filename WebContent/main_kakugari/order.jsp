@@ -146,6 +146,7 @@
                 success: function(response) {
                     alert("送信ができました。");
                     document.getElementById("coco").disabled = true;
+                    document.getElementById("story").disabled = true;
 
                 },
                 error: function() {
@@ -166,6 +167,7 @@
             	if (response[0].exhibit_come == null) {
             	    // リストに値が入っている場合の処理
             		document.getElementById("coco").disabled = true;
+            		document.getElementById("story").disabled = true;
             	} else {
             	    // リストが空の場合の処理
             	    console.log("リストは空です。");
