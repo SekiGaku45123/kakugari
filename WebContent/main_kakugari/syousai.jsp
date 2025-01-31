@@ -827,8 +827,12 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	          <!-- 商品IDを送信するフォーム -->
 	          <form action="favoriteAddAction" method="post">
 	            <input type="hidden" name="item_id" value="${pro.getItem_id()}">
-	            <c:if test="${not match}"><button type="submit">♡</button></c:if>
-	            <c:if test="${match}"><button type="button" id="favo_id" style="color: #ff476f; border: 1px solid #ff476f;">♡</button></c:if>
+	            <c:choose>
+	            <c:when test="${user_id == user_idid}"><button id="delete_syou" type="button">商品削除</button></c:when>
+	            <c:when test="${flag == false }"><button id="delete_syou" type="button">なし</button></c:when>
+	            <c:when test="${not match}"><button type="submit">♡</button></c:when>
+	            <c:when test="${match}"><button type="button" id="favo_id" style="color: #ff476f; border: 1px solid #ff476f;">♡</button></c:when>
+	            </c:choose>
 	            <div id="button_div"></div>
 
 	          </form>
@@ -927,6 +931,30 @@ var imd1="${img1}";
 var imd2="${img2}";
 
 var imd_stu=1;
+
+
+document.getElementById("delete_syou").addEventListener("click", function() {
+	var result = confirm('削除してもよろしいでしょうか？');
+
+	if(result) {
+		let form = document.createElement("form");
+        form.method = "POST";
+        form.action = "../kakugari/Product_delete"; // サーブレットのURL
+
+        let input2 = document.createElement("input");
+        input2.type = "hidden";
+        input2.name = "itemId";
+        input2.value = item_idid;
+
+        form.appendChild(input2);
+        document.body.appendChild(form);
+        form.submit();
+	} else {
+
+	}
+
+});
+
 
 const favoButton = document.getElementById("favo_id");
 

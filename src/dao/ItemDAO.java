@@ -403,6 +403,21 @@ public class ItemDAO extends DAO{
 		return line;
 	}
 
+	public int product_delete(String pp) throws Exception {
+		Connection con=getConnection();
+
+		PreparedStatement st = con.prepareStatement(
+				"delete from item where item_id = ?");
+		st.setString(1, pp);
+		int line=st.executeUpdate();
+
+		st.close();
+		con.close();
+		System.out.println("実行してますか？");
+
+		return line;
+	}
+
 
 
 }
