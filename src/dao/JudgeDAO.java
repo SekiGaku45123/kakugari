@@ -1,7 +1,11 @@
 package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import bean.Receiving;
 import judge.Judge;
 public class JudgeDAO extends DAO{
 
@@ -42,4 +46,58 @@ public class JudgeDAO extends DAO{
 
 	   return line;
    }
+
+   public List<Judge> flag_sea(String code) throws Exception {
+
+		List<Judge> list = new ArrayList<>();
+
+		Connection con=getConnection();
+
+		PreparedStatement st=con.prepareStatement(
+				"select * from judge where user_id = ?");
+		st.setString(1, code);
+		ResultSet rs=st.executeQuery();
+
+
+
+		while (rs.next()){
+			Judge p=new Judge();
+			p.setItemId(rs.getString("item_id"));
+			p.setUserId(rs.getString("user_id"));
+		    list.add(p);
+			}
+
+			st.close();
+			con.close();
+
+			return list;
+		}
+
+   public List<Receiving> flag_sea1(String code) throws Exception {
+
+		List<Receiving> list = new ArrayList<>();
+
+		Connection con=getConnection();
+
+		PreparedStatement st=con.prepareStatement(
+				"select * from receiving where user_id = ?");
+		st.setString(1, code);
+		ResultSet rs=st.executeQuery();
+
+
+
+		while (rs.next()){
+			Receiving p=new Receiving();
+			p.setItem_id(rs.getString("item_id"));
+			p.setUser_id(rs.getString("user_id"));
+		    list.add(p);
+			}
+
+			st.close();
+			con.close();
+
+			return list;
+		}
+
+
 }

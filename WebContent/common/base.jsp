@@ -383,8 +383,21 @@
 		width: 85px;
 		height: 85px;
 		}
+		.order_img1{
+		margin: 0 auto;
+		background-color: black;
+		width: 85px;
+		height: 85px;
+		}
 
 		.order_img img{
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+
+		}
+		.order_img1 img{
+		filter: brightness(50%);
 		object-fit: cover;
 		width: 100%;
 		height: 100%;
@@ -654,7 +667,7 @@
         type: 'POST',
         success: function(data) {
 
-        	const { response, list, list2 } = data;
+        	const { response, list, list2, list3, list_co} = data;
 
             try {
                 // JSONパースが必要な場合
@@ -718,9 +731,24 @@
 
 
                     	//order_list_cla_a.href = "../kakugari/tesuto?item_id="+list[i].item_id +"&user_name=" +list[i].user_id ;
-                    	order_list_cla_a.href = "../judge/judge.jsp?item_id="+list2[i].item_id;
+                    	let found = false;
 
-                    	order_list_img.className = 'order_img';
+                    	console.log(list3+'kakakaka');
+
+                    	for (let a = 0; a < list3.length; a++) {
+                    		if (list3[a].itemId === list2[i].item_id) {
+                    			order_list_img.className = 'order_img1';
+                    	        found = true;
+                    	        break;
+                    		}
+
+                    	}
+
+                    	if (!found) {
+                    		order_list_cla_a.href = "../judge/judge.jsp?item_id="+list2[i].item_id;
+                    		order_list_img.className = 'order_img1';
+                    	}
+
                     	order_comment_p.className = 'order_comment';
                     	order_list_cla.className = 'order_list';
                     	margin_order_yo.className = 'margin_order';
@@ -799,9 +827,24 @@
 
 
                     	//order_list_cla_a.href = "../kakugari/tesuto?item_id="+list[i].item_id +"&user_name=" +list[i].user_id ;
-                    	order_list_cla_a.href = "../judge/judge.jsp?item_id="+list[i].item_id;
+                    	console.log(list3);
+                    	let found = false;
 
-                    	order_list_img.className = 'order_img';
+                    	for (let a = 0; a < list3.length; a++) {
+                    	    if (list3[a].itemId === list[i].item_id) {
+                    	        order_list_img.className = 'order_img1';
+                    	        found = true;
+                    	        break;
+                    	    }
+                    	}
+
+                    	if (!found) {
+                    		order_list_cla_a.href = "../judge/judge.jsp?item_id="+list[i].item_id;
+                    	    order_list_img.className = 'order_img';
+                    	}
+
+
+
                     	order_comment_p.className = 'order_comment';
                     	order_list_cla.className = 'order_list';
                     	margin_order_yo.className = 'margin_order';
@@ -879,10 +922,26 @@
                     	//var item_id = response[i].item_id;
                     	var user_name_name = response[i].user_name;
 
+                    	console.log(list_co);
+                    	let found = false; // 一致したかどうかのフラグ
 
-                    	order_list_cla_a.href = "../main_kakugari/order.jsp?item_id="+response[i].item_id +"&user_name=" +response[i].user_id+"&user_naname="+ response[i].user_name;
+                    	for (let a = 0; a < list_co.length; a++) {
+                    	    if (list_co[a].item_id === response[i].item_id) {
+                    	        console.log("一致:", list_co[a].item_id);
+                    	        order_list_img.className = 'order_img1';
+                    	        found = true; // 一致したらフラグを `true` にする
+                    	        break; // ループを抜ける
+                    	    }
+                    	}
 
-                    	order_list_img.className = 'order_img';
+                    	if (!found) {
+                    	    order_list_cla_a.href = "../main_kakugari/order.jsp?item_id=" + response[i].item_id + "&user_name=" + response[i].user_id + "&user_naname=" + response[i].user_name;
+                    	    order_list_img.className = 'order_img';
+                    	}
+
+
+
+
                     	order_comment_p.className = 'order_comment';
                     	order_list_cla.className = 'order_list';
                     	margin_order_yo.className = 'margin_order';

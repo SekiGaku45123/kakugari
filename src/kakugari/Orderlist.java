@@ -14,9 +14,12 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+import bean.Receiving;
 import bean.Transaction;
 import bean.User;
+import dao.JudgeDAO;
 import dao.TransactionDAO;
+import judge.Judge;
 
 @WebServlet(urlPatterns={"/orderlist"})
 public class Orderlist extends HttpServlet {
@@ -52,6 +55,12 @@ public class Orderlist extends HttpServlet {
 
 		        System.out.println(i);
 
+		        JudgeDAO dao1=new JudgeDAO();
+		        List<Judge> list4 = dao1.flag_sea(user_id);
+
+		        JudgeDAO dao2=new JudgeDAO();
+		        List<Receiving> list5 = dao2.flag_sea1(user_id);
+
 		        TransactionDAO dao=new TransactionDAO();
 				List<Transaction> list=dao.search(user_id);
 
@@ -66,6 +75,8 @@ public class Orderlist extends HttpServlet {
 				data.put("response", list); // Listデータ
 				data.put("list", list2);
 				data.put("list2", list3);
+				data.put("list3", list4);
+				data.put("list_co", list5);
 
 				String json = new Gson().toJson(data);
                 response.getWriter().write(json);

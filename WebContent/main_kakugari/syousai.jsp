@@ -934,7 +934,7 @@ var imd2="${img2}";
 
 var imd_stu=1;
 
-if (document.getElementById('my-id')) {
+if (document.getElementById('delete_syou')) {
 document.getElementById("delete_syou").addEventListener("click", function() {
 	var result = confirm('削除してもよろしいでしょうか？');
 

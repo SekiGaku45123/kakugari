@@ -43,7 +43,6 @@ public class Hatyu_sach extends HttpServlet{
 
 		        String user_id = user.getUser_id();
 
-		        String story = request.getParameter("id");
 
 
 		        String item = request.getParameter("item_id");

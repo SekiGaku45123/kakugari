@@ -107,7 +107,7 @@ public class TransactionDAO extends DAO {
 			Transaction p1 = new Transaction();
 
 			p1.setExhibit_come(rs.getString("exhibit_come"));
-			System.out.print(rs.getString("exhibit_come"));
+			System.out.print(rs.getString("exhibit_come")+"kakaka");
 			list.add(p1);
 
 		}

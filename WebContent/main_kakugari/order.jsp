@@ -160,11 +160,11 @@
 
     document.addEventListener("DOMContentLoaded", function() {
     	$.ajax({
-            url: '${pageContext.request.contextPath}/kakugari/Hatyu_come', // サーバーのURL
+            url: '${pageContext.request.contextPath}/kakugari/Hatyu_sach', // サーバーのURL
             type: 'POST',
             data: {item_id: item },
             success: function(response) {
-            	if (response[0].exhibit_come == null) {
+            	if (response[0].exhibit_come != null) {
             	    // リストに値が入っている場合の処理
             		document.getElementById("coco").disabled = true;
             		document.getElementById("story").disabled = true;

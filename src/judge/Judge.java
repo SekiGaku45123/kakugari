@@ -5,6 +5,9 @@ public class Judge {
    private String comment;
    private boolean evaluate;
    private boolean notifi;
+   private boolean flag;
+
+
    public String getItemId() {
        return itemId;
    }
@@ -34,5 +37,11 @@ public class Judge {
    }
    public void setNotifi(boolean notifi) {
        this.notifi = notifi;
+   }
+   public boolean getFlag() {
+       return flag;
+   }
+   public void setFlag(boolean flag) {
+       this.flag = flag;
    }
 }
