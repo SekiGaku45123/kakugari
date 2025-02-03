@@ -363,12 +363,48 @@
     	border-radius:2%;
     	overflow: auto;
 		}
-		.p_gen{
-			text-align: center;
-			font-size: 25px;
-			border-bottom: 1px solid #000;
-			margin:5px 10px 0 10px;
+		.p_gen {
+		    text-align: center;
+		    font-size: 25px;
+		    border-bottom: 1px solid #000;
+		    margin: 5px 10px 0 10px;
+		    display: grid; /* グリッドレイアウトを適用 */
+		    grid-template-columns: 1fr 1fr 1fr; /* 3列に分ける */
+		    justify-items: center; /* 水平方向の中央揃え */
+		    align-items: center; /* 垂直方向の中央揃え */
+
 		}
+		.bu1{
+		background-color: white;
+		transform: translateY(1px); /* 少し下に移動 */
+		}
+
+		.bu1 button{
+		background-color: white;
+		border-bottom: none;
+		}
+
+
+		.bu2{
+		background-color: white;
+		transform: translateY(1px); /* 少し下に移動 */
+		}
+
+		.bu2 button{
+		background-color: white;
+		border-bottom: none;
+		}
+
+		.bu3{
+		background-color: white;
+		transform: translateY(1px); /* 少し下に移動 */
+		}
+
+		.bu3 button{
+		background-color: white;
+		border-bottom: none;
+		}
+
 
 		.order_list{
 		margin: 10px;
@@ -498,7 +534,7 @@
 
 		        <div id="fadeElement1" class="hidden1">
 		        	<p><a href="../login_logout/logout">ログアウト</a></p>
-		        	<p><a href="#" id="showOrderList">発送リスト</a></p>
+		        	<p><a href="#" id="showOrderList">通知リスト</a></p>
 		        	<div class="yarukoto_main">
 			        	<div id="yarukoto">
 			        </div>
@@ -506,8 +542,9 @@
 			    </div>
 
 			    <div class="order_list_main" style="display: none;">
-				    <p class="p_gen">発注リスト</p>
+				    <span class="p_gen"><div class="bu1"><button id="bu1_1">発送</button></div><div class="bu2"><button id="bu2_1">受取評価</button></div><div class="bu3"><button id="bu3_1">その他</button></div></span>
 					    <div id="order_all"></div>
+					    <div id="all_order" style="display:none"></div>
 			    </div>
 
     		</div>
@@ -516,6 +553,23 @@
 
 
 <script type="text/javascript">
+
+
+document.getElementById("bu1_1").addEventListener("click", function() {
+    document.getElementById("all_order").style.display = "none";
+    document.getElementById("order_all").style.display = "block";
+});
+document.getElementById("bu2_1").addEventListener("click", function() {
+    document.getElementById("order_all").style.display = "none";
+    document.getElementById("all_order").style.display = "block";
+});
+document.getElementById("bu3_1").addEventListener("click", function() {
+    document.getElementById("order_all").style.display = "none";
+    document.getElementById("all_order").style.display = "none";
+});
+
+
+
        const links = document.querySelectorAll(".header-nav__item > a");
        links.forEach(function (link) {
            if (link.href === location.href) {
@@ -681,6 +735,8 @@
 
                 var order_all = document.getElementById('order_all');
                 order_all.innerHTML = '';
+                var all_order = document.getElementById('all_order');
+                all_order.innerHTML = '';
 
 
 
@@ -765,8 +821,8 @@
 
 
 
-                    	order_all.appendChild(order_list_cla_a);
-                    	order_all.appendChild(margin_order_yo);
+                    	all_order.appendChild(order_list_cla_a);
+                    	all_order.appendChild(margin_order_yo);
 
 
                     }
@@ -861,8 +917,8 @@
 
 
 
-                    	order_all.appendChild(order_list_cla_a);
-                    	order_all.appendChild(margin_order_yo);
+                    	all_order.appendChild(order_list_cla_a);
+                    	all_order.appendChild(margin_order_yo);
 
 
                     }
@@ -1024,11 +1080,14 @@
     });
 }
 
+		let button1 = document.getElementById("bu1_1");
 		document.getElementById("showOrderList").addEventListener("click", function(event) {
 		    event.preventDefault(); // aタグのデフォルトの動作を無効化
 		    const orderList = document.querySelector(".order_list_main");
 		    if (orderList.style.display === "none" || orderList.style.display === "") {
 		        orderList.style.display = "block"; // 表示
+		        button1.classList.add("active");
+
 		    } else {
 		        orderList.style.display = "none"; // 非表示
 		    }
