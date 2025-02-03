@@ -171,26 +171,103 @@ textarea::-webkit-scrollbar{
   <div class="goods_name">
 
 	<p>商品名</p>
-	<input tyoe="text" name="item_name" maxlength="40" placeholder="必須(40文字まで)">
+	<input type="text" name="item_name" maxlength="40" placeholder="必須(40文字まで)">
 
   </div>
   <br>
   <div class="goods">
 
   <details class="custom-details">
-			<summary>カテゴリ</summary>
+			<summary><font color="#ff476f">カテゴリ</font></summary>
 			  	<div class="checkbox1">
-			    	<input type="checkbox" id="scales1" name="scales" value="人" />
-			    	<label for="horns">人</label>
+			    	<input type="checkbox" id="scales1" name="scales" value="ファッション" />
+			    	<label for="horns">ファッション</label>
 			  	</div>
 			  	<div class="checkbox1">
-			    	<input type="checkbox" id="scales2" name="scales" value="動物" />
-			    	<label for="horns">動物</label>
+			    	<input type="checkbox" id="scales2" name="scales" value="ベビー・キッズ" />
+			    	<label for="horns">ベビー・キッズ</label>
 			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="ゲーム・おもちゃ・グッズ" />
+			    	<label for="horns">ゲーム・おもちゃ・グッズ</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="ホビー・楽器・アート" />
+			    	<label for="horns">ホビー・楽器・アート</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="チケット" />
+			    	<label for="horns">チケット</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="本・雑誌・漫画" />
+			    	<label for="horns">本・雑誌・漫画</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="CD・DVD・Blu-ray" />
+			    	<label for="horns">CD・DVD・Blu-ray</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="スマホ・タブレット・パソコン" />
+			    	<label for="horns">スマホ・タブレット・パソコン</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="テレビ・オーディオ・カメラ" />
+			    	<label for="horns">テレビ・オーディオ・カメラ</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="生活家電・空調" />
+			    	<label for="horns">生活家電・空調</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="スポーツ" />
+			    	<label for="horns">スポーツ</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="アウトドア・釣り・旅行用品" />
+			    	<label for="horns">アウトドア・釣り・旅行用品</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="コスメ・美容" />
+			    	<label for="horns">コスメ・美容</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="ダイエット・健康" />
+			    	<label for="horns">ダイエット・健康</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="食品・飲料・酒" />
+			    	<label for="horns">食品・飲料・酒</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="キッチン・日用品・その他" />
+			    	<label for="horns">キッチン・日用品・その他</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="家具・インテリア" />
+			    	<label for="horns">家具・インテリア</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="ペット用品" />
+			    	<label for="horns">ペット用品</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="フラワー・ガーデニング" />
+			    	<label for="horns">フラワー・ガーデニング</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="ハンドメイド・手芸" />
+			    	<label for="horns">ハンドメイド・手芸</label>
+			  	</div>
+			  	<div class="checkbox1">
+			    	<input type="checkbox" id="scales2" name="scales" value="車・バイク・自転車" />
+			    	<label for="horns">車・バイク・自転車</label>
+			  	</div>
+
 		</details>
 
   <details class="custom-details">
-			<summary>商品状態</summary>
+			<summary><font color="#ff476f">商品状態</font></summary>
 				<div class="checkbox1">
 			    	<input type="checkbox" id="isNew" name="scales1" class="check" value="新品" />
 			    	<label for="horns">新品・未使用</label>
@@ -215,7 +292,7 @@ textarea::-webkit-scrollbar{
 
   <p>発送について</p>
   <details class="custom-details">
-			<summary>発送元の地域</summary>
+			<summary><font color="#ff476f">発送元の地域</font></summary>
 			  	<select name="region">
 				    <option value="" selected>選択してください</option>
 				    <option value="北海道">北海道</option>
@@ -269,7 +346,7 @@ textarea::-webkit-scrollbar{
 		</details>
 
   <details class="custom-details">
-			<summary>発送までの日数</summary>
+			<summary><font color="#ff476f">発送までの日数</font></summary>
 			<input type="number" name="shopping_days" maxlength="2" placeholder="日数">
 		</details>
 
@@ -375,5 +452,20 @@ $(function() {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const checkboxes = document.querySelectorAll('input[name="scales"]');
+
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener("change", function () {
+        if (this.checked) {
+          checkboxes.forEach(cb => {
+            if (cb !== this) cb.checked = false;
+          });
+        }
+      });
+    });
+  });
+
 
 </script>
