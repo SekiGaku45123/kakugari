@@ -69,6 +69,7 @@
                    hasNgWord = true;
                    break;
                }
+
            }
            if (hasNgWord) {
        %>
