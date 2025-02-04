@@ -58,7 +58,9 @@
            String subject = request.getParameter("subject");
            String recipient = request.getParameter("recipient");
            String body = request.getParameter("body");
-           String[] ngWords = {"ばか", "あほ", "しね", "ころす", "きえろ","きもい","殺","死"};
+           String[] ngWords = {"ばか", "あほ", "しね", "ころす",
+        		   "きえろ","きもい","殺","死","馬鹿","バカ","アホ","マヌケ","デブ",
+        		   "motherfucker","motherfxxker","マザファカ","ウザい"};
            boolean hasNgWord = false;
            // 不適切ワードのチェック
            for (String word : ngWords) {
