@@ -180,6 +180,7 @@ function submitCreditCardData(event) {
 
                 alert("クレジットカード登録が完了しました");
                 // 成功した場合のみフォームを送信
+                location.reload();
 
             } else {
                 alert("クレジットカード登録に失敗しました");
