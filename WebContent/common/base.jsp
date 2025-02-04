@@ -926,6 +926,7 @@ document.getElementById("bu3_1").addEventListener("click", function() {
 
 
 
+
                 if (Array.isArray(list_mess) && list_mess.length > 0) {
                     var yarukoto = document.getElementById('yarukoto');
                     yarukoto.innerHTML = '';

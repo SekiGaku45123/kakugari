@@ -14,6 +14,7 @@
 	margin: 20px auto 0;
 }
 
+
 .gazu_main{
 	display: grid;
 	padding: 10px 0 0;

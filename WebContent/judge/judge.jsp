@@ -115,6 +115,7 @@
 <input type="radio" id="good" name="evaluate" value="true" required>
 <label for="good">Good👍</label>
 <input type="radio" id="bad" name="evaluate" value="false">
+
 <label for="bad">Bad👎</label>
 </div>
 <!-- コメント入力 -->

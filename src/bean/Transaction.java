@@ -66,6 +66,7 @@ public class Transaction implements java.io.Serializable {
         this.evaluate = evaluate;
     }
 
+
 	public void setComment(String comment) {
         this.comment = comment;
     }

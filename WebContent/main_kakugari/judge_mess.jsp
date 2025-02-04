@@ -39,6 +39,7 @@
             color: #333;
         }
     </style>
+
 </head>
 <div class="gogo">
 <%String item_id=request.getParameter("ex_co"); %>
