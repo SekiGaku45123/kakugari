@@ -138,6 +138,21 @@
 textarea::-webkit-scrollbar{
   display: none;
 }
+/* メインメニューリンク */
+  .return-link {
+      display: inline-block;
+      margin: 40px 0 0 0; /* 上部マージン */
+      padding: 10px 20px;
+      color: #fff; /* 文字色を白に設定 */
+      background-color: #afafb0; /* 緑ベース */
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.2s ease; /* ホバー時の動き */
+  }
+  .return-link:hover {
+       background: #0d0015;
+       color: white;
+   }
 
 
 
@@ -360,6 +375,7 @@ textarea::-webkit-scrollbar{
 </div>
 
 <input type="submit" value="出品">
+<p><a href="${pageContext.request.contextPath}/main_kakugari/all" class="return-link">トップページに戻る</a></p>
 </form>
 
 <br><br><br>
