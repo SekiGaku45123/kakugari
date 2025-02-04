@@ -69,6 +69,15 @@ public class Product extends HttpServlet {
 
 				System.out.print(list);
 
+				String userId = list.get(0).getUser_id(); // 最初の要素のユーザーIDを取得
+			    System.out.println("First User ID: " + userId);
+
+			    ItemDAO dao2=new ItemDAO();
+			    List<User> userid = dao2.sach_user(userId);
+
+			    String user_namene =userid.get(0).getUser_name();
+			    System.out.print(user_namene);
+
 				if(user != null){
 
 				String key = user.getUser_id();
@@ -82,6 +91,7 @@ public class Product extends HttpServlet {
 
 				session.setAttribute("browse",browselist);
 				request.setAttribute("pro", list);
+				request.setAttribute("user_name2", user_namene);
 				request.setAttribute("user_data", user);
 
 				request.getRequestDispatcher("/main_kakugari/syousai.jsp")

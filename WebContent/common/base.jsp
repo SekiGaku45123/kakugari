@@ -16,7 +16,7 @@
        // セッションからログイン情報を取得
        HttpSession sessionObj = request.getSession(false);
        boolean isLoggedIn = (session != null && session.getAttribute("customer") != null);
-   %>
+  %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
        /* headerスタイル */
@@ -775,7 +775,7 @@ document.getElementById("bu3_1").addEventListener("click", function() {
                     	order_list_imgimg.src = list2[i].image_data;
                     	order_list_imgimg.alt = list2[i].item_name;
 
-                    	order_comment_p_p.textContent = list2[i].user_name + "　さんが「" + list2[i].item_name + "」の受取評価しました。";
+
 
 
                     	order_list_cla_a.className = 'atagu'
@@ -794,13 +794,16 @@ document.getElementById("bu3_1").addEventListener("click", function() {
                     	for (let a = 0; a < list3.length; a++) {
                     		if (list3[a].itemId === list2[i].item_id) {
                     			order_list_img.className = 'order_img1';
+                    			order_comment_p_p.textContent = "受取評価が完了しました。"
                     	        found = true;
+                    	        count_two--;
                     	        break;
                     		}
 
                     	}
 
                     	if (!found) {
+                    		order_comment_p_p.textContent = list2[i].user_name + "　さんが「" + list2[i].item_name + "」の受取評価しました。";
                     		order_list_cla_a.href = "../judge/judge.jsp?item_id="+list2[i].item_id;
                     		order_list_img.className = 'order_img1';
                     	}
@@ -871,7 +874,7 @@ document.getElementById("bu3_1").addEventListener("click", function() {
                     	order_list_imgimg.src = list[i].image_data;
                     	order_list_imgimg.alt = list[i].item_name;
 
-                    	order_comment_p_p.textContent = list[i].user_name + "　さんが「" + list[i].item_name + "」を発送しました。商品が届いたら、受取評価をしてください。";
+
 
 
                     	order_list_cla_a.className = 'atagu'
@@ -889,12 +892,15 @@ document.getElementById("bu3_1").addEventListener("click", function() {
                     	for (let a = 0; a < list3.length; a++) {
                     	    if (list3[a].itemId === list[i].item_id) {
                     	        order_list_img.className = 'order_img1';
+                    	        order_comment_p_p.textContent = "受取評価が完了しました。"
                     	        found = true;
+                    	        count_one--;
                     	        break;
                     	    }
                     	}
 
                     	if (!found) {
+                    		order_comment_p_p.textContent = list[i].user_name + "　さんが「" + list[i].item_name + "」を発送しました。商品が届いたら、受取評価をしてください。";
                     		order_list_cla_a.href = "../judge/judge.jsp?item_id="+list[i].item_id;
                     	    order_list_img.className = 'order_img';
                     	}
@@ -968,7 +974,7 @@ document.getElementById("bu3_1").addEventListener("click", function() {
                     	order_list_imgimg.src = response[i].image_data;
                     	order_list_imgimg.alt = response[i].item_name;
 
-                    	order_comment_p_p.textContent = response[i].user_name + "　さんが「" + response[i].item_name + "」を購入しました。内容を確認の上、発送をお願いします。";
+
 
 
                     	order_list_cla_a.className = 'atagu'
@@ -985,12 +991,15 @@ document.getElementById("bu3_1").addEventListener("click", function() {
                     	    if (list_co[a].item_id === response[i].item_id) {
                     	        console.log("一致:", list_co[a].item_id);
                     	        order_list_img.className = 'order_img1';
+                    	        order_comment_p_p.textContent = "発送が完了しました。"
                     	        found = true; // 一致したらフラグを `true` にする
+                    	        count--;
                     	        break; // ループを抜ける
                     	    }
                     	}
 
                     	if (!found) {
+                    		order_comment_p_p.textContent = response[i].user_name + "　さんが「" + response[i].item_name + "」を購入しました。内容を確認の上、発送をお願いします。";
                     	    order_list_cla_a.href = "../main_kakugari/order.jsp?item_id=" + response[i].item_id + "&user_name=" + response[i].user_id + "&user_naname=" + response[i].user_name;
                     	    order_list_img.className = 'order_img';
                     	}

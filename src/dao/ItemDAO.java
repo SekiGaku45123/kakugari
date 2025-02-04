@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Item;
+import bean.User;
 
 public class ItemDAO extends DAO{
 
@@ -420,6 +421,29 @@ public class ItemDAO extends DAO{
 	}
 
 
+	public List<User> sach_user(String pp) throws Exception {
+
+		List<User> list = new ArrayList<>();
+
+		Connection con=getConnection();
+
+		String sql = "SELECT * from user1 where user_id = ?";
+
+	         PreparedStatement pstmt = con.prepareStatement(sql);
+	    	 pstmt.setString(1, pp);
+	         ResultSet rs = pstmt.executeQuery();
+
+	    	while (rs.next()) {
+	        	User p=new User();
+	        	System.out.println(rs.getString("user_name"));
+				p.setUser_name(rs.getString("user_name"));
+
+				list.add(p);
+	        }
+	    return list;
+
+
+	}
 
 }
 

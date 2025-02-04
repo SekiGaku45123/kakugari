@@ -756,6 +756,8 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 
 <c:set var="user_id" value="${user_data.getUser_id()}" />
 
+
+
 <c:set var="item_idid" value="${pro[0].getItem_id()}"/>
 
 <c:set var="user_idid" value="${pro[0].getUser_id()}"/>
@@ -884,7 +886,7 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 		</div>
 			<p class="pq"><span class="taitoru">出品者</span></p>
 		<div class="user_icon_main">
-			<div class="user_icon"><img src="${pro.getImage_data()}" alt="商品画像" ></div><div class="listing">浜田省吾</div>
+			<div class="user_icon"><img src="${pro.getImage_data()}" alt="商品画像" ></div><div class="listing">${user_name2}</div>
 		</div>
 		<div class="pq"></div>
 		<span class="taitoru">コメント</span>
