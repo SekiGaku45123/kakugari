@@ -68,6 +68,12 @@ public class Orderlist extends HttpServlet {
 
 				List<Transaction> list3=dao.search_purchaser_tuti(user_id);
 
+				List<Transaction> list6=dao.search_message(user_id);
+
+				List<Transaction> list7=dao.search_mess(user_id);
+
+				List<Transaction> list8=dao.search_mess1(user_id);
+
 				System.out.println("dijhgfggih");
 				System.out.println(list);
 
@@ -77,6 +83,9 @@ public class Orderlist extends HttpServlet {
 				data.put("list2", list3);
 				data.put("list3", list4);
 				data.put("list_co", list5);
+				data.put("list_mess", list6);
+				data.put("pur_mess", list7);
+				data.put("ex_mess", list8);
 
 				String json = new Gson().toJson(data);
                 response.getWriter().write(json);

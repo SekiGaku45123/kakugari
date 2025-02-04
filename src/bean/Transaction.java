@@ -11,6 +11,16 @@ public class Transaction implements java.io.Serializable {
 	private String item_name;
 	private String image_data;
 	private String user_name;
+	private String comment;
+	private boolean evaluate;
+
+	public boolean getEvaluate() {
+        return evaluate;
+    }
+
+	public String getComment() {
+        return comment;
+    }
 
 	public String getItem_id() {
         return item_id;
@@ -51,6 +61,14 @@ public class Transaction implements java.io.Serializable {
 	public String getImage_data() {
 		return image_data;
 	}
+
+	public void setEvaluate(boolean evaluate) {
+        this.evaluate = evaluate;
+    }
+
+	public void setComment(String comment) {
+        this.comment = comment;
+    }
 
 	public void setItem_id(String item_id) {
         this.item_id = item_id;
