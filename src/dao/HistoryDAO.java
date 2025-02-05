@@ -63,6 +63,23 @@ public class HistoryDAO extends DAO {
         st.executeUpdate();
 
         st.close();
+
+
+        String sql1 = "DELETE FROM transaction WHERE ITEM_ID = ?";
+        PreparedStatement st1 = con.prepareStatement(sql1);
+        st1.setString(1, itemId);
+        st1.executeUpdate();
+
+        st1.close();
+
+        String sql2 = "update item set flag = true where item_id = ?";
+        PreparedStatement st2 = con.prepareStatement(sql2);
+        st2.setString(1, itemId);
+        st2.executeUpdate();
+
+        st2.close();
+
+
         con.close();
     }
 

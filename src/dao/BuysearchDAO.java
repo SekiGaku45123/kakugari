@@ -92,6 +92,16 @@ public class BuysearchDAO extends DAO {
             history.setImage_Data(rs.getString("image_data"));
             history.setPurchase_Date(rs.getTimestamp("purchase_date"));
 
+            int item_iidd = rs.getInt("item_id");
+            String iitem_id = String.valueOf(item_iidd);
+
+            String sql1 ="select * from transaction where item_id = ? and order_comp = false";
+            PreparedStatement st1 = con.prepareStatement(sql1);
+            st1.setString(1, iitem_id);
+            ResultSet rs1 = st1.executeQuery();
+
+            String cancelNot;
+
             Timestamp purchaseDate = rs.getTimestamp("purchase_date");
 
             LocalDateTime purchaseTime = purchaseDate.toLocalDateTime();
@@ -101,8 +111,18 @@ public class BuysearchDAO extends DAO {
             Duration duration = Duration.between(purchaseTime, now);
             long minutesElapsed = duration.toMinutes();
 
-            String cancelNot = (minutesElapsed >= 30) ? "not" : "OK";
+            if (rs1.next()) {  // データがある場合
+
+                cancelNot = (minutesElapsed >= 30) ? "not" : "OK";
+
+            } else {          // データがない場合
+            	cancelNot = "not";
+            }
+
             history.setCancel_not(cancelNot);
+
+
+
 
             System.out.println(cancelNot);
             System.out.println("取得した日時: " + history.getPurchase_Date()); // デバッグ用
