@@ -43,6 +43,7 @@ public class Confirm extends HttpServlet {
 			PrintWriter out=response.getWriter();
 			Page.header(out);
 
+
 			try{
 
 				HttpSession session = request.getSession();
