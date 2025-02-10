@@ -113,7 +113,7 @@ public class BuysearchDAO extends DAO {
 
             if (rs1.next()) {  // データがある場合
 
-                cancelNot = (minutesElapsed >= 1) ? "not" : "OK";
+                cancelNot = (minutesElapsed >= 30) ? "not" : "OK";
 
             } else {          // データがない場合
             	cancelNot = "not";
