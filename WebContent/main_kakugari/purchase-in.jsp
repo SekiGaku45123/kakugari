@@ -88,15 +88,15 @@
             <div id="creditRegisterButton" style="display: block;">
 			    <div class="form-group">
 			        <label for="cardNumber">カード番号</label>
-			        <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="カード番号を入力してください" required>
+			        <input type="number" class="form-control" id="cardNumber" name="cardNumber" placeholder="カード番号を入力してください"  required>
 			    </div>
 			    <div class="form-group">
 			        <label for="expiryDate">有効期限</label>
-			        <input type="text" class="form-control" id="expiryDate" name="expiryDate" placeholder="例）11月2027年→112027" required>
+			        <input type="number" class="form-control" id="expiryDate" name="expiryDate" placeholder="例）11月2027年→112027" required>
 			    </div>
 			    <div class="form-group">
 			        <label for="security_code">セキュリティコード</label>
-			        <input type="text" class="form-control" id="cvv" name="security_code" placeholder="セキュリティコードを入力してください" required>
+			        <input type="number" class="form-control" id="cvv" name="security_code" placeholder="セキュリティコードを入力してください" required>
 			    </div>
 			    <button type="button"  class="btn btn-primary w-75 " id="creditCardButton">クレジットカード登録</button>
 
@@ -150,6 +150,28 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- JavaScript -->
 <script>
+
+document.getElementById("cardNumber").addEventListener("input", function (e) {
+    let value = this.value;
+    if (value.length > 16) {
+      this.value = value.slice(0, 16);
+    }
+  });
+
+document.getElementById("expiryDate").addEventListener("input", function (e) {
+    let value = this.value;
+    if (value.length > 6) {
+      this.value = value.slice(0, 6);
+    }
+  });
+
+document.getElementById("cvv").addEventListener("input", function (e) {
+    let value = this.value;
+    if (value.length > 3) {
+      this.value = value.slice(0, 3);
+    }
+  });
+
 function submitCreditCardData(event) {
     // フォーム送信を一旦停止
     event.preventDefault();

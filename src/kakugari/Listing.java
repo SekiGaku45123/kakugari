@@ -77,7 +77,20 @@ public class Listing extends HttpServlet {
 	        	Part part1=request.getPart("photo1");
 	        	Part part2=request.getPart("photo2");
 
-	        	String photo = part.getSubmittedFileName();
+	        	String photo = (part != null && part.getSize() > 0) ? part.getSubmittedFileName() : null;
+
+	            if (photo == null || photo.isEmpty()) {
+	                System.out.println("ルuguiguub");
+	                request.setAttribute("messe", "画像を挿入してください");
+	                try {
+	                    request.getRequestDispatcher("/main_kakugari/listing.jsp").forward(request, response);
+	                } catch (Exception e) {
+	                    e.printStackTrace();
+	                    response.sendRedirect(request.getContextPath() + "/main_kakugari/listing.jsp");
+	                }
+	                return;
+	            }
+
 	        	String photo1 = part1.getSubmittedFileName();
 	        	String photo2 = part2.getSubmittedFileName();
 
