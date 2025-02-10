@@ -115,8 +115,6 @@
 <label for="body">お問い合わせ内容:</label>
 <textarea id="body" name="body" rows="4" required>${param.body}</textarea>
 </div>
-<!-- よくある質問へのリンク -->
-<p class="link"><a href="faq.jsp" target="_blank">よくある質問</a></p>
 <input type="submit" value="確認">
 </form>
 </body>
