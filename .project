@@ -34,4 +34,21 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>WebContent/icon_image/1189 - コピー.png</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Downloads/1189/1189/1189%20-%20%E3%82%B3%E3%83%94%E3%83%BC.png</locationURI>
+		</link>
+		<link>
+			<name>WebContent/icon_image/1189.png</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Downloads/1189/1189/1189.png</locationURI>
+		</link>
+		<link>
+			<name>WebContent/images1/イメージ画像.png</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/kakugari3/images1/%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E7%94%BB%E5%83%8F.png</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

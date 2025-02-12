@@ -902,7 +902,23 @@ filter: brightness(0) saturate(100%) invert(51%) sepia(52%) saturate(5176%) hue-
 	        </div>
 	        </c:if>
 	        <c:if test="${flag == false }">
-				<p>※売り切れのためコメントできません</p>
+	        	<c:choose>
+	        		<c:when test="${list3[0].getPurchaser() == user_id }">
+	        			<div class="comment_input">
+				        	<textarea id="comment_input" name="comment_input"></textarea>
+				        	<button id="send_button"><img src="../kakugari_image/19610.png" alt="送信"/></button>
+				        </div>
+	        		</c:when>
+	        		<c:when test="${list3[0].getExhibit_user() == user_id }">
+	        			<div class="comment_input">
+				        	<textarea id="comment_input" name="comment_input"></textarea>
+				        	<button id="send_button"><img src="../kakugari_image/19610.png" alt="送信"/></button>
+				        </div>
+	        		</c:when>
+	        		<c:otherwise>
+						<p>※売り切れのためコメントできません</p>
+					</c:otherwise>
+				</c:choose>
 	        </c:if>
 
 

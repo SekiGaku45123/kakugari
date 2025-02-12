@@ -13,6 +13,11 @@ public class Transaction implements java.io.Serializable {
 	private String user_name;
 	private String comment;
 	private boolean evaluate;
+	private String tra_day;
+
+	public String getTra_day() {
+        return tra_day;
+    }
 
 	public boolean getEvaluate() {
         return evaluate;
@@ -61,6 +66,10 @@ public class Transaction implements java.io.Serializable {
 	public String getImage_data() {
 		return image_data;
 	}
+
+	public void setTra_day(String tra_day) {
+        this.tra_day = tra_day;
+    }
 
 	public void setEvaluate(boolean evaluate) {
         this.evaluate = evaluate;

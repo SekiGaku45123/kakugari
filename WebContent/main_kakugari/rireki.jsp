@@ -149,7 +149,7 @@
 <c:if test="${history.flag}">
 <tr>
 <td>
-<a href="${pageContext.request.contextPath}/judge/judge.jsp?item_id=${history.item_Id}">
+<a href="#">
 <img src="${pageContext.request.contextPath}/images/${history.image_Data}" alt="商品画像" width="80" height="80">
 </a>
 </td>

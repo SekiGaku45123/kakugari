@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Comment;
 import bean.User;
+import dao.CommentDAO;
 import dao.TransactionDAO;
 import tool.Page;
 
@@ -41,6 +43,8 @@ public class Hatyu_come extends HttpServlet{
 
 		        String user_id = user.getUser_id();
 
+		        String user_name = user.getUser_name();
+
 		        String story = request.getParameter("id");
 		        String item = request.getParameter("item_id");
 
@@ -48,6 +52,16 @@ public class Hatyu_come extends HttpServlet{
 				int line=dao.updateinsert_come(story,user_id,item);
 
 				if (line>0) {
+					Comment p = new Comment();
+		        	p.setItem_id(item);
+		        	p.setUser_id(user_id);
+		        	p.setComment(story);
+		        	p.setUser_name(user_name);
+
+
+
+	            CommentDAO dao1 = new CommentDAO();
+	            int line1 = dao1.commentinsert(p);
 					System.out.print("やっている？");
 				}
 

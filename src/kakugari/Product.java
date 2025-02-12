@@ -14,9 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import bean.Favorite;
 import bean.Item;
+import bean.Transaction;
 import bean.User;
 import dao.FavoriteDAO;
 import dao.ItemDAO;
+import dao.TransactionDAO;
 import tool.Page;
 
 @WebServlet(urlPatterns={"/kakugari/product", "/servlet/kakugari.Product"})
@@ -64,6 +66,10 @@ public class Product extends HttpServlet {
 		        User user = (User) session.getAttribute("customer");
 
 
+
+		        TransactionDAO dao3 =new TransactionDAO();
+		        List<Transaction> list3 = dao3.search_cocome(item_id);
+
 				ItemDAO dao=new ItemDAO();
 				List<Item> list=dao.buy(item_id);
 
@@ -93,6 +99,7 @@ public class Product extends HttpServlet {
 				request.setAttribute("pro", list);
 				request.setAttribute("user_name2", user_namene);
 				request.setAttribute("user_data", user);
+				request.setAttribute("list3", list3);
 
 				request.getRequestDispatcher("/main_kakugari/syousai.jsp")
 				.forward(request, response);

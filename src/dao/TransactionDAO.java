@@ -41,7 +41,7 @@ public class TransactionDAO extends DAO {
 		System.out.println(keyword);
 
 		PreparedStatement st = con.prepareStatement(
-				"select t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.purchaser = u.user_id where t.exhibit_user = ?");
+				"select t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.purchaser = u.user_id where t.exhibit_user = ? ORDER BY t.tra_day ASC");
 		st.setString(1, keyword);
 		ResultSet rs=st.executeQuery();
 
@@ -144,7 +144,7 @@ public class TransactionDAO extends DAO {
 		System.out.println(keyword);
 
 		PreparedStatement st = con.prepareStatement(
-				"select t.item_id, m.item_name, i.image_data, u.user_id, u.user_name from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.exhibit_user = u.user_id join receiving as r on r.item_id = t.item_id where t.purchaser = ? and order_comp = TRUE;");
+				"select t.tra_day, t.item_id, m.item_name, i.image_data, u.user_id, u.user_name from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.exhibit_user = u.user_id join receiving as r on r.item_id = t.item_id where t.purchaser = ? and order_comp = TRUE ORDER BY t.tra_day ASC");
 		st.setString(1, keyword);
 		ResultSet rs=st.executeQuery();
 
@@ -176,7 +176,7 @@ public class TransactionDAO extends DAO {
 		System.out.println(keyword);
 
 		PreparedStatement st = con.prepareStatement(
-				"select DISTINCT t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.purchaser = u.user_id join judge as tes on tes.item_id = t.item_id where t.exhibit_user = ? and tes.notification = TRUE");
+				"select DISTINCT t.tra_day, t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.purchaser = u.user_id join judge as tes on tes.item_id = t.item_id where t.exhibit_user = ? and tes.notification = TRUE ORDER BY t.tra_day ASC");
 		st.setString(1, keyword);
 		ResultSet rs=st.executeQuery();
 
@@ -206,7 +206,7 @@ public class TransactionDAO extends DAO {
 		System.out.println(keyword);
 
 		PreparedStatement st = con.prepareStatement(
-				"select DISTINCT t.exhibit_come, t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.purchaser = u.user_id where t.purchaser = ? and exhibit_come IS NOT NULL");
+				"select DISTINCT t.exhibit_come, t.item_id, m.item_name, i.image_data, u.user_id, u.user_name, t.purchaser from transaction as t join images as i on t.item_id = i.item_id join item as m on t.item_id = m.item_id join user1 as u on t.exhibit_user = u.user_id where t.purchaser = ? and exhibit_come IS NOT NULL");
 		st.setString(1, keyword);
 		ResultSet rs=st.executeQuery();
 
@@ -287,6 +287,35 @@ public class TransactionDAO extends DAO {
 			p.setUser_name(rs.getString("user_name"));
 			p.setComment(rs.getString("comment"));
 			p.setEvaluate(rs.getBoolean("evaluate"));
+			list.add(p);
+		}
+
+
+
+		st.close();
+		con.close();
+
+		return list;
+	}
+
+	public List<Transaction> search_cocome(String keyword)throws Exception{
+
+		List<Transaction> list = new ArrayList<>();
+
+		Connection con=getConnection();
+
+		System.out.println(keyword);
+
+		PreparedStatement st = con.prepareStatement(
+				"select * from transaction where item_id = ?");
+		st.setString(1, keyword);
+		ResultSet rs=st.executeQuery();
+
+		if (rs.next()){
+			Transaction p = new Transaction();
+			System.out.print(rs.getString("item_id"));
+			p.setPurchaser(rs.getString("purchaser"));
+			p.setExhibit_user(rs.getString("exhibit_user"));
 			list.add(p);
 		}
 

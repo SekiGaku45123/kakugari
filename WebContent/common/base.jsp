@@ -347,7 +347,24 @@
 			right:30px;
 			border-radius:50%;
 		}
-
+	@media (max-width: 760px){
+		.order_list_main{
+		border: 2px solid #000000;
+		position: absolute;
+		background-color: white;
+		max-width: 500px;
+		width:371px;
+		height:650px;
+		top: 30px;
+    	left: 50%;
+    	transform: translateX(-50%);
+    	-webkit-transform: translateX(-50%);
+    	-ms-transform: translateX(-50%);
+    	border-radius:2%;
+    	overflow: auto;
+		}
+}
+	@media (min-width: 760px){
 		.order_list_main{
 		border: 2px solid #000000;
 		position: absolute;
@@ -363,6 +380,8 @@
     	border-radius:2%;
     	overflow: auto;
 		}
+}
+
 		.p_gen {
 		    text-align: center;
 		    font-size: 25px;
@@ -977,7 +996,7 @@ document.getElementById("bu3_1").addEventListener("click", function() {
                     	console.log(list3+'kakakaka');
 
                     		order_comment_p_p.textContent = list_mess[i].user_name + "　さんからメッセージが届きました。";
-                    		order_list_cla_a.href = "../main_kakugari/ex_mess.jsp?item_id="+list_mess[i].item_id+"&ex_co="+list_mess[i].exhibit_come;
+                    		order_list_cla_a.href = "../main_kakugari/ex_mess.jsp?item_id="+list_mess[i].item_id+"&ex_co="+list_mess[i].exhibit_come+"&sender="+ list_mess[i].user_name;
                     		order_list_img.className = 'order_img';
 
 

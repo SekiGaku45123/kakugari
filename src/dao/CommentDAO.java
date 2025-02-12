@@ -50,7 +50,7 @@ public class CommentDAO extends DAO{
 
 		String catego = "";
 
-		catego = "select c.item_id, c.user_id, c.comment, c.posted_day, u.user_name from comment as c join user1 as u on c.user_id = u.user_id WHERE c.item_id = ? ";
+		catego = "select c.item_id, c.user_id, c.comment, c.posted_day, u.user_name from comment as c join user1 as u on c.user_id = u.user_id WHERE c.item_id = ? ORDER BY c.posted_day DESC;";
 
 
 		PreparedStatement st = con.prepareStatement(
