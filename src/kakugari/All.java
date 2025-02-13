@@ -20,7 +20,6 @@ import tool.Page;
 @WebServlet(urlPatterns={"/main_kakugari/all", "/servlet/kakugari.All"})
 public class All extends HttpServlet {
 
-
 	public void doGet (
 	        HttpServletRequest request, HttpServletResponse response
 	    ) throws ServletException, IOException {

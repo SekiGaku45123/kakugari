@@ -236,6 +236,11 @@ margin: 0 auto;
 <li data-target="#carouselExampleControls" data-slide-to="3"></li>
 </ol>
 
+<!-- http://localhost:8080/kakugari3/main_kakugari/coupon1.jsp
+https://www.dmm.co.jp/age_check/
+https://aespa-official.jp/
+https://ponpon.in/-->
+
  <div class="carousel-inner">
     <div class="carousel-item active">
         <a href="http://localhost:8080/kakugari3/main_kakugari/coupon1.jsp">
@@ -243,17 +248,17 @@ margin: 0 auto;
         </a>
     </div>
     <div class="carousel-item">
-        <a href="https://www.dmm.co.jp/age_check/">
+        <a href="#">
             <img class="d-block w-75 rounded" src="../kakugari_image/初回限定.jpg" alt="Image 2">
         </a>
     </div>
     <div class="carousel-item">
-        <a href="https://aespa-official.jp/">
+        <a href="#">
             <img class="d-block w-75 rounded" src="../kakugari_image/送料無料.jpg" alt="Image 3">
         </a>
     </div>
     <div class="carousel-item">
-        <a href="https://ponpon.in/">
+        <a href="#">
             <img class="d-block w-75 rounded" src="../kakugari_image/招待コード.jpg" alt="Image 4">
         </a>
     </div>
